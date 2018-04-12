@@ -3,12 +3,14 @@
     <h1>{{ msg }}</h1>
     <studies></studies>
     <portfolio></portfolio>
+    <exhibitions></exhibitions>
   </div>
 </template>
 
 <script>
 import JggStudies from '@/components/JggStudies'
 import JggPortfolio from '@/components/JggPortfolio'
+import JggExhibitions from '@/components/JggExhibitions'
 
 export default {
   name: 'HelloWorld',
@@ -19,7 +21,8 @@ export default {
   },
   components: {
     'studies': JggStudies,
-    'portfolio': JggPortfolio
+    'portfolio': JggPortfolio,
+    'exhibitions': JggExhibitions
   }
 
 }
@@ -29,10 +32,11 @@ export default {
 <style scoped>
 
 .hello{
-  background-color: aliceblue;
+  background-color: black;
 }
 h1{
   font-weight: normal;
   margin: 0;
+  color: white
 }
 </style>

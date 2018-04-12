@@ -20,7 +20,7 @@ body, html{
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  text-align: left;
+  text-align: center;
 }
 
 </style>
