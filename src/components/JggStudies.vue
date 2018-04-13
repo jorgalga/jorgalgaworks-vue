@@ -20,10 +20,10 @@ export default {
     return {
       msg: 'Estudios',
       studies: [
-        { year: '2009', message: 'Ingeniero informático técnico en gestión con intensificación en multimedia.', place: 'UPV (València)' },
-        { year: '2011', message: 'Máster en artes visuales y multimedia (tesis pendiente).', place: 'UPV (València)' },
-        { year: '2013', message: 'Programa de intercambio en el Interface cultures Master programme.', place: 'Kunstuniversität Linz (Austria)' },
-        { year: '2015', message: 'Licenciado en comunicación audiovisual.', place: 'UOC (Barcelona)' }
+        { year: '2009', message: 'Ingeniero informático técnico en gestión con intensificación en multimedia.', place: 'UPV (València).' },
+        { year: '2011', message: 'Máster en artes visuales y multimedia (tesis pendiente).', place: 'UPV (València).' },
+        { year: '2013', message: 'Programa de intercambio en el Interface cultures Master programme.', place: 'Kunstuniversität Linz (Austria).' },
+        { year: '2015', message: 'Licenciado en comunicación audiovisual.', place: 'UOC (Barcelona). ' }
       ]
     }
   }

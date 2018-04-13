@@ -15,6 +15,10 @@ export default {
 body, html{
   margin: 0
 }
+.no-scroll{
+  overflow: hidden;
+  height: 100vh
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
