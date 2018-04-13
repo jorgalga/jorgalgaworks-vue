@@ -16,10 +16,11 @@
           <div class="portfolio-item1"  v-for="item in filteredProyects" :key="item.message">
             <div class="portfolio-cnt">
               <div v-if="item.thumb !== undefined" class="thumb-el-wrapp ">
-                <img v-bind:src="item.thumb">
+                <img class="front" v-bind:src="item.thumb">
+                <img class="floating" v-bind:src="item.thumbB">
               </div>
               <div class="text-els">
-                <p>{{ item.year}}<p>
+                <p><span class="year">{{ item.year}}</span><p>
                 <p><b>{{ item.message }}</b></p>
                 <p><a @click.prevent="openModal(item)" href="#"><b>[+info]</b></a> <a v-if="item.url !== undefined"  v-bind:href="item.url" target="blank"><b>[site]</b></a></p>
               </div>
@@ -44,6 +45,7 @@ export default {
       portfolio: [
         { id: 'PR201803',
           thumb: '/static/thumb-readyplayerone-c.png',
+          thumbB: '/static/thumb-readyplayerone.png',
           year: '2018',
           context: 'Ogilvy & Mather',
           message: 'Los archivos de Oasis',
@@ -51,6 +53,7 @@ export default {
         },
         { id: 'PR201802',
           thumb: '/static/thumb-ogilvymusic-c.png',
+          thumbB: '/static/thumb-ogilvymusic.png',
           year: '2018',
           context: 'Ogilvy & Mather',
           message: 'Ogilvy Music prototype',
@@ -58,6 +61,7 @@ export default {
         },
         { id: 'PR201801',
           thumb: '/static/thumb-cruzcampo-c.png',
+          thumbB: '/static/thumb-cruzcampo.png',
           year: '2018',
           context: 'Ogilvy & Mather',
           message: 'Cruzcampo new site',
@@ -162,18 +166,12 @@ export default {
   a{
     color: purple
   }
-  .portfolio-item1{
-      margin-top: 0px
-  }
-  .portfolio-item1:hover .thumb-el-wrapp img{
-    filter: grayscale(0);
-  }
   .portfolio-cnt{
     margin: 0 15px;
     //background-color: #EEEEFF88;
     border-radius: 2px;
-    //box-shadow: 0 2px 10px #80808080
-
+    //box-shadow: 0 2px 10px #80808080;
+    margin-bottom: 20px
   }
   .thumb-el-wrapp{
     width: 100%;
@@ -185,11 +183,27 @@ export default {
      background-size: cover;
      background-position: center;
      background-repeat: no-repeat;
-     transition: 0.25s;
      cursor: pointer;
-     filter: grayscale(100%);
-     clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
-     //transform: translate3d(0,-40px,0)
+     clip-path: polygon(0 20px, 100% 0, 100% calc(100% - 20px), 0 100%);
+     //transform: translate3d(0,-40px,0);
+     opacity: 1;
+     z-index: 10;
+
+  }
+  .thumb-el-wrapp img.front{
+    filter: grayscale(100%);
+    transition: 0.5s;
+    position: relative;
+    z-index: 10;
+  }
+  .thumb-el-wrapp img.floating{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+  .portfolio-cnt:hover img.front{
+    opacity: 0;
   }
 
   .text-els{
@@ -198,7 +212,8 @@ export default {
     position: relative;
     z-index: 5;
     transform: translate3d(0,-40px,0);
-    clip-path: polygon(0 40px, 100% 0, 100% calc(100% - 40px), 0 100%);
+    clip-path: polygon(0 20px, 100% 0, 100% calc(100% - 20px), 0 100%);
+    margin-top: -10px;
   }
   .masonry-cnt{
       max-width: 1024px;
@@ -206,5 +221,15 @@ export default {
   }
   p{
     margin: 0 0 15px 0
+  }
+  span.year{
+    display: inline-block;
+    transform: skewY(-3.5deg);
+    background-color: #000000bb;
+    color: white;
+    padding: 6px 10px;
+    font-weight: 900;
+    font-size: 20px;
+    font-style: italic;
   }
 </style>

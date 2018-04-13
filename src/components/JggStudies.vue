@@ -4,7 +4,7 @@
       <h1>{{ msg }}</h1>
       <ul>
         <li v-for="item in studies" :key="item.year" >
-          <b>{{ item.year}}</b> <br> {{ item.message }} <br> {{ item.place }}
+          <span class="year">{{ item.year}}</span> <br> {{ item.message }} <br> {{ item.place }}
         </li>
       </ul>
     </div>
@@ -51,11 +51,22 @@ ul{
   padding: 0;
 }
 li {
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 .divisor{
     width: 100%;
     height: 50px;
     background-color: aliceblue;
+}
+span.year{
+  display: inline-block;
+  transform: skewY(-3.5deg);
+  background-color: #000000bb;
+  color: white;
+  padding: 6px 10px;
+  font-weight: 900;
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 5px
 }
 </style>
