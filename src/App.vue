@@ -22,5 +22,8 @@ body, html{
   color: #2c3e50;
   text-align: center;
 }
+.logo{
+  display:none;
+}
 
 </style>
