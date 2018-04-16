@@ -1,7 +1,15 @@
 <template>
   <div class="hello"  v-bind:class="{ active: isActive }" v-on:click="closeModal">
     <div class="container">
-      <div id="lipsum" v-html="msg"></div>
+      <div class="container-scroll">
+        <div id="show-media" v-html="smedia">
+        </div>
+      </div>
+      <div id="lipsum">
+        <h2>{{ title }}</h2>
+        <h3>{{ year }}</h3>
+        <div v-html="msg"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -11,7 +19,10 @@ export default {
   name: 'Modal',
   data () {
     return {
+      title: '',
+      year: '',
       msg: '',
+      smedia: '',
       isActive: false
     }
   },
@@ -19,6 +30,7 @@ export default {
     closeModal () {
       document.getElementsByTagName('body')[0].classList.remove('no-scroll')
       this.isActive = false
+      this.msg = ''
     }
   }
 }
@@ -26,7 +38,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .hello{
-  background-color: #11001177;
+  background-color: #110011dd;
   position: fixed;
   width: 100vw;
   height: 100vh;
@@ -41,34 +53,55 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%,-40%,0);
+  transition: 0.5s;
   background-color: white;
   width: 80%;
   max-width: 1024px;
   height: 80%;
-  border-radius: 4px;
-  overflow-x: hidden;
-  overflow-y: scroll;
   text-align: right;
-  background-color: black;
-
+  background-color: white;
+  overflow-x: hidden;
 }
+.container-scroll{
+  width:100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px; /* Increase/decrease this value for cross-browser compatibility */
+  box-sizing: content-box; /* So the width will be 100% + 17px */
+}
+
 .hello.active{
   opacity: 1;
   pointer-events: all;
 }
+.hello.active .container{
+  transform: translate3d(-50%,-50%,0);
+}
+
 #lipsum{
-  width: calc(30% - 30px);
+  width: calc(50% - 60px);
   display: inline-block;
   text-align: left;
-  padding: 15px;
-  background-color: white;
-  color: black;
+  padding: 30px;
+  background-color: #ffffffcc;
+  color: #112;
+  text-shadow: 0 0 4px #cccccc;
+  box-shadow: 0 0 4px #cccccc;
   transition: 0.25s;
-  transform:translate3d(80%, 0, 0);
+  transform:translate3d(calc(100% - 50px), 0, 0);
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  right: 0;
 }
 #lipsum:hover{
   transform:translate3d(0, 0, 0);
+}
+#show-media{
+  text-align: center;
+  position: relative;
+  z-index: 5;
 }
 
 </style>

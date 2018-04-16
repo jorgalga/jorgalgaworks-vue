@@ -13,7 +13,7 @@
           :cols="{default: 3, 1000: 3, 700: 2, 400: 2}"
           :gutter="{default: '5px', 700: '10px'}"
           >
-          <div class="portfolio-item1"  v-for="item in filteredProyects" :key="item.message">
+          <div class="portfolio-item1"  v-for="item in filteredProyects" :key="item.id">
             <div class="portfolio-cnt">
               <div v-if="item.thumb !== undefined" class="thumb-el-wrapp ">
                 <img class="front" v-bind:src="item.thumb">
@@ -79,11 +79,31 @@ export default {
         { id: 'PR201402', year: '2014', context: 'Ars Electronica', message: 'Agora Table' },
         { id: 'PR201401', year: '2014', context: 'Ars Electronica', message: 'Austrian Images for the ITB' },
         { id: 'PR201306', year: '2013', context: 'Ars Electronica', message: 'Drei - "There is another way"' },
-        { id: 'PR201305', year: '2013', context: 'Personal project', message: 'Tropers: Trbovlje Serie ' },
+        { id: 'PR201305',
+          thumb: '/static/thumb-troops-trb-c.png',
+          thumbB: '/static/thumb-troops-trb.png',
+          year: '2013',
+          context: 'Personal project',
+          message: 'Tropers: Trbovlje Serie',
+          modalText: '<p>Troopers Trbovlje" is part of the photography Serie called Troopers. The work combines photographic and synthetic image in order to create a particular universe between the reality and the fiction.</p><p>This serie was developed for the exhibition "<a href="http://speculumartium.si/" target="_blank">Apologists of the new Civilization</a>" which took place in Trbovlje (Slovenia) in October 2013.</p>',
+          modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><br><img class="modal700" src="/static/PR201305-img02.jpg"><br><img class="modal700" src="/static/PR201305-img03.jpg"><br><img class="modal700" src="/static/PR201305-img04.jpg">'
+        },
         { id: 'PR201304', year: '2013', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2014' },
         { id: 'PR201303', year: '2013', context: 'Personal project / Interface Cultures', message: 'Seqduino' },
-        { id: 'PR201302', year: '2013', context: 'Personal project / Interface Cultures', message: 'Troopers' },
-        { id: 'PR201301', year: '2013', context: 'Personal project / Interface Cultures', message: 'ScreenSaver' },
+        { id: 'PR201302',
+          year: '2013',
+          context: 'Personal project / Interface Cultures',
+          message: 'ScreenSaver'
+        },
+        { id: 'PR201301',
+          thumb: '/static/thumb-troops-c.png',
+          thumbB: '/static/thumb-troops.png',
+          year: '2013',
+          context: 'Personal project / Interface Cultures',
+          message: 'Troopers',
+          modalText: '<p>Troopers is a series of photography mostly that combines photographic and synthetic image. It uses different sources of images as a backdrop where intervention is proceed. these sources range from world famous art pieces to recognized places and moments of the social panorama. The intervention process involves the synthetic simulation and integration of the figure of a Stormtrooper 3D modeled (Imperial soldier from Star Wars saga) inside the picture creating a personal universe between reality and fiction.</p>',
+          modalContent: '<img class="modal700" src="/static/PR201301-img01-rodin.jpg"><br><img class="modal700" src="/static/PR201301-img02-miron.jpg"><br><img class="modal700" src="/static/PR201301-img03-david.jpg"><br><img class="modal700" src="/static/PR201301-img04-duschamp.jpg"><br><img class="modal700" src="/static/PR201301-img05-rio.jpg"><br><img class="modal700" src="/static/PR201301-img06-pope.jpg"><br> <iframe width="700" height="394" src="https://www.youtube.com/embed/8i3LqZglMzU?rel=0" frameborder="0"></iframe><br /><br /><img class="modal700" src="/static/PR201301-img07-family.jpg"><br><img class="modal700" src="/static/PR201301-img08-terracota.jpg"><br><img class="modal700" src="/static/PR201301-img09-happiness.jpg"><br>'
+        },
         { id: 'PR201203', year: '2012', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2013' },
         { id: 'PR201202', year: '2012', context: 'Personal project', message: 'Paris, Paris, Paris.' },
         { id: 'PR201201', year: '2012', context: 'Personal project', message: 'The Coffee men' },
@@ -129,7 +149,10 @@ export default {
   methods: {
     openModal (item) {
       document.getElementsByTagName('body')[0].classList.add('no-scroll')
-      this.$refs.mymodal.msg = 'a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h<br><br>a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h<br>a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h<br><br>a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h<br>a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h<br><br>a sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró h'
+      this.$refs.mymodal.title = item.message
+      this.$refs.mymodal.year = item.year
+      this.$refs.mymodal.msg = item.modalText
+      this.$refs.mymodal.smedia = item.modalContent
       this.$refs.mymodal.isActive = true
     }
   }

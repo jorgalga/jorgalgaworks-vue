@@ -29,5 +29,16 @@ body, html{
 .logo{
   display:none;
 }
+h1,h2,h3,p{
+  margin-top: 0;
+}
+/* INJECTED HTML*/
+.modal700{
+    width: 75%;
+    display: block;
+    margin: 30px auto;
+    max-width: 700px;
+    box-shadow: 0 2px 10px #80808080;
+}
 
 </style>
