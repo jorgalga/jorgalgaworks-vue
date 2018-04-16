@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <div class="text-elements">
-      <h1>{{ msg }}</h1>
+      <h1>{{ msg }} </h1>
       <input type="text" v-model="search" placeholder="Filtrar proyecto" />
       <!--ul>
         <li v-for="item in filteredProyects" :key="item.message">
@@ -39,9 +39,11 @@
 import Modal from '@/components/Modal'
 export default {
   name: 'JggPortfolio',
+  props: ['id'],
   data () {
     return {
       msg: 'Portfolio',
+      initModal: 'Makers',
       portfolio: [
         { id: 'PR201803',
           thumb: '/static/thumb-readyplayerone-c.png',
@@ -85,7 +87,7 @@ export default {
           year: '2013',
           context: 'Personal project',
           message: 'Tropers: Trbovlje Serie',
-          modalText: '<p>Troopers Trbovlje" is part of the photography Serie called Troopers. The work combines photographic and synthetic image in order to create a particular universe between the reality and the fiction.</p><p>This serie was developed for the exhibition "<a href="http://speculumartium.si/" target="_blank">Apologists of the new Civilization</a>" which took place in Trbovlje (Slovenia) in October 2013.</p>',
+          modalText: '<p>Troopers Trbovlje" is part of the photography Serie called Troopers. The work combines photographic and synthetic image in order to create a particular universe between the reality and the fiction.</p><p>This serie was developed for the exhibition "<a href="http://speculumartium.si/" target="_blank">Apologists of the new Civilization</a>" which took place in Trbovlje (Slovenia) in October 2013.</p><p><a href="http://speculumartium.si/wp-content/uploads/2015/08/katalog-SA2013.pdf" target="_blank">[Catalogue]</a></p>',
           modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><br><img class="modal700" src="/static/PR201305-img02.jpg"><br><img class="modal700" src="/static/PR201305-img03.jpg"><br><img class="modal700" src="/static/PR201305-img04.jpg">'
         },
         { id: 'PR201304', year: '2013', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2014' },
@@ -146,6 +148,13 @@ export default {
   components: {
     'modal': Modal
   },
+  mounted () {
+    console.log('-' + this.id)
+    var modal = this.portfolio.filter((item) => {
+      return item.message.match(this.id)
+    })
+    this.openModal(modal[0])
+  },
   methods: {
     openModal (item) {
       document.getElementsByTagName('body')[0].classList.add('no-scroll')
@@ -154,6 +163,18 @@ export default {
       this.$refs.mymodal.msg = item.modalText
       this.$refs.mymodal.smedia = item.modalContent
       this.$refs.mymodal.isActive = true
+    },
+    getParams (url) {
+      var params = {}
+      var parser = document.createElement('a')
+      parser.href = url
+      var query = parser.search.substring(1)
+      var vars = query.split('&')
+      for (var i = 0; i < vars.length; i++) {
+        var pair = vars[i].split('=')
+        params[pair[0]] = decodeURIComponent(pair[1])
+      }
+      return params
     }
   }
 }

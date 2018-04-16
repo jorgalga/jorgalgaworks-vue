@@ -1,8 +1,8 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <h1>{{ msg }} - {{ id }}</h1>
     <studies></studies>
-    <portfolio></portfolio>
+    <portfolio :id="id"></portfolio>
     <exhibitions></exhibitions>
   </div>
 </template>
@@ -14,6 +14,7 @@ import JggExhibitions from '@/components/JggExhibitions'
 
 export default {
   name: 'HelloWorld',
+  props: ['id'],
   data () {
     return {
       msg: 'Welcome to Jorgalga Works site'
@@ -24,7 +25,6 @@ export default {
     'portfolio': JggPortfolio,
     'exhibitions': JggExhibitions
   }
-
 }
 </script>
 

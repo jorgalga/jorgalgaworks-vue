@@ -11,8 +11,14 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld 1',
+      name: 'HelloWorld 0',
       component: HelloWorld
+    },
+    {
+      path: '/:id',
+      name: 'HelloWorld 1',
+      component: HelloWorld,
+      props: true
     },
     {
       path: '/hello',
