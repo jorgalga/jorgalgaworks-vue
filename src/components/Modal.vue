@@ -6,7 +6,7 @@
         </div>
       </div>
       <div id="lipsum">
-        <h2>{{ title }}</h2>
+        <h2 v-html="title"></h2>
         <h3>{{ year }}</h3>
         <div v-html="msg"></div>
       </div>

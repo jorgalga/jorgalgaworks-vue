@@ -40,5 +40,13 @@ h1,h2,h3,p{
     max-width: 700px;
     box-shadow: 0 2px 10px #80808080;
 }
-
+.modal-full{
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 100px;
+}
+iframe{
+    margin-bottom: 100px;
+}
 </style>

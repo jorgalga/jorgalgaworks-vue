@@ -13,7 +13,7 @@
           :cols="{default: 3, 1000: 3, 700: 2, 400: 2}"
           :gutter="{default: '5px', 700: '10px'}"
           >
-          <div class="portfolio-item1"  v-for="item in filteredProyects" :key="item.id">
+          <div class="portfolio-item1" v-observe-visibility="visibilityChanged" v-for="item in filteredProyects" :key="item.id">
             <div class="portfolio-cnt">
               <div v-if="item.thumb !== undefined" class="thumb-el-wrapp ">
                 <img class="front" v-bind:src="item.thumb">
@@ -21,7 +21,7 @@
               </div>
               <div class="text-els">
                 <p><span class="year">{{ item.year}}</span><p>
-                <p><b>{{ item.message }}</b></p>
+                <p><b v-html="item.message"></b></p>
                 <p><a @click.prevent="openModal(item)" href="#"><b>[+info]</b></a> <a v-if="item.url !== undefined"  v-bind:href="item.url" target="blank"><b>[site]</b></a></p>
               </div>
             </div>
@@ -75,7 +75,14 @@ export default {
         { id: 'PR201603', year: '2016', context: 'B-Reel', message: 'Skulls and bones' },
         { id: 'PR201602', year: '2016', context: 'B-Reel', message: 'VR Made by Makers' },
         { id: 'PR201601', year: '2016', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2017' },
-        { id: 'PR201502', year: '2015', context: 'Ars Electronica', message: 'Sypmap touchable interface' },
+        { id: 'PR201502',
+          thumb: '/static/thumb-spymap-c.png',
+          thumbB: '/static/thumb-spymap.png',
+          year: '2015',
+          context: 'Ars Electronica',
+          message: 'SPY MUSEUM BERLIN:<br>Spymap interface',
+          modalContent: '<img class="modal-full" src="/static/PR201502-img01.jpg"><br><iframe width="700" height=394 src="https://www.youtube.com/embed/Fv6rrRQ_sPE?rel=0&amp;controls=0&amp;showinfo=0&amp;start=394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+        },
         { id: 'PR201501', year: '2015', context: 'Freelancer', message: 'Lisboa - Ciencia Viva interactives' },
         { id: 'PR201403', year: '2014', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2015' },
         { id: 'PR201402', year: '2014', context: 'Ars Electronica', message: 'Agora Table' },
@@ -149,11 +156,13 @@ export default {
     'modal': Modal
   },
   mounted () {
-    console.log('-' + this.id)
-    var modal = this.portfolio.filter((item) => {
-      return item.message.match(this.id)
-    })
-    this.openModal(modal[0])
+    if (this.id !== undefined) {
+      console.log('-' + this.id)
+      var modal = this.portfolio.filter((item) => {
+        return item.message.match(this.id)
+      })
+      this.openModal(modal[0])
+    }
   },
   methods: {
     openModal (item) {
@@ -175,6 +184,11 @@ export default {
         params[pair[0]] = decodeURIComponent(pair[1])
       }
       return params
+    },
+    visibilityChanged: function (isVisible, entry) {
+      if (entry.isIntersecting && !entry.target.classList.contains('displayed')) {
+        entry.target.classList.add('displayed')
+      }
     }
   }
 }
@@ -210,6 +224,15 @@ export default {
   }
   a{
     color: purple
+  }
+  .portfolio-item1{
+    transition: 0.5s;
+    opacity: 0;
+    transform: translate3d(0,35%,0);
+  }
+  .portfolio-item1.displayed{
+    opacity: 1;
+    transform: translate3d(0,0,0);
   }
   .portfolio-cnt{
     margin: 0 15px;
