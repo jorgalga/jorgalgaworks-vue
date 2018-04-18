@@ -2,7 +2,7 @@
   <div class="hello"  v-bind:class="{ active: isActive }" v-on:click="closeModal">
     <div class="container">
       <div class="container-scroll">
-        <div id="show-media" v-html="smedia">
+        <div id="show-media" v-bind:class="{ centered: isCentered }" v-html="smedia">
         </div>
       </div>
       <div id="lipsum">
@@ -23,7 +23,8 @@ export default {
       year: '',
       msg: '',
       smedia: '',
-      isActive: false
+      isActive: false,
+      isCentered: false
     }
   },
   methods: {
@@ -31,6 +32,7 @@ export default {
       document.getElementsByTagName('body')[0].classList.remove('no-scroll')
       this.isActive = false
       this.msg = ''
+      this.smedia = ''
     }
   }
 }
@@ -102,6 +104,17 @@ export default {
   text-align: center;
   position: relative;
   z-index: 5;
+}
+
+#show-media.centered{
+  background-color: black;
+  width: 100%;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate3d(0,-50%,0);
+  height: 394px
 }
 
 </style>

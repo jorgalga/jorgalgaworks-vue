@@ -121,7 +121,13 @@ export default {
         { id: 'PR201105', year: '2011', context: 'Personal project', message: '15M Assembly in Valencia' },
         { id: 'PR201104', year: '2011', context: 'Personal project / MAVM', message: 'EMCTV3000' },
         { id: 'PR201103', year: '2011', context: 'Personal project', message: 'Imatges i moviments' },
-        { id: 'PR201102', year: '2011', context: 'Personal project / MAVM', message: 'Le memoire des ondes' },
+        { id: 'PR201102',
+          year: '2011',
+          context: 'Personal project / MAVM',
+          message: 'Le memoire des ondes',
+          modalContent: '<iframe width="700" height="394" src="https://www.youtube.com/embed/Uiqkr3r0-jU?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
+        },
         { id: 'PR201101', year: '2011', context: 'Personal project / MAVM', message: 'An old dream' },
         { id: 'PR201009', year: '2010', context: 'Personal project', message: 'Emi' },
         { id: 'PR201008', year: '2010', context: 'Personal project / Council of Andilla', message: 'Andilla vale la pena' },
@@ -172,6 +178,11 @@ export default {
       this.$refs.mymodal.msg = item.modalText
       this.$refs.mymodal.smedia = item.modalContent
       this.$refs.mymodal.isActive = true
+      if (item.contentCentered !== undefined) {
+        this.$refs.mymodal.isCentered = item.contentCentered
+      } else {
+        this.$refs.mymodal.isCentered = false
+      }
     },
     getParams (url) {
       var params = {}

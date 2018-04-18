@@ -47,6 +47,6 @@ h1,h2,h3,p{
     margin-bottom: 100px;
 }
 iframe{
-    margin-bottom: 100px;
+    margin-bottom: 0;
 }
 </style>
