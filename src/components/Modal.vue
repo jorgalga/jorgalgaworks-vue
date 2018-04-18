@@ -83,10 +83,12 @@ export default {
 
 #lipsum{
   width: calc(50% - 60px);
+  max-height: 100%;
+  overflow-y: scroll;
   display: inline-block;
   text-align: left;
   padding: 30px;
-  background-color: #ffffffcc;
+  background-color: #ffffffdd;
   color: #112;
   text-shadow: 0 0 4px #cccccc;
   box-shadow: 0 0 4px #cccccc;

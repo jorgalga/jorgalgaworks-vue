@@ -3,12 +3,12 @@ import Router from 'vue-router'
 import VueMasonry from 'vue-masonry-css'
 import HelloWorld from '@/components/HelloWorld'
 import VueObserveVisibility from 'vue-observe-visibility'
-import Carousel3d from 'vue-carousel-3d'
+import VueCarousel from 'vue-carousel'
 
 Vue.use(Router)
 Vue.use(VueMasonry)
 Vue.use(VueObserveVisibility)
-Vue.use(Carousel3d)
+Vue.use(VueCarousel)
 
 export default new Router({
   routes: [

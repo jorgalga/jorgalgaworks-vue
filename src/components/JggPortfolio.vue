@@ -13,7 +13,7 @@
           :cols="{default: 3, 1000: 3, 700: 2, 400: 2}"
           :gutter="{default: '5px', 700: '10px'}"
           >
-          <div class="portfolio-item1" v-observe-visibility="visibilityChanged" v-for="item in filteredProyects" :key="item.id">
+          <div class="portfolio-item1"  v-bind:class="{ 'mtop-50': item.thumb }"  v-observe-visibility="visibilityChanged" v-for="item in filteredProyects" :key="item.id">
             <div class="portfolio-cnt">
               <div v-if="item.thumb !== undefined" class="thumb-el-wrapp ">
                 <img class="front" v-bind:src="item.thumb">
@@ -22,7 +22,7 @@
               <div class="text-els">
                 <p><span class="year">{{ item.year}}</span><p>
                 <p><b v-html="item.message"></b></p>
-                <p><a @click.prevent="openModal(item)" href="#"><b>[+info]</b></a> <a v-if="item.url !== undefined"  v-bind:href="item.url" target="blank"><b>[site]</b></a></p>
+                <p><a v-if="item.modalContent !== undefined" @click.prevent="openModal(item)" href="#"><b>[+info]</b></a> <a v-if="item.url !== undefined"  v-bind:href="item.url" target="blank"><b>[site]</b></a></p>
               </div>
             </div>
           </div>
@@ -70,10 +70,16 @@ export default {
           url: '//cruzcampo.es'
         },
         { id: 'PR201703', year: '2017', context: 'Ogilvy & Mather', message: 'Santander Futbol Pasión' },
-        { id: 'PR201702', year: '2017', context: 'B-Reel', message: 'B-Reel Films site upgrades' },
-        { id: 'PR201701', year: '2017', context: 'B-Reel', message: 'Google My Account' },
+        { id: 'PR201702', year: '2017', context: 'B-Reel', message: 'B-Reel Films site upgrades', url: 'https://brf.co/' },
+        { id: 'PR201701',
+          year: '2017',
+          context: 'B-Reel',
+          message: 'Google My Account',
+          modalContent: '<iframe width="560" height="394" src="https://www.youtube.com/embed/_Jor3TRXniw?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
+        },
         { id: 'PR201603', year: '2016', context: 'B-Reel', message: 'Skulls and bones' },
-        { id: 'PR201602', year: '2016', context: 'B-Reel', message: 'VR Made by Makers' },
+        { id: 'PR201602', year: '2016', context: 'B-Reel', message: 'VR Made by Makers', url: 'https://b-reel.github.io/vr-madebymakers/' },
         { id: 'PR201601', year: '2016', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2017' },
         { id: 'PR201502',
           thumb: '/static/thumb-spymap-c.png',
@@ -87,7 +93,13 @@ export default {
         { id: 'PR201403', year: '2014', context: 'Personal project', message: 'Poster of The Villar del Arzobispo Carnival 2015' },
         { id: 'PR201402', year: '2014', context: 'Ars Electronica', message: 'Agora Table' },
         { id: 'PR201401', year: '2014', context: 'Ars Electronica', message: 'Austrian Images for the ITB' },
-        { id: 'PR201306', year: '2013', context: 'Ars Electronica', message: 'Drei - "There is another way"' },
+        { id: 'PR201306',
+          year: '2013',
+          context: 'Ars Electronica',
+          message: 'Drei - "There is another way"',
+          modalText: '<p>„Es geht auch anders” (“There is another way”) is the theme of a unique interactive installation now on display at Austrian Star Alliance Terminal Check-in 3 at Vienna International Airport. The project was realized by Ars Electronica Solutions for Hutchison Drei Austria. The pictures that take the passengers into a magical world were created by the Swedish artist Kari Modén; the software that converted them into breathtaking tracking shots through these colorful worlds was developed by Ars Electronica.</p><p>n the Security Area of the airport’s new terminal, 165 screens have been clustered into a jumbo 15-meter-wide, 9-meter-high, 530-megapixel display. It takes 60 servers, 720 gigahertz of processing speed and software specially developed by Ars Electronica in order to showcase images on this one-of-a-kind photowall. The software breaks up the high-definition pictures into minute fragments and distributes them to the servers. This is what makes it possible to display the gargantuan graphics with no loss of clarity. And it’s precisely this prototypical interplay of hardware and software components that delivers breathtaking visual impressions to passengers passing through Vienna International Airport.</p><p>Different worlds, such as an underwater world, an urban world, or a starry sky react to the passengers passing through Check-in 3. Each passenger sends a virtual fish, bird or butterfly on a journey or makes clouds disappear from a virtual mountain world. These interactions cause the display of the “Drei” logo and the company’s claim “Es geht auch anders” (“There is another way”) which is displayed on the screens in a variety of ways.</p>',
+          modalContent: '<img class="modal-full" src="/static/slider-4.jpg"><br><iframe width="700" height="394" src="https://www.youtube.com/embed/NgO2WekVk2o?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+        },
         { id: 'PR201305',
           thumb: '/static/thumb-troops-trb-c.png',
           thumbB: '/static/thumb-troops-trb.png',
@@ -216,10 +228,10 @@ export default {
   input {
     font-size: 16px;
     text-align: center;
-    margin: 15px;
+    margin: 15px 0 65px;
     padding: 10px;
     width: 100%;
-    max-width: 375px;
+    max-width: 300px;
   }
   h1{
     font-weight: normal;
@@ -241,6 +253,9 @@ export default {
     opacity: 0;
     transform: translate3d(0,35%,0);
   }
+  .portfolio-item1.mtop-50{
+    margin-top: -50px
+  }
   .portfolio-item1.displayed{
     opacity: 1;
     transform: translate3d(0,0,0);
@@ -250,8 +265,14 @@ export default {
     //background-color: #EEEEFF88;
     border-radius: 2px;
     //box-shadow: 0 2px 10px #80808080;
-    margin-bottom: 20px
+    margin-bottom: 20px;
   }
+  @media only screen and (max-width : 600px) {
+    .portfolio-cnt{
+      margin: 0;
+    }
+  }
+
   .thumb-el-wrapp{
     width: 100%;
     position: relative;

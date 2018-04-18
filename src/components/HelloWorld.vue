@@ -1,6 +1,35 @@
 <template>
   <div class="hello">
-    <carousel-3d
+    <carousel
+      :per-page="1"
+      :mouse-drag="true"
+      :autoplay="true"
+      :loop="true" >
+      <slide>
+        <div class="slide-image sl1"></div>
+      </slide>
+      <slide>
+        <div class="slide-image sl2">
+          <span class="slide-info">Troopers</span>
+        </div>
+      </slide>
+      <slide>
+        <div class="slide-image sl3">
+          <span class="slide-info">L'Oracle du papillon - L'Exposition</span>
+        </div>
+      </slide>
+      <slide>
+        <div class="slide-image sl4">
+          <span class="slide-info">City in progress</span>
+        </div>
+      </slide>
+      <slide>
+        <div class="slide-image sl5">
+          <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
+        </div>
+      </slide>
+    </carousel>
+    <!-- carousel-3d
       :height="vh"
       :width="vw"
       :border="0"
@@ -27,7 +56,7 @@
         <div class="slide-image sl5"></div>
         <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
       </slide>
-    </carousel-3d>
+    </carousel-3d-->
     <!-- h1>{{ msg }}</h1 -->
     <studies></studies>
     <portfolio :id="id"></portfolio>
@@ -83,10 +112,10 @@ h1{
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 100%;
+  height: 60vh;
   top: 0;
   left: 0;
-  position: absolute;
+  position: relative;
   display: inline-block;
   filter: grayscale(100%);
   transition: 0.5s;
@@ -112,26 +141,26 @@ h1{
 }
 span.slide-info{
   display: inline-block;
-  transform: skewY(-3.5deg) translate3d(-16px,0,0);
+  transform: skewY(-3.5deg) translate3d(0,-20px,0);
   background-color: white;
-  box-shadow: 0 0 5px black;
   color: black;
   padding: 16px 20px;
   font-weight: 900;
   font-size: 20px;
   font-style: italic;
   margin-bottom: 5px;
-  position: absolute;
   bottom: 20px;
   left: 0;
   transition: 0.5s;
-  opacity: 0;
+  opacity: 1;
+  position: absolute;
+  text-align: left;
+}
+.carousel-3d-slide{
+  opacity: 1 !important;
 }
 .carousel-3d-slide.current{
   overflow: initial;
-}
-.carousel-3d-slide.current span.slide-info{
-  opacity: 1;
-  transform:skewY(-3.5deg) translate3d(-16px,0,0)
+  opacity: 1 !important;
 }
 </style>
