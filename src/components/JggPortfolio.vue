@@ -2,7 +2,7 @@
   <div class="hello">
     <div class="text-elements">
       <h1>{{ msg }} </h1>
-      <input type="text" v-model="search" placeholder="Filtrar proyecto" />
+      <input type="text" v-model="search" placeholder="Filter project" />
       <!--ul>
         <li v-for="item in filteredProyects" :key="item.message">
           {{ item.year}} - <b>{{ item.message }}</b> - [{{item.context}}] - <a @click.prevent="openModal(item)" href="#">[+]</a>
@@ -43,7 +43,7 @@ export default {
   props: ['id'],
   data () {
     return {
-      msg: 'What I have done',
+      msg: 'What have I done?',
       initModal: 'Makers',
       portfolio: [
         { id: 'PR201804',
@@ -264,7 +264,7 @@ export default {
           modalContent: '<iframe class="youtube-video" width="700" height="394" src="https://www.youtube.com/embed/v5wIZMwMDkY?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           contentCentered: true
         },
-        { id: 'PR201201', year: '2012', context: 'Personal project', message: 'The Coffee men' },
+        { id: 'PR201201', year: '2012', context: 'Personal project', message: 'The Coffee men', url: '//www.youtube.com/watch?v=uxH-3BngmpQ' },
         { id: 'PR201107',
           year: '2011',
           function: '3D Modeling / Graphic Design',
@@ -280,7 +280,7 @@ export default {
           modalText: '<p>Video expertiment about situationist narratives. During a University exchange trip to Paris on summer 2011, every day a video sumarizing the day was edited and published using only an smartphone.</p>',
           modalContent: '<iframe width="560" height="315" src="https://www.youtube.com/embed/5CtWh3MSdM0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'
         },
-        { id: 'PR201105', year: '2011', context: 'Personal project', message: '15M Assembly in Valencia' },
+        { id: 'PR201105', year: '2011', context: 'Personal project', message: '15M Assembly in Valencia', url: '//www.youtube.com/watch?v=rU33nWEsRbY' },
         { id: 'PR201104', year: '2011', context: 'Personal project / MAVM', message: 'EMCTV3000', url: 'http://www.mafreino.com/portfolio/emctv-3000/' },
         { id: 'PR201103', year: '2011', context: 'Personal project', message: 'Imatges i moviments' },
         { id: 'PR201102',
@@ -319,7 +319,7 @@ export default {
           message: 'Protest in Parpallo',
           url: 'https://www.youtube.com/watch?v=TCb_3sw38D8'
         },
-        { id: 'PR201006', year: '2010', context: 'Personal project / MAVM', message: 'Un huevo de cortinillas' },
+        { id: 'PR201006', year: '2010', context: 'Personal project / MAVM', message: 'Un huevo de cortinillas', url: '//www.youtube.com/watch?v=wI3W_kxA7QU&feature=youtu.be&hd=1' },
         { id: 'PR201005',
           year: '2010',
           context: 'Personal project / MAVM',
@@ -336,7 +336,7 @@ export default {
           modalText: '<p>Poster for advertising the 2011 Carnival`s event of Villar del arzobispo. Presented to the contest mounted over a hard surface of 50x70 cm.</p><p><b>Winner of the first prize</b>.<p>',
           modalContent: '<img class="modal500" src="/static/PR201004-img01.jpg">'
         },
-        { id: 'PR201003', year: '2010', context: 'Personal project / MAVM', message: 'La ciutat dels errors collaboration' },
+        { id: 'PR201003', year: '2010', function: 'Photo collaboration', context: 'Personal project / MAVM', message: 'La ciutat dels errors', url: 'http://blogs.cccb.org/veus/exposicions/la-ciutat-dels-horrors-premiada-al-congres-museum-and-the-web/?lang=es' },
         { id: 'PR201002',
           year: '2010',
           context: 'Personal project / MAVM',
@@ -345,9 +345,26 @@ export default {
           modalContent: '<iframe width="700" height="394" src="https://www.youtube.com/embed/ffiXD6m_6vM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           contentCentered: true
         },
-        { id: 'PR201001', year: '2010', context: 'Personal project / MAVM', message: 'Coltan comes' },
-        { id: 'PR200905', year: '2009', context: 'Personal project', message: 'Tiende lo + positivo' },
-        { id: 'PR200904', year: '2009', context: 'Personal project', message: '¿Qué es de tu vihda?' },
+        { id: 'PR201001',
+          year: '2010',
+          context: 'Personal project / MAVM',
+          message: 'Coltan comes',
+          modalContent: '<img class="modal700" src="/static/PR201001-img01.jpg"><img class="modal700" src="/static/PR201001-img02.jpg"><img class="modal700" src="/static/PR201001-img03.jpg"><img class="modal700" src="/static/PR201001-img04.jpg">'
+        },
+        { id: 'PR200905',
+          year: '2009',
+          context: 'Personal project',
+          message: 'Tiende lo + positivo',
+          modalContent: '​<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/videoseries?list=PLAB3001A218EEF944" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
+        },
+        { id: 'PR200904',
+          year: '2009',
+          context: 'Personal project',
+          message: '¿Qué es de tu vihda?',
+          modalContent: '​<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/videoseries?list=PL5E9D02AA7C1AD620" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
+        },
         { id: 'PR200903',
           year: '2009',
           context: 'Personal project',

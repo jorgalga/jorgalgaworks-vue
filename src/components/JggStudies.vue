@@ -18,7 +18,7 @@ export default {
   name: 'JggStudies',
   data () {
     return {
-      msg: 'What I have studied',
+      msg: 'Which are my studies?',
       studies: [
         { year: '2009', message: 'Ingeniero informático técnico en gestión con intensificación en multimedia.', place: 'UPV (València).' },
         { year: '2011', message: 'Máster en artes visuales y multimedia (tesis pendiente).', place: 'UPV (València).' },

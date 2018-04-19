@@ -10,7 +10,7 @@ export default {
   name: 'JggExhibitions',
   data () {
     return {
-      msg: 'Where I have exhibited'
+      msg: 'Where have I exhibited?'
     }
   }
 }
