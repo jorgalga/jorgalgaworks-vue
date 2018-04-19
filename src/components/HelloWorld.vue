@@ -142,7 +142,7 @@ h1{
 span.slide-info{
   display: inline-block;
   transform: skewY(-3.5deg) translate3d(0,-20px,0);
-  background-color: white;
+  background-color: #ffffffaa;
   color: black;
   padding: 16px 20px;
   font-weight: 900;

@@ -17,7 +17,7 @@ body, html{
 }
 .no-scroll{
   overflow: hidden;
-  height: 100vh
+  height: 99vh
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -25,7 +25,7 @@ body, html{
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-  height: 100vh;
+  height: 99vh;
   width: 100vw;
   position: fixed;
   overflow-y: scroll;
@@ -40,8 +40,15 @@ h1,h2,h3,p{
 .modal700{
     width: 75%;
     display: block;
-    margin: 30px auto;
+    margin: 0 auto 30px;
     max-width: 700px;
+    box-shadow: 0 2px 10px #80808080;
+}
+.modal500{
+    width: 75%;
+    display: block;
+    margin: 30px auto;
+    max-width: 500px;
     box-shadow: 0 2px 10px #80808080;
 }
 .modal-full{
@@ -52,5 +59,17 @@ h1,h2,h3,p{
 }
 iframe{
     margin-bottom: 0;
+}
+iframe.youtube-video{
+    width: 100%;
+    max-width: 700px;
+}
+iframe.youtube-video-small{
+    width: 100%;
+    max-width: 560px;
+}
+
+.VueCarousel-dot-container{
+  margin-top: -30px !important
 }
 </style>

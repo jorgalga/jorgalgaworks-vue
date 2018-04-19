@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     closeModal () {
-      document.getElementsByTagName('body')[0].classList.remove('no-scroll')
+      document.getElementById('app').classList.remove('no-scroll')
       this.isActive = false
       this.msg = ''
       this.smedia = ''
@@ -83,8 +83,7 @@ export default {
 
 #lipsum{
   width: calc(50% - 60px);
-  max-height: 100%;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   display: inline-block;
   text-align: left;
   padding: 30px;
@@ -106,6 +105,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: 5;
+  padding: 100px 0;
 }
 
 #show-media.centered{
@@ -116,7 +116,11 @@ export default {
   top: 50%;
   left: 0;
   transform: translate3d(0,-50%,0);
-  height: 394px
+  min-height: 394px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 </style>

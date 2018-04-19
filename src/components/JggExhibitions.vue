@@ -10,7 +10,7 @@ export default {
   name: 'JggExhibitions',
   data () {
     return {
-      msg: 'Exhibitions'
+      msg: 'Where I have exhibited'
     }
   }
 }
@@ -19,7 +19,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   .divisor{
-    background-color: black;
+    background-color: pink;
     width: 100%;
     height: 50px;
   }
