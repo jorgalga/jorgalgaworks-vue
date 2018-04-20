@@ -198,6 +198,7 @@ export default {
           context: 'UOC / Oberta publishing',
           function: 'Front-end development',
           contextImg: '/static/ctx-uoc.jpg',
+          contextUrl: 'http://www.obertapublishing.com/',
           message: 'VHIO scientific report 2015',
           url: 'http://memorias.vhio.net/2015/'
         },
@@ -206,6 +207,7 @@ export default {
           context: 'UOC / Oberta publishing',
           function: 'Front-end development',
           contextImg: '/static/ctx-uoc.jpg',
+          contextUrl: 'http://www.obertapublishing.com/',
           message: 'Performance Learning paths',
           url: 'https://www.youtube.com/watch?v=vN6Gi17zX_I'
         },
@@ -213,6 +215,7 @@ export default {
           year: '2015',
           context: 'Ars Electronica',
           contextImg: '/static/ctx-aec.jpg',
+          contextUrl: 'https://www.aec.at/solutions/',
           message: 'METEC 2015<br>(Rotating displays concept)',
           url: 'https://www.aec.at/solutions/en/caesar2016/'
         },
@@ -223,6 +226,7 @@ export default {
           function: 'Full-stack development',
           context: 'Ars Electronica',
           contextImg: '/static/ctx-aec.jpg',
+          contextUrl: 'https://www.aec.at/solutions/',
           message: 'SPY MUSEUM BERLIN:<br>Spymap interface',
           modalContent: '<img class="modal-full" src="/static/PR201502-img01.jpg"><br><iframe class="youtube-video" width="700" height=394 src="https://www.youtube.com/embed/Fv6rrRQ_sPE?rel=0&amp;controls=0&amp;showinfo=0&amp;start=394" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           url: 'https://www.aec.at/solutions/en/ars-electronica-solutions-eroeffnet-spymuseum-in-berlin/'
@@ -250,6 +254,7 @@ export default {
           function: 'Front-end development',
           context: 'Ars Electronica',
           contextImg: '/static/ctx-aec.jpg',
+          contextUrl: 'https://www.aec.at/solutions/',
           message: 'Agora Table',
           modalText: '<p>Agora Table is a multitouch interface for accesing multimedia data. The front-end application is based on <a href="http://openframeworks.cc/" target="new">OpenFrameworks</a> and the interaction is done by a multitouch frame and by an QR scan conecterd to an Arduino board. It is part of the "Solutions Center" developed by <a href="http://www.aec.at/solutions/en/" target="new">Ars Electronica Solutions</a> inside the exibition called <a href="http://www.oraclepapillon.ch/fr/accueil.html" target="new">L´oracle du papillon</a> in Friburg (switzerland).</p><p>In the <strong>Solutions Centre</strong>, the focus is on transportation, housing, energy and consumer behavior, and how simple it is to implement CO2-reducing measures in everyday life. There are 40 so-called gestures, 10 per theme. The ambitious aim is to reduce CO2 output by one ton per resident per year. Here’s how it works: For the duration of their stay in the Solutions Centre, each visitor has the use of a tablet PC that enables them to access and assemble additional information about the various suggestions. Working either on their tablet or at an interactive Agora table with multiuser function, they can then put together individualized packages of lifestyle changes they pledge to comply with. Many of these gestures are supported by local and nationwide companies whose business plan increasingly emphasizes sustainability and whose products are conceived accordingly. A 4×4-meter visualization of each individual’s pledge rounds out visitors’ Solutions Centre sojourn. And finally, each person’s promise is depicted in the form of butterflies taking wing—this installation’s vivid, emotional visualization emblematic of how important it is for people to work together on behalf of a clean environment.</p>',
           modalContent: '<iframe class="youtube-video" width="700" height="394" src="https://www.youtube.com/embed/7uu-0nTqgqM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
@@ -261,6 +266,7 @@ export default {
           function: 'Full-stack development',
           context: 'Ars Electronica',
           contextImg: '/static/ctx-aec.jpg',
+          contextUrl: 'https://www.aec.at/solutions/',
           message: 'Austrian Images for the ITB',
           url: 'https://www.aec.at/solutions/en/aes-bei-der-itb-berlin/'
         },
@@ -269,6 +275,7 @@ export default {
           function: 'Full-stack development',
           context: 'Ars Electronica',
           contextImg: '/static/ctx-aec.jpg',
+          contextUrl: 'https://www.aec.at/solutions/',
           message: 'Drei - "There is another way"',
           modalText: '<p>„Es geht auch anders” (“There is another way”) is the theme of a unique interactive installation now on display at Austrian Star Alliance Terminal Check-in 3 at Vienna International Airport. The project was realized by Ars Electronica Solutions for Hutchison Drei Austria. The pictures that take the passengers into a magical world were created by the Swedish artist Kari Modén; the software that converted them into breathtaking tracking shots through these colorful worlds was developed by Ars Electronica.</p><p>n the Security Area of the airport’s new terminal, 165 screens have been clustered into a jumbo 15-meter-wide, 9-meter-high, 530-megapixel display. It takes 60 servers, 720 gigahertz of processing speed and software specially developed by Ars Electronica in order to showcase images on this one-of-a-kind photowall. The software breaks up the high-definition pictures into minute fragments and distributes them to the servers. This is what makes it possible to display the gargantuan graphics with no loss of clarity. And it’s precisely this prototypical interplay of hardware and software components that delivers breathtaking visual impressions to passengers passing through Vienna International Airport.</p><p>Different worlds, such as an underwater world, an urban world, or a starry sky react to the passengers passing through Check-in 3. Each passenger sends a virtual fish, bird or butterfly on a journey or makes clouds disappear from a virtual mountain world. These interactions cause the display of the “Drei” logo and the company’s claim “Es geht auch anders” (“There is another way”) which is displayed on the screens in a variety of ways.</p>',
           modalContent: '<img class="modal-full" src="/static/slider-4.jpg"><br><iframe class="youtube-video" width="700" height="394" src="https://www.youtube.com/embed/NgO2WekVk2o?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
@@ -279,9 +286,10 @@ export default {
           thumbB: '/static/thumb-troops-trb.png',
           year: '2013',
           function: '3D Modeling',
-          context: 'Personal project',
+          context: 'Personal project / Speculum atrium',
+          contextImg: '/static/ctx-speculum.jpg',
+          contextUrl: 'http://speculumartium.si/',
           message: 'Troopers: Trbovlje Serie',
-          contextImg: '/static/ctx-artist.jpg',
           modalText: '<p>Troopers Trbovlje" is part of the photography Serie called Troopers. The work combines photographic and synthetic image in order to create a particular universe between the reality and the fiction.</p><p>This serie was developed for the exhibition "<a href="http://speculumartium.si/" target="_blank">Apologists of the new Civilization</a>" which took place in Trbovlje (Slovenia) in October 2013.</p><p><a href="http://speculumartium.si/wp-content/uploads/2015/08/katalog-SA2013.pdf" target="_blank">[Catalogue]</a></p>',
           modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><img class="modal700" src="/static/PR201305-img02.jpg"><img class="modal700" src="/static/PR201305-img03.jpg"><img class="modal700" src="/static/PR201305-img04.jpg"><img class="modal700" src="/static/PR201305-img05.jpg"><img class="modal700" src="/static/PR201305-img06.jpg">'
         },
@@ -340,9 +348,9 @@ export default {
         },
         { id: 'PR201202',
           year: '2012',
-          context: 'Personal project',
+          context: 'Personal project / UOC',
           message: 'Paris, Paris, Paris.',
-          contextImg: '/static/ctx-artist.jpg',
+          contextImg: '/static/ctx-uocb.jpg',
           modalText: '<p>Video experiment about the database cinema applied to a personal context.</p><p>Developed with ActionScript</p>',
           modalContent: '<iframe class="youtube-video" width="700" height="394" src="https://www.youtube.com/embed/v5wIZMwMDkY?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           contentCentered: true
@@ -630,7 +638,6 @@ export default {
     max-width: 300px;
   }
   h1{
-    font-weight: normal;
     margin: 0;
   }
   li{
