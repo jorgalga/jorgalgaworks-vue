@@ -40,14 +40,14 @@ h1,h2,h3,p{
 .modal700{
     width: 75%;
     display: block;
-    margin: 0 auto 30px;
+    margin: 30px auto 0;
     max-width: 700px;
     box-shadow: 0 2px 10px #80808080;
 }
 .modal500{
     width: 75%;
     display: block;
-    margin: 30px auto;
+    margin: 30px auto 0;
     max-width: 500px;
     box-shadow: 0 2px 10px #80808080;
 }
@@ -55,7 +55,7 @@ h1,h2,h3,p{
     width: 100%;
     display: block;
     margin: 0 auto;
-    margin-bottom: 100px;
+    margin-bottom: 15px;
 }
 iframe{
     margin-bottom: 0;
