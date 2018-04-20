@@ -24,7 +24,7 @@
               <div class="text-els">
                 <p><span class="year">{{ item.year}}</span><p>
                 <p><br><b v-html="item.message"></b></p>
-                <p v-if="item.function !== undefined"><span class="function">{{ item.function}}</span><p>
+                <p v-if="item.function !== undefined"><span class="function" v-html="item.function"></span><p>
                 <p><br><a v-if="item.modalContent !== undefined" @click.prevent="openModal(item)" href="#"><b>[+info]</b></a> <a v-if="item.url !== undefined"  v-bind:href="item.url" target="blank"><b>[site]</b></a></p>
               </div>
             </div>
@@ -137,7 +137,9 @@ export default {
         },
         { id: 'PR201702',
           year: '2017',
-          function: 'Cordova android plugin & Front-end development',
+          thumb: '/static/thumb-lenz-c.jpg',
+          thumbB: '/static/thumb-lenz.jpg',
+          function: 'Cordova-android / Front-end<br>team',
           context: 'B-Reel',
           contextImg: '/static/ctx-b-reel.jpg',
           contextUrl: 'https://www.b-reel.com/',
@@ -183,15 +185,15 @@ export default {
           url: 'https://b-reel.github.io/vr-madebymakers/'
         },
         { id: 'PR201601',
-          /* thumb: '/static/thumb-carnaval2017-c.jpg',
-          thumbB: '/static/thumb-carnaval2017.jpg', */
+          thumb: '/static/thumb-carnaval2017-c.jpg',
+          thumbB: '/static/thumb-carnaval2017.jpg',
           year: '2016',
           function: '3D Modeling / Graphic design',
           context: 'Personal project',
           contextImg: '/static/ctx-artist.jpg',
           message: 'Poster of The Villar del Arzobispo Carnival 2017',
           modalText: '<p>Poster for advertising the 2017 Carnival`s event of Villar del arzobispo. Presented to the contest mounted over a hard surface of 50x70 cm.</p><p><b>Winner of the first prize</b>.<p>',
-          modalContent: '<img class="modal500" src="/static/PR201601-img01.jpg">'
+          modalContent: '<img class="modal700" src="/static/PR201601-img01.jpg">'
         },
         { id: 'PR201505',
           year: '2015',
@@ -239,15 +241,15 @@ export default {
           message: 'Lisboa - Ciencia Viva interactives'
         },
         { id: 'PR201403',
-          /* thumb: '/static/thumb-carnaval2015-c.jpg',
-          thumbB: '/static/thumb-carnaval2015.jpg', */
+          thumb: '/static/thumb-carnaval2015-c.jpg',
+          thumbB: '/static/thumb-carnaval2015.jpg',
           year: '2014',
           function: 'Graphic design',
           context: 'Personal project',
           contextImg: '/static/ctx-artist.jpg',
           message: 'Poster of The Villar del Arzobispo Carnival 2015',
           modalText: '<p>Poster for advertising the 2015 Carnival`s event of Villar del arzobispo. Presented to the contest mounted over a hard surface of 50x70 cm.</p><p><b>Winner of the local artist prize</b>.<p>',
-          modalContent: '<img class="modal500" src="/static/PR201403-img01.jpg">'
+          modalContent: '<img class="modal700" src="/static/PR201403-img01.jpg">'
         },
         { id: 'PR201402',
           year: '2014',
@@ -294,15 +296,15 @@ export default {
           modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><img class="modal700" src="/static/PR201305-img02.jpg"><img class="modal700" src="/static/PR201305-img03.jpg"><img class="modal700" src="/static/PR201305-img04.jpg"><img class="modal700" src="/static/PR201305-img05.jpg"><img class="modal700" src="/static/PR201305-img06.jpg">'
         },
         { id: 'PR201304',
-          /* thumb: '/static/thumb-carnaval2014-c.jpg',
-          thumbB: '/static/thumb-carnaval2014.jpg', */
+          thumb: '/static/thumb-carnaval2014-c.jpg',
+          thumbB: '/static/thumb-carnaval2014.jpg',
           year: '2013',
           function: '3D Modeling / Graphic design',
           context: 'Personal project',
           contextImg: '/static/ctx-artist.jpg',
           message: 'Poster of The Villar del Arzobispo Carnival 2014',
           modalText: '<p>Poster for advertising the 2014 Carnival`s event of Villar del arzobispo. Presented to the contest mounted over a hard surface of 50x70 cm.</p>',
-          modalContent: '<img class="modal500" src="/static/PR201304-img01.jpg">'
+          modalContent: '<img class="modal700" src="/static/PR201304-img01.jpg">'
         },
         { id: 'PR201303',
           year: '2013',
@@ -336,15 +338,15 @@ export default {
           modalContent: '<img class="modal700" src="/static/PR201301-img01-rodin.jpg"><br><img class="modal700" src="/static/PR201301-img02-miron.jpg"><br><img class="modal700" src="/static/PR201301-img03-david.jpg"><br><img class="modal700" src="/static/PR201301-img04-duschamp.jpg"><br><img class="modal700" src="/static/PR201301-img05-rio.jpg"><br><img class="modal700" src="/static/PR201301-img06-pope.jpg"><br> <iframe width="700" height="394" src="https://www.youtube.com/embed/8i3LqZglMzU?rel=0" frameborder="0"></iframe><br /><br /><img class="modal700" src="/static/PR201301-img07-family.jpg"><br><img class="modal700" src="/static/PR201301-img08-terracota.jpg"><br><img class="modal700" src="/static/PR201301-img09-happiness.jpg"><br>'
         },
         { id: 'PR201203',
-          /* thumb: '/static/thumb-carnaval2013-c.jpg',
-          thumbB: '/static/thumb-carnaval2013.jpg', */
+          thumb: '/static/thumb-carnaval2013-c.jpg',
+          thumbB: '/static/thumb-carnaval2013.jpg',
           year: '2012',
           function: 'Graphic design',
           context: 'Personal project',
           contextImg: '/static/ctx-artist.jpg',
           message: 'Poster of The Villar del Arzobispo Carnival 2013',
           modalText: '<p>Poster for advertising the 2013 Carnival`s event of Villar del arzobispo. Presented to the contest mounted over a hard surface of 50x70 cm.</p>',
-          modalContent: '<img class="modal500" src="/static/PR201203-img01.jpg">'
+          modalContent: '<img class="modal700" src="/static/PR201203-img01.jpg">'
         },
         { id: 'PR201202',
           year: '2012',
@@ -363,8 +365,8 @@ export default {
           url: '//www.youtube.com/watch?v=uxH-3BngmpQ'
         },
         { id: 'PR201107',
-          /* thumb: '/static/thumb-carnaval2012-c.jpg',
-          thumbB: '/static/thumb-carnaval2012.jpg', */
+          thumb: '/static/thumb-carnaval2012-c.jpg',
+          thumbB: '/static/thumb-carnaval2012.jpg',
           year: '2011',
           function: '3D Modeling / Graphic Design',
           context: 'Personal project',
@@ -461,8 +463,8 @@ export default {
           contentCentered: true
         },
         { id: 'PR201004',
-          /* thumb: '/static/thumb-carnaval2011-c.jpg',
-          thumbB: '/static/thumb-carnaval2011.jpg', */
+          thumb: '/static/thumb-carnaval2011-c.jpg',
+          thumbB: '/static/thumb-carnaval2011.jpg',
           year: '2010',
           function: '3D Modeling / Graphic Design',
           context: 'Personal project',
