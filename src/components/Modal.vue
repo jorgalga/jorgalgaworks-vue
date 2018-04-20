@@ -60,7 +60,7 @@ export default {
   background-color: white;
   width: 80%;
   max-width: 1024px;
-  height: 80%;
+  height: 84%;
   text-align: right;
   background-color: white;
   overflow-x: hidden;
@@ -105,7 +105,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: 5;
-  padding: 100px 0;
+  padding: 15px 0;
 }
 
 #show-media.centered{

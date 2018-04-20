@@ -72,6 +72,12 @@ export default {
           message: 'Ogilvy Music prototype',
           url: '//ogilvyapps.com/music1/'
         },
+        { id: 'PR201801b',
+          year: '2017',
+          function: 'Front-end development',
+          context: 'Ogilvy & Mather',
+          message: 'Love your music'
+        },
         { id: 'PR201801',
           thumb: '/static/thumb-cruzcampo-c.png',
           thumbB: '/static/thumb-cruzcampo.png',
@@ -102,6 +108,8 @@ export default {
           url: 'https://brf.co/'
         },
         { id: 'PR201703',
+          thumb: '/static/thumb-myAccount-c.jpg',
+          thumbB: '/static/thumb-myAccount.jpg',
           year: '2017',
           function: 'Full-stack development',
           context: 'B-Reel',
@@ -147,6 +155,8 @@ export default {
           url: 'https://b-reel.github.io/vr-madebymakers/'
         },
         { id: 'PR201601',
+          thumb: '/static/thumb-carnaval2017-c.jpg',
+          thumbB: '/static/thumb-carnaval2017.jpg',
           year: '2016',
           function: '3D Modeling / Graphic design',
           context: 'Personal project',
@@ -172,6 +182,8 @@ export default {
           message: 'Lisboa - Ciencia Viva interactives'
         },
         { id: 'PR201403',
+          thumb: '/static/thumb-carnaval2015-c.jpg',
+          thumbB: '/static/thumb-carnaval2015.jpg',
           year: '2014',
           function: 'Graphic design',
           context: 'Personal project',
@@ -213,9 +225,11 @@ export default {
           context: 'Personal project',
           message: 'Troopers: Trbovlje Serie',
           modalText: '<p>Troopers Trbovlje" is part of the photography Serie called Troopers. The work combines photographic and synthetic image in order to create a particular universe between the reality and the fiction.</p><p>This serie was developed for the exhibition "<a href="http://speculumartium.si/" target="_blank">Apologists of the new Civilization</a>" which took place in Trbovlje (Slovenia) in October 2013.</p><p><a href="http://speculumartium.si/wp-content/uploads/2015/08/katalog-SA2013.pdf" target="_blank">[Catalogue]</a></p>',
-          modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><br><img class="modal700" src="/static/PR201305-img02.jpg"><br><img class="modal700" src="/static/PR201305-img03.jpg"><br><img class="modal700" src="/static/PR201305-img04.jpg">'
+          modalContent: '<img class="modal700" src="/static/PR201305-img01.jpg"><img class="modal700" src="/static/PR201305-img02.jpg"><img class="modal700" src="/static/PR201305-img03.jpg"><img class="modal700" src="/static/PR201305-img04.jpg"><img class="modal700" src="/static/PR201305-img05.jpg"><img class="modal700" src="/static/PR201305-img06.jpg">'
         },
         { id: 'PR201304',
+          thumb: '/static/thumb-carnaval2014-c.jpg',
+          thumbB: '/static/thumb-carnaval2014.jpg',
           year: '2013',
           function: '3D Modeling / Graphic design',
           context: 'Personal project',
@@ -249,6 +263,8 @@ export default {
           modalContent: '<img class="modal700" src="/static/PR201301-img01-rodin.jpg"><br><img class="modal700" src="/static/PR201301-img02-miron.jpg"><br><img class="modal700" src="/static/PR201301-img03-david.jpg"><br><img class="modal700" src="/static/PR201301-img04-duschamp.jpg"><br><img class="modal700" src="/static/PR201301-img05-rio.jpg"><br><img class="modal700" src="/static/PR201301-img06-pope.jpg"><br> <iframe width="700" height="394" src="https://www.youtube.com/embed/8i3LqZglMzU?rel=0" frameborder="0"></iframe><br /><br /><img class="modal700" src="/static/PR201301-img07-family.jpg"><br><img class="modal700" src="/static/PR201301-img08-terracota.jpg"><br><img class="modal700" src="/static/PR201301-img09-happiness.jpg"><br>'
         },
         { id: 'PR201203',
+          thumb: '/static/thumb-carnaval2013-c.jpg',
+          thumbB: '/static/thumb-carnaval2013.jpg',
           year: '2012',
           function: 'Graphic design',
           context: 'Personal project',
@@ -266,6 +282,8 @@ export default {
         },
         { id: 'PR201201', year: '2012', context: 'Personal project', message: 'The Coffee men', url: '//www.youtube.com/watch?v=uxH-3BngmpQ' },
         { id: 'PR201107',
+          thumb: '/static/thumb-carnaval2012-c.jpg',
+          thumbB: '/static/thumb-carnaval2012.jpg',
           year: '2011',
           function: '3D Modeling / Graphic Design',
           context: 'Personal project',
@@ -329,6 +347,8 @@ export default {
           contentCentered: true
         },
         { id: 'PR201004',
+          thumb: '/static/thumb-carnaval2011-c.jpg',
+          thumbB: '/static/thumb-carnaval2011.jpg',
           year: '2010',
           function: '3D Modeling / Graphic Design',
           context: 'Personal project',
@@ -382,7 +402,13 @@ export default {
           modalContent: '​<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/videoseries?list=PL943E4C2F33D64B2A" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           contentCentered: true
         },
-        { id: 'PR200804', year: '2008', context: 'Personal project', message: 'AE pieces' },
+        { id: 'PR200804',
+          year: '2008',
+          context: 'Personal project',
+          message: 'AE pieces',
+          modalContent: '​<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/videoseries?list=PLB70C5BF8A7EFDBF6" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
+        },
         { id: 'PR200803', year: '2008', context: 'Personal project', message: 'TABU - Mad Yerba' },
         { id: 'PR200802', year: '2008', context: 'Personal project / ETSINF', message: 'La vella y el western' },
         { id: 'PR200801', year: '2008', context: 'Personal project / ETSINF', message: 'Nostalgia' }
