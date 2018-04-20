@@ -1,6 +1,6 @@
 <template>
   <div class="hello"  v-bind:class="{ active: isActive }" v-on:click="closeModal">
-    <div class="container">
+    <div class="container" v-bind:class="{ centered: isCentered }">
       <div class="container-scroll">
         <div id="show-media" v-bind:class="{ centered: isCentered }" v-html="smedia">
         </div>
@@ -57,7 +57,6 @@ export default {
   left: 50%;
   transform: translate3d(-50%,-40%,0);
   transition: 0.5s;
-  background-color: white;
   width: 80%;
   max-width: 1024px;
   height: 84%;
@@ -65,6 +64,10 @@ export default {
   background-color: white;
   overflow-x: hidden;
 }
+.container.centered{
+  background-color: black;
+}
+
 .container-scroll{
   width:100%;
   height: 100%;
@@ -105,7 +108,7 @@ export default {
   text-align: center;
   position: relative;
   z-index: 5;
-  padding: 15px 0;
+  padding-bottom: 30px;
 }
 
 #show-media.centered{

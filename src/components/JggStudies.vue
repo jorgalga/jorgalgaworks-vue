@@ -39,7 +39,6 @@ export default {
   background-color: white;
 }
 h1{
-  font-weight: normal;
   margin: 0;
 }
 ul{

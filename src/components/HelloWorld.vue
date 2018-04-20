@@ -29,43 +29,16 @@
         </div>
       </slide>
     </carousel>
-    <!-- carousel-3d
-      :height="vh"
-      :width="vw"
-      :border="0"
-      :autoplay="true"
-      :autoplayTimeout="8000"
-      :animationSpeed="1500"
-      :autoplayHoverPause="true" >
-      <slide :index="0">
-        <div class="slide-image sl1"></div>
-      </slide>
-      <slide :index="1">
-        <div class="slide-image sl2"></div>
-        <span class="slide-info">Troopers</span>
-      </slide>
-      <slide :index="2">
-        <div class="slide-image sl3"></div>
-        <span class="slide-info">L'Oracle du papillon - L'Exposition</span>
-      </slide>
-      <slide :index="3">
-        <div class="slide-image sl4"></div>
-        <span class="slide-info">City in progress</span>
-      </slide>
-      <slide :index="4">
-        <div class="slide-image sl5"></div>
-        <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
-      </slide>
-    </carousel-3d-->
-    <!-- h1>{{ msg }}</h1 -->
-    <studies></studies>
     <portfolio :id="id"></portfolio>
+    <experience></experience>
+    <studies></studies>
     <exhibitions></exhibitions>
   </div>
 </template>
 
 <script>
 import JggStudies from '@/components/JggStudies'
+import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
 import JggExhibitions from '@/components/JggExhibitions'
 
@@ -81,6 +54,7 @@ export default {
   },
   components: {
     'studies': JggStudies,
+    'experience': JggExperience,
     'portfolio': JggPortfolio,
     'exhibitions': JggExhibitions
   },
