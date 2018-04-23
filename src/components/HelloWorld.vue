@@ -1,5 +1,6 @@
 <template>
   <div class="hello">
+    <vrworld></vrworld>
     <carousel
       :per-page="1"
       :mouse-drag="true"
@@ -41,6 +42,7 @@ import JggStudies from '@/components/JggStudies'
 import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
 import JggExhibitions from '@/components/JggExhibitions'
+import VRWorld from '@/components/VRWorld'
 
 export default {
   name: 'HelloWorld',
@@ -56,7 +58,8 @@ export default {
     'studies': JggStudies,
     'experience': JggExperience,
     'portfolio': JggPortfolio,
-    'exhibitions': JggExhibitions
+    'exhibitions': JggExhibitions,
+    'vrworld': VRWorld
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

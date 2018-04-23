@@ -30,6 +30,7 @@ body, html{
   position: fixed;
   overflow-y: scroll;
 }
+
 .logo{
   display:none;
 }
