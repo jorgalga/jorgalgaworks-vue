@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-    <carousel
+    <vrworld></vrworld>
+    <!-- carousel
       :per-page="1"
       :mouse-drag="true"
       :autoplay="true"
@@ -28,7 +29,7 @@
           <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
         </div>
       </slide>
-    </carousel>
+    </carousel -->
     <portfolio :id="id"></portfolio>
     <experience></experience>
     <studies></studies>
@@ -41,6 +42,7 @@ import JggStudies from '@/components/JggStudies'
 import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
 import JggExhibitions from '@/components/JggExhibitions'
+import VRWorld from '@/components/VRWorld'
 
 export default {
   name: 'HelloWorld',
@@ -56,7 +58,8 @@ export default {
     'studies': JggStudies,
     'experience': JggExperience,
     'portfolio': JggPortfolio,
-    'exhibitions': JggExhibitions
+    'exhibitions': JggExhibitions,
+    'vrworld': VRWorld
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)
