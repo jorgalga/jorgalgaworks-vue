@@ -6,18 +6,20 @@
         <a id="magic-window" href="#">Try it without a headset</a>
       </div>
       <div id="selector"></div>
-      <div id="loading" >Loading</div>
-       <div class="gradient"></div>
+      <div id="loading">Loading</div>
+      <div id="progress-bar"></div>
+      <div class="gradient"></div>
     </div>
   </div>
 </template>
 <script>
 // import ES6Promise from 'es6-promise'
 import * as THREE from 'three'
-import VRControls from 'three-vrcontrols-module'
+// import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
 // import WebVRPolyfill from 'webvr-polyfill'
 import * as webvrui from 'webvr-ui'
+import {TweenLite} from 'gsap'
 export default {
   name: 'VRWorld',
   data () {
@@ -64,8 +66,8 @@ export default {
         // DIRTY_SUBMIT_FRAME_BINDINGS: true // default: false
       }
       var container
-      var mesh
-      var startTime
+      // var mesh
+      // var startTime
       var images = [
         {file: '/static/chroma/slider-0.png'},
         {file: '/static/chroma/slider-1.png'},
@@ -74,14 +76,14 @@ export default {
         {file: '/static/chroma/slider-4.png'}
       ]
       // Last time the scene was rendered.
-      var lastRenderTime = 0
+      // var lastRenderTime = 0
       // Currently active VRDisplay.
       var vrDisplay
       // How big of a box to render.
       var boxSize = 7
       // Various global THREE.Objects.
       var scene
-      var cube
+      // var cube
       var skybox
       var controls
       var effect
@@ -159,9 +161,19 @@ export default {
         // vrButton.requestEnterFullscreen()
         vrButton.hide()
       })
+      document.getElementById('vrw-container').addEventListener('mousemove', mousemoveHandler)
       initScene()
+      initGradient()
 
       // Methods
+      function mousemoveHandler (e) {
+        var cx = (e.clientX / container.clientWidth) * 2 - 1
+        var cy = (e.clientY / container.clientHeight) * 2 - 1
+        for (var i = 0; i < pointsArray.length; i++) {
+          pointsArray[i].rotation.y = (Math.PI / 2) * 0.2 * cx
+          pointsArray[i].rotation.x = (Math.PI / 2) * 0.1 * cy
+        }
+      }
       function onTextureLoaded (texture) {
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
@@ -180,19 +192,19 @@ export default {
         // parameters provided.
         setupStage()
       }
-
+      /*
       function onTextureLoaded2 (texture) {
         var material = new THREE.MeshBasicMaterial({
           map: texture
         })
         cube.material = material
       }
-
+      */
       var currentId = 0
       var current = 0
-      var target = 0
+      // var target = 0
       var blendValue = 0
-      var step = 0.05
+      // var step = 0.05
       // https://gist.github.com/gre/1650294
       // function ease (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
       // function ease (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t }
@@ -200,8 +212,8 @@ export default {
 
       // Request animation frame loop function
       function animate (timestamp) {
-        var delta = Math.min(timestamp - lastRenderTime, 500)
-        lastRenderTime = timestamp
+        // var delta = Math.min(timestamp - lastRenderTime, 500)
+        // lastRenderTime = timestamp
         // Apply rotation to cube mesh
         // cube.rotation.y += delta * 0.0006
         // cube.rotation.z -= delta * 0.0001
@@ -285,6 +297,21 @@ export default {
         else changeTarget(id)
         current = 1 - current
       }
+      function initGradient () {
+        TweenLite.to(document.getElementById('progress-bar'), 8, {
+          scaleX: 1,
+          delay: 1,
+          onComplete: function () {
+            selectImage((currentId + 1) % images.length)
+            TweenLite.to(document.getElementById('progress-bar'), 1, {
+              scaleX: 0,
+              onComplete: function () {
+                initGradient()
+              }
+            })
+          }
+        })
+      }
       // vars
       var material
       var points
@@ -301,7 +328,6 @@ export default {
               selectImage(id)
             })
             document.getElementById('selector').appendChild(copy)
-            console.log('SORT image')
             sortPixels(img, function (res) {
               i.buffer = res
               i.loaded = true
@@ -312,8 +338,8 @@ export default {
       }
       var hslA = new THREE.Color('hsl(0, 100%, 50%)')
       var hslB = new THREE.Color('hsl(0, 100%, 50%)')
+      var pointsArray = []
       function generateMesh () {
-        console.log('GENERATE mesh')
         if (images.some(function (i) { return i.loaded !== true })) { return }
         var w = images[0].image.width
         var h = images[0].image.height
@@ -332,7 +358,7 @@ export default {
         geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3))
         geometry.addAttribute('source', new THREE.BufferAttribute(images[0].buffer, 2))
         geometry.addAttribute('target', new THREE.BufferAttribute(images[1].buffer, 2))
-        var loader = new THREE.TextureLoader()
+        // var loader = new THREE.TextureLoader()
         material = new THREE.RawShaderMaterial({
           uniforms: {
             sourceTex: { type: 't', value: images[0].texture },
@@ -345,12 +371,13 @@ export default {
           fragmentShader: document.getElementById('particle-fs').textContent
         })
         points = new THREE.Points(geometry, material)
-        points.rotation.x = (Math.PI / 2) * -0.05;
-        points.rotation.y = (Math.PI / 2) * 0.1;
+        pointsArray.push(points)
+        // points.rotation.x = (Math.PI / 2) * -0.05
+        // points.rotation.y = (Math.PI / 2) * 0.1
         scene.add(points)
         renderer.render(scene, camera)
-        startTime = performance.now()
-        document.getElementById('loading').style.display = 'none'
+        // startTime = performance.now()
+        // document.getElementById('loading').style.display = 'none'
       }
       function sortPixels (img, callback) {
         var canvas = document.createElement('canvas')
@@ -442,5 +469,16 @@ a#magic-window {
   position: absolute;
   bottom: 0;
   left:0;
+}
+#progress-bar{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  opacity: 0.8;
+  background-color: white;
+  transform: scaleX(0.0);
+  transform-origin: top left
 }
 </style>

@@ -75,12 +75,18 @@ iframe.youtube-video-small{
 }
 
 #selector img{
-  width: 55px;
-  height: 55px;
-  border: 2px solid white;
+  width: 70px;
+  height: 70px;
   box-shadow: 0 3px 5px rgba(0,0,0,.4);
-  margin: 2px;
+  margin: 5px;
   cursor:pointer;
+  clip-path: polygon(0 5px, 100% 0, 100% calc(100% - 5px), 0 100%);
+  transition: 0.25s;
+  filter: grayscale(100%)
+}
+#selector img:hover{
+  filter: grayscale(0);
+  transform: translate3d(0,-10px, 0)
 }
 
 .webvr-ui-title{
