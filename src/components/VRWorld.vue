@@ -10,12 +10,11 @@
 </template>
 
 <script>
-// var Promise = require('es6-promise').Promise
-import ES6Promise from 'es6-promise'
+// import ES6Promise from 'es6-promise'
 import * as THREE from 'three'
 import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
-import WebVRPolyfill from 'webvr-polyfill'
+// import WebVRPolyfill from 'webvr-polyfill'
 import * as webvrui from 'webvr-ui'
 export default {
   name: 'VRWorld',
@@ -67,7 +66,7 @@ export default {
       // Currently active VRDisplay.
       var vrDisplay
       // How big of a box to render.
-      var boxSize = 5
+      var boxSize = 8
       // Various global THREE.Objects.
       var scene
       var cube
@@ -108,6 +107,9 @@ export default {
       var material = new THREE.MeshNormalMaterial()
       cube = new THREE.Mesh(geometry, material)
 
+      var loader2 = new THREE.TextureLoader()
+      loader2.load('/static/texture.png', onTextureLoaded2)
+
       // Position cube mesh to be right in front of you.
       cube.position.set(0, controls.userHeight, -1)
 
@@ -147,7 +149,7 @@ export default {
         var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
         var material = new THREE.MeshBasicMaterial({
           map: texture,
-          color: 0x01BE00,
+          color: 0xBE1020,
           side: THREE.BackSide
         })
         // Align the skybox to the floor (which is at y=0).
@@ -159,12 +161,20 @@ export default {
         setupStage()
       }
 
+      function onTextureLoaded2 (texture) {
+        var material = new THREE.MeshBasicMaterial({
+          map: texture
+        })
+        cube.material = material
+      }
+
       // Request animation frame loop function
       function animate (timestamp) {
         var delta = Math.min(timestamp - lastRenderTime, 500)
         lastRenderTime = timestamp
         // Apply rotation to cube mesh
         cube.rotation.y += delta * 0.0006
+        cube.rotation.z -= delta * 0.0001
         // Only update controls if we're presenting.
         if (vrButton.isPresenting()) {
           controls.update()
@@ -173,8 +183,7 @@ export default {
         effect.render(scene, camera)
         if (vrDisplay) {
           vrDisplay.requestAnimationFrame(animate)
-        }
-        else {
+        } else {
           window.requestAnimationFrame(animate)
         }
       }
@@ -198,8 +207,7 @@ export default {
               vrDisplay.requestAnimationFrame(animate)
             }
           })
-        }
-        else {
+        } else {
           window.requestAnimationFrame(animate)
         }
       }

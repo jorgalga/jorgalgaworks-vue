@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <vrworld></vrworld>
-    <carousel
+    <!-- carousel
       :per-page="1"
       :mouse-drag="true"
       :autoplay="true"
@@ -29,7 +29,7 @@
           <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
         </div>
       </slide>
-    </carousel>
+    </carousel -->
     <portfolio :id="id"></portfolio>
     <experience></experience>
     <studies></studies>
