@@ -1,11 +1,23 @@
 <template>
   <div class="hello">
     <h1>{{ msg }} </h1>
-    <ul>
+    <!--ul>
       <li v-for="item in studies" :key="item.year" >
         <span class="year">{{ item.year}}</span><h2>{{ item.message }}</h2>{{ item.place }}
       </li>
-    </ul>
+    </ul-->
+
+    <div class="masonry-cnt">
+      <masonry
+        :cols="{default: 3, 1000: 3, 700: 2, 400: 2}"
+        :gutter="{default: '5px', 700: '10px'}"
+        >
+        <div class="work-item" v-for="item in studies" :key="item.year">
+          <span class="year">{{ item.year}}</span><h3>{{ item.message }}</h3>{{ item.place }}
+        </div>
+      </masonry>
+    </div>
+
     <div class="divisor">
     </div>
   </div>
@@ -48,8 +60,8 @@ export default {
 .hello{
   background-color: white;
 }
-h1,h2{
-  margin: 0;
+h1,h2,h3{
+  margin: 15px;
 }
 ul{
   text-align: center;
@@ -64,6 +76,20 @@ li {
   max-width: 33%;
   margin: 10px auto 30px;
 }
+.masonry-cnt{
+  max-width: 1024px;
+  display: block;
+  margin: 0 auto;
+  padding: 30px 0;
+}
+.work-item{
+  min-height: 100px;
+  background-color: #EEEEFF88;
+  margin: -15px 15px 25px 0 ;
+  padding: 45px 0;
+  clip-path: polygon(0 20px, 100% 0, 100% calc(100% - 20px), 0 100%);
+}
+
 .divisor{
     width: 100%;
     height: 50px;
