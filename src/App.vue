@@ -73,4 +73,22 @@ iframe.youtube-video-small{
 .VueCarousel-dot-container{
   margin-top: -30px !important
 }
+
+#selector img{
+  width: 55px;
+  height: 55px;
+  border: 2px solid white;
+  box-shadow: 0 3px 5px rgba(0,0,0,.4);
+  margin: 2px;
+  cursor:pointer;
+}
+
+.webvr-ui-title{
+  font-size: 12px
+}
+a#magic-window{
+  color: white !important;
+  text-shadow: 0 0 10px black
+}
+
 </style>

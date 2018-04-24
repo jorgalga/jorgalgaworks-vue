@@ -5,10 +5,12 @@
         <div id="vr-button"></div>
         <a id="magic-window" href="#">Try it without a headset</a>
       </div>
+      <div id="selector"></div>
+      <div id="loading" >Loading</div>
+       <div class="gradient"></div>
     </div>
   </div>
 </template>
-
 <script>
 // import ES6Promise from 'es6-promise'
 import * as THREE from 'three'
@@ -61,12 +63,22 @@ export default {
         // Warning: enabling this might lead to rendering issues.
         // DIRTY_SUBMIT_FRAME_BINDINGS: true // default: false
       }
+      var container
+      var mesh
+      var startTime
+      var images = [
+        {file: '/static/chroma/slider-0.png'},
+        {file: '/static/chroma/slider-1.png'},
+        {file: '/static/chroma/slider-2.png'},
+        {file: '/static/chroma/slider-3.png'},
+        {file: '/static/chroma/slider-4.png'}
+      ]
       // Last time the scene was rendered.
       var lastRenderTime = 0
       // Currently active VRDisplay.
       var vrDisplay
       // How big of a box to render.
-      var boxSize = 8
+      var boxSize = 7
       // Various global THREE.Objects.
       var scene
       var cube
@@ -79,42 +91,48 @@ export default {
 
       // Setup three.js WebGL renderer. Note: Antialiasing is a big performance hit.
       // Only enable it if you actually need to.
-      var renderer = new THREE.WebGLRenderer({antialias: true})
+      var renderer = new THREE.WebGLRenderer({antialias: true, alpha: true})
       renderer.setPixelRatio(window.devicePixelRatio)
       // Append the canvas element created by the renderer to document body element.
-      document.getElementById('vrw-container').appendChild(renderer.domElement)
+      container = document.getElementById('vrw-container')
+      container.appendChild(renderer.domElement)
 
       // Create a three.js scene.
       scene = new THREE.Scene()
 
       // Create a three.js camera.
-      var aspect = window.innerWidth / window.innerHeight
-      camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 10000)
-      controls = new VRControls(camera)
-      controls.standing = true
-      camera.position.y = controls.userHeight
+      // var aspect = window.innerWidth / window.innerHeight
+      var aspect = container.clientWidth / container.clientHeight
+      // camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 10000)
+      camera = new THREE.PerspectiveCamera(70, aspect, 0.001, 100)
+      camera.target = new THREE.Vector3(0, 0, 0)
+      // controls = new VRControls(camera)
+      // controls.standing = true
+      // camera.position.y = controls.userHeight
+      camera.lookAt(camera.target)
+      camera.position.set(0, 0.05, 1.2)
 
       // Apply VR stereo rendering to renderer.
       effect = new VREffect(renderer)
-      effect.setSize(window.innerWidth, window.innerHeight)
+      effect.setSize(container.clientWidth, container.clientHeight)
 
       // Add a repeating grid as a skybox.
       var loader = new THREE.TextureLoader()
-      loader.load('/static/box.png', onTextureLoaded)
+      loader.load('/static/box1.png', onTextureLoaded)
 
       // Create 3D objects.
-      var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
-      var material = new THREE.MeshNormalMaterial()
-      cube = new THREE.Mesh(geometry, material)
+      // var geometryCube = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+      // var materialCube = new THREE.MeshNormalMaterial()
+      // cube = new THREE.Mesh(geometryCube, materialCube)
 
-      var loader2 = new THREE.TextureLoader()
-      loader2.load('/static/texture.png', onTextureLoaded2)
+      // var loader2 = new THREE.TextureLoader()
+      // loader2.load('/static/texture.png', onTextureLoaded2)
 
       // Position cube mesh to be right in front of you.
-      cube.position.set(0, controls.userHeight, -1)
+      // cube.position.set(0, 1, -1)
 
       // Add cube mesh to your three.js scene
-      scene.add(cube)
+      // scene.add(cube)
 
       window.addEventListener('resize', onResize, true)
       window.addEventListener('vrdisplaypresentchange', onResize, true)
@@ -128,7 +146,7 @@ export default {
       vrButton = new webvrui.EnterVRButton(renderer.domElement, uiOptions)
       vrButton.on('exit', function () {
         camera.quaternion.set(0, 0, 0, 1)
-        camera.position.set(0, controls.userHeight, 0)
+        // camera.position.set(0, controls.userHeight, 1)
       })
       vrButton.on('hide', function () {
         document.getElementById('ui').style.display = 'none'
@@ -139,7 +157,9 @@ export default {
       document.getElementById('vr-button').appendChild(vrButton.domElement)
       document.getElementById('magic-window').addEventListener('click', function () {
         // vrButton.requestEnterFullscreen()
+        vrButton.hide()
       })
+      initScene()
 
       // Methods
       function onTextureLoaded (texture) {
@@ -149,12 +169,12 @@ export default {
         var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
         var material = new THREE.MeshBasicMaterial({
           map: texture,
-          color: 0xBE1020,
+          color: 0xcc88aa,
           side: THREE.BackSide
         })
         // Align the skybox to the floor (which is at y=0).
         skybox = new THREE.Mesh(geometry, material)
-        skybox.position.y = boxSize / 2
+        skybox.position.y = 1
         scene.add(skybox)
         // For high end VR devices like Vive and Oculus, take into account the stage
         // parameters provided.
@@ -168,17 +188,34 @@ export default {
         cube.material = material
       }
 
+      var currentId = 0
+      var current = 0
+      var target = 0
+      var blendValue = 0
+      var step = 0.05
+      // https://gist.github.com/gre/1650294
+      // function ease (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
+      // function ease (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t }
+      function ease (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1 }
+
       // Request animation frame loop function
       function animate (timestamp) {
         var delta = Math.min(timestamp - lastRenderTime, 500)
         lastRenderTime = timestamp
         // Apply rotation to cube mesh
-        cube.rotation.y += delta * 0.0006
-        cube.rotation.z -= delta * 0.0001
+        // cube.rotation.y += delta * 0.0006
+        // cube.rotation.z -= delta * 0.0001
         // Only update controls if we're presenting.
         if (vrButton.isPresenting()) {
           controls.update()
         }
+        // controls.update()
+        if (material) {
+          var dir = current - blendValue
+          blendValue += dir / 100
+          material.uniforms.blend.value = ease(blendValue)
+        }
+
         // Render the scene.
         effect.render(scene, camera)
         if (vrDisplay) {
@@ -189,8 +226,8 @@ export default {
       }
 
       function onResize (e) {
-        effect.setSize(window.innerWidth, window.innerHeight)
-        camera.aspect = window.innerWidth / window.innerHeight
+        effect.setSize(container.clientWidth, container.clientHeight)
+        camera.aspect = container.clientWidth / container.clientHeight
         camera.updateProjectionMatrix()
       }
 
@@ -222,19 +259,141 @@ export default {
         skybox.position.y = boxSize / 2
         scene.add(skybox)
         // Place the cube in the middle of the scene, at user height.
-        cube.position.set(0, controls.userHeight, 0)
+        // cube.position.set(0, controls.userHeight, 0)
+      }
+      function loadImage (filename, c) {
+        var img = new Image()
+        img.addEventListener('load', function (e) {
+          c(this)
+        })
+        img.src = filename
+      }
+      function changeSource (id) {
+        material.uniforms.sourceTex.value = images[ id ].texture
+        points.geometry.attributes.source.array = images[ id ].buffer
+        points.geometry.attributes.source.needsUpdate = true
+      }
+      function changeTarget (id) {
+        material.uniforms.targetTex.value = images[ id ].texture
+        points.geometry.attributes.target.array = images[ id ].buffer
+        points.geometry.attributes.target.needsUpdate = true
+      }
+      function selectImage (id) {
+        if (currentId === id) return
+        currentId = id
+        if ( current === 1 )changeSource(id)
+        else changeTarget(id)
+        current = 1 - current
+      }
+      // vars
+      var material
+      var points
+      function initScene () {
+        images.forEach(function (i, id) {
+          loadImage(i.file, function (img) {
+            i.image = img
+            i.texture = new THREE.Texture(img)
+            i.texture.flipY = false
+            i.texture.needsUpdate = true
+            var copy = new Image()
+            copy.src = i.file
+            copy.addEventListener('click', function (e) {
+              selectImage(id)
+            })
+            document.getElementById('selector').appendChild(copy)
+            console.log('SORT image')
+            sortPixels(img, function (res) {
+              i.buffer = res
+              i.loaded = true
+              generateMesh()
+            })
+          })
+        })
+      }
+      var hslA = new THREE.Color('hsl(0, 100%, 50%)')
+      var hslB = new THREE.Color('hsl(0, 100%, 50%)')
+      function generateMesh () {
+        console.log('GENERATE mesh')
+        if (images.some(function (i) { return i.loaded !== true })) { return }
+        var w = images[0].image.width
+        var h = images[0].image.height
+        var ptr = 0
+        var positions = new Float32Array(w * h * 3)
+
+        for (var y = 0; y < w; y++) {
+          for (var x = 0; x < h; x++) {
+            positions[ ptr * 3 + 0 ] = x
+            positions[ ptr * 3 + 1 ] = y
+            positions[ ptr * 3 + 2 ] = 0
+            ptr++
+          }
+        }
+        var geometry = new THREE.BufferGeometry()
+        geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3))
+        geometry.addAttribute('source', new THREE.BufferAttribute(images[0].buffer, 2))
+        geometry.addAttribute('target', new THREE.BufferAttribute(images[1].buffer, 2))
+        var loader = new THREE.TextureLoader()
+        material = new THREE.RawShaderMaterial({
+          uniforms: {
+            sourceTex: { type: 't', value: images[0].texture },
+            targetTex: { type: 't', value: images[1].texture },
+            blend: { type: 'f', value: 0 },
+            size: { type: 'f', value: 2.1 }, // window.devicePixelRatio },
+            dimensions: { type: 'v2', value: new THREE.Vector2(w, h) }
+          },
+          vertexShader: document.getElementById('particle-vs').textContent,
+          fragmentShader: document.getElementById('particle-fs').textContent
+        })
+        points = new THREE.Points(geometry, material)
+        points.rotation.x = (Math.PI / 2) * -0.05;
+        points.rotation.y = (Math.PI / 2) * 0.1;
+        scene.add(points)
+        renderer.render(scene, camera)
+        startTime = performance.now()
+        document.getElementById('loading').style.display = 'none'
+      }
+      function sortPixels (img, callback) {
+        var canvas = document.createElement('canvas')
+        canvas.width = img.naturalWidth
+        canvas.height = img.naturalHeight
+        var ctx = canvas.getContext('2d')
+        ctx.drawImage(img, 0, 0)
+        var data = ctx.getImageData(0, 0, canvas.width, canvas.height)
+        var buffer = data.data
+        var rgb = []
+        var c = new THREE.Color()
+        for (var j = 0; j < buffer.length; j += 4) {
+          c.setRGB(buffer[ j ], buffer[ j + 1 ], buffer[ j + 2 ])
+          rgb.push({ c: c.clone(), id: j / 4 })
+        }
+        rgb.sort(function (a, b) {
+          a.c.getHSL(hslA)
+          b.c.getHSL(hslB)
+          // return a.c.getHSL().h - b.c.getHSL().h
+          // return a.c.getHSL().s - b.c.getHSL().s
+          return hslA.s - hslB.s
+          // return b.c.getHSL().l - a.c.getHSL().l
+        })
+        var ptr = 0
+        var res = new Float32Array(img.width * img.height * 2)
+        rgb.forEach(function (e) {
+          res[ ptr ] = e.id % img.width
+          res[ ptr + 1 ] = Math.floor(e.id / img.width)
+          ptr += 2
+        })
+        callback(res)
       }
     }
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #vrw-container{
-  background-color: aliceblue;
+  background-color: white;
   width: 100vw;
-  height: 100vh;
+  height: 80vh;
+  position: relative;
 }
 #ui {
   position: absolute;
@@ -249,5 +408,39 @@ a#magic-window {
   display: block;
   color: grey;
   margin-top: 1em;
+}
+#selector{
+  position: absolute;
+  top: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+#loading{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  text-align:center;
+  z-index:2000;
+  opacity: 0;
+  color: white;
+  transition: 0.5s;
+  pointer-events: none;
+}
+#vr-button{
+  box-shadow: 0 3px 5px rgba(0,0,0,.4);
+  background-color: white
+}
+.gradient{
+  background: linear-gradient(transparent, white);
+  width: 100%;
+  height: 20%;
+  position: absolute;
+  bottom: 0;
+  left:0;
 }
 </style>
