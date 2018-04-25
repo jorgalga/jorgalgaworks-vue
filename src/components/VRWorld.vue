@@ -455,8 +455,8 @@ a#magic-window {
   left: 0;
   width: 100%;
   height: 6px;
-  opacity: 0.8;
-  background-color: white;
+  opacity: 0.6;
+  background-color: pink;
   transform: scaleX(0.0);
   transform-origin: top left
 }

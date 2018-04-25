@@ -50,7 +50,8 @@ export default {
     display: inline-block;
   }
   p {
-    width: 40%;
+    width: 90%;
+    max-width: 500px;
     margin: 0 auto;
     margin-bottom: 15px;
   }
