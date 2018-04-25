@@ -19,6 +19,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  h1{
+    margin: 45px auto 45px;
+    max-width: 308px;
+    background-color: #000000bb;
+    color: white;
+    transform: skewY(-5.5deg);
+  }
   .divisor{
     background-color: aliceblue;
     width: 100%;

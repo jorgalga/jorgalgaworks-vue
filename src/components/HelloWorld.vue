@@ -1,35 +1,7 @@
 <template>
   <div class="hello">
     <vrworld></vrworld>
-    <!-- carousel
-      :per-page="1"
-      :mouse-drag="true"
-      :autoplay="true"
-      :loop="true" >
-      <slide>
-        <div class="slide-image sl1"></div>
-      </slide>
-      <slide>
-        <div class="slide-image sl2">
-          <span class="slide-info">Troopers</span>
-        </div>
-      </slide>
-      <slide>
-        <div class="slide-image sl3">
-          <span class="slide-info">L'Oracle du papillon - L'Exposition</span>
-        </div>
-      </slide>
-      <slide>
-        <div class="slide-image sl4">
-          <span class="slide-info">City in progress</span>
-        </div>
-      </slide>
-      <slide>
-        <div class="slide-image sl5">
-          <span class="slide-info">Drei – „Es geht auch anders“ am Flughafen Wien</span>
-        </div>
-      </slide>
-    </carousel -->
+    <about></about>
     <portfolio :id="id"></portfolio>
     <experience></experience>
     <studies></studies>
@@ -38,6 +10,7 @@
 </template>
 
 <script>
+import JggAbout from '@/components/JggAbout'
 import JggStudies from '@/components/JggStudies'
 import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
@@ -59,7 +32,8 @@ export default {
     'experience': JggExperience,
     'portfolio': JggPortfolio,
     'exhibitions': JggExhibitions,
-    'vrworld': VRWorld
+    'vrworld': VRWorld,
+    'about': JggAbout
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

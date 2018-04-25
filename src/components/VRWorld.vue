@@ -15,7 +15,7 @@
 <script>
 // import ES6Promise from 'es6-promise'
 import * as THREE from 'three'
-// import VRControls from 'three-vrcontrols-module'
+import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
 // import WebVRPolyfill from 'webvr-polyfill'
 import * as webvrui from 'webvr-ui'
@@ -32,39 +32,6 @@ export default {
   },
   methods: {
     init () {
-      /*
-      * Debug parameters.
-      */
-      var WebVRConfig = {
-        /**
-        * webvr-polyfill configuration
-        */
-        // Forces availability of VR mode.
-        // FORCE_ENABLE_VR: true, // Default: false.
-        // Complementary filter coefficient. 0 for accelerometer, 1 for gyro.
-        // K_FILTER: 0.98, // Default: 0.98.
-        //  How far into the future to predict during fast motion.
-        // PREDICTION_TIME_S: 0.040, // Default: 0.040 (in seconds).
-        // Flag to disable touch panner. In case you have your own touch controls
-        // TOUCH_PANNER_DISABLED: true, // Default: false.
-        // Enable yaw panning only, disabling roll and pitch. This can be useful for
-        // panoramas with nothing interesting above or below.
-        // YAW_ONLY: true, // Default: false.
-        // Enable the deprecated version of the API (navigator.getVRDevices).
-        // ENABLE_DEPRECATED_API: true, // Default: false.
-        // Scales the recommended buffer size reported by WebVR, which can improve
-        // performance. Making this very small can lower the effective resolution of
-        // your scene.
-        BUFFER_SCALE: 0.5 // default: 1.0
-        // Allow VRDisplay.submitFrame to change gl bindings, which is more
-        // efficient if the application code will re-bind it's resources on the
-        // next frame anyway.
-        // Dirty bindings include: gl.FRAMEBUFFER_BINDING, gl.CURRENT_PROGRAM,
-        // gl.ARRAY_BUFFER_BINDING, gl.ELEMENT_ARRAY_BUFFER_BINDING,
-        // and gl.TEXTURE_BINDING_2D for texture unit 0
-        // Warning: enabling this might lead to rendering issues.
-        // DIRTY_SUBMIT_FRAME_BINDINGS: true // default: false
-      }
       var container
       // var mesh
       // var startTime
@@ -108,8 +75,8 @@ export default {
       // camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 10000)
       camera = new THREE.PerspectiveCamera(70, aspect, 0.001, 100)
       camera.target = new THREE.Vector3(0, 0, 0)
-      // controls = new VRControls(camera)
-      // controls.standing = true
+      controls = new VRControls(camera)
+      controls.standing = true
       // camera.position.y = controls.userHeight
       camera.lookAt(camera.target)
       camera.position.set(0, 0.05, 1.2)
@@ -176,10 +143,10 @@ export default {
           // pointsArray[i].rotation.x = (Math.PI / 2) * 0.1 * cy
 
           TweenLite.to(pointsArray[i].rotation, 1, {
-              y: val1
+            y: val1
           })
           TweenLite.to(pointsArray[i].rotation, 1, {
-              x: val2
+            x: val2
           })
         }
       }
@@ -302,8 +269,11 @@ export default {
       function selectImage (id) {
         if (currentId === id) return
         currentId = id
-        if ( current === 1 )changeSource(id)
-        else changeTarget(id)
+        if (current === 1) {
+          changeSource(id)
+        } else {
+          changeTarget(id)
+        }
         current = 1 - current
       }
       function initGradient () {

@@ -640,7 +640,11 @@ export default {
     max-width: 300px;
   }
   h1{
-    margin: 0;
+    margin: 45px auto 45px;
+    max-width: 308px;
+    background-color: #000000bb;
+    color: white;
+    transform: skewY(-5.5deg);
   }
   li{
     text-align: left;

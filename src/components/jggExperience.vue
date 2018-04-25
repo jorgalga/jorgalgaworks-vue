@@ -63,6 +63,13 @@ export default {
 h1,h2,h3{
   margin: 15px;
 }
+h1{
+  margin: 45px auto 45px;
+  max-width: 308px;
+  background-color: #000000bb;
+  color: white;
+  transform: skewY(-5.5deg);
+}
 ul{
   text-align: center;
   max-width: 1024px;
