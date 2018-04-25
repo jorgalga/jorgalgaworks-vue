@@ -170,8 +170,17 @@ export default {
         var cx = (e.clientX / container.clientWidth) * 2 - 1
         var cy = (e.clientY / container.clientHeight) * 2 - 1
         for (var i = 0; i < pointsArray.length; i++) {
-          pointsArray[i].rotation.y = (Math.PI / 2) * 0.2 * cx
-          pointsArray[i].rotation.x = (Math.PI / 2) * 0.1 * cy
+          var val1 = (Math.PI / 2) * 0.2 * cx
+          var val2 = (Math.PI / 2) * 0.1 * cy
+          // pointsArray[i].rotation.y = (Math.PI / 2) * 0.2 * cx
+          // pointsArray[i].rotation.x = (Math.PI / 2) * 0.1 * cy
+
+          TweenLite.to(pointsArray[i].rotation, 1, {
+              y: val1
+          })
+          TweenLite.to(pointsArray[i].rotation, 1, {
+              x: val2
+          })
         }
       }
       function onTextureLoaded (texture) {
