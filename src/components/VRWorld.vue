@@ -13,98 +13,73 @@
   </div>
 </template>
 <script>
-// import ES6Promise from 'es6-promise'
 import * as THREE from 'three'
 import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
-// import WebVRPolyfill from 'webvr-polyfill'
 import * as webvrui from 'webvr-ui'
-import {TweenLite} from 'gsap'
+// import {TweenLite} from 'gsap'
+import {ThreeChroma} from '../lib/three-chromatography'
 export default {
   name: 'VRWorld',
   data () {
     return {
-      msg: ''
+      lastRenderTime: 0, // Last time the scene was rendered.
+      vrDisplay: null, // Currently active VRDisplay.
+      boxSize: 7, // How big of a box to render.
+      scene: null,
+      controls: null,
+      effect: null,
+      camera: null,
+      vrButton: null, // EnterVRButton for rendering enter/exit UI.
+      renderer: null,
+      skybox: null,
+      cube: null,
+      threeChroma: null
     }
   },
   mounted () {
-    this.init()
+    this.container = document.getElementById('vrw-container')
+    this.aspect = this.container.clientWidth / this.container.clientHeight
+    this.onLoad()
   },
   methods: {
-    init () {
-      var container
-      // var mesh
-      // var startTime
-      var images = [
-        {file: '/static/chroma/slider-0.png'},
-        {file: '/static/chroma/slider-1.png'},
-        {file: '/static/chroma/slider-2.png'},
-        {file: '/static/chroma/slider-3.png'},
-        {file: '/static/chroma/slider-4.png'}
-      ]
-      // Last time the scene was rendered.
-      // var lastRenderTime = 0
-      // Currently active VRDisplay.
-      var vrDisplay
-      // How big of a box to render.
-      var boxSize = 7
-      // Various global THREE.Objects.
-      var scene
-      // var cube
-      var skybox
-      var controls
-      var effect
-      var camera
-      // EnterVRButton for rendering enter/exit UI.
-      var vrButton
-
+    onLoad () {
       // Setup three.js WebGL renderer. Note: Antialiasing is a big performance hit.
       // Only enable it if you actually need to.
-      var renderer = new THREE.WebGLRenderer({antialias: true, alpha: true})
-      renderer.setPixelRatio(window.devicePixelRatio)
+      this.renderer = new THREE.WebGLRenderer({antialias: true})
+      this.renderer.setPixelRatio(window.devicePixelRatio)
+
       // Append the canvas element created by the renderer to document body element.
-      container = document.getElementById('vrw-container')
-      container.appendChild(renderer.domElement)
+      this.container.appendChild(this.renderer.domElement)
 
       // Create a three.js scene.
-      scene = new THREE.Scene()
+      this.scene = new THREE.Scene()
 
       // Create a three.js camera.
-      // var aspect = window.innerWidth / window.innerHeight
-      var aspect = container.clientWidth / container.clientHeight
-      // camera = new THREE.PerspectiveCamera(75, aspect, 0.1, 10000)
-      camera = new THREE.PerspectiveCamera(70, aspect, 0.001, 100)
-      camera.target = new THREE.Vector3(0, 0, 0)
-      controls = new VRControls(camera)
-      controls.standing = true
-      // camera.position.y = controls.userHeight
-      camera.lookAt(camera.target)
-      camera.position.set(0, 0.05, 1.2)
+      this.camera = new THREE.PerspectiveCamera(75, this.aspect, 0.1, 10000)
+      // setup VRControls
+      this.controls = new VRControls(this.camera)
+      this.controls.standing = true
+      this.camera.position.y = this.controls.userHeight
 
       // Apply VR stereo rendering to renderer.
-      effect = new VREffect(renderer)
-      effect.setSize(container.clientWidth, container.clientHeight)
+      this.effect = new VREffect(this.renderer)
+      this.effect.setSize(this.container.clientWidth, this.container.clientHeight)
 
       // Add a repeating grid as a skybox.
-      var loader = new THREE.TextureLoader()
-      loader.load('/static/box1.png', onTextureLoaded)
+      this.addSkybox()
 
       // Create 3D objects.
-      // var geometryCube = new THREE.BoxGeometry(0.5, 0.5, 0.5)
-      // var materialCube = new THREE.MeshNormalMaterial()
-      // cube = new THREE.Mesh(geometryCube, materialCube)
-
-      // var loader2 = new THREE.TextureLoader()
-      // loader2.load('/static/texture.png', onTextureLoaded2)
-
+      var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+      var material = new THREE.MeshNormalMaterial()
+      this.cube = new THREE.Mesh(geometry, material)
       // Position cube mesh to be right in front of you.
-      // cube.position.set(0, 1, -1)
-
+      this.cube.position.set(0, this.controls.userHeight, -1)
       // Add cube mesh to your three.js scene
-      // scene.add(cube)
+      // this.scene.add(this.cube)
 
-      window.addEventListener('resize', onResize, true)
-      window.addEventListener('vrdisplaypresentchange', onResize, true)
+      window.addEventListener('resize', this.onResize, true)
+      window.addEventListener('vrdisplaypresentchange', this.onResize, true)
 
       // Initialize the WebVR UI.
       var uiOptions = {
@@ -112,283 +87,114 @@ export default {
         background: 'white',
         corners: 'square'
       }
-      vrButton = new webvrui.EnterVRButton(renderer.domElement, uiOptions)
-      vrButton.on('exit', function () {
-        camera.quaternion.set(0, 0, 0, 1)
-        // camera.position.set(0, controls.userHeight, 1)
+
+      var _ = this
+      this.vrButton = new webvrui.EnterVRButton(this.renderer.domElement, uiOptions)
+      this.vrButton.on('exit', function () {
+        _.camera.quaternion.set(0, 0, 0, 1)
+        _.camera.position.set(0, _.controls.userHeight, 0)
       })
-      vrButton.on('hide', function () {
+      this.vrButton.on('hide', function () {
         document.getElementById('ui').style.display = 'none'
       })
-      vrButton.on('show', function () {
+      this.vrButton.on('show', function () {
         document.getElementById('ui').style.display = 'inherit'
       })
-      document.getElementById('vr-button').appendChild(vrButton.domElement)
+      document.getElementById('vr-button').appendChild(this.vrButton.domElement)
       document.getElementById('magic-window').addEventListener('click', function () {
-        // vrButton.requestEnterFullscreen()
-        vrButton.hide()
+        // this.vrButton.requestEnterFullscreen()
+        _.vrButton.requestEnterFullscreen().catch((e) => {
+          if (e.message === 'e.manager.enterFullscreen(...).then is not a function') {
+            console.log('webvr-ui fullscreen hotfix')
+          } else {
+            return e
+          }
+        })
       })
-      document.getElementById('vrw-container').addEventListener('mousemove', mousemoveHandler)
-      initScene()
-      initGradient()
-
-      // Methods
-      function mousemoveHandler (e) {
-        var cx = (e.clientX / container.clientWidth) * 2 - 1
-        var cy = (e.clientY / container.clientHeight) * 2 - 1
-        for (var i = 0; i < pointsArray.length; i++) {
-          var val1 = (Math.PI / 2) * 0.2 * cx
-          var val2 = (Math.PI / 2) * 0.1 * cy
-          // pointsArray[i].rotation.y = (Math.PI / 2) * 0.2 * cx
-          // pointsArray[i].rotation.x = (Math.PI / 2) * 0.1 * cy
-
-          TweenLite.to(pointsArray[i].rotation, 1, {
-            y: val1
-          })
-          TweenLite.to(pointsArray[i].rotation, 1, {
-            x: val2
-          })
-        }
-      }
+      // Chroma
+      this.threeChroma = new ThreeChroma(this.container, this.renderer, this.camera, this.scene, this.controls)
+      this.threeChroma.init()
+    },
+    addSkybox () {
+      var loader = new THREE.TextureLoader()
+      loader.load('/static/box1.png', onTextureLoaded)
+      var _ = this
       function onTextureLoaded (texture) {
         texture.wrapS = THREE.RepeatWrapping
         texture.wrapT = THREE.RepeatWrapping
-        texture.repeat.set(boxSize, boxSize)
-        var geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize)
+        texture.repeat.set(_.boxSize, _.boxSize)
+        var geometry = new THREE.BoxGeometry(_.boxSize, _.boxSize, _.boxSize)
         var material = new THREE.MeshBasicMaterial({
           map: texture,
           color: 0xcc88aa,
           side: THREE.BackSide
         })
         // Align the skybox to the floor (which is at y=0).
-        skybox = new THREE.Mesh(geometry, material)
-        skybox.position.y = 1
-        scene.add(skybox)
+        _.skybox = new THREE.Mesh(geometry, material)
+        _.skybox.position.y = _.boxSize / 2
+        _.scene.add(_.skybox)
         // For high end VR devices like Vive and Oculus, take into account the stage
         // parameters provided.
-        setupStage()
+        _.setupStage()
       }
-      /*
-      function onTextureLoaded2 (texture) {
-        var material = new THREE.MeshBasicMaterial({
-          map: texture
-        })
-        cube.material = material
-      }
-      */
-      var currentId = 0
-      var current = 0
-      // var target = 0
-      var blendValue = 0
-      // var step = 0.05
-      // https://gist.github.com/gre/1650294
-      // function ease (t) { return t<.5 ? 8*t*t*t*t : 1-8*(--t)*t*t*t };
-      // function ease (t) { return t<.5 ? 2*t*t : -1+(4-2*t)*t }
-      function ease (t) { return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1 }
-
-      // Request animation frame loop function
-      function animate (timestamp) {
-        // var delta = Math.min(timestamp - lastRenderTime, 500)
-        // lastRenderTime = timestamp
-        // Apply rotation to cube mesh
-        // cube.rotation.y += delta * 0.0006
-        // cube.rotation.z -= delta * 0.0001
-        // Only update controls if we're presenting.
-        if (vrButton.isPresenting()) {
-          controls.update()
-        }
-        // controls.update()
-        if (material) {
-          var dir = current - blendValue
-          blendValue += dir / 100
-          material.uniforms.blend.value = ease(blendValue)
-        }
-
-        // Render the scene.
-        effect.render(scene, camera)
-        if (vrDisplay) {
-          vrDisplay.requestAnimationFrame(animate)
-        } else {
-          window.requestAnimationFrame(animate)
-        }
-      }
-
-      function onResize (e) {
-        effect.setSize(container.clientWidth, container.clientHeight)
-        camera.aspect = container.clientWidth / container.clientHeight
-        camera.updateProjectionMatrix()
-      }
-
-      // Get the HMD, and if we're dealing with something that specifies
-      // stageParameters, rearrange the scene.
-      function setupStage () {
-        if (navigator.getVRDisplays) {
-          navigator.getVRDisplays().then(function (displays) {
-            if (displays.length > 0) {
-              vrDisplay = displays[0]
-              if (vrDisplay.stageParameters) {
-                setStageDimensions(vrDisplay.stageParameters)
-              }
-              vrDisplay.requestAnimationFrame(animate)
+    },
+    setupStage () {
+      var _ = this
+      if (navigator.getVRDisplays) {
+        navigator.getVRDisplays().then(function (displays) {
+          if (displays.length > 0) {
+            _.vrDisplay = displays[0]
+            if (_.vrDisplay.stageParameters) {
+              _.setStageDimensions(_.vrDisplay.stageParameters)
             }
-          })
-        } else {
-          window.requestAnimationFrame(animate)
-        }
-      }
-      function setStageDimensions (stage) {
-        // Make the skybox fit the stage.
-        var material = skybox.material
-        scene.remove(skybox)
-        // Size the skybox according to the size of the actual stage.
-        var geometry = new THREE.BoxGeometry(stage.sizeX, boxSize, stage.sizeZ)
-        skybox = new THREE.Mesh(geometry, material)
-        // Place it on the floor.
-        skybox.position.y = boxSize / 2
-        scene.add(skybox)
-        // Place the cube in the middle of the scene, at user height.
-        // cube.position.set(0, controls.userHeight, 0)
-      }
-      function loadImage (filename, c) {
-        var img = new Image()
-        img.addEventListener('load', function (e) {
-          c(this)
-        })
-        img.src = filename
-      }
-      function changeSource (id) {
-        material.uniforms.sourceTex.value = images[ id ].texture
-        points.geometry.attributes.source.array = images[ id ].buffer
-        points.geometry.attributes.source.needsUpdate = true
-      }
-      function changeTarget (id) {
-        material.uniforms.targetTex.value = images[ id ].texture
-        points.geometry.attributes.target.array = images[ id ].buffer
-        points.geometry.attributes.target.needsUpdate = true
-      }
-      function selectImage (id) {
-        if (currentId === id) return
-        currentId = id
-        if (current === 1) {
-          changeSource(id)
-        } else {
-          changeTarget(id)
-        }
-        current = 1 - current
-      }
-      function initGradient () {
-        TweenLite.to(document.getElementById('progress-bar'), 8, {
-          scaleX: 1,
-          delay: 1,
-          onComplete: function () {
-            selectImage((currentId + 1) % images.length)
-            TweenLite.to(document.getElementById('progress-bar'), 1, {
-              scaleX: 0,
-              onComplete: function () {
-                initGradient()
-              }
-            })
+            _.vrDisplay.requestAnimationFrame(_.animate)
           }
         })
+      } else {
+        window.requestAnimationFrame(_.animate)
       }
-      // vars
-      var material
-      var points
-      function initScene () {
-        images.forEach(function (i, id) {
-          loadImage(i.file, function (img) {
-            i.image = img
-            i.texture = new THREE.Texture(img)
-            i.texture.flipY = false
-            i.texture.needsUpdate = true
-            var copy = new Image()
-            copy.src = i.file
-            copy.addEventListener('click', function (e) {
-              selectImage(id)
-            })
-            document.getElementById('selector').appendChild(copy)
-            sortPixels(img, function (res) {
-              i.buffer = res
-              i.loaded = true
-              generateMesh()
-            })
-          })
-        })
-      }
-      var hslA = new THREE.Color('hsl(0, 100%, 50%)')
-      var hslB = new THREE.Color('hsl(0, 100%, 50%)')
-      var pointsArray = []
-      function generateMesh () {
-        if (images.some(function (i) { return i.loaded !== true })) { return }
-        var w = images[0].image.width
-        var h = images[0].image.height
-        var ptr = 0
-        var positions = new Float32Array(w * h * 3)
+    },
+    animate (timestamp) {
+      var delta = Math.min(timestamp - this.lastRenderTime, 500)
+      this.lastRenderTime = timestamp
 
-        for (var y = 0; y < w; y++) {
-          for (var x = 0; x < h; x++) {
-            positions[ ptr * 3 + 0 ] = x
-            positions[ ptr * 3 + 1 ] = y
-            positions[ ptr * 3 + 2 ] = 0
-            ptr++
-          }
-        }
-        var geometry = new THREE.BufferGeometry()
-        geometry.addAttribute('position', new THREE.BufferAttribute(positions, 3))
-        geometry.addAttribute('source', new THREE.BufferAttribute(images[0].buffer, 2))
-        geometry.addAttribute('target', new THREE.BufferAttribute(images[1].buffer, 2))
-        // var loader = new THREE.TextureLoader()
-        material = new THREE.RawShaderMaterial({
-          uniforms: {
-            sourceTex: { type: 't', value: images[0].texture },
-            targetTex: { type: 't', value: images[1].texture },
-            blend: { type: 'f', value: 0 },
-            size: { type: 'f', value: 2.1 }, // window.devicePixelRatio },
-            dimensions: { type: 'v2', value: new THREE.Vector2(w, h) }
-          },
-          vertexShader: document.getElementById('particle-vs').textContent,
-          fragmentShader: document.getElementById('particle-fs').textContent
-        })
-        points = new THREE.Points(geometry, material)
-        pointsArray.push(points)
-        // points.rotation.x = (Math.PI / 2) * -0.05
-        // points.rotation.y = (Math.PI / 2) * 0.1
-        scene.add(points)
-        renderer.render(scene, camera)
-        // startTime = performance.now()
-        // document.getElementById('loading').style.display = 'none'
+      // Apply rotation to cube mesh
+      this.cube.rotation.y += delta * 0.0006
+
+      // Only update controls if we're presenting.
+      if (this.vrButton.isPresenting()) {
+        this.controls.update()
       }
-      function sortPixels (img, callback) {
-        var canvas = document.createElement('canvas')
-        canvas.width = img.naturalWidth
-        canvas.height = img.naturalHeight
-        var ctx = canvas.getContext('2d')
-        ctx.drawImage(img, 0, 0)
-        var data = ctx.getImageData(0, 0, canvas.width, canvas.height)
-        var buffer = data.data
-        var rgb = []
-        var c = new THREE.Color()
-        for (var j = 0; j < buffer.length; j += 4) {
-          c.setRGB(buffer[ j ], buffer[ j + 1 ], buffer[ j + 2 ])
-          rgb.push({ c: c.clone(), id: j / 4 })
-        }
-        rgb.sort(function (a, b) {
-          a.c.getHSL(hslA)
-          b.c.getHSL(hslB)
-          // return a.c.getHSL().h - b.c.getHSL().h
-          // return a.c.getHSL().s - b.c.getHSL().s
-          return hslA.s - hslB.s
-          // return b.c.getHSL().l - a.c.getHSL().l
-        })
-        var ptr = 0
-        var res = new Float32Array(img.width * img.height * 2)
-        rgb.forEach(function (e) {
-          res[ ptr ] = e.id % img.width
-          res[ ptr + 1 ] = Math.floor(e.id / img.width)
-          ptr += 2
-        })
-        callback(res)
+
+      // Render the scene.
+      this.effect.render(this.scene, this.camera)
+      if (this.vrDisplay) {
+        this.vrDisplay.requestAnimationFrame(this.animate)
+      } else {
+        window.requestAnimationFrame(this.animate)
       }
+    },
+    setStageDimensions (stage) {
+      // Make the skybox fit the stage.
+      var material = this.skybox.material
+      this.scene.remove(this.skybox)
+
+      // Size the skybox according to the size of the actual stage.
+      var geometry = new THREE.BoxGeometry(stage.sizeX, this.boxSize, stage.sizeZ)
+      this.skybox = new THREE.Mesh(geometry, material)
+
+      // Place it on the floor.
+      this.skybox.position.y = this.boxSize / 2
+      this.scene.add(this.skybox)
+
+      // Place the cube in the middle of the scene, at user height.
+      this.cube.position.set(0, this.controls.userHeight, 0)
+    },
+    onResize (e) {
+      this.aspect = this.container.clientWidth / this.container.clientHeight
+      this.effect.setSize(this.container.clientWidth, this.container.clientHeight)
+      this.camera.aspect = this.aspect
+      this.camera.updateProjectionMatrix()
     }
   }
 }
@@ -398,7 +204,7 @@ export default {
 #vrw-container{
   background-color: white;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   position: relative;
 }
 #ui {

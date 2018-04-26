@@ -146,6 +146,7 @@ export default {
           message: 'The Lenz by Electronic Beats.',
           url: 'https://play.google.com/store/apps/details?id=com.telekom.electronicbeats&hl=es'
         },
+        /*
         { id: 'PR201701',
           year: '2017',
           function: 'Full-stack development',
@@ -156,6 +157,7 @@ export default {
           modalContent: '<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/M5lPTepouZM?rel=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
           contentCentered: true
         },
+        */
         { id: 'PR201604',
           year: '2016',
           function: 'Video editing',

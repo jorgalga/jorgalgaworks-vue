@@ -10,6 +10,16 @@
     <meta property="og:title"         content="Jorgalga Works site" />
     <meta property="og:description"   content="Hypermedia artist." />
     <meta property="og:image"         content="https://jorgalga.github.io//static/share.jpg" />
+
+    <!--
+      A polyfill for Promises. Needed for IE and Edge.
+    -->
+    <script src="//borismus.github.io/webvr-boilerplate/node_modules/es6-promise/dist/es6-promise.min.js"></script>
+    <!--
+      A polyfill for WebVR using the Device{Motion,Orientation}Event API.
+    -->
+    <script src="//borismus.github.io/webvr-boilerplate/node_modules/webvr-polyfill/build/webvr-polyfill.min.js"></script>
+
     <script type="x-shader/x-vertex" id="particle-vs" >
       precision highp float;
       attribute vec3 position;
@@ -53,8 +63,7 @@
         gl_PointSize = size * ( scale / - mvPosition.z );
         gl_Position = projectionMatrix * mvPosition;
       }
-    </script>
-    
+    </script>  
     <script type="x-shader/x-fragment" id="particle-fs" >
       precision highp float;
       varying vec3 vColor;

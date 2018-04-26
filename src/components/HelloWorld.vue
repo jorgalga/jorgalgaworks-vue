@@ -40,7 +40,6 @@ export default {
   },
   methods: {
     handleResize () {
-      console.log('resize')
       this.vh = window.innerHeight / 1.75
       this.vw = Math.min(1024, window.innerWidth / 1.25)
     }
