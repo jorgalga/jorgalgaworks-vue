@@ -24,8 +24,11 @@ export class ThreeChroma {
     this.currentId = 0
     this.current = 0
     this.blendValue = 0
+    this.sliderTime = 5
     this.initScene()
     this.animate()
+    this.addMousemoveTransform()
+    this.initGradient()
   }
   loadImage (filename, c) {
     var img = new Image()
@@ -120,9 +123,7 @@ export class ThreeChroma {
     _.points = new THREE.Points(geometry, _.material)
     _.points.position.set(0, _.controls.userHeight, -1.25)
     _.pointsArray.push(_.points)
-    if(_.pointsArray.length === _.images.length) {
-      _.addMousemoveTransform()
-    }
+    
     _.scene.add(_.points)
     _.renderer.render(_.scene, _.camera)
   }
@@ -177,5 +178,21 @@ export class ThreeChroma {
         })
       }
     }
+  }
+  initGradient () {
+    var _ = this
+    TweenLite.to(document.getElementById('progress-bar'), _.sliderTime, {
+      scaleX: 1,
+      delay: 1,
+      onComplete: function () {
+        _.selectImage((_.currentId + 1) % _.images.length)
+        TweenLite.to(document.getElementById('progress-bar'), 1, {
+          scaleX: 0,
+          onComplete: function () {
+            _.initGradient()
+          }
+        })
+      }
+    })
   }
 }
