@@ -17,7 +17,6 @@ import * as THREE from 'three'
 import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
 import * as webvrui from 'webvr-ui'
-// import {TweenLite} from 'gsap'
 import {ThreeChroma} from '../lib/three-chromatography'
 export default {
   name: 'VRWorld',
@@ -96,9 +95,11 @@ export default {
       })
       this.vrButton.on('hide', function () {
         document.getElementById('ui').style.display = 'none'
+        _.container.style.height = '100vh'
       })
       this.vrButton.on('show', function () {
         document.getElementById('ui').style.display = 'inherit'
+        _.container.style.height = ''
       })
       document.getElementById('vr-button').appendChild(this.vrButton.domElement)
       document.getElementById('magic-window').addEventListener('click', function () {
@@ -204,7 +205,7 @@ export default {
 #vrw-container{
   background-color: white;
   width: 100vw;
-  height: 100vh;
+  height: 85vh;
   position: relative;
 }
 #ui {

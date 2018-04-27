@@ -123,7 +123,6 @@ export class ThreeChroma {
     _.points = new THREE.Points(geometry, _.material)
     _.points.position.set(0, _.controls.userHeight, -1.25)
     _.pointsArray.push(_.points)
-    
     _.scene.add(_.points)
     _.renderer.render(_.scene, _.camera)
   }
