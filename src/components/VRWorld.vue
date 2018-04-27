@@ -24,7 +24,7 @@ export default {
     return {
       lastRenderTime: 0, // Last time the scene was rendered.
       vrDisplay: null, // Currently active VRDisplay.
-      boxSize: 7, // How big of a box to render.
+      boxSize: 9, // How big of a box to render.
       scene: null,
       controls: null,
       effect: null,
