@@ -66,7 +66,7 @@ export default {
           contextImg: '/static/ctx-ogilvy.jpg',
           contextUrl: 'http://www.ogilvy.es/',
           message: 'Los archivos de Oasis<br>(Campaign finished)',
-          url: '//losarchivosdeoasis.com/'
+          url: '//losarchivosdeoasis.com/?m=fullaccess'
         },
         { id: 'PR201802',
           thumb: '/static/thumb-ogilvymusic-c.png',
@@ -752,11 +752,13 @@ export default {
     left: 0;
     z-index: 5;
   }
-  .portfolio-cnt:hover img.front{
-    opacity: 0;
-  }
-  .portfolio-cnt:hover .prj-context{
-    opacity: 0.9
+  @media only screen and (min-width : 600px) {
+    .portfolio-cnt:hover img.front{
+      opacity: 0;
+    }
+    .portfolio-cnt:hover .prj-context{
+      opacity: 0.9
+    }
   }
   .text-els{
     padding: 55px 15px 55px 15px;
@@ -770,6 +772,11 @@ export default {
   .masonry-cnt{
       max-width: 1024px;
       margin: 40px auto
+  }
+  @media only screen and (max-width : 600px) {
+    .masonry-cnt{
+      max-width: 90%;
+    }
   }
   p{
     margin: 0 0 5px 0

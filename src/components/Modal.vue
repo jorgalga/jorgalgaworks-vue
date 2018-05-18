@@ -1,14 +1,14 @@
 <template>
-  <div class="hello"  v-bind:class="{ active: isActive }" v-on:click="closeModal">
+  <div class="hello"  v-bind:class="{ active: isActive }" v-on:click="closeModal()">
     <div class="container" v-bind:class="{ centered: isCentered }">
-      <div class="container-scroll">
-        <div id="show-media" v-bind:class="{ centered: isCentered }" v-html="smedia">
-        </div>
-      </div>
       <div id="lipsum">
         <h2 v-html="title"></h2>
         <h3>{{ year }}</h3>
         <div v-html="msg"></div>
+      </div>
+      <div class="container-scroll">
+        <div id="show-media" v-bind:class="{ centered: isCentered }" v-html="smedia">
+        </div>
       </div>
     </div>
   </div>
@@ -64,6 +64,12 @@ export default {
   background-color: white;
   overflow-x: hidden;
 }
+@media only screen and (max-width : 600px) {
+  .container{
+    width: 100%;
+    height: 100%;
+  }
+}
 .container.centered{
   background-color: black;
 }
@@ -100,6 +106,12 @@ export default {
   z-index: 10;
   top: 0;
   right: 0;
+  box-sizing: border-box;
+}
+@media only screen and (max-width : 600px) {
+  #lipsum{
+    width: 100%;
+  }
 }
 #lipsum:hover{
   transform:translate3d(0, 0, 0);

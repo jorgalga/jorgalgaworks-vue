@@ -15,10 +15,7 @@ export default {
 body, html{
   margin: 0
 }
-.no-scroll{
-  overflow: hidden;
-  height: 99vh
-}
+
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +26,10 @@ body, html{
   width: 100vw;
   position: fixed;
   overflow-y: scroll;
+}
+#app.no-scroll{
+  overflow-y: hidden;
+  height: 99vh
 }
 
 .logo{
