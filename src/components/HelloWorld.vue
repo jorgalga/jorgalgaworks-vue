@@ -1,21 +1,25 @@
 <template>
   <div class="hello">
-    <vrworld></vrworld>
+    <timeslide></timeslide>
+    <!--vrworld></vrworld>
     <about></about>
     <portfolio :id="id"></portfolio>
     <experience></experience>
     <studies></studies>
-    <exhibitions></exhibitions>
+    <exhibitions></exhibitions-->
   </div>
 </template>
 
 <script>
+/*
 import JggAbout from '@/components/JggAbout'
 import JggStudies from '@/components/JggStudies'
 import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
 import JggExhibitions from '@/components/JggExhibitions'
 import VRWorld from '@/components/VRWorld'
+*/
+import TimeSlide from '@/components/TimeSlide'
 
 export default {
   name: 'HelloWorld',
@@ -28,12 +32,13 @@ export default {
     }
   },
   components: {
-    'studies': JggStudies,
+    /* 'studies': JggStudies,
     'experience': JggExperience,
     'portfolio': JggPortfolio,
     'exhibitions': JggExhibitions,
     'vrworld': VRWorld,
-    'about': JggAbout
+    'about': JggAbout, */
+    'timeslide': TimeSlide
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)

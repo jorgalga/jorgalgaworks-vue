@@ -22,14 +22,14 @@ body, html{
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-  height: 99vh;
+  height: 100vh;
   width: 100vw;
   position: fixed;
   overflow-y: scroll;
 }
 #app.no-scroll{
   overflow-y: hidden;
-  height: 99vh
+  height: 100vh
 }
 
 .logo{
