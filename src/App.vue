@@ -4,7 +4,6 @@
     <router-view/>
   </div>
 </template>
-
 <script>
 export default {
   name: 'App'
@@ -85,6 +84,7 @@ iframe.youtube-video-small{
   transition: 0.25s;
   filter: grayscale(100%);
   opacity: 0.5
+
 }
 #selector img:hover{
   filter: grayscale(0);
