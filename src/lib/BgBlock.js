@@ -4,29 +4,34 @@ export class BgBlock {
     this.data = bgData
     this.visible = false
     this.imageData = undefined
+    this.transition = 1
   }
   update (time, vueParent) {
-    if (time >= this.data.initTime && time < this.data.initTime + 60) {
-      var opacity = (time - this.data.initTime) / 60
+    if (time >= this.data.initTime && time < this.data.initTime + this.transition) {
+      var opacity = (time - this.data.initTime) / this.transition
       document.getElementById('bg-block' + this.data.id).style.opacity = opacity
-    } else if (time >= this.data.initTime + 60 && time < this.data.endTime) {
+    } else if (time >= this.data.initTime + this.transition && time < this.data.endTime) {
       if (!this.visible) {
         this.visible = true
+        vueParent.currentBlock = this.index
+        document.getElementById('bullet-' + this.data.id).classList.add('displayed')
         if (!vueParent.imagesLoaded) {
-          console.log(this.index)
+          vueParent.imagesLoaded = true
           vueParent.sortBlocks(this.index)
           vueParent.loadFullsizeImages()
         }
-        console.log('visible!')
+        // console.log('visible!')
         document.getElementById('bg-block' + this.data.id).style.opacity = 1
+        vueParent.currentTitle = this.data.title
         vueParent.currentText = this.data.text
       }
-    } else if (time >= this.data.endTime && time < this.data.endTime + 60) {
-      var opacity2 = 1.0 - ((time - this.data.endTime) / 60)
+    } else if (time >= this.data.endTime && time < this.data.endTime + this.transition) {
+      var opacity2 = 1.0 - ((time - this.data.endTime) / this.transition)
       document.getElementById('bg-block' + this.data.id).style.opacity = opacity2
     } else {
       if (this.visible) {
         this.visible = false
+        document.getElementById('bullet-' + this.data.id).classList.remove('displayed')
         document.getElementById('bg-block' + this.data.id).style.opacity = 0
       }
     }

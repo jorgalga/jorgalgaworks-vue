@@ -14,7 +14,13 @@
   </head>
   <body>
     <script>
-        var horas, minutos, segundos;
+      var horas, minutos, segundos;
+      (function() {
+        var requestAnimationFrame = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+                                    window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+        window.requestAnimationFrame = requestAnimationFrame;
+      })();
+      var start = window.mozAnimationStartTime;  // Only supported in FF. Other browsers can use something like Date.now().
     </script>
     <div id="app"></div>
   </body>
