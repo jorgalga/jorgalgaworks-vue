@@ -40,8 +40,16 @@ body, html{
 h1,h2,h3,p{
   margin-top: 0;
 }
+.thumb-text p{
+  margin: 0;
+}
 h2{
  font-size: 2.5vmin;
 }
-
+@media only screen and (max-width: 600px)  {
+  h2{
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+}
 </style>

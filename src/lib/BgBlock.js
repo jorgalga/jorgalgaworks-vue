@@ -22,6 +22,7 @@ export class BgBlock {
         }
         // console.log('visible!')
         document.getElementById('bg-block' + this.data.id).style.opacity = 1
+        document.getElementById('bg-block' + this.data.id).classList.add('bb-visible')
         vueParent.currentTitle = this.data.title
         vueParent.currentText = this.data.text
       }
@@ -33,6 +34,7 @@ export class BgBlock {
         this.visible = false
         document.getElementById('bullet-' + this.data.id).classList.remove('displayed')
         document.getElementById('bg-block' + this.data.id).style.opacity = 0
+        document.getElementById('bg-block' + this.data.id).classList.remove('bb-visible')
       }
     }
   }
@@ -58,5 +60,8 @@ export class BgBlock {
     el.querySelector('.loader').classList.add('hidden')
     el.querySelector('.background-full').style.backgroundImage = 'url(' + this.imageData.src + ')'
     el.querySelector('.background-full').classList.add('loaded')
+    setTimeout(function () {
+      el.querySelector('.background-full').style.transition = '0.1s'
+    }, 1000)
   }
 }

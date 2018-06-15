@@ -3,6 +3,19 @@
     <div id="splash-screen" >
       <a v-on:click.prevent="hideSplash()" href class="btn"><img src="/static/timeSlide/cla-loader.gif"></a>
     </div>
+    <div id="share-container" class="share-container">
+      <div id="share-btn" v-on:click.stop="expandShare()" class="share-icon share">
+      </div>
+      <div id="share-fb" class="share-icon fb">
+        <a target="_blank" href="http://facebook.com/"></a>
+      </div>
+      <div id="share-tw" class="share-icon tw">
+        <a target="_blank" href="https://twitter.com/"></a>
+      </div>
+      <div id="share-wh" class="share-icon wh">
+        <a target="_blank" href="https://www.whatsapp.com/"></a>
+      </div>
+    </div>
     <div id="home-container" class="home-container">
       <div class="full-logo"></div>
       <div class="init-content">
@@ -27,6 +40,7 @@
         </div>
         <div id="cta-participa" class="cta-participa"></div>
         <div class="drag-info"></div>
+        <div v-on:click.stop="toggleContent()" id="drag-toggle"></div>
       </div>
     </div>
     <div id="time-selector" class="slidecontainer">
@@ -35,11 +49,14 @@
         <p><span class="hour">{{ t_hour }}</span> : <span class="minutes"><span class="nospacing" v-if="t_min < 10">0</span> {{ t_min }} </span> h<!--: <span class="seconds"> {{ t_sec }} </span>--></p>
       </div>
       <input type="range" min="0" v-bind:max="maxTime" v-bind:value="time" class="slider" id="myRange">
-      <div v-on:click.prevent="prevHotspot()" id="time-prev" class="time-btn"><div class="prev-shape"></div></div>
-      <div v-on:click.prevent="nextHotspot()" id="time-next" class="time-btn"><div class="next-shape"></div></div>
+      <!--div v-on:click.prevent="prevHotspot()" id="time-prev" class="time-btn"><div class="prev-shape"></div></div>
+      <div v-on:click.prevent="nextHotspot()" id="time-next" class="time-btn"><div class="next-shape"></div></div-->
       <div class="bullets-container">
         <div v-for="item in images.slice().reverse()" class="bullet" v-bind:style="{left: 100 * item.initTime/maxTime + '%' }" :key="item.id" v-on:click.prevent="goToTime(item.initTime)">
-        <div v-bind:id="'bullet-'+item.id" class="bullet-active"></div>
+          <div v-bind:id="'bullet-'+item.id" class="bullet-active"></div>
+          <div class="thumbnail" v-bind:style="{ 'background-image': 'url(' + item.pathThumb + ')' }">
+            <div class="thumb-text" v-html="item.textThumb"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -50,12 +67,15 @@
         <div class="background-blur" v-bind:style="{ 'background-image': 'url(' + item.pathBlurred + ')' }"></div>
         <div class="bg-thumb"></div>
       </div>
+      <div id="camdetail1"></div>
+      <div id="camdetail2"></div>
     </div>
   </div>
 </template>
 <script>
 import interact from 'interactjs'
 import {BgBlock} from '../lib/BgBlock'
+import {WheelEventCB} from '../lib/WheelEventCB'
 export default {
   name: 'TimeSlide',
   data () {
@@ -72,11 +92,14 @@ export default {
       currentText: '<p>empty</p>',
       currentBlock: 0,
       imagesLoaded: false,
+      shareopened: false,
       images: [
         {
           id: 1,
           initTime: 3600 * 0,
           endTime: 3600 * 1,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img01_blur.jpg',
           path: '/static/timeSlide/img01.jpg',
           title: '<h2>11:00H<br>VISITA DEL VETERINARIO</h2>',
@@ -86,6 +109,8 @@ export default {
           id: 2,
           initTime: 3600 * 1,
           endTime: 3600 * 2,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img02_blur.jpg',
           path: '/static/timeSlide/img02.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -95,6 +120,8 @@ export default {
           id: 3,
           initTime: 3600 * 2,
           endTime: 3600 * 3,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img03_blur.jpg',
           path: '/static/timeSlide/img03.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -104,6 +131,8 @@ export default {
           id: 4,
           initTime: 3600 * 3,
           endTime: 3600 * 4,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img04_blur.jpg',
           path: '/static/timeSlide/img04.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -113,6 +142,8 @@ export default {
           id: 5,
           initTime: 3600 * 4,
           endTime: 3600 * 5,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img05_blur.jpg',
           path: '/static/timeSlide/img05.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -122,6 +153,8 @@ export default {
           id: 6,
           initTime: 3600 * 5,
           endTime: 3600 * 6,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img06_blur.jpg',
           path: '/static/timeSlide/img06.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -131,6 +164,8 @@ export default {
           id: 7,
           initTime: 3600 * 6,
           endTime: 3600 * 23,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img07_blur.jpg',
           path: '/static/timeSlide/img07.jpg',
           title: '<h2>11:00H<br>VISITA DEL VETERINARIO</h2>',
@@ -140,6 +175,8 @@ export default {
           id: 8,
           initTime: 3600 * 23,
           endTime: 3600 * 24,
+          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
+          pathThumb: '/static/timeSlide/img01_thumb.jpg',
           pathBlurred: '/static/timeSlide/img01_blur.jpg',
           path: '/static/timeSlide/img01.jpg',
           title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
@@ -157,10 +194,37 @@ export default {
     }
   },
   mounted () {
+    function deviceOS () {
+      var useragent = navigator.userAgent
+
+      if (useragent.match(/Android/i)) {
+        return 'android'
+      } else if (useragent.match(/webOS/i)) {
+        return 'webos'
+      } else if (useragent.match(/iPhone/i)) {
+        return 'iphone'
+      } else if (useragent.match(/iPod/i)) {
+        return 'ipod'
+      } else if (useragent.match(/iPad/i)) {
+        return 'ipad'
+      } else if (useragent.match(/Windows Phone/i)) {
+        return 'windows phone'
+      } else if (useragent.match(/SymbianOS/i)) {
+        return 'symbian'
+      } else if (useragent.match(/RIM/i) || useragent.match(/BB/i)) {
+        return 'blackberry'
+      } else {
+        return false
+      }
+    }
+    this.device = deviceOS()
     this.initHome()
     this.initTimeRange()
     this.initDraggable()
     this.initScrollDetector()
+    if (!this.device && window.innerWidth > 600) {
+      this.initMouseMoveDetector()
+    }
   },
   methods: {
     hideSplash () {
@@ -174,7 +238,7 @@ export default {
       var start = new Date().getTime()
       var timer = setInterval(function () {
         var time = new Date().getTime() - start
-        var x = Math.trunc(easeInOutQuart(time, from, to - from, duration))
+        var x = Math.floor(easeInOutQuart(time, from, to - from, duration))
         _.time = x
         _.progress = _.time / _.maxTime * 100
         _.updateBgBlocks(_.time)
@@ -199,7 +263,7 @@ export default {
       var start = new Date().getTime()
       var timer = setInterval(function () {
         var time = new Date().getTime() - start
-        var x = Math.trunc(easeInOutQuart(time, from, to - from, duration))
+        var x = Math.floor(easeInOutQuart(time, from, to - from, duration))
         _.time = x
         _.progress = _.time / _.maxTime * 100
         _.updateBgBlocks(_.time)
@@ -225,7 +289,7 @@ export default {
       var start = new Date().getTime()
       var timer = setInterval(function () {
         var time = new Date().getTime() - start
-        var x = Math.trunc(easeInOutQuart(time, from, to - from, duration))
+        var x = Math.floor(easeInOutQuart(time, from, to - from, duration))
         _.time = x
         _.progress = _.time / _.maxTime * 100
         _.updateBgBlocks(_.time)
@@ -293,6 +357,7 @@ export default {
           document.getElementById('draggable-container').classList.remove('disabled')
         }
       })
+      /*
       setTimeout(function () {
         if (!removed) {
           removed = true
@@ -300,6 +365,7 @@ export default {
           document.getElementById('draggable-container').classList.remove('disabled')
         }
       }, 20000)
+      */
     },
     initDraggable () {
       // target elements with the "draggable" class
@@ -347,11 +413,37 @@ export default {
     },
     initScrollDetector () {
       var _ = this
-      document.getElementById('app').addEventListener('mousewheel', function (event) {
-        _.time = _.time + Math.trunc(event.deltaY)
+      var wheel = new WheelEventCB()
+      wheel.init()
+      window.addWheelListener(document.getElementById('background-container'), function (event) {
+        event.preventDefault()
+        if (event.deltaY < 0) {
+          _.time = Math.max(0, parseInt(_.time) + Math.floor(event.deltaY))
+          if (_.time === 0) {
+            _.time = _.maxTime - 1
+          }
+        } else {
+          _.time = Math.min(_.maxTime, parseInt(_.time) + Math.floor(event.deltaY))
+        }
         _.progress = _.time / _.maxTime * 100
         _.updateBgBlocks(_.time)
         _.updateHour()
+      })
+    },
+    initMouseMoveDetector () {
+      var el = document.getElementById('app')
+      el.addEventListener('mousemove', function (e) {
+        var x = -1 * ((e.clientX / el.offsetWidth * 10) - 5) * 0.4
+        var y = -1 * ((e.clientY / el.offsetHeight * 10) - 5) * 0.4
+        var x1 = x * 0.5
+        var y1 = y * 0.5
+        var bb = document.getElementsByClassName('bb-visible')[0]
+        if (bb) {
+          console.log(x)
+          bb.getElementsByClassName('background-full')[0].style.transform = 'translate3d(' + x + '%,' + y + '%,0) scale(1.1)'
+          document.getElementById('camdetail1').style.transform = 'translate3d(' + x1 + '%,' + y1 + '%,0)'
+          document.getElementById('camdetail2').style.transform = 'translate3d(' + x1 + '%,' + y1 + '%,0)'
+        }
       })
     },
     updateBgBlocks (time) {
@@ -360,9 +452,9 @@ export default {
       }
     },
     updateHour () {
-      this.t_hour = Math.trunc(this.time / (60 * 60))
-      this.t_min = Math.trunc((this.time - (this.t_hour * 60 * 60)) / 60)
-      this.t_sec = this.time - (this.t_hour * 60 * 60) - this.t_min * 60
+      this.t_hour = Math.floor(this.time / 3600) // 60 * 60
+      this.t_min = Math.floor((this.time - (this.t_hour * 3600)) / 60)
+      this.t_sec = this.time - (this.t_hour * 3600) - this.t_min * 60
     },
     sortBlocks (pivot) {
       this.bgBlocksSorted = []
@@ -402,6 +494,40 @@ export default {
         toload.src = _.bgBlocksSorted[i].data.path
       }
       loadImage()
+    },
+    toggleContent () {
+      console.log('vlicked')
+      var el = document.getElementById('drag-toggle')
+      if (hasClass(el, 'hidden')) {
+        el.classList.remove('hidden')
+        document.getElementById('cta-participa').classList.remove('hidden')
+        document.getElementById('text-container').classList.remove('hidden')
+        document.getElementById('drag-1').classList.remove('compact')
+      } else {
+        el.classList.add('hidden')
+        document.getElementById('cta-participa').classList.add('hidden')
+        document.getElementById('text-container').classList.add('hidden')
+        document.getElementById('drag-1').classList.add('compact')
+      }
+      function hasClass (element, cls) {
+        return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1
+      }
+    },
+    expandShare () {
+      var el = document.getElementById('share-btn')
+      if (!this.shareopened) {
+        this.shareopened = true
+        el.classList.add('close')
+        document.getElementById('share-fb').classList.add('displayed')
+        document.getElementById('share-tw').classList.add('displayed')
+        document.getElementById('share-wh').classList.add('displayed')
+      } else {
+        this.shareopened = false
+        el.classList.remove('close')
+        document.getElementById('share-fb').classList.remove('displayed')
+        document.getElementById('share-tw').classList.remove('displayed')
+        document.getElementById('share-wh').classList.remove('displayed')
+      }
     }
   }
 }
@@ -423,6 +549,10 @@ export default {
   font-weight: 800;
   border-radius: 4px;
   position: absolute;
+  -webkit-transform: translate3d(-50%,-50%,0);
+  -moz-transform: translate3d(-50%,-50%,0);
+  -ms-transform: translate3d(-50%,-50%,0);
+  -o-transform: translate3d(-50%,-50%,0);
   transform: translate3d(-50%,-50%,0);
   position: absolute;
   top: 50%;
@@ -437,10 +567,18 @@ export default {
   z-index: 1100;
   background-color: #2973fb;
   transition: 1s;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
   transform: translate3d(0,0,0);
   opacity: 1;
 }
 #splash-screen.hidden{
+  -webkit-transform:  translate3d(-100%,0,0);
+  -moz-transform: translate3d(-100%,0,0);
+  -ms-transform: translate3d(-100%,0,0);
+  -o-transform: translate3d(-100%,0,0);
   transform: translate3d(-100%,0,0);
   opacity: 0.25;
 }
@@ -462,6 +600,78 @@ export default {
 .loader.hidden {
   opacity: 0;
 }
+#share-container{
+  position: absolute;
+  z-index: 970;
+  top: 40px;
+  left: 40px;
+  box-sizing: border-box;
+  display: inline-block;
+  transform-origin: top left;
+  transform: scale(0.5)
+}
+.share-icon{
+  display: inline-block;
+  height: 128px;
+  width: 128px;
+  margin-right: 80px;
+  box-sizing: border-box;
+  vertical-align: top;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  cursor: pointer;
+}
+.share-icon a{
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+.share-icon.fb{
+  background-size: 128px;
+  background: url('/static/timeSlide/shares/fb-sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+  animation-play-state: paused;
+}
+.share-icon.fb:hover{
+  animation-play-state: initial;
+}
+.share-icon.tw{
+  background-size: 128px;
+  background: url('/static/timeSlide/shares/tw-sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+  animation-play-state: paused;
+}
+.share-icon.tw:hover{
+  animation-play-state: initial;
+}
+.share-icon.wh{
+  background-size: 128px;
+  background: url('/static/timeSlide/shares/wh-sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+  animation-play-state: paused;
+  display: none;
+}
+.share-icon.wh:hover{
+  animation-play-state: initial;
+}
+@keyframes like-gif {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+.share-icon.share{
+  background-size: 128px;
+  background: url('/static/timeSlide/shares/share_sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+  display: none;
+}
+
 .home-container{
   position: absolute;
   z-index: 950;
@@ -513,7 +723,7 @@ export default {
   transition: 0.3s;
   opacity: 0;
   transform: translate3d(0,80px,0);
-  position: relative
+  position: relative;
 }
 .expanded-content.displayed {
   opacity: 1;
@@ -546,12 +756,12 @@ export default {
   -moz-user-select: none;     /* Firefox all */
   -ms-user-select: none;      /* IE 10+ */
   user-select: none;
+  pointer-events: none;
 }
 .draggable-container.disabled {
   pointer-events: none;
   opacity: 0;
 }
-
 #drag-1 {
   width: 340px;
   min-height: 6.5em;
@@ -594,7 +804,6 @@ export default {
   background-position: center;
   margin: 0 auto;
 }
-
 #drag-me::before {
   content: "#" attr(id);
   font-weight: bold;
@@ -613,6 +822,7 @@ export default {
   opacity: 1;
   opacity: 0;
   transition: 2s;
+  overflow: hidden;
 }
 .background-block.on-top {
   z-index: 100;
@@ -626,7 +836,7 @@ export default {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0) scale(1.1);
   filter: blur(1px);
   position: absolute;
   top: 0;
@@ -648,10 +858,9 @@ export default {
   bottom: 60px;
   left: 5%;
   z-index: 1000;
-}
-.slidecontainer {
   width: 90%;
   height: 20px;
+  transform-origin: bottom left;
 }
 .hour-container{
   border-radius: 4px;
@@ -668,6 +877,7 @@ export default {
   font-size: 16px;
   font-weight: 800;
   letter-spacing: 1px;
+  position:relative;
 }
 .vertical-line{
   position: absolute;
@@ -677,6 +887,9 @@ export default {
   left: 50%;
   transform: translate3d(-50%,100%,0);
   background-color: white;
+}
+@media only screen and (max-width: 600px) {
+
 }
 .slider {
   -webkit-appearance: none;
@@ -698,6 +911,12 @@ export default {
   left: 50%;
   transform: translate3d(-50%,-50%,0)
 }
+.slider::-moz-range-track{
+  background-image: url('/static/timeSlide/linepattern.png');
+  background-size: 3px 2px;
+  background-position: center;
+  background-repeat: repeat-x;
+}
 
 .slider:hover {
   opacity: 1;
@@ -706,21 +925,21 @@ export default {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 100px;
-  height: 70px;
+  width: 40px;
+  height: 80px;
+  border-radius: 6px;
   cursor: pointer;
-  background-color: #0008;
+  background-color: #0000000;
   position: relative;
-  top: -34px;
 }
 
 .slider::-moz-range-thumb {
-  width: 100px;
-  height: 50px;
+  width: 40px;
+  height: 80px;
+  border-radius: 6px;
   cursor: pointer;
   background-color: transparent;
   position: relative;
-  transform: translate3d(0,-34px,0);
   border: 0;
 }
 .time-btn{
@@ -804,7 +1023,222 @@ export default {
 .bullet-active.displayed{
   transform: translate3d(-50%,-50%,0) scale(1);
 }
+.thumbnail{
+  background-color: black;
+  position: absolute;
+  width: 364px;
+  height: 160px;
+  background-size: cover;
+  top: 0;
+  left: 0;
+  transform: translate3d(0, calc(-100% - 50px), 0) scale(0.9);
+  opacity: 0;
+  transition: 0.6s;
+  pointer-events: none;
+}
+.thumbnail.to-right{
+  transform: translate3d(-50%;, calc(-100%), 0) scale(0.9);
+}
+.bullet:hover .thumbnail{
+  opacity: 0.8;
+  transform: translate3d(0, calc(-100% - 50px), 0) scale(0.9);
+}
+.bullet:hover .thumbnail.to-right{
+  opacity: 0.8;
+  transform: translate3d(-50%, calc(-100% - 50px), 0) scale(0.9);
+}
+.thumb-text{
+  position: absolute;
+  font-size: 1.8vmin;
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  text-shadow: 0px 0px 10px grey;
+  opacity: 1;
+  bottom: 0;
+  transform: translate3d(0,100%,0);
+}
+#camdetail1{
+  background-image: url('/static/timeSlide/camdetail1.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 343px;
+  height: 253px;
+  z-index: 100;
+  pointer-events: none;
+}
+#camdetail2{
+  background-image: url('/static/timeSlide/camdetail2.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 343px;
+  height: 253px;
+  z-index: 100;
+  pointer-events: none;
+}
 .nospacing{
   letter-spacing: -1px;
+}
+@media only screen and (max-width: 600px)  {
+  .home-container{
+    width: 200px;
+    max-height: 480px;
+    font-size: 14px;
+    line-height: 1;
+    top: 50%;
+    transform: translate3d(-50%,-50%,0)
+  }
+  .home-container p{
+    margin-bottom: 10px;
+  }
+  .full-logo{
+    height: 160px;
+    margin: 0;
+    margin-bottom: 10px;
+  }
+  .home-container .cta-info{
+    width: 100%;
+    height: 50px;
+  }
+  .home-container img{
+    width: 70%;
+    height: auto;
+  }
+  .hour-container p{
+    margin: 2px;
+  }
+  .draggable-container{
+    /*pointer-events: none;
+    opacity: 0;*/
+    font-size: 14px;
+    line-height: 1;
+  }
+  #drag-1{
+    width: 200px;
+    padding-bottom: 50px;
+    min-height: initial;
+    position: relative;
+    pointer-events: all;
+  }
+  #drag-1.compact {
+    height: 170px;
+  }
+  .cta-participa{
+    width: 100%;
+    height: 60px;
+    transition: 0.6s;
+    opacity: 1;
+  }
+  .cta-participa.hidden{
+    opacity: 0;
+    pointer-events: none;
+  }
+  .drag-info{
+    display: none;
+  }
+  #drag-toggle{
+    width: 100%;
+    height: 43px;
+    background-image: url('/static/timeSlide/hide-content.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0 auto;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+  }
+  #drag-toggle.hidden{
+    background-image: url('/static/timeSlide/show-content.png');
+  }
+  #time-selector{
+    transform: rotate(90deg);
+    bottom: initial;
+    top: 0;
+    width: 96vh;
+    left: 10px;
+  }
+  .hour-container{
+    min-width: 85px;
+    transform: translate3d(-50%,-50px,0) rotate(-90deg) scale(0.8);
+  }
+  .vertical-line{
+    left: -4px;
+    transform: translate3d(0,0,0) rotate(90deg);
+  }
+  .thumbnail{
+    display: none;
+  }
+  .bullet{
+    border-radius: 0;
+    height: 16px;
+    width: 1px;
+  }
+  .bullet-active{
+    border-radius: 4px;
+    width: 8px;
+    height: 22px;
+    border: 2px solid white;
+  }
+  .bullet:hover {
+     transform: translate3d(-50%,-50%,0)
+  }
+  .slider::-webkit-slider-thumb {
+    top: -40px;
+    height: 110px;
+  }
+  #camdetail1, #camdetail2 {
+    display: none;
+  }
+  #text-container {
+    transition: 0.6s;
+    opacity: 1;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+  #text-container.hidden{
+    opacity: 0;
+    pointer-events: none;
+  }
+  #share-container{
+    left: initial;
+    right: 10px;
+    top: 10px;
+    transform-origin: top right;
+    transform: scale(0.4);
+    max-width: 128px;
+  }
+  .share-icon {
+    margin-right: 0;
+    margin-bottom: 50px;
+    position: relative;
+  }
+  .share-icon.share{
+    display: inline-block;
+    cursor: pointer;
+  }
+  .share-icon.share.close{
+    background: url('/static/timeSlide/shares/x_sprite.png');
+  }
+  .share-icon.fb, .share-icon.tw, .share-icon.wh  {
+    display: inline-block;
+    transition: 0.3s;
+    opacity: 0;
+    transform: translate3d(0,-100%,0);
+    pointer-events:  none;
+  }
+  .share-icon.fb.displayed, .share-icon.tw.displayed, .share-icon.wh.displayed {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    pointer-events: all;
+    animation-play-state: initial;
+  }
 }
 </style>
