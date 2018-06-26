@@ -18,6 +18,15 @@ body, html{
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
 }
+.noSelect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  outline: none;
+}
 
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -28,10 +37,12 @@ body, html{
   height: 99.9vh;
   width: 100vw;
   position: fixed;
+  left: 50%;
+  transform: translate3d(-50%,0,0);
 }
 #app.no-scroll{
   overflow-y: hidden;
-  height: 99vh
+  height: 99.9vh
 }
 
 .logo{
@@ -44,11 +55,11 @@ h1,h2,h3,p{
   margin: 0;
 }
 h2{
- font-size: 2.5vmin;
+ font-size: 18px;
 }
 @media only screen and (max-width: 600px)  {
   h2{
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 10px;
   }
 }

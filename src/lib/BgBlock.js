@@ -2,6 +2,7 @@ export class BgBlock {
   constructor (i, bgData) {
     this.index = i
     this.data = bgData
+    this.data.id = this.data.id - 1
     this.visible = false
     this.imageData = undefined
     this.transition = 1
@@ -15,14 +16,33 @@ export class BgBlock {
         this.visible = true
         vueParent.currentBlock = this.index
         document.getElementById('bullet-' + this.data.id).classList.add('displayed')
+        document.getElementById('bullet-' + this.data.id).parentNode.classList.add('v2')
+        // document.getElementById('app').className = ''
+        // document.getElementById('app').classList.add(this.data.imgName)
+        // GTM EVENT HERE
+        window.hora = this.data.imgName
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push({
+          'event': 'CambioHora'
+        })
         if (!vueParent.imagesLoaded) {
           vueParent.imagesLoaded = true
           vueParent.sortBlocks(this.index)
           vueParent.loadFullsizeImages()
         }
         // console.log('visible!')
-        document.getElementById('bg-block' + this.data.id).style.opacity = 1
-        document.getElementById('bg-block' + this.data.id).classList.add('bb-visible')
+        var _ = this
+        console.log(mod(parseInt(this.data.id) - 2, 48))
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) - 3, 48)).style.display = 'none'
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) - 2, 48)).style.display = 'inline-block'
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) - 1, 48)).style.display = 'inline-block'
+        document.getElementById('bg-block' + this.data.id).style.display = 'inline-block'
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) + 1, 48)).style.display = 'inline-block'
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) + 2, 48)).style.display = 'inline-block'
+        document.getElementById('bg-block' + mod(parseInt(this.data.id) + 3, 48)).style.display = 'none'
+
+        document.getElementById('bg-block' + _.data.id).style.opacity = 1
+        document.getElementById('bg-block' + _.data.id).classList.add('bb-visible')
         vueParent.currentTitle = this.data.title
         vueParent.currentText = this.data.text
       }
@@ -33,9 +53,13 @@ export class BgBlock {
       if (this.visible) {
         this.visible = false
         document.getElementById('bullet-' + this.data.id).classList.remove('displayed')
+        document.getElementById('bullet-' + this.data.id).parentNode.classList.remove('v2')
         document.getElementById('bg-block' + this.data.id).style.opacity = 0
         document.getElementById('bg-block' + this.data.id).classList.remove('bb-visible')
       }
+    }
+    function mod (a, N) {
+      return (a % N + N) % N
     }
   }
   updateBak (time) {
@@ -61,7 +85,7 @@ export class BgBlock {
     el.querySelector('.background-full').style.backgroundImage = 'url(' + this.imageData.src + ')'
     el.querySelector('.background-full').classList.add('loaded')
     setTimeout(function () {
-      el.querySelector('.background-full').style.transition = '0.1s'
+      el.querySelector('.background-full').style.transition = '0s'
     }, 1000)
   }
 }

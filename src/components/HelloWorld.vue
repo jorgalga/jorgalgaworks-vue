@@ -57,6 +57,7 @@ export default {
 
 .hello{
   background-color: white;
+  height: 100%;
 }
 h1{
   font-weight: normal;

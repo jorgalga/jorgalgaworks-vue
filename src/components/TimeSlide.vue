@@ -1,51 +1,62 @@
 <template>
   <div class="hello">
+    <div class="preload-hack"></div>
+    <div id="touch-feedback"></div>
+    <div id="rotate-screen" >
+      <div class="rs-container">
+        <img width="256px" height="175px" src="static/timeSlide/Vertical-Mobile.png">
+        <p>PON TU MÓVIL EN VERTICAL<br>Y SIGUE NAVEGANDO.</p>
+      </div>
+    </div>
     <div id="splash-screen" >
-      <a v-on:click.prevent="hideSplash()" href class="btn"><img src="/static/timeSlide/cla-loader.gif"></a>
+      <a v-on:click.prevent="hideSplash()" href class="btn"><img width="64px" height="64px" src="static/timeSlide/cla-loader128.gif"></a>
+    </div>
+    <div class="cla-seal">
+      <a v-on:click.prevent="goToGarantia()" href><img width="70px" height="70px" src="static/timeSlide/sello.png"></a>
     </div>
     <div id="share-container" class="share-container">
       <div id="share-btn" v-on:click.stop="expandShare()" class="share-icon share">
       </div>
       <div id="share-fb" class="share-icon fb">
-        <a target="_blank" href="http://facebook.com/"></a>
+        <a title="Comparte en facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.centrallecheraasturiana.es%2Fpromocion24horasalnatural%2F"></a>
       </div>
       <div id="share-tw" class="share-icon tw">
-        <a target="_blank" href="https://twitter.com/"></a>
+        <a title="Comparte en twitter" target="_blank" href="https://twitter.com/intent/tweet?text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20uno%20de%20los%20integrantes%20de%20nuestra%20cooperativa."></a>
       </div>
       <div id="share-wh" class="share-icon wh">
-        <a target="_blank" href="https://www.whatsapp.com/"></a>
+        <a title="Comparte en whatsapp" target="_blank" href="whatsapp://send?url=https%3A%2F%2Fwww.centrallecheraasturiana.es%2Fpromocion24horasalnatural%2F&text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20uno%20de%20los%20integrantes%20de%20nuestra%20cooperativa."></a>
       </div>
     </div>
     <div id="home-container" class="home-container">
-      <div class="full-logo"></div>
+      <div v-on:click.stop="goToCLA()" class="full-logo"></div>
       <div class="init-content">
         <p><em>Un recorrido por el día a día de <b>Rodrigo</b> de la <b>Ganadería La Nava</b>. Uno de los integrantes de nuestra coperativa.</em></p>
         <p><em>Vente a <b>Asturias</b> y disfruta de <b>24 horas al natural</b></em></p>
-        <div v-on:click.stop="expandHome()" id="more-info" class="cta-info"></div>
+        <div v-on:click.stop="expandHome()" id="more-info" class="cta-info noSelect"></div>
       </div>
       <div id="expanded-content" class="expanded-content">
         <p><em>Participa en</em></p>
-        <p><img src="/static/timeSlide/insta.png"></p>
+        <p><img src="static/timeSlide/insta.png"></p>
         <p><em>Con <b>tu momento más natural del día</b> y vente a disfrutar con nosotros</em></p>
-        <p><img src="/static/timeSlide/hashtag.png"></p>
+        <p><img src="static/timeSlide/hashtag.png"></p>
       </div>
     </div>
     <div id="draggable-container" class="draggable-container disabled">
       <div id="drag-1" class="draggable">
-        <div class="full-logo"></div>
+        <div id="fl" v-on:click.stop="goToCLA()" class="full-logo"></div>
         <!--p class="bg-clip"><em>You can drag one element</em></p-->
         <div id="text-container">
           <div v-html="currentTitle" ></div>
           <div v-html="currentText" ></div>
         </div>
-        <div id="cta-participa" class="cta-participa"></div>
+        <div v-on:click.stop="goToParticipa()" id="cta-participa" class="cta-participa"></div>
         <div class="drag-info"></div>
         <div v-on:click.stop="toggleContent()" id="drag-toggle"></div>
       </div>
     </div>
     <div id="time-selector" class="slidecontainer">
       <div id="current-time" class="hour-container" v-bind:style="{ left: progress + '%' }">
-        <div class="vertical-line"></div>
+        <div id="vl" class="vertical-line"></div>
         <p><span class="hour">{{ t_hour }}</span> : <span class="minutes"><span class="nospacing" v-if="t_min < 10">0</span> {{ t_min }} </span> h<!--: <span class="seconds"> {{ t_sec }} </span>--></p>
       </div>
       <input type="range" min="0" v-bind:max="maxTime" v-bind:value="time" class="slider" id="myRange">
@@ -54,7 +65,7 @@
       <div class="bullets-container">
         <div v-for="item in images.slice().reverse()" class="bullet" v-bind:style="{left: 100 * item.initTime/maxTime + '%' }" :key="item.id" v-on:click.prevent="goToTime(item.initTime)">
           <div v-bind:id="'bullet-'+item.id" class="bullet-active"></div>
-          <div class="thumbnail" v-bind:style="{ 'background-image': 'url(' + item.pathThumb + ')' }">
+          <div class="thumbnail" v-bind:style="{ 'background-image': 'url('+ cmpPath + item.pathThumb + ')' }">
             <div class="thumb-text" v-html="item.textThumb"></div>
           </div>
         </div>
@@ -64,7 +75,7 @@
       <div v-bind:id="'bg-block'+item.id" v-for="item in images.slice().reverse()" class="background-block" :key="item.id">
         <div class="loader"></div>
         <div class="background-full"></div>
-        <div class="background-blur" v-bind:style="{ 'background-image': 'url(' + item.pathBlurred + ')' }"></div>
+        <div class="background-blur" v-bind:style="{ 'background-image': 'url('+ cmpPath + pMobile + item.pathBlurred + ')' }"></div>
         <div class="bg-thumb"></div>
       </div>
       <div id="camdetail1"></div>
@@ -74,12 +85,14 @@
 </template>
 <script>
 import interact from 'interactjs'
+import Impetus from 'impetus'
 import {BgBlock} from '../lib/BgBlock'
 import {WheelEventCB} from '../lib/WheelEventCB'
 export default {
   name: 'TimeSlide',
   data () {
     return {
+      cmpPath: 'static/timeSlide/',
       time: 0,
       maxTime: 86400,
       progress: this.time / this.maxTime * 100,
@@ -93,110 +106,17 @@ export default {
       currentBlock: 0,
       imagesLoaded: false,
       shareopened: false,
-      images: [
-        {
-          id: 1,
-          initTime: 3600 * 0,
-          endTime: 3600 * 1,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img01_blur.jpg',
-          path: '/static/timeSlide/img01.jpg',
-          title: '<h2>11:00H<br>VISITA DEL VETERINARIO</h2>',
-          text: '<p><em>A las 11 Rodrigo comprueba con el veterinario el estado del nuevo miembro de la familia</em></p>'
-        },
-        {
-          id: 2,
-          initTime: 3600 * 1,
-          endTime: 3600 * 2,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img02_blur.jpg',
-          path: '/static/timeSlide/img02.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 2</p>'
-        },
-        {
-          id: 3,
-          initTime: 3600 * 2,
-          endTime: 3600 * 3,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img03_blur.jpg',
-          path: '/static/timeSlide/img03.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 3</p>'
-        },
-        {
-          id: 4,
-          initTime: 3600 * 3,
-          endTime: 3600 * 4,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img04_blur.jpg',
-          path: '/static/timeSlide/img04.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 4</p>'
-        },
-        {
-          id: 5,
-          initTime: 3600 * 4,
-          endTime: 3600 * 5,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img05_blur.jpg',
-          path: '/static/timeSlide/img05.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 5</p>'
-        },
-        {
-          id: 6,
-          initTime: 3600 * 5,
-          endTime: 3600 * 6,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img06_blur.jpg',
-          path: '/static/timeSlide/img06.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 6</p>'
-        },
-        {
-          id: 7,
-          initTime: 3600 * 6,
-          endTime: 3600 * 23,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img07_blur.jpg',
-          path: '/static/timeSlide/img07.jpg',
-          title: '<h2>11:00H<br>VISITA DEL VETERINARIO</h2>',
-          text: '<p><em>A las 11 Rodrigo comprueba con el veterinario el estado del nuevo miembro de la familia</em></p>'
-        },
-        {
-          id: 8,
-          initTime: 3600 * 23,
-          endTime: 3600 * 24,
-          textThumb: '<p><b>13:00</b> | Preparar silos</p>',
-          pathThumb: '/static/timeSlide/img01_thumb.jpg',
-          pathBlurred: '/static/timeSlide/img01_blur.jpg',
-          path: '/static/timeSlide/img01.jpg',
-          title: '<h2>11:00H<brVISITA DEL VETERINARIO></h2>',
-          text: '<p>Photo 8</p>'
-        }
-      ]
+      timeout: {},
+      homeTimeout: {},
+      touchY: 0,
+      device: false,
+      images: window.data_images,
+      removed: false
     }
   },
-  beforeMount () {
-    // console.log('befout mounting init the bgBlocks objects')
-    var d = new Date()
-    this.time = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds()
-    for (var i = 0; i < this.images.length; i++) {
-      this.bgBlocks.push(new BgBlock(i, this.images[i]))
-    }
-  },
-  mounted () {
+  created () {
     function deviceOS () {
       var useragent = navigator.userAgent
-
       if (useragent.match(/Android/i)) {
         return 'android'
       } else if (useragent.match(/webOS/i)) {
@@ -218,15 +138,46 @@ export default {
       }
     }
     this.device = deviceOS()
+    if (this.device) {
+      console.log('is Mobile')
+      this.pMobile = 'mobile/'
+      console.log(window.innerWidth + 'px')
+      document.getElementById('app').style.maxWidth = window.innerWidth + 'px'
+      document.getElementById('app').style.minHeight = (window.innerHeight - 56) + 'px'
+    } else {
+      this.pMobile = ''
+    }
+  },
+  beforeMount () {
+    // console.log('befout mounting init the bgBlocks objects')
+    var d = new Date()
+    this.time = d.getHours() * 60 * 60 + d.getMinutes() * 60 + d.getSeconds()
+    for (var i = 0; i < this.images.length; i++) {
+      this.bgBlocks.push(new BgBlock(i, this.images[i]))
+    }
+  },
+  mounted () {
     this.initHome()
     this.initTimeRange()
-    this.initDraggable()
     this.initScrollDetector()
     if (!this.device && window.innerWidth > 600) {
       this.initMouseMoveDetector()
+      this.initDraggable()
+    } else {
+      this.initiOrientationEvent()
     }
   },
   methods: {
+    goToCLA () {
+      // window.open('https://www.centrallecheraasturiana.es/es/', '_blank')
+    },
+    goToGarantia () {
+      console.log(window.garantia_link)
+      window.open(window.garantia_link, '_blank')
+    },
+    goToParticipa () {
+      window.open(window.post_link, '_blank')
+    },
     hideSplash () {
       document.getElementById('splash-screen').classList.add('hidden')
     },
@@ -327,14 +278,27 @@ export default {
         if (_.time >= _.maxTime) {
           _.time = 0
         }
+        if (_.time < 0) {
+          _.time = _.maxTime
+        }
       }, 1000)
     },
     expandHome () {
+      var _ = this
       document.getElementById('more-info').classList.add('hidden')
       setTimeout(function () {
         document.getElementById('more-info').style.display = 'none'
         document.getElementById('expanded-content').classList.add('displayed')
-      }, 400)
+      }, 301)
+      clearTimeout(_.homeTimeout)
+      _.homeTimeout = setTimeout(function () {
+        if (!_.removed) {
+          _.removed = true
+          document.getElementById('home-container').classList.add('hidden')
+          document.getElementById('draggable-container').classList.remove('disabled')
+        }
+      }, 10000)
+      /*
       setTimeout(function () {
         document.getElementById('expanded-content').classList.remove('displayed')
         setTimeout(function () {
@@ -342,33 +306,39 @@ export default {
           requestAnimationFrame(function () {
             document.getElementById('more-info').classList.remove('hidden')
           })
-        }, 400)
+        }, 301)
       }, 5000)
+      */
+    },
+    retractHome () {
+
     },
     initHome () {
-      var removed = false
+      var _ = this
       document.getElementById('home-container').addEventListener('click', function (e) {
         e.stopPropagation()
       })
       document.addEventListener('click', function (e) {
-        if (!removed) {
-          removed = true
+        if (!_.timeoutremoved) {
+          _.removed = true
           document.getElementById('home-container').classList.add('hidden')
           document.getElementById('draggable-container').classList.remove('disabled')
         }
       })
-      /*
-      setTimeout(function () {
-        if (!removed) {
-          removed = true
+      _.homeTimeout = setTimeout(function () {
+        if (!_.removed) {
+          _.removed = true
           document.getElementById('home-container').classList.add('hidden')
           document.getElementById('draggable-container').classList.remove('disabled')
         }
-      }, 20000)
-      */
+      }, 10000)
     },
     initDraggable () {
       // target elements with the "draggable" class
+      var el = document.getElementById('drag-1')
+      // var limW = window.innerWidth / 2 - el.offsetWidth / 2
+      // var transX = 0
+      // var transY = 0
       interact('.draggable')
         .draggable({
           // enable inertial throwing
@@ -382,24 +352,15 @@ export default {
           // enable autoScroll
           autoScroll: true,
           // call this function on every dragmove event
-          onmove: dragMoveListener,
-          // call this function on every dragend event
-          onend: function (event) {
-            /*
-            var textEl = event.target.querySelector('p')
-            textEl && (textEl.textContent =
-              'moved a distance of ' +
-              (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-              Math.pow(event.pageY - event.y0, 2) | 0))
-                .toFixed(2) + 'px')
-            */
-          }
+          onmove: dragMoveListener
         })
       function dragMoveListener (event) {
-        var target = event.target
+        var target = el
         // keep the dragged position in the data-x/data-y attributes
         var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
         var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+        // transX = x
+        // transY = y
         // translate the element
         target.style.webkitTransform =
         target.style.transform =
@@ -410,12 +371,88 @@ export default {
       }
       // this is used later in the resizing and gesture demos
       window.dragMoveListener = dragMoveListener
+      //
+      var resizeTimer
+      window.onresize = function (event) {
+        clearTimeout(resizeTimer)
+        resizeTimer = setTimeout(function () {
+          el.style.transition = '0.3s'
+          requestAnimationFrame(function () {
+            el.style.webkitTransform =
+            el.style.transform =
+              'translate(0, 0)'
+            el.setAttribute('data-x', 0)
+            el.setAttribute('data-y', 0)
+            setTimeout(function () {
+              el.style.transition = '0s'
+            })
+          })
+        }, 250)
+      }
+      this.setThumbnails()
+    },
+    setThumbnails () {
+      var thumbs = document.getElementsByClassName('thumbnail')
+      for (var i = 0; i < thumbs.length; i++) {
+        if ((this.offset(thumbs[i]).left + thumbs[i].clientWidth) >= window.innerWidth) {
+          thumbs[i].classList.add('to-left')
+        }
+      }
     },
     initScrollDetector () {
       var _ = this
-      var wheel = new WheelEventCB()
-      wheel.init()
-      window.addWheelListener(document.getElementById('background-container'), function (event) {
+      if (!this.device) {
+        var wheel = new WheelEventCB()
+        wheel.init()
+        window.addWheelListener(document.getElementById('background-container'), function (event) {
+          eventHandler(event)
+        })
+        window.addWheelListener(document.getElementById('time-selector'), function (event) {
+          eventHandler(event)
+        })
+      } else {
+        var imp = new Impetus({
+          source: document.getElementById('background-container'),
+          update: function (x, y) {
+            var deltaY = Math.floor((_.touchY - y) * 10)
+            _.time = _.time + deltaY
+            _.progress = _.time / _.maxTime * 100
+            _.updateBgBlocks(_.time)
+            _.updateHour()
+            _.touchY = y
+          }
+        })
+        imp.resume()
+        /*
+        var tf = document.getElementById('touch-feedback')
+        document.getElementById('app').addEventListener('touchmove', function (e) {
+          tf.style.transition = '0s'
+          tf.style.left = Math.floor(e.touches[0].clientX) + 'px'
+          tf.style.top = Math.floor(e.touches[0].clientY) + 'px'
+        }, false)
+        document.getElementById('app').addEventListener('touchstart', function (e) {
+          console.log('start')
+          tf.style.transition = '0.1s'
+          requestAnimationFrame(function () {
+            tf.style.opacity = 0.5
+            tf.style.transform = 'translate3d(-50%,-50%,0) scale(1.0)'
+          })
+          tf.style.left = Math.floor(e.touches[0].clientX) + 'px'
+          tf.style.top = Math.floor(e.touches[0].clientY) + 'px'
+        }, false)
+        document.getElementById('app').addEventListener('touchend', function (e) {
+          console.log(e)
+          tf.style.transition = '0.3s'
+          requestAnimationFrame(function () {
+            tf.style.opacity = 0
+            tf.style.transform = 'translate3d(-50%,-50%,0) scale(0.2)'
+          })
+          tf.style.left = Math.floor(e.touches[0].clientX) + 'px'
+          tf.style.top = Math.floor(e.touches[0].clientY) + 'px'
+        }, false)
+        */
+      }
+      function eventHandler (event) {
         event.preventDefault()
         if (event.deltaY < 0) {
           _.time = Math.max(0, parseInt(_.time) + Math.floor(event.deltaY))
@@ -428,23 +465,50 @@ export default {
         _.progress = _.time / _.maxTime * 100
         _.updateBgBlocks(_.time)
         _.updateHour()
-      })
+      }
     },
     initMouseMoveDetector () {
+      var _ = this
       var el = document.getElementById('app')
+      var drag = document.getElementById('drag-1')
+      var centerx = 0
+      var centery = 0
+      var mod = 0
       el.addEventListener('mousemove', function (e) {
-        var x = -1 * ((e.clientX / el.offsetWidth * 10) - 5) * 0.4
-        var y = -1 * ((e.clientY / el.offsetHeight * 10) - 5) * 0.4
-        var x1 = x * 0.5
-        var y1 = y * 0.5
+        var x = -1 * ((e.clientX / el.offsetWidth * 10) - 5) * 0.075
+        var y = -1 * ((e.clientY / el.offsetHeight * 10) - 5) * 0.075
+        var x1 = x * 2
+        var y1 = y * 2
         var bb = document.getElementsByClassName('bb-visible')[0]
         if (bb) {
-          console.log(x)
           bb.getElementsByClassName('background-full')[0].style.transform = 'translate3d(' + x + '%,' + y + '%,0) scale(1.1)'
           document.getElementById('camdetail1').style.transform = 'translate3d(' + x1 + '%,' + y1 + '%,0)'
           document.getElementById('camdetail2').style.transform = 'translate3d(' + x1 + '%,' + y1 + '%,0)'
+          centerx = _.offset(drag).left + (drag.offsetWidth / 2)
+          centery = _.offset(drag).top + (drag.offsetHeight / 2)
+          mod = Math.sqrt(((e.clientX - centerx) * (e.clientX - centerx)) + ((e.clientY - centery * (e.clientY - centery))))
+          if (isNaN(parseFloat(mod))) {
+            drag.style.opacity = 1
+          } else {
+            drag.style.opacity = Math.max(0, 1 - ((mod / window.innerWidth) * 3))
+            // console.log('opa', 1 - (mod / window.innerWidth))
+          }
         }
       })
+      /*
+      function offset (el) {
+        var rect = el.getBoundingClientRect()
+        var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+        var scrollTop = window.pageYOffset || document.documentElement.scrollTop
+        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+      }
+      */
+    },
+    offset (el) {
+      var rect = el.getBoundingClientRect()
+      var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop
+      return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
     },
     updateBgBlocks (time) {
       for (var i = 0; i < this.bgBlocks.length; i++) {
@@ -455,6 +519,33 @@ export default {
       this.t_hour = Math.floor(this.time / 3600) // 60 * 60
       this.t_min = Math.floor((this.time - (this.t_hour * 3600)) / 60)
       this.t_sec = this.time - (this.t_hour * 3600) - this.t_min * 60
+      if (!this.device && window.innerWidth > 600) {
+        // console.log(this.device)
+        this.adjustTimeSelector()
+      } else {
+        var elem1 = document.getElementById('current-time')
+        var elem2 = document.getElementById('vl')
+        if (elem1.style.removeProperty) {
+          elem1.style.removeProperty('transform')
+          elem2.style.removeProperty('left')
+        } else {
+          elem1.style.removeAttribute('transform')
+          elem2.style.removeAttribute('left')
+        }
+        this.adjustTimeSelectorMobile()
+      }
+    },
+    adjustTimeSelector () {
+      var hc = document.getElementById('current-time')
+      var vl = document.getElementById('vl')
+      hc.style.transform = 'translate3d(-' + this.progress + '%,-58px,0)'
+      vl.style.left = this.progress + '%'
+    },
+    adjustTimeSelectorMobile () {
+      var hc = document.getElementById('current-time')
+      hc.style.transform = 'translate3d(-' + (30 + (this.progress / 100 * 30)) + 'px,-58px,0) rotate(-90deg) scale(0.8)'
+      var vl = document.getElementById('vl')
+      vl.style.top = 'calc(' + this.progress + '% - 12px)'
     },
     sortBlocks (pivot) {
       this.bgBlocksSorted = []
@@ -490,37 +581,51 @@ export default {
             loadImage()
           }
         }
-        // console.log(_.images[i].path)
-        toload.src = _.bgBlocksSorted[i].data.path
+        // console.log(window.location.protocol + '//' + window.location.host + window.location.pathname + _.cmpPath + _.pMobile + _.bgBlocksSorted[i].data.imgName + '.' + _.bgBlocksSorted[i].data.type)
+        toload.src = window.location.protocol + '//' + window.location.host + window.location.pathname + _.cmpPath + _.pMobile + _.bgBlocksSorted[i].data.imgName + '.' + _.bgBlocksSorted[i].data.type
       }
       loadImage()
     },
     toggleContent () {
-      console.log('vlicked')
       var el = document.getElementById('drag-toggle')
       if (hasClass(el, 'hidden')) {
         el.classList.remove('hidden')
+        document.getElementById('fl').classList.remove('compact')
         document.getElementById('cta-participa').classList.remove('hidden')
         document.getElementById('text-container').classList.remove('hidden')
-        document.getElementById('drag-1').classList.remove('compact')
+        // document.getElementById('drag-1').classList.remove('compact')
       } else {
         el.classList.add('hidden')
+        document.getElementById('fl').classList.add('compact')
         document.getElementById('cta-participa').classList.add('hidden')
         document.getElementById('text-container').classList.add('hidden')
-        document.getElementById('drag-1').classList.add('compact')
+        // document.getElementById('drag-1').classList.add('compact')
       }
       function hasClass (element, cls) {
         return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1
       }
     },
     expandShare () {
+      clearTimeout(this.timeout)
+      var _ = this
       var el = document.getElementById('share-btn')
       if (!this.shareopened) {
         this.shareopened = true
         el.classList.add('close')
-        document.getElementById('share-fb').classList.add('displayed')
-        document.getElementById('share-tw').classList.add('displayed')
-        document.getElementById('share-wh').classList.add('displayed')
+        document.getElementById('share-fb').style.display = 'inline-block'
+        document.getElementById('share-tw').style.display = 'inline-block'
+        document.getElementById('share-wh').style.display = 'inline-block'
+        requestAnimationFrame(function () {
+          document.getElementById('share-fb').classList.add('displayed')
+          document.getElementById('share-tw').classList.add('displayed')
+          document.getElementById('share-wh').classList.add('displayed')
+        })
+        _.timeout = setTimeout(function () {
+          // console.log('done')
+          if (_.shareopened) {
+            _.expandShare()
+          }
+        }, 5000)
       } else {
         this.shareopened = false
         el.classList.remove('close')
@@ -528,17 +633,62 @@ export default {
         document.getElementById('share-tw').classList.remove('displayed')
         document.getElementById('share-wh').classList.remove('displayed')
       }
+    },
+    initiOrientationEvent () {
+      function doOnOrientationChange () {
+        switch (window.orientation) {
+          case -90:
+            document.getElementById('rotate-screen').classList.add('displayed')
+            break
+          case 90:
+            document.getElementById('rotate-screen').classList.add('displayed')
+            break
+          default:
+            document.getElementById('rotate-screen').classList.remove('displayed')
+            break
+        }
+      }
+      window.addEventListener('orientationchange', doOnOrientationChange)
+      doOnOrientationChange()
     }
   }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i,800,800i');
+$staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/';
+//$staticpath: '/';
+
 .hello{
   background-color: black;
   height: 100%;
   width: 100vw;
+}
+#touch-feedback{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  transform-origin: center;
+  z-index: 9999;
+  opacity: 0.5;
+  border-radius: 50%;
+  transform: translate3d(-50%,-50%,0) scale(0.2);
+  box-shadow: 0px 0px 10px white;
+  opacity: 0;
+  pointer-events: none;
+}
+.preload-hack{
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background: url('#{$staticpath}static/timeSlide/shares/x_sprite.png');
 }
 .btn{
   background: transparent;
@@ -558,6 +708,35 @@ export default {
   top: 50%;
   left: 50%;
 }
+#rotate-screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1200;
+  background-color: #2973fb;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  opacity: 0;
+  pointer-events: none;
+}
+#rotate-screen.displayed{
+  opacity: 1;
+  pointer-events: all;
+}
+#rotate-screen .rs-container {
+  min-width: 50px;
+  min-height: 50px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+  color: white;
+}
 #splash-screen{
   position: absolute;
   top: 0;
@@ -567,20 +746,11 @@ export default {
   z-index: 1100;
   background-color: #2973fb;
   transition: 1s;
-  -webkit-transform: translate3d(0,0,0);
-  -moz-transform: translate3d(0,0,0);
-  -ms-transform: translate3d(0,0,0);
-  -o-transform: translate3d(0,0,0);
-  transform: translate3d(0,0,0);
   opacity: 1;
 }
 #splash-screen.hidden{
-  -webkit-transform:  translate3d(-100%,0,0);
-  -moz-transform: translate3d(-100%,0,0);
-  -ms-transform: translate3d(-100%,0,0);
-  -o-transform: translate3d(-100%,0,0);
-  transform: translate3d(-100%,0,0);
-  opacity: 0.25;
+  opacity: 0;
+  pointer-events: none
 }
 .loader{
   position: absolute;
@@ -590,7 +760,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate3d(-50%,-50%,0);
-  background-image: url('/static/timeSlide/loading_spinner.gif');
+  background-image: url(#{$staticpath}static/timeSlide/loading_spinner.gif);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -600,6 +770,17 @@ export default {
 .loader.hidden {
   opacity: 0;
 }
+.cla-seal{
+  position: absolute;
+  z-index: 971;
+  top: 40px;
+  right: 40px;
+  box-sizing: border-box;
+  display: inline-block;
+  transform-origin: top left;
+  height: 70px;
+  width: 70px;
+}
 #share-container{
   position: absolute;
   z-index: 970;
@@ -608,13 +789,13 @@ export default {
   box-sizing: border-box;
   display: inline-block;
   transform-origin: top left;
-  transform: scale(0.5)
+  transform: scale(0.4)
 }
 .share-icon{
   display: inline-block;
   height: 128px;
   width: 128px;
-  margin-right: 80px;
+  margin-right: 40px;
   box-sizing: border-box;
   vertical-align: top;
   background-size: contain;
@@ -622,40 +803,12 @@ export default {
   background-repeat: no-repeat;
   position: relative;
   cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .share-icon a{
   display: inline-block;
   width: 100%;
   height: 100%;
-}
-
-.share-icon.fb{
-  background-size: 128px;
-  background: url('/static/timeSlide/shares/fb-sprite.png');
-  animation: like-gif steps(85) 2s infinite both;
-  animation-play-state: paused;
-}
-.share-icon.fb:hover{
-  animation-play-state: initial;
-}
-.share-icon.tw{
-  background-size: 128px;
-  background: url('/static/timeSlide/shares/tw-sprite.png');
-  animation: like-gif steps(85) 2s infinite both;
-  animation-play-state: paused;
-}
-.share-icon.tw:hover{
-  animation-play-state: initial;
-}
-.share-icon.wh{
-  background-size: 128px;
-  background: url('/static/timeSlide/shares/wh-sprite.png');
-  animation: like-gif steps(85) 2s infinite both;
-  animation-play-state: paused;
-  display: none;
-}
-.share-icon.wh:hover{
-  animation-play-state: initial;
 }
 @keyframes like-gif {
   0% {
@@ -665,10 +818,68 @@ export default {
     background-position: 100%;
   }
 }
+@-webkit-keyframes like-gif {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+@keyframes like-gif-withpause {
+  0% {
+    background-position: 0%;
+  }
+  33% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+@-webkit-keyframes like-gif-withpause {
+  0% {
+    background-position: 0%;
+  }
+  33% {
+    background-position: 100%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+.share-icon.fb{
+  background-size: 128px;
+  background: url('#{$staticpath}static/timeSlide/shares/fb-sprite.png');
+  animation: like-gif steps(98) 2.5s infinite both;
+  animation-play-state: paused;
+}
+.share-icon.fb:hover{
+  animation-play-state: initial;
+}
+.share-icon.tw{
+  background-size: 128px;
+  background: url('#{$staticpath}static/timeSlide/shares/tw-spriteB.png');
+  animation: like-gif steps(98) 2s infinite both;
+  animation-play-state: paused;
+}
+.share-icon.tw:hover{
+  animation-play-state: initial;
+}
+.share-icon.wh{
+  background-size: 128px;
+  background: url('#{$staticpath}static/timeSlide/shares/wh-sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+  animation-play-state: paused;
+  display: none;
+}
+.share-icon.wh:hover{
+  animation-play-state: initial;
+}
 .share-icon.share{
   background-size: 128px;
-  background: url('/static/timeSlide/shares/share_sprite.png');
-  animation: like-gif steps(85) 2s infinite both;
+  background: url('#{$staticpath}static/timeSlide/shares/share_sprite.png');
+  animation: like-gif-withpause steps(85) 6s infinite both;
   display: none;
 }
 
@@ -676,12 +887,11 @@ export default {
   position: absolute;
   z-index: 950;
   width: 340px;
-  height: calc(100% - 140px);
+  height: calc(100% - 100px);
   overflow-y: hidden;
   left: 50%;
   transform: translate3d(-50%,0,0);
-  font-size: 24px;
-  font-size: 2.3vmin;
+  font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   color: white;
   text-shadow: 0px 0px 10px grey;
@@ -689,7 +899,7 @@ export default {
   opacity: 1;
 }
 .home-container.hidden {
-  transform: translate3d(-50%,-50%,0);
+  transform: translate3d(-50%,0,0);
   opacity: 0;
   pointer-events: none;
 }
@@ -701,9 +911,9 @@ export default {
   margin: 1.15vmin 0;
   display: inline-block;
   box-sizing: border-box;
-  width: 325px;
-  height: 79px;
-  background-image: url('/static/timeSlide/cta-info.png');
+  width: 100%;
+  min-height: 70px;
+  background-image: url('#{$staticpath}static/timeSlide/cta-info.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -713,17 +923,21 @@ export default {
   transform: translate3d(0,0,0);
   position: relative;
   margin: 0 auto;
-  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
+
 .home-container .cta-info.hidden{
   opacity: 0;
-  transform: translate3d(0,-100%,0);
+  transform: translate3d(0,0,0);
 }
 .expanded-content{
   transition: 0.3s;
   opacity: 0;
-  transform: translate3d(0,80px,0);
+  transform: translate3d(0,0,0);
+  // transform: translate3d(0,0,0);
   position: relative;
+  max-width: 240px;
+  margin: 0 auto;
 }
 .expanded-content.displayed {
   opacity: 1;
@@ -733,12 +947,16 @@ export default {
   margin: 60px 0 1.15vmin;
   display: inline-block;
   width: 100%;
-  height: 273px;
+  min-height: 240px;
   box-sizing: border-box;
-  background-image: url('/static/timeSlide/full-logo.png');
+  background-image: url('#{$staticpath}static/timeSlide/full-logo.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center top;
+}
+.init-content{
+  max-width: 300px;
+  margin: 0 auto;
 }
 .draggable-container{
   position: absolute;
@@ -748,7 +966,7 @@ export default {
   left: 0;
   z-index: 900;
   transition: 1s;
-  font-size: 2.3vmin;
+  font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   color: white;
   text-shadow: 0px 0px 10px grey;
@@ -766,24 +984,30 @@ export default {
   width: 340px;
   min-height: 6.5em;
   margin: 0;
-  padding-bottom: 60px;
   display: inline-block;
-  background-color: #66aacc22;
+  /* background-color: #66aacc22; */
   color: white;
   -webkit-transform: translate(0px, 0px);
           transform: translate(0px, 0px);
+  pointer-events: all;
+  cursor:move;
+  user-select: none;
 }
 #text-container {
-  max-width: 98%;
+  max-width: 85%;
   margin: 0 auto;
+  max-height: 200px;
+  overflow-y: scroll;
+  mask-image: linear-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  -webkit-mask-image: -webkit-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
 }
 .cta-participa{
   margin: 1.15vmin 0;
   display: inline-block;
   box-sizing: border-box;
   width: 325px;
-  height: 79px;
-  background-image: url('/static/timeSlide/cta-participa.png');
+  height: 70px;
+  background-image: url('#{$staticpath}static/timeSlide/cta-participa.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -793,12 +1017,13 @@ export default {
   transform: translate3d(0,0,0);
   position: relative;
   margin: 0 auto;
-  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 .drag-info{
-  width: 340px;
+  width: 100%;
+  max-width:290px;
   height: 73px;
-  background-image: url('/static/timeSlide/drag-info.png');
+  background-image: url('#{$staticpath}static/timeSlide/drag-info.png');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -821,8 +1046,9 @@ export default {
   left: 0;
   opacity: 1;
   opacity: 0;
-  transition: 2s;
+  transition: 1s;
   overflow: hidden;
+  display: none;
 }
 .background-block.on-top {
   z-index: 100;
@@ -837,13 +1063,18 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   transform: translate3d(0,0,0) scale(1.1);
-  filter: blur(1px);
   position: absolute;
   top: 0;
   left: 0;
+  image-rendering: crisp-edges;
 }
 .background-blur{
   z-index: 10;
+  webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
 }
 .background-full{
   z-index: 20;
@@ -868,7 +1099,7 @@ export default {
   position: absolute;
   transform: translate3d(-50%,-58px,0);
   left: 0;
-  min-width: 100px;
+  width: 100px;
 }
 .hour-container p{
   margin: 6px 10px;
@@ -878,6 +1109,7 @@ export default {
   font-weight: 800;
   letter-spacing: 1px;
   position:relative;
+  user-select: none;
 }
 .vertical-line{
   position: absolute;
@@ -888,16 +1120,13 @@ export default {
   transform: translate3d(-50%,100%,0);
   background-color: white;
 }
-@media only screen and (max-width: 600px) {
-
-}
 .slider {
   -webkit-appearance: none;
   width: 100%;
   height: 10px;
   border-radius: 5px;
   background-color: transparent;
-  background-image: url('/static/timeSlide/linepattern.png');
+  background-image: url('#{$staticpath}static/timeSlide/linepattern.png');
   background-size: 3px 2px;
   background-position: center;
   background-repeat: repeat-x;
@@ -912,10 +1141,14 @@ export default {
   transform: translate3d(-50%,-50%,0)
 }
 .slider::-moz-range-track{
-  background-image: url('/static/timeSlide/linepattern.png');
+  background-image: url('#{$staticpath}static/timeSlide/linepattern.png');
   background-size: 3px 2px;
   background-position: center;
   background-repeat: repeat-x;
+  outline: none;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
 }
 
 .slider:hover {
@@ -925,22 +1158,28 @@ export default {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 40px;
-  height: 80px;
+  width: 110px;
+  height: 50px;
   border-radius: 6px;
   cursor: pointer;
-  background-color: #0000000;
+  background-color: #FF000000;
   position: relative;
+  top: -50px;
+  outline: none;
+  border: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.slider::-moz-range-thumb {
-  width: 40px;
-  height: 80px;
+.slider::-moz-range-thumb, .slider::-ms-thumb {
+  width: 110px;
+  height: 50px;
   border-radius: 6px;
   cursor: pointer;
-  background-color: transparent;
+  background-color: #FF000000;
   position: relative;
   border: 0;
+  transform: translateY(-50px);
+  outline: none;
 }
 .time-btn{
   opacity: 1;
@@ -1006,9 +1245,21 @@ export default {
   cursor: pointer;
   pointer-events: all;
 }
+.bullet:nth-child(odd){
+  /* display: none; */
+  height: 12px;
+  width: 3px;
+  border-radius: 50%;
+}
+.bullet.v2{
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+}
 .bullet:hover{
   transform: translate3d(-50%,-50%,0) scale(1.25);
 }
+
 .bullet-active{
   position: absolute;
   top: 50%;
@@ -1031,21 +1282,22 @@ export default {
   background-size: cover;
   top: 0;
   left: 0;
-  transform: translate3d(0, calc(-100% - 50px), 0) scale(0.9);
+  transform: translate3d(0, -130%, 0) scale(0.8);
   opacity: 0;
   transition: 0.6s;
   pointer-events: none;
+  transform-origin: bottom left;
 }
-.thumbnail.to-right{
-  transform: translate3d(-50%;, calc(-100%), 0) scale(0.9);
+.thumbnail.to-left{
+  transform: translate3d(-50%, -130%, 0) scale(0.8);
 }
 .bullet:hover .thumbnail{
   opacity: 0.8;
-  transform: translate3d(0, calc(-100% - 50px), 0) scale(0.9);
+  transform: translate3d(0, calc(-130%), 0) scale(0.8);
 }
-.bullet:hover .thumbnail.to-right{
+.bullet:hover .thumbnail.to-left{
   opacity: 0.8;
-  transform: translate3d(-50%, calc(-100% - 50px), 0) scale(0.9);
+  transform: translate3d(-50%, calc(-130%), 0) scale(0.8);
 }
 .thumb-text{
   position: absolute;
@@ -1056,9 +1308,10 @@ export default {
   opacity: 1;
   bottom: 0;
   transform: translate3d(0,100%,0);
+  white-space: nowrap
 }
 #camdetail1{
-  background-image: url('/static/timeSlide/camdetail1.png');
+  background-image: url('#{$staticpath}static/timeSlide/camdetail1.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -1071,7 +1324,7 @@ export default {
   pointer-events: none;
 }
 #camdetail2{
-  background-image: url('/static/timeSlide/camdetail2.png');
+  background-image: url('#{$staticpath}static/timeSlide/camdetail2.png');
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -1086,22 +1339,69 @@ export default {
 .nospacing{
   letter-spacing: -1px;
 }
+@media only screen and (min-width: 1921px)  {
+  .draggable-container, .home-container{
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1600px)  {
+  .full-logo{
+    margin: 20px 0 1.15vmin;
+    min-height:180px;
+    max-width: 225px;
+  }
+  .init-content{
+    max-width: 225px;
+  }
+  .home-container .cta-info, #cta-participa {
+    width: 100%;
+    max-height: 50px;
+  }
+  .home-container{
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  .home-container p img{
+    max-width: 50%;
+  }
+  .thumbnail{
+    width: 182px;
+    height: 80px;
+  }
+  #time-selector {
+    bottom: 40px;
+  }
+  .drag-info {
+    width: 70%;
+    max-height: 52px;
+  }
+  #text-container{
+    max-width: 70%;
+  }
+}
+
 @media only screen and (max-width: 600px)  {
   .home-container{
     width: 200px;
     max-height: 480px;
     font-size: 14px;
     line-height: 1;
-    top: 50%;
-    transform: translate3d(-50%,-50%,0)
+    top: 40px;
+    transform: translate3d(-50%,0,0)
   }
   .home-container p{
     margin-bottom: 10px;
   }
   .full-logo{
-    height: 160px;
+    min-height: 160px;
     margin: 0;
     margin-bottom: 10px;
+    transition: 0.6s;
+    background-size: 100%;
+  }
+  .full-logo.compact{
+    min-height: 0px;
   }
   .home-container .cta-info{
     width: 100%;
@@ -1122,6 +1422,7 @@ export default {
   }
   #drag-1{
     width: 200px;
+    padding-top: 40px;
     padding-bottom: 50px;
     min-height: initial;
     position: relative;
@@ -1132,11 +1433,12 @@ export default {
   }
   .cta-participa{
     width: 100%;
-    height: 60px;
+    max-height: 60px;
     transition: 0.6s;
     opacity: 1;
   }
   .cta-participa.hidden{
+    max-height: 0;
     opacity: 0;
     pointer-events: none;
   }
@@ -1146,28 +1448,31 @@ export default {
   #drag-toggle{
     width: 100%;
     height: 43px;
-    background-image: url('/static/timeSlide/hide-content.png');
+    background-image: url('#{$staticpath}static/timeSlide/hide-content.png');
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     margin: 0 auto;
     cursor: pointer;
     position: absolute;
-    bottom: 0;
+    user-select: none;
+    outline: 0;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
   #drag-toggle.hidden{
-    background-image: url('/static/timeSlide/show-content.png');
+    background-image: url('#{$staticpath}static/timeSlide/show-content.png');
   }
   #time-selector{
     transform: rotate(90deg);
     bottom: initial;
     top: 0;
-    width: 96vh;
+    width: 88vh;
     left: 10px;
   }
   .hour-container{
     min-width: 85px;
-    transform: translate3d(-50%,-50px,0) rotate(-90deg) scale(0.8);
+    transform: translate3d(-30px,-50px,0) rotate(-90deg) scale(0.8);
+    width:initial;
   }
   .vertical-line{
     left: -4px;
@@ -1181,10 +1486,21 @@ export default {
     height: 16px;
     width: 1px;
   }
-  .bullet-active{
-    border-radius: 4px;
+  .bullet:nth-child(odd){
+    border-radius: 0;
+    height: 16px;
+    width: 1px;
+  }
+  .bullet.v2{
+    height: 8px;
     width: 8px;
-    height: 22px;
+    border-radius: 50%;
+}
+  .bullet-active{
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    border: 0;
     border: 2px solid white;
   }
   .bullet:hover {
@@ -1193,6 +1509,7 @@ export default {
   .slider::-webkit-slider-thumb {
     top: -40px;
     height: 110px;
+    width: 30px
   }
   #camdetail1, #camdetail2 {
     display: none;
@@ -1204,8 +1521,7 @@ export default {
     overflow-y: scroll;
   }
   #text-container.hidden{
-    opacity: 0;
-    pointer-events: none;
+    max-height:0;
   }
   #share-container{
     left: initial;
@@ -1215,6 +1531,12 @@ export default {
     transform: scale(0.4);
     max-width: 128px;
   }
+  .cla-seal {
+    top: initial;
+    bottom: 60px;
+    right: 10px;
+  }
+
   .share-icon {
     margin-right: 0;
     margin-bottom: 50px;
@@ -1225,20 +1547,31 @@ export default {
     cursor: pointer;
   }
   .share-icon.share.close{
-    background: url('/static/timeSlide/shares/x_sprite.png');
+    background: url('#{$staticpath}static/timeSlide/shares/x_sprite.png');
   }
   .share-icon.fb, .share-icon.tw, .share-icon.wh  {
-    display: inline-block;
-    transition: 0.3s;
+    display: none;
+    transition: 0.6s;
     opacity: 0;
-    transform: translate3d(0,-100%,0);
     pointer-events:  none;
+  }
+  .share-icon.fb{
+    transform: translate3d(0,-100%,0);
+  }
+  .share-icon.tw{
+    transform: translate3d(0,-200%,0);
+    transition-delay: 0.1s;
+  }
+  .share-icon.wh{
+    transform: translate3d(0,-300%,0);
+    transition-delay: 0.2s;
   }
   .share-icon.fb.displayed, .share-icon.tw.displayed, .share-icon.wh.displayed {
     opacity: 1;
     transform: translate3d(0,0,0);
     pointer-events: all;
-    animation-play-state: initial;
+    animation-play-state: running;
+    -webkit-animation-play-state: running;
   }
 }
 </style>
