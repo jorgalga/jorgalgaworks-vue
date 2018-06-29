@@ -50,6 +50,7 @@ body, html{
 }
 h1,h2,h3,p{
   margin-top: 0;
+  line-height: 1;
 }
 .thumb-text p{
   margin: 0;
@@ -57,10 +58,38 @@ h1,h2,h3,p{
 h2{
  font-size: 18px;
 }
+.videoContainer{
+  position: absolute;
+  width: 80%;
+  height: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0)
+}
+.videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 @media only screen and (max-width: 600px)  {
   h2{
     font-size: 16px;
     margin-bottom: 10px;
+  }
+  #app {
+    height: 99vh;
+  }
+  .videoContainer{
+    width: 100%;
+    height: auto;
   }
 }
 </style>

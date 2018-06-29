@@ -11,8 +11,16 @@
     <div id="splash-screen" >
       <a v-on:click.prevent="hideSplash()" href class="btn"><img width="64px" height="64px" src="static/timeSlide/cla-loader128.gif"></a>
     </div>
+    <div id="video-screen" v-on:click.prevent="closeVideo()">
+      <div class="videoContainer">
+        <div class="videoWrapper">
+          <div id="player"></div>
+          <div v-on:click.prevent="closeVideo()" id="close"><!--CERRAR <span class="close-icon"><span class="aspa"></span><span class="aspa"></span></span>--></div>
+        </div>
+      </div>
+    </div>
     <div class="cla-seal">
-      <a v-on:click.prevent="goToGarantia()" href><img width="70px" height="70px" src="static/timeSlide/sello.png"></a>
+      <a v-on:click.prevent="goToGarantia()" href><img width="100%" height="auto" src="static/timeSlide/sello.png?v=1"></a>
     </div>
     <div id="share-container" class="share-container">
       <div id="share-btn" v-on:click.stop="expandShare()" class="share-icon share">
@@ -21,16 +29,19 @@
         <a title="Comparte en facebook" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.centrallecheraasturiana.es%2Fpromocion24horasalnatural%2F"></a>
       </div>
       <div id="share-tw" class="share-icon tw">
-        <a title="Comparte en twitter" target="_blank" href="https://twitter.com/intent/tweet?text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20uno%20de%20los%20integrantes%20de%20nuestra%20cooperativa."></a>
+        <a title="Comparte en twitter" target="_blank" href="https://twitter.com/intent/tweet?text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20Jos%C3%A9%2C%20uno%20de%20los%20integrantes%20de%20nuestra%20empresa%20con%20origen%20cooperativo.%20www.24horasalnatural.com"></a>
       </div>
       <div id="share-wh" class="share-icon wh">
-        <a title="Comparte en whatsapp" target="_blank" href="whatsapp://send?url=https%3A%2F%2Fwww.centrallecheraasturiana.es%2Fpromocion24horasalnatural%2F&text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20uno%20de%20los%20integrantes%20de%20nuestra%20cooperativa."></a>
+        <a title="Comparte en whatsapp" target="_blank" href="whatsapp://send?url=https%3A%2F%2Fwww.centrallecheraasturiana.es/promocion24horasalnatural/&text=24%20horas%20al%20natural.%20Descubre%20hora%20a%20hora%20el%20d%C3%ADa%20de%20Jos%C3%A9%2C%20uno%20de%20los%20integrantes%20de%20nuestra%20empresa%20con%20origen%20cooperativo.%20www.centrallecheraasturiana.es/promocion24horasalnatural/"></a>
+      </div>
+      <div id="share-yt" class="share-icon yt">
+        <a v-on:click.prevent="openVideo()" title="Ver spot" ><span>VER SPOT</span></a>
       </div>
     </div>
     <div id="home-container" class="home-container">
       <div v-on:click.stop="goToCLA()" class="full-logo"></div>
       <div class="init-content">
-        <p><em>Un recorrido por el día a día de <b>Rodrigo</b> de la <b>Ganadería La Nava</b>. Uno de los integrantes de nuestra coperativa.</em></p>
+        <p><em>Un recorrido por el día a día de <b>José</b> en la <b>Ganadería Casa Ron</b>. Uno de nuestros 8.000 ganaderos de una empresa con origen cooperativo hace ya más de 50 años.</em></p>
         <p><em>Vente a <b>Asturias</b> y disfruta de <b>24 horas al natural</b></em></p>
         <div v-on:click.stop="expandHome()" id="more-info" class="cta-info noSelect"></div>
       </div>
@@ -50,11 +61,15 @@
           <div v-html="currentText" ></div>
         </div>
         <div v-on:click.stop="goToParticipa()" id="cta-participa" class="cta-participa"></div>
+        <a id="bbll" class="bbll" target="_blank" href="https://centrallecheraasturiana.es/promocion24horasalnatural/doc/BBNN_24horas_al_natural.pdf"><b>Bases legales</b></a>
         <div class="drag-info"></div>
         <div v-on:click.stop="toggleContent()" id="drag-toggle"></div>
       </div>
     </div>
     <div id="time-selector" class="slidecontainer">
+      <div class="t0000"><b>00:00h</b></div>
+      <div class="t1200"><b>12:00h</b></div>
+      <div class="t2400"><b>24:00h</b></div>
       <div id="current-time" class="hour-container" v-bind:style="{ left: progress + '%' }">
         <div id="vl" class="vertical-line"></div>
         <p><span class="hour">{{ t_hour }}</span> : <span class="minutes"><span class="nospacing" v-if="t_min < 10">0</span> {{ t_min }} </span> h<!--: <span class="seconds"> {{ t_sec }} </span>--></p>
@@ -65,7 +80,7 @@
       <div class="bullets-container">
         <div v-for="item in images.slice().reverse()" class="bullet" v-bind:style="{left: 100 * item.initTime/maxTime + '%' }" :key="item.id" v-on:click.prevent="goToTime(item.initTime)">
           <div v-bind:id="'bullet-'+item.id" class="bullet-active"></div>
-          <div class="thumbnail" v-bind:style="{ 'background-image': 'url('+ cmpPath + item.pathThumb + ')' }">
+          <div class="thumbnail" v-bind:style="{ 'background-image': 'url('+ cmpPath + item.pathThumb + '?paco)' }">
             <div class="thumb-text" v-html="item.textThumb"></div>
           </div>
         </div>
@@ -142,8 +157,8 @@ export default {
       console.log('is Mobile')
       this.pMobile = 'mobile/'
       console.log(window.innerWidth + 'px')
-      document.getElementById('app').style.maxWidth = window.innerWidth + 'px'
-      document.getElementById('app').style.minHeight = (window.innerHeight - 56) + 'px'
+      // document.getElementById('app').style.maxWidth = window.innerWidth + 'px'
+      // document.getElementById('app').style.minHeight = (window.innerHeight - 56) + 'px'
     } else {
       this.pMobile = ''
     }
@@ -160,14 +175,29 @@ export default {
     this.initHome()
     this.initTimeRange()
     this.initScrollDetector()
+    this.initYT()
     if (!this.device && window.innerWidth > 600) {
       this.initMouseMoveDetector()
       this.initDraggable()
     } else {
       this.initiOrientationEvent()
+      // this.initBlurBgTouch()
     }
   },
   methods: {
+    initYT () {
+      window.initPlayer()
+    },
+    openVideo () {
+      var vl = document.getElementById('video-screen')
+      vl.classList.add('displayed')
+      window.playVideo()
+    },
+    closeVideo () {
+      var vl = document.getElementById('video-screen')
+      vl.classList.remove('displayed')
+      window.stopVideo()
+    },
     goToCLA () {
       // window.open('https://www.centrallecheraasturiana.es/es/', '_blank')
     },
@@ -331,7 +361,7 @@ export default {
           document.getElementById('home-container').classList.add('hidden')
           document.getElementById('draggable-container').classList.remove('disabled')
         }
-      }, 10000)
+      }, 15000)
     },
     initDraggable () {
       // target elements with the "draggable" class
@@ -582,7 +612,7 @@ export default {
           }
         }
         // console.log(window.location.protocol + '//' + window.location.host + window.location.pathname + _.cmpPath + _.pMobile + _.bgBlocksSorted[i].data.imgName + '.' + _.bgBlocksSorted[i].data.type)
-        toload.src = window.location.protocol + '//' + window.location.host + window.location.pathname + _.cmpPath + _.pMobile + _.bgBlocksSorted[i].data.imgName + '.' + _.bgBlocksSorted[i].data.type
+        toload.src = window.location.protocol + '//' + window.location.host + window.location.pathname + _.cmpPath + _.pMobile + _.bgBlocksSorted[i].data.imgName + '.' + _.bgBlocksSorted[i].data.type + '?0101'
       }
       loadImage()
     },
@@ -593,12 +623,14 @@ export default {
         document.getElementById('fl').classList.remove('compact')
         document.getElementById('cta-participa').classList.remove('hidden')
         document.getElementById('text-container').classList.remove('hidden')
+        document.getElementById('bbll').classList.remove('compact')
         // document.getElementById('drag-1').classList.remove('compact')
       } else {
         el.classList.add('hidden')
         document.getElementById('fl').classList.add('compact')
         document.getElementById('cta-participa').classList.add('hidden')
         document.getElementById('text-container').classList.add('hidden')
+        document.getElementById('bbll').classList.add('compact')
         // document.getElementById('drag-1').classList.add('compact')
       }
       function hasClass (element, cls) {
@@ -615,6 +647,7 @@ export default {
         document.getElementById('share-fb').style.display = 'inline-block'
         document.getElementById('share-tw').style.display = 'inline-block'
         document.getElementById('share-wh').style.display = 'inline-block'
+        document.getElementById('share-yt').classList.add('hidden')
         requestAnimationFrame(function () {
           document.getElementById('share-fb').classList.add('displayed')
           document.getElementById('share-tw').classList.add('displayed')
@@ -625,13 +658,14 @@ export default {
           if (_.shareopened) {
             _.expandShare()
           }
-        }, 5000)
+        }, 50000)
       } else {
         this.shareopened = false
         el.classList.remove('close')
         document.getElementById('share-fb').classList.remove('displayed')
         document.getElementById('share-tw').classList.remove('displayed')
         document.getElementById('share-wh').classList.remove('displayed')
+        document.getElementById('share-yt').classList.remove('hidden')
       }
     },
     initiOrientationEvent () {
@@ -650,6 +684,17 @@ export default {
       }
       window.addEventListener('orientationchange', doOnOrientationChange)
       doOnOrientationChange()
+    },
+    initBlurBgTouch () {
+      var tc = document.getElementById('text-container')
+      document.querySelector('.bb-visible .background-full').style.transition = '0.3s'
+      setTimeout(function () {
+        requestAnimationFrame(function () {
+          document.querySelector('.bb-visible .background-full').style.opacity = 0
+        })
+      }, 300)
+      tc.addEventListener('touchstart', function () {
+      })
     }
   }
 }
@@ -664,6 +709,16 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   background-color: black;
   height: 100%;
   width: 100vw;
+  position: relative;
+}
+.bbll{
+  color: white;
+  width: 80%;
+  position: relative;
+  top: -10px;
+  display: inline-block;
+  text-align: right;
+  font-size: 11px
 }
 #touch-feedback{
   position: absolute;
@@ -712,8 +767,8 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   z-index: 1200;
   background-color: #2973fb;
   -webkit-transform: translate3d(0,0,0);
@@ -727,6 +782,76 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 #rotate-screen.displayed{
   opacity: 1;
   pointer-events: all;
+}
+#video-screen{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1150;
+  background-color: #000000dd;
+  -webkit-transform: translate3d(0,0,0);
+  -moz-transform: translate3d(0,0,0);
+  -ms-transform: translate3d(0,0,0);
+  -o-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.6s;
+}
+#video-screen.displayed{
+  opacity: 1;
+  pointer-events: all;
+}
+#close{
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  transform: translate3d(0,0%,0) scale(0.4);
+  transform-origin: top right;
+  color: white;
+  font-size: 20px;
+  display: inline-block;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 128px;
+  height: 128px;
+  background-size: 128px;
+  background: url('#{$staticpath}static/timeSlide/shares/x_sprite.png');
+  animation: like-gif steps(85) 2s infinite both;
+}
+#close .close-icon{
+  position: absolute;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  right: 0;
+  transform: translate3d(0, -50%, 0);
+}
+#close .close-icon .aspa{
+  position: absolute;
+  display: inline-block;
+  background-color: white;
+  width: 1px;
+  height: 100%;
+  top: 40%;
+  right: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  transition: 0.3s
+}
+#close .close-icon .aspa:nth-child(1) {
+  transform: translate3d(-50%, -50%, 0) rotate(45deg);
+}
+#close .close-icon .aspa:nth-child(2) {
+  transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+}
+#close:hover .close-icon .aspa:nth-child(1) {
+  transform: translate3d(-50%, -50%, 0) rotate(-45deg);
+}
+#close:hover .close-icon .aspa:nth-child(2) {
+  transform: translate3d(-50%, -50%, 0) rotate(225deg);
 }
 #rotate-screen .rs-container {
   min-width: 50px;
@@ -773,18 +898,20 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 .cla-seal{
   position: absolute;
   z-index: 971;
-  top: 40px;
+  top: 50px;
   right: 40px;
   box-sizing: border-box;
   display: inline-block;
   transform-origin: top left;
-  height: 70px;
-  width: 70px;
+  width: 13.5%;
+  height: 26%;
+  max-height: 279px;
+  max-width: 200px;
 }
 #share-container{
   position: absolute;
   z-index: 970;
-  top: 40px;
+  top: 50px;
   left: 40px;
   box-sizing: border-box;
   display: inline-block;
@@ -793,7 +920,7 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 }
 .share-icon{
   display: inline-block;
-  height: 128px;
+  min-height: 128px;
   width: 128px;
   margin-right: 40px;
   box-sizing: border-box;
@@ -808,7 +935,7 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 .share-icon a{
   display: inline-block;
   width: 100%;
-  height: 100%;
+  min-height: 128px;
 }
 @keyframes like-gif {
   0% {
@@ -866,6 +993,47 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 .share-icon.tw:hover{
   animation-play-state: initial;
 }
+
+.share-icon.yt{
+  background-size: 128px;
+  background: url('#{$staticpath}static/timeSlide/shares/yt-sprite.png');
+  animation: like-gif steps(86) 2s infinite both;
+  animation-play-state: paused;
+  transform: scale(1.15);
+  margin-left: 80px;
+}
+.share-icon.yt:hover{
+  animation-play-state: initial;
+}
+
+.share-icon.yt a{
+  text-decoration: none;
+  color: white;
+  font-size: 28px;
+  letter-spacing: 2px;
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  display: block;
+  height: 100px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.share-icon.yt span{
+  color: white;
+  position: absolute;
+  display: inline-block;
+  top: 50%;
+  transform: translate3d(50%, -50%, 0);
+  width: 120%;
+  transition: 0.3s;
+  transform-origin: center left;
+  -webkit-filter: blur(0.000001px);
+  transform: translate3d(50%, -50%, 0) scale3d(0.9,0.9,0.9);
+}
+.share-icon.yt:hover span{
+  transform: translate3d(50%, -50%, 0) scale3d(1.0,1.0,1.0);
+  -webkit-font-smoothing: antialiased;
+}
 .share-icon.wh{
   background-size: 128px;
   background: url('#{$staticpath}static/timeSlide/shares/wh-sprite.png');
@@ -888,7 +1056,6 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   z-index: 950;
   width: 340px;
   height: calc(100% - 100px);
-  overflow-y: hidden;
   left: 50%;
   transform: translate3d(-50%,0,0);
   font-size: 16px;
@@ -905,7 +1072,10 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 }
 .home-container p{
   margin-bottom: 1.5vmin;
-  line-height: 1.25;
+  line-height: 1;
+  width: 400px;
+  position: relative;
+  left: -50px;
 }
 .home-container .cta-info{
   margin: 1.15vmin 0;
@@ -936,12 +1106,16 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   transform: translate3d(0,0,0);
   // transform: translate3d(0,0,0);
   position: relative;
-  max-width: 240px;
+  max-width: 100%;
   margin: 0 auto;
 }
 .expanded-content.displayed {
   opacity: 1;
   transform: translate3d(0,0,0);
+}
+.home-container .expanded-content p{
+  width: 100%;
+  left: 0;
 }
 .full-logo{
   margin: 60px 0 1.15vmin;
@@ -955,7 +1129,7 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   background-position: center top;
 }
 .init-content{
-  max-width: 300px;
+  width: 300px;
   margin: 0 auto;
 }
 .draggable-container{
@@ -1000,6 +1174,12 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   overflow-y: scroll;
   mask-image: linear-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
   -webkit-mask-image: -webkit-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  padding-bottom: 30px;
+}
+#drag-1 #text-container{
+  max-width: initial;
+  width: 400px;
+  transform: translateX(-30px)
 }
 .cta-participa{
   margin: 1.15vmin 0;
@@ -1022,8 +1202,8 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 .drag-info{
   width: 100%;
   max-width:290px;
-  height: 73px;
-  background-image: url('#{$staticpath}static/timeSlide/drag-info.png');
+  height: 91px;
+  background-image: url('#{$staticpath}static/timeSlide/drag-info.png?0101');
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -1086,12 +1266,33 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 }
 #time-selector{
   position: absolute;
-  bottom: 60px;
+  bottom: 80px;
   left: 5%;
   z-index: 1000;
   width: 90%;
   height: 20px;
   transform-origin: bottom left;
+}
+.t0000, .t1200, .t2400 {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  position: absolute;
+  font-size: 14px;
+  letter-spacing: 2px;
+}
+.t0000{
+  top: 30px;
+  left: -5px;
+}
+.t1200 {
+  top: 30px;
+  left: 50%;
+  transform: translate3d(-50%,0,0)
+}
+.t2400 {
+  top: 30px;
+  left: initial;
+  right: -5px;
 }
 .hour-container{
   border-radius: 4px;
@@ -1113,11 +1314,11 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 }
 .vertical-line{
   position: absolute;
-  height: 100%;
+  height: 150%;
   width: 1px;
   top: 0;
   left: 50%;
-  transform: translate3d(-50%,100%,0);
+  transform: translate3d(-50%,50%,0);
   background-color: white;
 }
 .slider {
@@ -1170,7 +1371,7 @@ input[type=range]::-moz-focus-outer {
   -webkit-tap-highlight-color: rgba(0,0,0,0);
 }
 
-.slider::-moz-range-thumb, .slider::-ms-thumb {
+.slider::-moz-range-thumb{
   width: 110px;
   height: 50px;
   border-radius: 6px;
@@ -1346,6 +1547,9 @@ input[type=range]::-moz-focus-outer {
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1600px)  {
+  .bbll{
+    max-width: 190px;
+  }
   .full-logo{
     margin: 20px 0 1.15vmin;
     min-height:180px;
@@ -1360,7 +1564,10 @@ input[type=range]::-moz-focus-outer {
   }
   .home-container{
     font-size: 16px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+  }
+  .home-container p{
+    left: -88px;
   }
   .home-container p img{
     max-width: 50%;
@@ -1379,9 +1586,27 @@ input[type=range]::-moz-focus-outer {
   #text-container{
     max-width: 70%;
   }
+  #drag-1 #text-container{
+    max-width: initial;
+    width: 325px;
+    max-width: initial;
+    transform: translateX(0)
+  }
 }
 
 @media only screen and (max-width: 600px)  {
+  .bbll{
+    opacity: 1;
+    display: block;
+    width: 95%;
+    min-height: 20px;
+    transition: 0.3s;
+  }
+  .bbll.compact {
+    min-height: 0;
+    overflow: hidden;
+    opacity: 0;
+  }
   .home-container{
     width: 200px;
     max-height: 480px;
@@ -1390,18 +1615,26 @@ input[type=range]::-moz-focus-outer {
     top: 40px;
     transform: translate3d(-50%,0,0)
   }
+  .init-content{
+    width: 100%;
+  }
   .home-container p{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    width: 100%;
+    left: 0;
   }
   .full-logo{
     min-height: 160px;
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     transition: 0.6s;
     background-size: 100%;
   }
   .full-logo.compact{
     min-height: 0px;
+  }
+  #text-container.hidden{
+    padding-bottom: 0;
   }
   .home-container .cta-info{
     width: 100%;
@@ -1430,6 +1663,12 @@ input[type=range]::-moz-focus-outer {
   }
   #drag-1.compact {
     height: 170px;
+  }
+  #drag-1 #text-container{
+    max-width: initial;
+    width: 100%;
+    max-width: initial;
+    transform: translateX(0)
   }
   .cta-participa{
     width: 100%;
@@ -1532,9 +1771,10 @@ input[type=range]::-moz-focus-outer {
     max-width: 128px;
   }
   .cla-seal {
-    top: initial;
-    bottom: 60px;
+    top: calc(90% - 110px);
     right: 10px;
+    width: 80px;
+    height: 110px
   }
 
   .share-icon {
@@ -1550,10 +1790,15 @@ input[type=range]::-moz-focus-outer {
     background: url('#{$staticpath}static/timeSlide/shares/x_sprite.png');
   }
   .share-icon.fb, .share-icon.tw, .share-icon.wh  {
-    display: none;
     transition: 0.6s;
     opacity: 0;
+    min-height: 0;
     pointer-events:  none;
+    box-sizing: border-box;
+    margin-bottom: 0;
+  }
+  .share-icon.fb a, .share-icon.tw a, .share-icon.wh a {
+    min-height: 0;
   }
   .share-icon.fb{
     transform: translate3d(0,-100%,0);
@@ -1568,10 +1813,40 @@ input[type=range]::-moz-focus-outer {
   }
   .share-icon.fb.displayed, .share-icon.tw.displayed, .share-icon.wh.displayed {
     opacity: 1;
+    height: 128px;
     transform: translate3d(0,0,0);
+    margin-bottom: 50px;
     pointer-events: all;
     animation-play-state: running;
     -webkit-animation-play-state: running;
+  }
+  .share-icon.fb.displayed a, .share-icon.tw.displayed a, .share-icon.wh.displayed a {
+    min-height: 128px;
+  }
+  .share-icon.yt{
+    margin: 0;
+    transition: 0.6s;
+    opacity: 1;
+    animation-play-state: running;
+    -webkit-animation-play-state: running;
+  }
+  .share-icon.yt a{
+    display: block;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+  }
+  .share-icon.yt span{
+    top: 100%;
+    left: 0;
+    transform: translate3d(0, 0, 0) scale3d(0.9, 0.9, 0.9);
+  }
+  .share-icon.yt:hover span{
+    transform: translate3d(0, 0, 0) scale3d(0.9, 0.9, 0.9);
+  }
+  .share-icon.yt.hidden{
+    opacity: 0;
+    pointer-events: none;
   }
 }
 </style>
