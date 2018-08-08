@@ -22,6 +22,11 @@
     <div class="cla-seal">
       <a v-on:click.prevent="goToGarantia()" href><img width="100%" height="auto" src="static/timeSlide/sello.png?v=1"></a>
     </div>
+    <div v-on:click.prevent="remove30min(30)" class="prevnext-image left">
+    </div>
+    <div v-on:click.prevent="add30min(30)" class="prevnext-image right">
+    </div>
+
     <div id="share-container" class="share-container">
       <div id="share-btn" v-on:click.stop="expandShare()" class="share-icon share">
       </div>
@@ -71,6 +76,7 @@
       <div class="t1200"><b>12:00h</b></div>
       <div class="t2400"><b>24:00h</b></div>
       <div id="current-time" class="hour-container" v-bind:style="{ left: progress + '%' }">
+        <div id="range-instructions"><b>ARRÁSTRAME PARA<br>CAMBIAR LA HORA</b></div>
         <div id="vl" class="vertical-line"></div>
         <p><span class="hour">{{ t_hour }}</span> : <span class="minutes"><span class="nospacing" v-if="t_min < 10">0</span> {{ t_min }} </span> h<!--: <span class="seconds"> {{ t_sec }} </span>--></p>
       </div>
@@ -154,7 +160,7 @@ export default {
     }
     this.device = deviceOS()
     if (this.device) {
-      console.log('is Mobile')
+      // console.log('is Mobile')
       this.pMobile = 'mobile/'
       console.log(window.innerWidth + 'px')
       // document.getElementById('app').style.maxWidth = window.innerWidth + 'px'
@@ -202,7 +208,7 @@ export default {
       // window.open('https://www.centrallecheraasturiana.es/es/', '_blank')
     },
     goToGarantia () {
-      console.log(window.garantia_link)
+      // console.log(window.garantia_link)
       window.open(window.garantia_link, '_blank')
     },
     goToParticipa () {
@@ -210,6 +216,40 @@ export default {
     },
     hideSplash () {
       document.getElementById('splash-screen').classList.add('hidden')
+    },
+    add30min (iter) {
+      var _ = this
+      // console.log(iter)
+      iter--
+      if (iter >= 0) {
+        setTimeout(function () {
+          plusOne()
+          _.add30min(iter)
+        }, 20)
+      }
+      function plusOne () {
+        _.time = _.time + 60
+        _.progress = _.time / _.maxTime * 100
+        _.updateBgBlocks(_.time)
+        _.updateHour()
+      }
+    },
+    remove30min (iter) {
+      var _ = this
+      // console.log(iter)
+      iter--
+      if (iter >= 0) {
+        setTimeout(function () {
+          minusOne()
+          _.remove30min(iter)
+        }, 20)
+      }
+      function minusOne () {
+        _.time = _.time - 60
+        _.progress = _.time / _.maxTime * 100
+        _.updateBgBlocks(_.time)
+        _.updateHour()
+      }
     },
     goToTime (t) {
       var _ = this
@@ -895,6 +935,32 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 .loader.hidden {
   opacity: 0;
 }
+.prevnext-image{
+  position: absolute;
+  z-index: 980;
+  top: 55%;
+  left: 0;
+  width: 4%;
+  height: 16%;
+  transform: translate3d(0,-50%,0);
+  background-image: url(#{$staticpath}static/timeSlide/arrow_left.png);
+  background-position: center left;
+  background-size: contain;
+  background-repeat: no-repeat;
+  cursor:pointer;
+  transition: 0.25s;
+}
+.prevnext-image:hover{
+  transform: translate3d(0,-50%,0) scale(1.1);
+}
+
+.prevnext-image.right{
+  left: initial;
+  right: 0;
+  background-position: center right;
+  background-image: url(#{$staticpath}static/timeSlide/arrow_right.png);
+}
+
 .cla-seal{
   position: absolute;
   z-index: 971;
@@ -995,6 +1061,7 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
 }
 
 .share-icon.yt{
+  display: none;
   background-size: 128px;
   background: url('#{$staticpath}static/timeSlide/shares/yt-sprite.png');
   animation: like-gif steps(86) 2s infinite both;
@@ -1175,6 +1242,18 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   mask-image: linear-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
   -webkit-mask-image: -webkit-gradient(linear, left 80%, left 95%, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
   padding-bottom: 30px;
+
+}
+#text-container::-webkit-scrollbar{
+  width: 10px;
+}
+#text-container::-webkit-scrollbar-track{
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+#text-container::-webkit-scrollbar-thumb{
+  background: white;
+  border-radius: 10px;
 }
 #drag-1 #text-container{
   max-width: initial;
@@ -1312,6 +1391,20 @@ $staticpath: 'https://www.centrallecheraasturiana.es/promocion24horasalnatural/'
   position:relative;
   user-select: none;
 }
+
+#range-instructions{
+  position: absolute;
+  width: 340px;
+  color: white;
+  left: 50%;
+  transform: translate3d(-50%,-120%,0);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  opacity: 0.75;
+  line-height: 1.1;
+}
+
 .vertical-line{
   position: absolute;
   height: 150%;
@@ -1447,7 +1540,7 @@ input[type=range]::-moz-focus-outer {
   pointer-events: all;
 }
 .bullet:nth-child(odd){
-  /* display: none; */
+  display: none;
   height: 12px;
   width: 3px;
   border-radius: 50%;
@@ -1595,6 +1688,12 @@ input[type=range]::-moz-focus-outer {
 }
 
 @media only screen and (max-width: 600px)  {
+  #range-instructions{
+    display:none;
+  }
+  .prevnext-image{
+    display: none;
+  }
   .bbll{
     opacity: 1;
     display: block;

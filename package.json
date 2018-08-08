@@ -85,7 +85,7 @@
     "webpack-merge": "^4.1.0",
     "webvr-polyfill": "^0.10.5",
     "webvr-ui": "^0.10.0",
-    "interactjs": "^1.3.4" 
+    "interactjs": "^1.3.4"
   },
   "engines": {
     "node": ">= 6.0.0",
