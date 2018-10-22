@@ -17,7 +17,7 @@ import * as THREE from 'three'
 import VRControls from 'three-vrcontrols-module'
 import VREffect from 'three-vreffect-module'
 import * as webvrui from 'webvr-ui'
-// import {ThreeChroma} from '../lib/three-chromatography'
+import {ThreeChroma} from '../lib/three-chromatography'
 // import {ThreeDTour} from '../lib/three-3Dtour'
 export default {
   name: 'VRWorld',
@@ -34,7 +34,7 @@ export default {
       renderer: null,
       skybox: null,
       cube: null,
-      // threeChroma: null,
+      threeChroma: null,
       threeDTour: null
     }
   },
@@ -69,7 +69,7 @@ export default {
 
       // Add a repeating grid as a skybox.
       this.addSkybox()
-      this.addSkySphere()
+      // this.addSkySphere()
 
       // Create 3D objects.
       var geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
@@ -116,8 +116,8 @@ export default {
         })
       })
       // Chroma
-      // this.threeChroma = new ThreeChroma(this.container, this.renderer, this.camera, this.scene, this.controls)
-      // this.threeChroma.init()
+      this.threeChroma = new ThreeChroma(this.container, this.renderer, this.camera, this.scene, this.controls)
+      this.threeChroma.init()
 
       // this.threeDTour = new ThreeDTour(this.container, this.renderer, this.camera, this.scene, this.controls)
       // this.threeDTour.init()
@@ -139,7 +139,7 @@ export default {
         // Align the skybox to the floor (which is at y=0).
         _.skybox = new THREE.Mesh(geometry, material)
         _.skybox.position.y = _.boxSize / 2
-        // _.scene.add(_.skybox)
+        _.scene.add(_.skybox)
         // For high end VR devices like Vive and Oculus, take into account the stage
         // parameters provided.
         _.setupStage()

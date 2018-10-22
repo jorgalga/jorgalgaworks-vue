@@ -48,6 +48,16 @@ export default {
       msg: 'What have I done?',
       initModal: 'Makers',
       portfolio: [
+        { id: 'PR201805',
+          thumb: '/static/thumb-cla-c.png',
+          thumbB: '/static/thumb-cla.png',
+          year: '2018',
+          function: 'Front-end development',
+          context: 'Ogilvy & Mather',
+          contextImg: '/static/ctx-ogilvy.jpg',
+          message: 'Campaña para Central Lechera Asturiana - 24 horas al natural',
+          url: '//24horasalnatural.com'
+        },
         { id: 'PR201804',
           year: '2018',
           function: '3D Modeling',
@@ -66,7 +76,8 @@ export default {
           contextImg: '/static/ctx-ogilvy.jpg',
           contextUrl: 'http://www.ogilvy.es/',
           message: 'Los archivos de Oasis<br>(Campaign finished)',
-          url: '//losarchivosdeoasis.com/?m=fullaccess'
+          modalContent: '<iframe width="700" height="394" class="youtube-video" src="https://www.youtube.com/embed/Eet3qbpgLLo?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>',
+          contentCentered: true
         },
         { id: 'PR201802',
           thumb: '/static/thumb-ogilvymusic-c.png',
