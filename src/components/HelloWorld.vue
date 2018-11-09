@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <timeslide></timeslide>
+    <!--timeslide></timeslide-->
     <!--vrworld></vrworld>
     <about></about>
     <portfolio :id="id"></portfolio>
@@ -18,8 +18,8 @@ import JggExperience from '@/components/JggExperience'
 import JggPortfolio from '@/components/JggPortfolio'
 import JggExhibitions from '@/components/JggExhibitions'
 import VRWorld from '@/components/VRWorld'
-*/
-import TimeSlide from '@/components/TimeSlide'
+import TimeSlide from '@/components/TimeSlide' */
+import ClaNavidad from '@/components/ClaNavidad'
 
 export default {
   name: 'HelloWorld',
@@ -37,8 +37,9 @@ export default {
     'portfolio': JggPortfolio,
     'exhibitions': JggExhibitions,
     'vrworld': VRWorld,
-    'about': JggAbout, */
-    'timeslide': TimeSlide
+    'about': JggAbout,
+    'timeslide': TimeSlide, */
+    'clanavidad': ClaNavidad
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)
@@ -68,7 +69,7 @@ h1{
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 60vh;
+  height: 60%;
   top: 0;
   left: 0;
   position: relative;

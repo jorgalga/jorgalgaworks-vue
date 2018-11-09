@@ -34,7 +34,7 @@ body, html{
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   text-align: center;
-  height: 99.9vh;
+  height: 100%;
   width: 100vw;
   position: fixed;
   left: 50%;
@@ -42,7 +42,7 @@ body, html{
 }
 #app.no-scroll{
   overflow-y: hidden;
-  height: 99.9vh
+  height: 100%
 }
 
 .logo{
@@ -85,7 +85,7 @@ h2{
     margin-bottom: 10px;
   }
   #app {
-    height: 99vh;
+    height: 100%;
   }
   .videoContainer{
     width: 100%;
