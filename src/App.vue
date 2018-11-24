@@ -11,9 +11,71 @@ export default {
 </script>
 
 <style>
+@font-face {
+  font-family: 'icomoon';
+  src:  url('/static/claNavidad/fonts/icomoon.eot?emph7v');
+  src:  url('/static/claNavidad/fonts/icomoon.eot?emph7v#iefix') format('embedded-opentype'),
+    url('/static/claNavidad/fonts/icomoon.ttf?emph7v') format('truetype'),
+    url('/static/claNavidad/fonts/icomoon.woff?emph7v') format('woff'),
+    url('/static/claNavidad/fonts/icomoon.svg?emph7v#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-ctrl:before {
+  content: "\ea50";
+}
+.icon-ctrl1:before {
+  content: "\ea51";
+}
+.icon-ctrl1{
+  font-size: 17px;
+  position: relative;
+  top: 2px;
+}
+.icon-ctrl{
+  font-size: 17px;
+  position: relative;
+  top: 2px;
+}
+
+.icon-share2:before {
+  content: "\ea82";
+}
+.icon-facebook:before {
+  content: "\ea90";
+}
+.icon-whatsapp:before {
+  content: "\ea93";
+}
+.icon-twitter:before {
+  content: "\ea96";
+}
+
+@font-face {
+  font-family: 'gabrielaregular';
+  src: url('/static/claNavidad/fonts/ydray-gabriela-regular-webfont.woff2') format('woff2'),
+    url('/static/claNavidad/fonts/ydray-gabriela-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
 body, html{
   margin: 0;
-  background-color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
@@ -32,64 +94,18 @@ body, html{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
   text-align: center;
   height: 100%;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   left: 50%;
   transform: translate3d(-50%,0,0);
+  overflow-y: scroll;
 }
 #app.no-scroll{
   overflow-y: hidden;
   height: 100%
 }
-
-.logo{
-  display:none;
-}
-h1,h2,h3,p{
-  margin-top: 0;
-  line-height: 1;
-}
-.thumb-text p{
-  margin: 0;
-}
-h2{
- font-size: 18px;
-}
-.videoContainer{
-  position: absolute;
-  width: 80%;
-  height: auto;
-  top: 50%;
-  left: 50%;
-  transform: translate3d(-50%,-50%,0)
-}
-.videoWrapper {
-  position: relative;
-  padding-bottom: 56.25%; /* 16:9 */
-  padding-top: 25px;
-  height: 0;
-}
-.videoWrapper iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
 @media only screen and (max-width: 600px)  {
-  h2{
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  #app {
-    height: 100%;
-  }
-  .videoContainer{
-    width: 100%;
-    height: auto;
-  }
 }
 </style>
