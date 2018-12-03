@@ -11,69 +11,6 @@ export default {
 </script>
 
 <style>
-@font-face {
-  font-family: 'icomoon';
-  src:  url('/static/claNavidad/fonts/icomoon.eot?emph7v');
-  src:  url('/static/claNavidad/fonts/icomoon.eot?emph7v#iefix') format('embedded-opentype'),
-    url('/static/claNavidad/fonts/icomoon.ttf?emph7v') format('truetype'),
-    url('/static/claNavidad/fonts/icomoon.woff?emph7v') format('woff'),
-    url('/static/claNavidad/fonts/icomoon.svg?emph7v#icomoon') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
-  font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
-
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-ctrl:before {
-  content: "\ea50";
-}
-.icon-ctrl1:before {
-  content: "\ea51";
-}
-.icon-ctrl1{
-  font-size: 17px;
-  position: relative;
-  top: 2px;
-}
-.icon-ctrl{
-  font-size: 17px;
-  position: relative;
-  top: 2px;
-}
-
-.icon-share2:before {
-  content: "\ea82";
-}
-.icon-facebook:before {
-  content: "\ea90";
-}
-.icon-whatsapp:before {
-  content: "\ea93";
-}
-.icon-twitter:before {
-  content: "\ea96";
-}
-
-@font-face {
-  font-family: 'gabrielaregular';
-  src: url('/static/claNavidad/fonts/ydray-gabriela-regular-webfont.woff2') format('woff2'),
-    url('/static/claNavidad/fonts/ydray-gabriela-regular-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-}
 body, html{
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -101,11 +38,63 @@ body, html{
   left: 50%;
   transform: translate3d(-50%,0,0);
   overflow-y: scroll;
+  border: 10px solid white;
+  box-sizing: border-box;
 }
+
 #app.no-scroll{
   overflow-y: hidden;
   height: 100%
 }
-@media only screen and (max-width: 600px)  {
+.items-selector .rb-container .btn-rounded.disabled{
+  pointer-events: none;
+  opacity: 0.5
+}
+.parallax-container{
+  position: absolute;
+  perspective: 600px;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.5s
+}
+.parallax-container.enabled{
+  opacity: 1;
+}
+.parallax-item{
+  position: absolute;
+  display: inline-block;
+  width: 4vh;
+  height: 4vh;
+  transition: 0.1s;
+}
+.parallax-item-image{
+  background-size: contain;
+  background-repeat: no-repeat;
+  transform-origin: center;
+  width: 100%;
+  height: 100%;
+}
+#state-1 .parallax-item-image, #state-3 .parallax-item-image{
+  transform: rotate(180deg)
+}
+@media only screen and (max-width: 800px)  {
+  .parallax-container.enabled{
+    opacity: 0.7;
+  }
+}
+@keyframes diagonal {
+  0% {
+    transform: translate3d(-10%,-10%,0)
+  }
+  50%{
+    transform: translate3d(10%,10%,0)
+  }
+  100% {
+    transform: translate3d(-10%,-10%,0)
+  }
 }
 </style>

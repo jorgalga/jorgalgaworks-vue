@@ -3,29 +3,34 @@
 }
 .bb-container{
     display: inline-block;
-    margin-bottom: 40px;
-    border: 1px solid $action-color;
-    margin-right: 10px;
+    margin-bottom: 0;
+    // border: 1px solid $action-color;
+    margin-right: 0;
+    @media only screen and (max-width: $break-mobile)  {
+      transform: scale(0.75)
+    }
 }
 
 .button {
   cursor: pointer;
   -webkit-font-smoothing: antialiased;
   background-color: $dark-blue;
-  border: none;
   color: #fff;
   display: inline-block;
-  font-size: 17px;
+  font-size: 14px !important;
   font-weight: 100;
   text-decoration: none;
   user-select: none;
   letter-spacing: 1px;
   color: white;
-  padding: 20px 20px;
+  padding: 14px 14px;
   text-transform: uppercase;
   transition: all 0.1s ease-out;
-  min-width: 190px;
+  min-width: 10vw;
   text-align: center;
+  .icon-ctrl, .icon-ctrl1{
+    font-size: 14px;
+  }
   &.inverted{
     color: $action-color;
     background-color: white;
@@ -37,17 +42,21 @@
   }
   
   &:active {
-    transform: scale(0.95);
+    transform: scale(1);
   }
-
   &--bubble {
     position: relative;
     z-index: 2;
     color: white;
     background: none;
-
+    border: 2px solid $action-color;
+    height: 46px;
+    @media only screen and (max-width: $break-mobile)  {
+      min-width: 40vw;
+    }
     &:hover {
       background: none;
+      border: 2px solid transparent;
     }
 
     &:hover + .button--bubble__effect-container .circle {
@@ -58,14 +67,10 @@
       background: darken($action-color, 5%);
     }
 
-    &:active + .button--bubble__effect-container {
-      transform: scale(0.95);
-    }
-
     &__container {
       position: relative;
       display: inline-block;
-
+      height: 46px;
       .effect-button {
         position: absolute;
         width: 50%;
@@ -83,16 +88,15 @@
 
 .button--bubble__effect-container {
   position: absolute;
-  display: block;
+  display: inline-block;
   width: 200%;
   height: 400%;
-  top: -150%;
-  left: -50%;
-  -webkit-filter: url("#goo");
-  filter: url("#goo");
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
   transition: all 0.1s ease-out;
   pointer-events: none;
-
+  transform-origin: center;
   .circle {
     position: absolute;
     width: 25px;
@@ -100,7 +104,6 @@
     border-radius: 15px;
     background: $dark-blue;
     transition: background 0.1s ease-out;
-
     &.top-left {
         top: 40%;
         left: 27%;
@@ -111,11 +114,4 @@
         right: 27%;
     }
   }
-}
-
-.goo {
-  position: absolute;
-  visibility: hidden;
-  width: 1px;
-  height: 1px;
 }
