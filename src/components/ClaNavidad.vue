@@ -47,10 +47,12 @@
     <div id="sec-3" class="appsection pos-right">
       <a target="blank" class="img-btn"><img v-bind:width="(220 * dRatio) + 'px'" v-bind:height="(60 * dRatio) + 'px'" src="static/claNavidad/logo-aldeas-white.png"></a>
       <div id="video-viewport">
-        <div class="sprite-el" v-if="isMobile === true" v-for="item in videoConfig['v00']" v-bind:style="{'z-index': item.zIndex}" :key="item.index">
+        <div class="sprite-el" v-for="item in videoConfig['v00']" v-bind:style="{'z-index': item.zIndex}" :key="item.index">
+        </div>
+        <!--TESTdiv class="sprite-el" v-if="isMobile === true" v-for="item in videoConfig['v00']" v-bind:style="{'z-index': item.zIndex}" :key="item.index">
         </div>
         <video v-if="isMobile === false" playsinline v-for="item in videoConfig['v00']" preload="auto" v-bind:style="{'z-index': item.zIndex}" :key="item.index">
-        </video>
+        </video-->
         <div class="video-mask"></div>
       </div>
       <div id="vidDrag" class="video-draggables" v-bind:style="'width: 900px; height: 900px; transform: translate3d(-50%,-50%,0) scale('+dScale+')'">
@@ -71,7 +73,7 @@
         </svg>
         <div id="hold-video-button">
           <div class='container'>
-            <span class='pulse-button'>Pulsar</span>
+            <span class='pulse-button'><div><span>Pulsar</span></div></span>
           </div>
           <div class="flecha" style="display: none"></div>
         </div>
@@ -213,7 +215,6 @@
       </div>
     </div>
     <div id="sec-0" class="appsection" v-bind:style="'background-image: url('+pathStatic+pathMobile+randomized+'?v='+hashCode+')'">
-      <a href="" class="bbll" target="_blank"><p>Bases legales</p></a>
       <div class="parallax-container">
       </div>
       <div class="appsection-container">
@@ -240,6 +241,7 @@
           </div>
         </div>
       </div>
+      <a href="https://www.centrallecheraasturiana.es/unlitrounregalo/docs/BN_Campaña_Navidad_Central_Lechera_Asturiana_2018.pdf" class="bbll" target="_blank"><p>Bases legales</p></a>
     </div>
     <div v-bind:id="'ui-'+secActive+''+lecheSelected+''+patternSelected" class="ui-elements">
       <div class="debug-info">{{debug}}</div>
@@ -251,6 +253,12 @@
         <a target="_blank" href="https://www.whatsapp.com/" class="btn-rounded socialLink"><span class="icon-whatsapp"></span></a>
       </div>
     </div>
+    <!--div id="catapult-cookie-bar" class="">
+      <div class="ctcc-inner ">
+        <span class="ctcc-left-side">Esta página web utiliza cookies propias y de terceros. Si sigue navegando por la página, significa que está de acuerdo y acepta nuestra <a class="ctcc-more-info-link" tabindex="0" target="_blank" href="https://www.centrallecheraasturiana.es/es/politica-de-cookies/">Política de cookies.</a></span>
+        <span class="ctcc-right-side"><button id="catapultCookie" tabindex="0" onclick="catapultAcceptCookies();">Aceptar</button></span>
+      </div>
+    </div-->
     <div id="loader" class="loading-splash fadeout translucid">
       <div class="container">
         <img width="64px" height="64px" src="static/claNavidad/loader_v3.gif">
@@ -501,13 +509,14 @@ export default {
       var _ = this
       var viewport = document.getElementById('video-viewport')
       var vids = document.getElementsByTagName('VIDEO')
-      if (_.isMobile) {
+      // TEST if (_.isMobile) {
+      if (_) {
         vids = document.getElementsByClassName('sprite-el')
         for (let i = 0; i < vids.length; i++) {
           // console.log(vids[i])
-          _.sprites.push(new SpriteCSS(vids[i]))
+          _.sprites.push(new SpriteCSS(vids[i], _.isMobile))
         }
-        // console.log(_.sprites)
+        console.log(_.sprites)
       } else {
         console.log(vids)
         for (let i = 0; i < vids.length; i++) {
@@ -635,7 +644,7 @@ export default {
         drg.angles[0] = (drg.angles[2] - drg.angles[1]) * position + drg.angles[1]
         _.debug = position
         tl.progress(position)
-        sprite.setFrame(position)
+        sprite.setFrame(Math.min(position, 1.0))
       }
       function CheckIsDragEnd () {
         // console.log('dragend')
@@ -646,7 +655,10 @@ export default {
         }
         if (position > 0.99) {
           // console.log('Position 1')
-          sprite.sprite_el.style.display = 'none'
+          if (index < 3) {
+            _.sprites[index + 2].updateBG()
+          }
+          sprite.sprite_el.classList.add('faded')
           document.getElementById('curved-drag-' + _.interIndex).classList.remove('displayed')
           _.interIndex++
           if (_.interIndex < _.videoConfig['v' + _.lecheSelected + _.patternSelected].length - 1) {
@@ -803,16 +815,19 @@ export default {
         let toLoad = new Image()
         toLoad.onload = function () {
           window.imgsLoaded.push(toLoad)
-          _.sprites[il].updateBG(toLoad.src)
+          // _.sprites[il].updateBG(toLoad.src)
+          _.sprites[il].url = toLoad.src
           // console.log('loaded ' + il)
           _.loadingProgress = parseInt(_.loadingProgress) + 20
           if (il === 4) {
             // console.log('all preloaded')
+            _.sprites[0].updateBG()
+            _.sprites[1].updateBG()
             setTimeout(function () {
               clearInterval(interval)
               _.hideLoader()
               _.transitionNextPage()
-            }, 1000)
+            }, 2000)
           } else {
             il++
             loadRecImages()
@@ -822,16 +837,20 @@ export default {
       }
       // ---
       if ((this.secActive + 1) === 3) {
-        if (_.isMobile) {
-          // console.log(_.spriteSheets[_.lecheSelected][_.patternSelected][0].url)
+        // if (_.isMobile) {
+        if (_) {
+          console.log(_.spriteSheets[_.lecheSelected][_.patternSelected][0].url)
           _.showLoader()
           // console.log(window.imgsLoaded)
           // --- LOAD
           loadRecImages()
           for (let i = 0; i < _.sprites.length; i++) {
             _.sprites[i].url = _.spriteSheets[_.lecheSelected][_.patternSelected][i].url
-            _.sprites[i].frames = _.spriteSheets[_.lecheSelected][_.patternSelected][i].frames
-            // _.sprites[i].updateBG((_.pathStatic + _.pathMobile))
+            if (_.isMobile) {
+              _.sprites[i].frames = _.spriteSheets[_.lecheSelected][_.patternSelected][i].frames
+            } else {
+              _.sprites[i].frames = _.spriteSheets[_.lecheSelected][_.patternSelected][i].framesD
+            }
             _.spriteDragControllers(_.sprites[i], i)
           }
         } else {
@@ -879,6 +898,22 @@ export default {
           setTimeout(function () {
             _.initParallax()
           }, 500)
+        }
+        if (_.secActive === 3) {
+          /*
+          setTimeout(function () {
+            _.sprites[2].updateBG()
+            // document.getElementsByClassName('sprite-el')[2].style.display = 'inline-block'
+          }, 2000)
+          setTimeout(function () {
+            _.sprites[3].updateBG()
+            // document.getElementsByClassName('sprite-el')[3].style.display = 'inline-block'
+          }, 2500)
+          setTimeout(function () {
+            _.sprites[4].updateBG()
+            // document.getElementsByClassName('sprite-el')[4].style.display = 'inline-block'
+          }, 3000)
+          */
         }
       }
     },
@@ -1015,9 +1050,9 @@ export default {
             el.style.height = ''
           }, 500)
           if (_.lecheSelected % 2 === 1) {
-            document.getElementById('sec-1').getElementsByClassName('text-container')[0].classList.add('inverted')
+            document.getElementById('sec-1').getElementsByClassName('text-container')[0].classList.remove('translucid')
           } else {
-            document.getElementById('sec-1').getElementsByClassName('text-container')[0].classList.remove('inverted')
+            document.getElementById('sec-1').getElementsByClassName('text-container')[0].classList.add('translucid')
           }
           document.getElementById('leche-selector-der').getElementsByClassName('btn-rounded')[0].classList.remove('disabled')
           document.getElementById('leit-' + (_.lecheSelected + 1)).classList.add('hidden')
@@ -1504,7 +1539,7 @@ export default {
         clip-path: polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%);
       }
       &.hidden{
-        opacity: 0;
+        opacity: 1;
       }
     }
   }
@@ -1541,9 +1576,9 @@ export default {
       position: absolute;
       top: calc(50% + 45px);
       left: calc(71% - 60px);
-      background-color: #ffffff;
+      background-color: #ffffff ;
       padding: 2%;
-      // transition: 1s;
+      transition: 1s;
       // min-width: 400px;
       .m-copy{
         display: none;
@@ -1917,13 +1952,21 @@ export default {
         opacity: 0;
         pointer-events: none;
       }
+      &:nth-child(1){
+        display: inline-block
+      }
     }
     .sprite-el{
-      width: 375px;
-      height: 667px;
+      width: 1280px;
+      height: 720px;
       background-color: aliceblue;
       transition: 0s;
       background-position: top left;
+      background-repeat: no-repeat;
+      @media only screen and (max-width: $break-mobile) {
+        width: 375px;
+        height: 667px;
+      }
       //background-image: url('#{$staticpath}static/claNavidad/_mobile/sprites/sptest.jpg');
     }
     .timeline {
@@ -2019,13 +2062,32 @@ export default {
         text-align: center;
         line-height: 100px;
         color: white;
-        border: none;
+        border: 2px solid white;
         border-radius: 50%;
-        background: $claBlue;
+        //background: $claBlue;
         cursor: pointer;
         box-shadow: 0 0 0 0 rgba(white, 1);
         animation: pulse 1.5s infinite;
-        transition: 1s
+        transition: 1s;
+        div{
+          background-color: $claBlue;
+          width: 90%;
+          height: 90%;
+          border-radius: 50%;
+          position: absolute;
+          transform: translate3d(-50%,-50%,0);
+          top: 50%;
+          left: 50%;
+          span{
+            text-align: center;
+            width: 90%;
+            font-size: 22px;
+            position: absolute;
+            transform: translate3d(-50%,-50%,0);
+            top: 50%;
+            left: 50%;
+          }
+        }
       }
       .pulse-button.pulsed {
         animation: pulse2 0.5s infinite;
@@ -2051,11 +2113,11 @@ export default {
         }
         70% {
           transform: scale(1);
-          box-shadow: 0 0 0 50px rgba(white, 0);
+          //box-shadow: 0 0 0 50px rgba(white, 0);
         }
           100% {
           transform: scale(.9);
-          box-shadow: 0 0 0 0 rgba($claBlue, 0);
+          //box-shadow: 0 0 0 0 rgba($claBlue, 0);
         }
       }
       @keyframes pulse2 {
@@ -2116,6 +2178,7 @@ export default {
       background-size: cover;
       background-position: left bottom;
       @media only screen and (max-width: $break-mobile)  {
+        background-position: center;
         height: 33%;
         width: 100%;
       }

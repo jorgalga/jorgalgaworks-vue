@@ -1,8 +1,13 @@
 export class SpriteCSS {
-  constructor (el) {
+  constructor (el, m) {
     this.sprite_el = el
-    this.wFrame = 375
-    this.frames = 48
+    this.mobile = m
+    if (this.mobile) {
+      this.wFrame = 375
+    } else {
+      this.hFrame = 720
+    }
+    this.frames = 0
     this.currentFrame = 0
     this.url = ''
     this.setResizing()
@@ -29,21 +34,43 @@ export class SpriteCSS {
     }
   }
   setFrame (polarPos) {
-    this.currentFrame = Math.floor((this.frames - 1) * polarPos) * this.wFrame
-    this.sprite_el.style.backgroundPositionX = '-' + this.currentFrame + 'px'
+    if (this.mobile) {
+      this.currentFrame = Math.floor((this.frames - 2) * polarPos) * this.wFrame
+      this.sprite_el.style.backgroundPositionX = '-' + this.currentFrame + 'px'
+    } else {
+      this.currentFrame = Math.floor((this.frames - 2) * polarPos) * this.hFrame
+      this.sprite_el.style.backgroundPositionY = '-' + this.currentFrame + 'px'
+    }
   }
   nextFrame () {
-    this.currentFrame += this.wFrame
-    this.sprite_el.style.backgroundPositionX = '-' + this.currentFrame + 'px'
+    if (this.mobile) {
+      this.currentFrame += this.wFrame
+      this.sprite_el.style.backgroundPositionX = '-' + this.currentFrame + 'px'
+    } else {
+      this.currentFrame += this.hFrame
+      this.sprite_el.style.backgroundPositionY = '-' + this.currentFrame + 'px'
+    }
   }
   updateBG (path) {
-    this.sprite_el.style.backgroundImage = 'url(' + path + ')'
+    if (path) {
+      this.sprite_el.style.backgroundImage = 'url(' + path + ')'
+    } else {
+      this.sprite_el.style.backgroundImage = 'url(' + this.url + ')'
+    }
   }
   isAtTheEnd () {
-    if (this.currentFrame >= (this.frames - 1) * this.wFrame) {
-      return true
+    if (this.mobile) {
+      if (this.currentFrame >= (this.frames - 2) * this.wFrame) {
+        return true
+      } else {
+        return false
+      }
     } else {
-      return false
+      if (this.currentFrame >= (this.frames - 2) * this.hFrame) {
+        return true
+      } else {
+        return false
+      }
     }
   }
 }
