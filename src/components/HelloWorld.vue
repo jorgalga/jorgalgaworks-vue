@@ -3,7 +3,7 @@
     <vrworld></vrworld>
     <about></about>
     <portfolio :id="id"></portfolio>
-    <experience></experience>
+    <!--experience></experience-->
     <studies></studies>
     <exhibitions></exhibitions>
   </div>
