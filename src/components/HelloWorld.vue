@@ -1,6 +1,5 @@
 <template>
   <div class="hello">
-    <clanavidad></clanavidad>
   </div>
 </template>
 
@@ -36,7 +35,7 @@ export default {
 <style scoped>
 
 .hello{
-  background-color: white;
+  background-color: purple;
   position: relative;
   height: 100%;
 }

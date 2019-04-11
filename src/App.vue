@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <!-- img class="logo" src="./assets/logo2.png" -->
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/hello">Hello</router-link>
+    </div>
     <router-view/>
   </div>
 </template>
@@ -38,7 +41,6 @@ body, html{
   left: 50%;
   transform: translate3d(-50%,0,0);
   overflow-y: scroll;
-  border: 10px solid white;
   box-sizing: border-box;
 }
 
@@ -46,55 +48,14 @@ body, html{
   overflow-y: hidden;
   height: 100%
 }
-.items-selector .rb-container .btn-rounded.disabled{
-  pointer-events: none;
-  opacity: 0.5
-}
-.parallax-container{
+#nav{
   position: absolute;
-  perspective: 600px;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.5s
-}
-.parallax-container.enabled{
-  opacity: 1;
-}
-.parallax-item{
-  position: absolute;
-  display: inline-block;
-  width: 4vh;
-  height: 4vh;
-  transition: 0.1s;
-}
-.parallax-item-image{
-  background-size: contain;
-  background-repeat: no-repeat;
-  transform-origin: center;
-  width: 100%;
-  height: 100%;
-}
-#state-1 .parallax-item-image, #state-3 .parallax-item-image{
-  transform: rotate(180deg)
-}
-@media only screen and (max-width: 800px)  {
-  .parallax-container.enabled{
-    opacity: 0.7;
-  }
-}
-@keyframes diagonal {
-  0% {
-    transform: translate3d(-10%,-10%,0)
-  }
-  50%{
-    transform: translate3d(10%,10%,0)
-  }
-  100% {
-    transform: translate3d(-10%,-10%,0)
-  }
+  background-color: white;
+  z-index: 9999;
+  font-size: 40px;
+  line-height: 1;
+  padding: 10px;
 }
 </style>
