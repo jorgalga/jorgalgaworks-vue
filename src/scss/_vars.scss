@@ -1,10 +1,10 @@
 
 $staticpath: 'https://www.centrallecheraasturiana.es/unlitrounregalo/test/';
-//$staticpath: '/';
-$fontpath: '//jorgalga.github.io/static/fonts/';
+$staticpath: '/';
+$fontpath: '/static/fonts/';
 $break-mobile: 800px;
-
-$claBlue: #1b6aa8;
-$dark-blue: $claBlue;
-$action-color: $claBlue;
-
+//sizes
+$pagewidth: 1600px;
+// colors
+$black: #000;
+$fontcolor: white;

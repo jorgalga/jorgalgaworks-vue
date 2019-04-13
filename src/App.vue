@@ -1,10 +1,12 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
+    <!--div id="nav">
+      <router-link to="/">Home</router-link>
       <router-link to="/hello">Hello</router-link>
-    </div>
-    <router-view/>
+    </div-->
+    <transition name="router-anim">
+      <router-view/>
+    </transition>
   </div>
 </template>
 <script>
@@ -13,49 +15,52 @@ export default {
 }
 </script>
 
-<style>
-body, html{
-  margin: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
-}
-.noSelect {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  outline: none;
-}
-
+<style scoped lang="scss">
+@import 'scss/_vars.scss';
+@import 'scss/_fonts.scss';
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  display: inline-block;
   height: 100%;
   width: 100%;
-  position: fixed;
-  left: 50%;
-  transform: translate3d(-50%,0,0);
-  overflow-y: scroll;
-  box-sizing: border-box;
+  background-color: black;
 }
-
 #app.no-scroll{
   overflow-y: hidden;
   height: 100%
 }
-#nav{
+.page{
   position: absolute;
-  top: 0;
-  left: 0;
-  background-color: white;
-  z-index: 9999;
-  font-size: 40px;
-  line-height: 1;
-  padding: 10px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+}
+.router-anim-enter-active{
+  animation: coming 0.5s;
+  animation-delay: 0.5s;
+  opacity: 0;
+}
+.router-anim-leave-active{
+  animation: going 0.5s;
+}
+@keyframes  coming {
+  from {
+    transform: translateY(-0);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes  going {
+  from {
+    transform: translateX(0)
+  }
+  to {
+    transform: translateY(0);
+    opacity: 0;
+  }
 }
 </style>

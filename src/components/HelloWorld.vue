@@ -1,10 +1,11 @@
 <template>
-  <div class="hello">
+  <div class="page">
+    <div class="page-content">
+    </div>
   </div>
 </template>
 
 <script>
-import ClaNavidad from '@/components/ClaNavidad'
 
 export default {
   name: 'HelloWorld',
@@ -17,7 +18,6 @@ export default {
     }
   },
   components: {
-    'clanavidad': ClaNavidad
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)
@@ -32,14 +32,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-
-.hello{
+<style scoped lang="scss">
+@import '../scss/_vars.scss';
+.page-content{
+  margin: 0 auto;
+  max-width: $pagewidth;
+  min-height: 10000px;
   background-color: purple;
-  position: relative;
-  height: 100%;
-}
-.slide-image.sl1{
-  background-image: url('/static/slider-0.jpg')
 }
 </style>

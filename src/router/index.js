@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import VueMasonry from 'vue-masonry-css'
-import Home from '@/views/Home'
-import HelloWorld from '@/components/HelloWorld'
+import Home from '@/views/home'
+import Speakers from '@/views/speakers'
 import VueObserveVisibility from 'vue-observe-visibility'
 import VueCarousel from 'vue-carousel'
 
@@ -20,15 +20,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/:id',
-      name: 'HelloWorld 1',
-      component: HelloWorld,
-      props: true
-    },
-    {
-      path: '/hello',
-      name: 'HelloWorld 2',
-      component: HelloWorld
+      path: '/speakers',
+      name: 'Speakers & artists',
+      component: Speakers
     }
   ]
 })

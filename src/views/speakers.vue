@@ -2,35 +2,25 @@
   <div class="page">
     <div class="page-content">
       <unMenu></unMenu>
-      <unCountdown test="HolakeAse"></unCountdown>
     </div>
   </div>
 </template>
 <script>
 import unMenu from '@/components/unMenu'
-import unCountdown from '@/components/unCountdown'
 export default {
-  name: 'Home',
+  name: 'Speakers',
   props: ['id'],
   data () {
     return {
-      msg: '',
-      vh: window.innerHeight / 1.75,
-      vw: Math.min(1024, window.innerWidth / 1.25)
+      msg: ''
     }
   },
   components: {
-    'unCountdown': unCountdown,
     'unMenu': unMenu
   },
   mounted () {
-    window.addEventListener('resize', this.handleResize)
   },
   methods: {
-    handleResize () {
-      this.vh = window.innerHeight / 1.75
-      this.vw = Math.min(1024, window.innerWidth / 1.25)
-    }
   }
 }
 </script>

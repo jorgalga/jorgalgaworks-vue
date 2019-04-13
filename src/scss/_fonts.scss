@@ -1,72 +1,15 @@
 @font-face {
-  font-family: 'icomoon';
-  src:  url('#{$fontpath}icomoon.eot?emph7v');
-  src:  url('#{$fontpath}comoon.eot?emph7v#iefix') format('embedded-opentype'),
-    url('#{$fontpath}icomoon.ttf?emph7v') format('truetype'),
-    url('#{$fontpath}icomoon.woff?emph7v') format('woff'),
-    url('#{$fontpath}fonts/icomoon.svg?emph7v#icomoon') format('svg');
+  font-family: 'overpassregular';
+  src: url('#{$staticpath}static/unleash/fonts/overpass-regular-webfont.woff2') format('woff2'),
+       url('#{$staticpath}static/unleash/fonts/overpass-regular-webfont.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
-
-[class^="icon-"], [class*=" icon-"] {
-  /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: 'icomoon' !important;
-  speak: none;
-  font-style: normal;
+@font-face {
+  font-family: 'overpass_blackregular';
+  src: url('#{$staticpath}static/unleash/fonts/overpass-black-webfont.woff2') format('woff2'),
+       url('#{$staticpath}static/unleash/fonts/overpass-black-webfont.woff') format('woff');
   font-weight: normal;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1;
+  font-style: normal;
 
-  /* Better Font Rendering =========== */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.icon-ctrl:before {
-  content: "\ea50";
-}
-.icon-ctrl1:before {
-  content: "\ea51";
-}
-.icon-ctrl1{
-  font-size: 17px;
-  position: relative;
-  top: 2px;
-}
-.icon-ctrl{
-  font-size: 17px;
-  position: relative;
-  top: 2px;
-}
-
-.icon-share2:before {
-  content: "\ea82";
-}
-.icon-facebook:before {
-  content: "\ea90";
-}
-.icon-whatsapp:before {
-  content: "\ea93";
-}
-.icon-twitter:before {
-  content: "\ea96";
-}
-
-
-@font-face {
-    font-family: 'gabrielaregular';
-    src: url('#{$fontpath}ydray-gabriela-regular-webfont.woff2') format('woff2'),
-      url('#{$fontpath}ydray-gabriela-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-  
-@font-face {
-    font-family: 'nixie_oneregular';
-    src: url('#{$fontpath}nixieone-regular-webfont.woff2') format('woff2'),
-           url('#{$fontpath}nixieone-regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal; 
 }
