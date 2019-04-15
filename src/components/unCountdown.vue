@@ -26,7 +26,6 @@
 import {ThreeEarth} from '../lib/ThreeEarth'
 export default {
   name: 'unCountdown',
-  props: ['test'],
   data () {
     return {
       msg: 'Count down component',
@@ -83,6 +82,7 @@ export default {
 .component-container{
   background-color: black;
   height: 90vh;
+  max-height: 900px;
   position: relative;
 }
 #countdown-three{

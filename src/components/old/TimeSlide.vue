@@ -96,7 +96,7 @@
       <div v-bind:id="'bg-block'+item.id" v-for="item in images.slice().reverse()" class="background-block" :key="item.id">
         <div class="loader"></div>
         <div class="background-full"></div>
-        <div class="background-blur" v-bind:style="{ 'background-image': 'url('+ cmpPath + pMobile + item.pathBlurred + ')' }"></div>
+        <div class="background-blur" v-="{ 'background-image': 'url('+ cmpPath + pMobile + item.pathBlurred + ')' }"></div>
         <div class="bg-thumb"></div>
       </div>
       <div id="camdetail1"></div>

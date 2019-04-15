@@ -34,6 +34,7 @@ export default {
   height: 100%;
   margin: 0 auto;
   overflow-y: scroll;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 .router-anim-enter-active{

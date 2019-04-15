@@ -2,11 +2,14 @@
   <div class="page">
     <div class="page-content">
       <unMenu></unMenu>
+      <unWrapper type="speakers"></unWrapper>
+      <unWrapper type="artists"></unWrapper>
     </div>
   </div>
 </template>
 <script>
 import unMenu from '@/components/unMenu'
+import unWrapper from '@/components/unWrapper'
 export default {
   name: 'Speakers',
   props: ['id'],
@@ -16,7 +19,8 @@ export default {
     }
   },
   components: {
-    'unMenu': unMenu
+    'unMenu': unMenu,
+    'unWrapper': unWrapper
   },
   mounted () {
   },

@@ -2,13 +2,17 @@
   <div class="page">
     <div class="page-content">
       <unMenu></unMenu>
-      <unCountdown test="HolakeAse"></unCountdown>
+      <unHomeinfo></unHomeinfo>
+      <unCountdown></unCountdown>
+      <unFooter></unFooter>
     </div>
   </div>
 </template>
 <script>
 import unMenu from '@/components/unMenu'
+import unHomeinfo from '@/components/unHomeinfo'
 import unCountdown from '@/components/unCountdown'
+import unFooter from '@/components/unFooter'
 export default {
   name: 'Home',
   props: ['id'],
@@ -20,8 +24,10 @@ export default {
     }
   },
   components: {
+    'unMenu': unMenu,
+    'unHomeinfo': unHomeinfo,
     'unCountdown': unCountdown,
-    'unMenu': unMenu
+    'unFooter': unFooter
   },
   mounted () {
     window.addEventListener('resize', this.handleResize)
