@@ -1,18 +1,19 @@
 <template>
-  <div class="component-wrapper unwrapper" v-bind:class="$props.flipped">
-    <div class="component-container " v-bind:style="'padding: 0 '+15*scaleR+'px'">
+  <div class="component-wrapper unwrappersimple" v-bind:class="$props.flipped">
+    <div class="white-band" v-bind:style="'height:'+180*scaleR+'px'"></div>
+    <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+180*scaleR+'px'">
         <div class="text-button" v-html="$props.type" v-bind:style="'font-size:'+90*scaleR+'px'"></div>
       </div>
       <div class="unwrap-container opened">
         <div class="flex-grid">
-          <div class="col">
+          <!--div class="col">
             <div id="names" v-bind:style="'height:'+900*scaleR+'px'">
               <div v-for="(item, index) in data[$props.type]" @click.prevent="goToItem(index)" v-bind:class="{'name-item':true, 'active': index === itemActive }" v-bind:style="'height:'+80*scaleR+'px'" :key="item.id">
                 <div class="name-text" v-html="item.name" v-bind:style="'font-size:'+36*scaleR+'px'"></div>
               </div>
             </div>
-          </div>
+          </div-->
           <div class="col">
             <div ref="myCarousel" class="main-carousel">
               <div v-for="item in data[$props.type]" class="carousel-cell" :key="item.index">
@@ -22,7 +23,7 @@
           </div>
           <div class="col">
             <transition name="router-anim" mode="out-in">
-                <div class="info-item-container" v-bind:style="'padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
+                <div class="info-item-container" v-bind:style="'height:'+900*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
                   <div class="social-container" v-bind:style="'padding:'+15*scaleR+'px'">
                     <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+50*scaleR+'px;height:'+50*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
                     </div>
@@ -40,7 +41,7 @@
 <script>
 import Flickity from 'flickity'
 export default {
-  name: 'unWrapper',
+  name: 'unWrappersimple',
   props: ['type', 'flipped'],
   data () {
     return {
@@ -64,8 +65,7 @@ export default {
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
-      console.log()
-      this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
     },
     splitInSpans () {
       console.log(this.$props.type)
@@ -94,7 +94,8 @@ export default {
         // options
         cellAlign: 'left',
         contain: true,
-        pageDots: true
+        pageDots: false,
+        prevNextButtons: false
       })
       // vanilla JS
       _.flkty.on('change', function (index) {
@@ -111,15 +112,20 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../scss/_vars.scss';
-.component-wrapper.unwrapper{
+.component-wrapper.unwrappersimple{
   width: 100%;
-  background-color: darkgrey;
-  background-color: white;
+  background-color: black;
+  position: relative;
+  .white-band{
+    background-color: white;
+    position: absolute;
+    width: 100%;
+  }
   .component-container{
     position: relative;
-    max-width: $pagewidth;
+    /*max-width: $pagewidth;*/
     margin: 0 auto;
-    background-color: white;
+    background-color: black;
     box-sizing: border-box;
   }
   &.inverse{
@@ -134,7 +140,7 @@ export default {
     }
   }
 }
-.unwrapper {
+.unwrappersimple {
   .unwrap-button{
     background-color: black;
     cursor: pointer;
@@ -167,18 +173,17 @@ export default {
   }
   .flex-grid{
     display: flex;
-    border: 1px solid  darkgrey;
+    border: none solid darkgrey;
     box-sizing: border-box;
   }
   .col{
-    flex-grow: 1;
-    flex-basis: 0;
+    flex-grow: 0;
   }
   .col:nth-child(1){
+    flex-basis: 66.6%;
   }
   .col:nth-child(2){
-  }
-  .col:nth-child(3){
+    flex-basis: 33.3%;
     background-color: $magenta
   }
   @media (max-width: $break-mobile) {

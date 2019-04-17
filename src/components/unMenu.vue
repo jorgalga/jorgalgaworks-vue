@@ -1,13 +1,15 @@
 <template>
-  <div class="component-container">
-    <div id="nav">
-      <router-link to="/">Home<span class="underline-container"><span class="underline"></span></span></router-link>
-      <router-link to="/speakers">Speakers & artists<span class="underline-container"><span class="underline"></span></span></router-link>
-      <router-link to="/space">Space<span class="underline-container"><span class="underline"></span></span></router-link>
-      <router-link to="/space">Partners<span class="underline-container"><span class="underline"></span></span></router-link>
-      <router-link to="/space">Organizer<span class="underline-container"><span class="underline"></span></span></router-link>
+  <div class="component-wrapper unmenu">
+    <div class="component-container">
+      <div id="nav" v-bind:style="'font-size:'+18*scaleR+'px'">
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/">{{data.page_names.home}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/speakers">{{data.page_names.speakers}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.organizer}}<span class="underline-container"><span class="underline"></span></span></router-link>
+      </div>
+      <div id='logo'  v-bind:style="'width:'+150*scaleR+'px;height:'+50*scaleR+'px'"></div>
     </div>
-    <div id='logo'></div>
   </div>
 </template>
 
@@ -17,15 +19,24 @@ export default {
   props: ['test'],
   data () {
     return {
-      msg: 'Count down component',
-      cd: {days: 0, hours: '00', mins: '00', secs: '00'}
+      scaleR: 1
     }
   },
   created () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.resizeHandler()
+    })
   },
   mounted () {
   },
   methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+    }
   }
 }
 </script>
@@ -33,19 +44,26 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../scss/_vars.scss';
-.component-container{
-  position: relative;
+.component-wrapper.unmenu{
+  width: 100%;
+  background-color: darkgrey;
+  background-color: black;
+  .component-container{
+    position: relative;
+    max-width: $pagewidth;
+    margin: 0 auto;
+    background-color: black;
+    box-sizing: border-box;
+  }
 }
+
 #nav{
   z-index: 9999;
-  font-size: 40px;
   line-height: 1;
   font-family: 'overpassregular';
-  font-size: 18px;
   text-align: right;
   a{
     display: inline-block;
-    padding: 45px;
     text-decoration: none;
     color: $fontcolor;
     cursor: pointer;
@@ -83,7 +101,5 @@ export default {
   background-image: url('#{$staticpath}static/unleash/logo-unleash-blanco.png');
   background-repeat: no-repeat;
   background-size: contain;
-  width: 148px;
-  height: 51px;
 }
 </style>

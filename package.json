@@ -81,7 +81,8 @@
     "webpack-bundle-analyzer": "^2.9.0",
     "webpack-dev-server": "^2.9.1",
     "webpack-merge": "^4.1.0",
-    "flickity": "^2.2.0"
+    "flickity": "^2.2.0",
+    "vue-marquee-text-component": "^1.1.1"
   },
   "engines": {
     "node": ">= 6.0.0",
