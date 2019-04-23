@@ -30,7 +30,7 @@ export default {
 @import '../scss/_vars.scss';
 .component-container{
   position: relative;
-  height: 900px;
+  height: 850px;
 }
 /* VARS */
 $color-text: #fff;

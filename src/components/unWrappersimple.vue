@@ -1,9 +1,9 @@
 <template>
   <div class="component-wrapper unwrappersimple" v-bind:class="$props.flipped">
-    <div class="white-band" v-bind:style="'height:'+180*scaleR+'px'"></div>
+    <div class="white-band" v-bind:style="'height:'+160*scaleR+'px'"></div>
     <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
-      <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+180*scaleR+'px'">
-        <div class="text-button" v-html="$props.type" v-bind:style="'font-size:'+90*scaleR+'px'"></div>
+      <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
+        <div class="text-button" v-html="$props.type" v-bind:style="'font-size:'+48*scaleR+'px'"></div>
       </div>
       <div class="unwrap-container opened">
         <div class="flex-grid">
@@ -23,7 +23,7 @@
           </div>
           <div class="col">
             <transition name="router-anim" mode="out-in">
-                <div class="info-item-container" v-bind:style="'height:'+900*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
+                <div class="info-item-container" v-bind:style="'height:'+850*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
                   <div class="social-container" v-bind:style="'padding:'+15*scaleR+'px'">
                     <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+50*scaleR+'px;height:'+50*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
                     </div>
@@ -167,7 +167,7 @@ export default {
     max-height: 0;
     transition: max-height 0.5s ease-out;
     &.opened{
-      max-height: 900px;
+      max-height: 850px;
       transition: max-height 0.5s ease-in;
     }
   }

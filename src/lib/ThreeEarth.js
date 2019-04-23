@@ -218,8 +218,8 @@ export class ThreeEarth {
   }
   animate () {
     let _ = this
-    _.earth.getObjectByName('surface').rotation.y += 1 / 32 * 0.01
-    _.earth.getObjectByName('atmosphere').rotation.y += 1 / 16 * 0.01
+    _.earth.getObjectByName('surface').rotation.y += 1 / 32 * 0.01 * 1
+    _.earth.getObjectByName('atmosphere').rotation.y += 1 / 16 * 0.01 * 1
 
     // _.cameraRotation += _.cameraRotationSpeed
     _.camera.position.y = 0

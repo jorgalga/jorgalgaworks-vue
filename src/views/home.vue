@@ -3,6 +3,9 @@
     <div class="page-content">
       <unMenu></unMenu>
       <unHomeinfo></unHomeinfo>
+      <unQuestion type="home" qindex=0></unQuestion>
+      <unVideo></unVideo>
+      <unQuestion type="home" qindex=1></unQuestion>
       <unCountdown></unCountdown>
       <unFooter></unFooter>
     </div>
@@ -11,6 +14,8 @@
 <script>
 import unMenu from '@/components/unMenu'
 import unHomeinfo from '@/components/unHomeinfo'
+import unQuestion from '@/components/unQuestion'
+import unVideo from '@/components/unVideo'
 import unCountdown from '@/components/unCountdown'
 import unFooter from '@/components/unFooter'
 export default {
@@ -26,7 +31,9 @@ export default {
   components: {
     'unMenu': unMenu,
     'unHomeinfo': unHomeinfo,
+    'unQuestion': unQuestion,
     'unCountdown': unCountdown,
+    'unVideo': unVideo,
     'unFooter': unFooter
   },
   mounted () {
@@ -46,6 +53,6 @@ export default {
 @import '../scss/_vars.scss';
 .page-content{
   margin: 0 auto;
-  max-width: $pagewidth;
+  max-width: 100%;
 }
 </style>

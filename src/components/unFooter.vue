@@ -91,6 +91,7 @@ export default {
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    padding-top: 60px;
   }
   .flex-grid{
     display: flex;

@@ -5,10 +5,11 @@
         <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/">{{data.page_names.home}}<span class="underline-container"><span class="underline"></span></span></router-link>
         <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/speakers">{{data.page_names.speakers}}<span class="underline-container"><span class="underline"></span></span></router-link>
         <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
-        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>
-        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.organizer}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/agenda">{{data.page_names.agenda}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/partners">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/organizers">{{data.page_names.organizers}}<span class="underline-container"><span class="underline"></span></span></router-link>
       </div>
-      <div id='logo'  v-bind:style="'width:'+150*scaleR+'px;height:'+50*scaleR+'px'"></div>
+      <div id='logo'  v-bind:style="'left:'+15*scaleR+'px;width:'+150*scaleR+'px;height:'+50*scaleR+'px'"></div>
     </div>
   </div>
 </template>

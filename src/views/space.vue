@@ -2,11 +2,12 @@
   <div class="page">
     <div class="page-content">
       <unMenu></unMenu>
-      <unPageheader type="speakers"></unPageheader>
-      <unWrapper type="speakers"></unWrapper>
-      <unWrapper type="artists" flipped="inverse"></unWrapper>
-      <unWrappersimple type="hosts"></unWrappersimple>
-      <unQuestion type="speakers" qindex="0"></unQuestion>
+      <unPageheader type="space"></unPageheader>
+      <unFloatingTags></unFloatingTags>
+      <unWrapperspace type="space_enter"></unWrapperspace>
+      <unWrapperspace type="space_shift"></unWrapperspace>
+      <unWrapperspace type="space_escape" configclass="darked"></unWrapperspace>
+      <unMap></unMap>
       <unFooter></unFooter>
     </div>
   </div>
@@ -14,12 +15,12 @@
 <script>
 import unMenu from '@/components/unMenu'
 import unPageheader from '@/components/unPageheader'
-import unWrapper from '@/components/unWrapper'
-import unWrappersimple from '@/components/unWrappersimple'
-import unQuestion from '@/components/unQuestion'
+import unFloatingTags from '@/components/unFloatingTags'
+import unWrapperspace from '@/components/unWrapperspace'
+import unMap from '@/components/unMap'
 import unFooter from '@/components/unFooter'
 export default {
-  name: 'Speakers',
+  name: 'Space',
   props: ['id'],
   data () {
     return {
@@ -29,9 +30,9 @@ export default {
   components: {
     'unMenu': unMenu,
     'unPageheader': unPageheader,
-    'unWrapper': unWrapper,
-    'unWrappersimple': unWrappersimple,
-    'unQuestion': unQuestion,
+    'unFloatingTags': unFloatingTags,
+    'unWrapperspace': unWrapperspace,
+    'unMap': unMap,
     'unFooter': unFooter
   },
   mounted () {
@@ -46,6 +47,7 @@ export default {
 @import '../scss/_vars.scss';
 .page-content{
   margin: 0 auto;
+  max-width: $pagewidth;
   max-width: 100%;
   background-color: white;
 }

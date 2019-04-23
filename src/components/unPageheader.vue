@@ -28,12 +28,11 @@
     </div>
     <div class="page-intro" v-bind:style="'height:'+550*scaleR+'px'">
       <div class="page-intro-container">
-          <div class="page-intro-title" v-bind:style="'font-size:'+90*scaleR+'px'">
-            {{data.page_content[$props.type].title}}
+          <div v-if="data.page_content[$props.type].title" class="page-intro-title" v-bind:style="'font-size:'+90*scaleR+'px'" v-html="data.page_content[$props.type].title">
           </div>
-          <div class="page-intro-description" v-bind:style="'font-size:'+36*scaleR+'px;padding-top:'+24*scaleR+'px'">
-            {{data.page_content[$props.type].description}}
+          <div v-if="data.page_content[$props.type].description" class="page-intro-description" v-bind:style="'font-size:'+36*scaleR+'px;padding-top:'+24*scaleR+'px'" v-html="data.page_content[$props.type].description">
           </div>
+          <div v-if="data.page_content[$props.type].showlogo" class="logo-trivu"></div>
       </div>
     </div>
   </div>
@@ -110,6 +109,7 @@ export default {
       font-family: 'overpassregular';
       color: $magenta;
       line-height: 1.3;
+      font-weight: 100;
     }
   }
   .marquee{
@@ -150,6 +150,7 @@ export default {
       transform: scaleX(0.1);
       opacity:0;
       transition: 0.5s;
+      transition-delay: 0.5s;
       &.displayed{
         opacity: 1;
         transform: scaleX(1)
@@ -225,7 +226,7 @@ export default {
     .page-intro-container{
       position: absolute;
       display: inline-block;
-      min-height: 10%;
+      min-height: 50%;
       width: 100%;
       top: 50%;
       left: 50%;
@@ -242,6 +243,18 @@ export default {
         width: 65%;
         margin: 0 auto;
         line-height: 1.3;
+      }
+      .logo-trivu{
+        width: 100%;
+        height: 100%;
+        display:inline-block;
+        position: absolute;
+        top:0;
+        left:0;
+        background-image: url('#{$staticpath}static/unleash/images/trivu.png');
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position:center;
       }
     }
   }
