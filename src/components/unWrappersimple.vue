@@ -3,9 +3,9 @@
     <div class="white-band" v-bind:style="'height:'+160*scaleR+'px'"></div>
     <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
-        <div class="text-button" v-html="$props.type" v-bind:style="'font-size:'+48*scaleR+'px'"></div>
+        <div ref="txtbtn" class="text-button" v-html="$props.type" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
-      <div class="unwrap-container opened">
+      <div ref="wcontainer" class="unwrap-container">
         <div class="flex-grid">
           <!--div class="col">
             <div id="names" v-bind:style="'height:'+900*scaleR+'px'">
@@ -23,13 +23,13 @@
           </div>
           <div class="col">
             <transition name="router-anim" mode="out-in">
-                <div class="info-item-container" v-bind:style="'height:'+850*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
+                <div class="info-item-container" v-bind:style="isMobile ? '' : 'height:'+850*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
                   <div class="social-container" v-bind:style="'padding:'+15*scaleR+'px'">
                     <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+50*scaleR+'px;height:'+50*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
                     </div>
                   </div>
                   <div class="name-container" v-html="data[$props.type][itemActive].name" v-bind:style="'font-size:'+60*scaleR+'px;padding:'+15*scaleR+'px'"></div>
-                  <div class="description-container" v-html="data[$props.type][itemActive].description" v-bind:style="'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'"></div>
+                  <div class="description-container" v-html="data[$props.type][itemActive].description" v-bind:style="isMobile ? 'font-size:'+28*scaleR+'px;' : 'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'"></div>
                 </div>
             </transition>
           </div>
@@ -42,19 +42,21 @@
 import Flickity from 'flickity'
 export default {
   name: 'unWrappersimple',
-  props: ['type', 'flipped'],
+  props: ['type', 'flipped', 'classopened'],
   data () {
     return {
       scaleR: 1,
-      itemActive: 0
+      itemActive: 0,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
     let _ = this
     _.data = window.dataConfig.data
-    _.opened = true
+    _.opened = false
     _.resizeHandler()
     window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
       _.resizeHandler()
     })
   },
@@ -66,9 +68,7 @@ export default {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
-    },
-    splitInSpans () {
-      console.log(this.$props.type)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     freezeInteraction (el, time) {
       el.classList.add('freeze')
@@ -80,13 +80,22 @@ export default {
       var el = $event.target
       if (this.opened) {
         this.opened = false
-        el.nextElementSibling.classList.remove('opened')
+        this.$refs.wcontainer.classList.remove('opened')
         this.freezeInteraction(el, 500)
       } else {
         this.opened = true
-        el.nextElementSibling.classList.add('opened')
+        this.$refs.wcontainer.classList.add('opened')
         this.freezeInteraction(el, 500)
       }
+    },
+    splitInSpans () {
+      // console.log(this.$refs.txtbtn.innerHTML)
+      var txt = this.$refs.txtbtn.innerHTML
+      var res = ''
+      for (var i = 0; i < txt.length; i++) {
+        res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+      }
+      this.$refs.txtbtn.innerHTML = res
     },
     initCarousel () {
       let _ = this
@@ -158,7 +167,46 @@ export default {
       line-height: 1;
       font-weight: 100;
       text-transform: uppercase;
-      pointer-events: none;
+      /deep/ .ll-container{
+        position: relative;
+        .letter{
+          text-align: center;
+          position: relative;
+          transition: 0.3s;
+          display: inline-block;
+        }
+        .line{
+          position: absolute;
+          height: 2px;
+          width: 60%;
+          display: inline-block;
+          background-color: black;
+          background-color: #FF00FF;
+          bottom: 0;
+          left: 0;
+          transform-origin: center left;
+          transform: scaleX(0);
+          transition: 0.15s;
+        }
+        &:hover{
+          @media (min-width: $break-mobile) {
+            .letter{
+              transform: translate3d(0,-25%,0)
+            }
+            .line{
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+    &:hover{
+      @media (min-width: $break-mobile) {
+        background-color: white;
+        .text-button{
+          color: black;
+        }
+      }
     }
   }
   .unwrap-container{
@@ -184,7 +232,9 @@ export default {
   }
   .col:nth-child(2){
     flex-basis: 33.3%;
-    background-color: $magenta
+    background-color: $magenta;
+    @media (max-width: $break-mobile) {
+    }
   }
   @media (max-width: $break-mobile) {
     .flex-grid{
@@ -193,6 +243,9 @@ export default {
   }
   .main-carousel{
     height: 100%;
+     @media (max-width: $break-mobile) {
+      height: 70vh;
+    }
   }
   .carousel-cell{
     width: 100%;
@@ -255,11 +308,17 @@ export default {
     text-transform: uppercase;
     font-weight: 600;
     color: white;
+    @media (max-width: $break-mobile) {
+      text-align: center;
+    }
   }
   .description-container{
     font-family: 'overpassregular';
     color: black;
     line-height: 1.3;
+    @media (max-width: $break-mobile) {
+      display: none;
+    }
   }
 }
 

@@ -7,6 +7,7 @@ import Space from '@/views/space'
 import Agenda from '@/views/agenda'
 import Partners from '@/views/partners'
 import Organizers from '@/views/organizers'
+import Tickets from '@/views/tickets'
 import VueObserveVisibility from 'vue-observe-visibility'
 
 Vue.use(Router)
@@ -14,7 +15,7 @@ Vue.use(VueMasonry)
 Vue.use(VueObserveVisibility)
 
 export default new Router({
-  mode: 'history',
+  /* mode: 'history', */
   routes: [
     {
       path: '/',
@@ -45,6 +46,11 @@ export default new Router({
       path: '/organizers',
       name: 'Organizers',
       component: Organizers
+    },
+    {
+      path: '/tickets',
+      name: 'Tickets',
+      component: Tickets
     }
   ]
 })

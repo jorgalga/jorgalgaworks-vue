@@ -3,13 +3,13 @@
     <div class="white-band" v-bind:style="'height:'+160*scaleR+'px'"></div>
     <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
-        <div class="text-button" v-html="data[$props.type].name" v-bind:style="'font-size:'+48*scaleR+'px'"></div>
+        <div ref="txtbtn" class="text-button" v-html="data[$props.type].name" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
       <div class="unwrap-container opened" v-bind:style="opened ? 'max-height:'+(data[$props.type].max_height*scaleR)*levels+'px' : 'max-height:0'">
         <div class="flex-grid">
           <div class="col" v-for="item in data[$props.type].items" :key="item.index" v-bind:class="data[$props.type].gsize">
             <div class="img-wrapper" v-bind:style="'height:'+data[$props.type].max_height*scaleR+'px'">
-              <div @click.prevent="openLink(item.url)" class="img-item" v-bind:style="'background-image: url('+data.img_src + item.img+')'"></div>
+              <div @click.prevent="openLink(item.url)" v-bind:id="item.tag_id" class="img-item" v-bind:style="'background-image: url('+data.img_src + item.img+')'"></div>
             </div>
           </div>
         </div>
@@ -39,15 +39,21 @@ export default {
     })
   },
   mounted () {
-    // this.splitInSpans()
+    this.splitInSpans()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     splitInSpans () {
-      console.log(this.$props.type)
+      var txt = this.$refs.txtbtn.innerHTML
+      var res = ''
+      for (var i = 0; i < txt.length; i++) {
+        res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+      }
+      this.$refs.txtbtn.innerHTML = res
     },
     freezeInteraction (el, time) {
       el.classList.add('freeze')
@@ -125,7 +131,50 @@ export default {
       line-height: 1;
       font-weight: 100;
       text-transform: uppercase;
-      pointer-events: none;
+      width: 70%;
+      text-align: center;
+      /deep/ .ll-container{
+        position: relative;
+        min-width: 20px;
+        display: inline-block;
+        .letter{
+          text-align: center;
+          position: relative;
+          transition: 0.3s;
+          display: inline-block;
+        }
+        .line{
+          position: absolute;
+          height: 2px;
+          width: 60%;
+          display: inline-block;
+          background-color: black;
+          background-color: #FF00FF;
+          bottom: 0;
+          left: 0;
+          transform-origin: center left;
+          transform: scaleX(0);
+          transition: 0.15s;
+        }
+        &:hover{
+          @media (min-width: $break-mobile) {
+            .letter{
+              transform: translate3d(0,-25%,0)
+            }
+            .line{
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+    &:hover{
+      @media (min-width: $break-mobile) {
+        background-color: white;
+        .text-button{
+          color: black;
+        }
+      }
     }
   }
   .flex-grid{

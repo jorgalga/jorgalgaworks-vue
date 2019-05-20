@@ -2,11 +2,11 @@
   <div class="component-wrapper unwrapper" v-bind:class="$props.flipped">
     <div class="component-container " v-bind:style="'padding: 0 '+15*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
-        <div class="text-button" v-html="$props.type" v-bind:style="'font-size:'+48*scaleR+'px'"></div>
+        <div ref="txtbtn" class="text-button" v-html="$props.type" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
-      <div class="unwrap-container opened">
+      <div ref="wcontainer" class="unwrap-container">
         <div class="flex-grid">
-          <div class="col">
+          <div class="col names">
             <div id="names" v-bind:style="'height:'+850*scaleR+'px'">
               <div v-for="(item, index) in data[$props.type]" @click.prevent="goToItem(index)" v-bind:class="{'name-item':true, 'active': index === itemActive }" v-bind:style="'height:'+80*scaleR+'px'" :key="item.id">
                 <div class="name-text" v-html="item.name" v-bind:style="'font-size:'+36*scaleR+'px'"></div>
@@ -20,15 +20,16 @@
               </div>
             </div>
           </div>
-          <div class="col">
+          <div class="col info">
             <transition name="router-anim" mode="out-in">
-                <div class="info-item-container" v-bind:style="'padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
+                <div class="info-item-container" v-bind:style="isMobile ? 'padding:15px' :'padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
                   <div class="social-container" v-bind:style="'padding:'+15*scaleR+'px'">
-                    <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+50*scaleR+'px;height:'+50*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
+                    <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+60*scaleR+'px;height:'+60*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
+                      <a v-bind:href="item.url" target="_blank"><span v-bind:class="item.class"></span></a>
                     </div>
                   </div>
                   <div class="name-container" v-html="data[$props.type][itemActive].name" v-bind:style="'font-size:'+60*scaleR+'px;padding:'+15*scaleR+'px'"></div>
-                  <div class="description-container" v-html="data[$props.type][itemActive].description" v-bind:style="'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'"></div>
+                  <div class="description-container" v-html="isMobile ? data[$props.type][itemActive].description_short : data[$props.type][itemActive].description" v-bind:style="isMobile ? 'font-size:'+32*scaleR+'px;' : 'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'"></div>
                 </div>
             </transition>
           </div>
@@ -41,34 +42,47 @@
 import Flickity from 'flickity'
 export default {
   name: 'unWrapper',
-  props: ['type', 'flipped'],
+  props: ['type', 'flipped', 'classopened'],
   data () {
     return {
       scaleR: 1,
-      itemActive: 0
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width,
+      itemActive: 0,
+      opened: false
     }
   },
   created () {
     let _ = this
     _.data = window.dataConfig.data
-    _.opened = true
     _.resizeHandler()
     window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
       _.resizeHandler()
     })
   },
   mounted () {
+    if (this.$props.classopened) {
+      this.$refs.wcontainer.classList.add('opened')
+      this.opened = true
+    }
     this.splitInSpans()
     this.initCarousel()
+    this.$forceUpdate()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
-      console.log()
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     splitInSpans () {
-      console.log(this.$props.type)
+      // console.log(this.$refs.txtbtn.innerHTML)
+      var txt = this.$refs.txtbtn.innerHTML
+      var res = ''
+      for (var i = 0; i < txt.length; i++) {
+        res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+      }
+      this.$refs.txtbtn.innerHTML = res
     },
     freezeInteraction (el, time) {
       el.classList.add('freeze')
@@ -77,14 +91,15 @@ export default {
       }, time)
     },
     toogle ($event) {
+      console.log('click')
       var el = $event.target
       if (this.opened) {
         this.opened = false
-        el.nextElementSibling.classList.remove('opened')
+        this.$refs.wcontainer.classList.remove('opened')
         this.freezeInteraction(el, 500)
       } else {
         this.opened = true
-        el.nextElementSibling.classList.add('opened')
+        this.$refs.wcontainer.classList.add('opened')
         this.freezeInteraction(el, 500)
       }
     },
@@ -139,6 +154,7 @@ export default {
     background-color: black;
     cursor: pointer;
     position: relative;
+    transition: 0;
     &.freeze{
       pointer-events: none;
     }
@@ -152,7 +168,47 @@ export default {
       line-height: 1;
       font-weight: 100;
       text-transform: uppercase;
-      pointer-events: none;
+      /deep/ .ll-container{
+        position: relative;
+        display: inline-block;
+        .letter{
+          text-align: center;
+          position: relative;
+          transition: 0.3s;
+          display: inline-block;
+        }
+        .line{
+          position: absolute;
+          height: 2px;
+          width: 60%;
+          display: inline-block;
+          background-color: black;
+          background-color: #FF00FF;
+          bottom: 0;
+          left: 0;
+          transform-origin: center left;
+          transform: scaleX(0);
+          transition: 0.15s;
+        }
+        &:hover{
+          @media (min-width: $break-mobile) {
+            .letter{
+              transform: translate3d(0,-25%,0)
+            }
+            .line{
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+    &:hover{
+      @media (min-width: $break-mobile) {
+        background-color: white;
+        .text-button{
+          color: black;
+        }
+      }
     }
   }
   .unwrap-container{
@@ -175,8 +231,13 @@ export default {
     flex-basis: 0;
   }
   .col:nth-child(1){
+    @media (max-width: $break-mobile) {
+      display: none;
+    }
   }
   .col:nth-child(2){
+    @media (max-width: $break-mobile) {
+    }
   }
   .col:nth-child(3){
     background-color: $magenta
@@ -188,6 +249,9 @@ export default {
   }
   .main-carousel{
     height: 100%;
+    @media (max-width: $break-mobile) {
+      height: 60vh;
+    }
   }
   .carousel-cell{
     width: 100%;
@@ -223,8 +287,9 @@ export default {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center top;
+    background-position: center;
     display: inline-block;
+    // min-height: 70vh;
   }
   .router-anim-enter-active{
     animation: coming 0.5s;
@@ -238,10 +303,24 @@ export default {
     box-sizing: border-box;
   }
   .social-container{
+     @media (max-width: $break-mobile) {
+       text-align: center;
+     }
     .social-link{
       display: inline-block;
       box-sizing: border-box;
       border-radius: 50%;
+      position: relative;
+      span{
+        display: inline-block;
+        font-size: 12px;
+        color: white;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%,-50%,0)
+      }
     }
   }
   .name-container{
@@ -250,11 +329,17 @@ export default {
     text-transform: uppercase;
     font-weight: 600;
     color: white;
+    @media (max-width: $break-mobile) {
+      text-align: center;
+    }
   }
   .description-container{
     font-family: 'overpassregular';
     color: black;
     line-height: 1.3;
+    @media (max-width: $break-mobile) {
+      // display: none;
+    }
   }
 }
 

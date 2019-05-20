@@ -4,6 +4,8 @@
       <unMenu></unMenu>
       <unPageheader type="organizers"></unPageheader>
       <unQuestion type="organizers" qindex="0"></unQuestion>
+      <unLines></unLines>
+      <unFloatingTags type="organizers"></unFloatingTags>
       <unFooter></unFooter>
     </div>
   </div>
@@ -11,7 +13,9 @@
 <script>
 import unMenu from '@/components/unMenu'
 import unPageheader from '@/components/unPageheader'
+import unFloatingTags from '@/components/unFloatingTags'
 import unQuestion from '@/components/unQuestion'
+import unLines from '@/components/unLines'
 import unFooter from '@/components/unFooter'
 export default {
   name: 'Space',
@@ -24,7 +28,9 @@ export default {
   components: {
     'unMenu': unMenu,
     'unPageheader': unPageheader,
+    'unFloatingTags': unFloatingTags,
     'unQuestion': unQuestion,
+    'unLines': unLines,
     'unFooter': unFooter
   },
   mounted () {

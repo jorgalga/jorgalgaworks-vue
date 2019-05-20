@@ -7,7 +7,7 @@ export class ThreeEarth {
   }
   init () {
     // Scene, Camera, Renderer
-    this.renderer = new THREE.WebGLRenderer({antialias: true})
+    this.renderer = new THREE.WebGLRenderer({antialias: true, alpha: true})
     this.scene = new THREE.Scene()
     this.aspect = this.domel.offsetWidth / this.domel.offsetHeight
     this.camera = new THREE.PerspectiveCamera(45, this.aspect, 0.1, 1500)

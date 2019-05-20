@@ -3,9 +3,9 @@
     <div class="page-content">
       <unMenu></unMenu>
       <unPageheader type="speakers"></unPageheader>
-      <unWrapper type="speakers"></unWrapper>
+      <unWrapper type="speakers" classopened="opened"></unWrapper>
       <unWrapper type="artists" flipped="inverse"></unWrapper>
-      <unWrappersimple type="hosts"></unWrappersimple>
+      <unWrappersimple type="host"></unWrappersimple>
       <unQuestion type="speakers" qindex="0"></unQuestion>
       <unFooter></unFooter>
     </div>
@@ -23,7 +23,8 @@ export default {
   props: ['id'],
   data () {
     return {
-      msg: ''
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   components: {
@@ -35,8 +36,20 @@ export default {
     'unFooter': unFooter
   },
   mounted () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.resizeHandler()
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+    })
   },
   methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    }
   }
 }
 </script>
@@ -48,5 +61,8 @@ export default {
   margin: 0 auto;
   max-width: 100%;
   background-color: white;
+}
+.component-wrapper.unquestion{
+  background-color: black;
 }
 </style>

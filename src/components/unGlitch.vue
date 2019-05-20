@@ -1,5 +1,5 @@
 <template>
-  <div class="component-container">
+  <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+850*scaleR+'px'">
     <div class="glitch">
       <div v-bind:style="'background-image: url(/static/unleash/'+$props.name+')'" class="glitch__img"></div>
       <div v-bind:style="'background-image: url(/static/unleash/'+$props.name+')'" class="glitch__img"></div>
@@ -15,14 +15,27 @@ export default {
   props: ['name'],
   data () {
     return {
-      msg: ''
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+      _.resizeHandler()
+    })
   },
   mounted () {
   },
   methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    }
   }
 }
 </script>
@@ -30,7 +43,9 @@ export default {
 @import '../scss/_vars.scss';
 .component-container{
   position: relative;
-  height: 850px;
+  @media (max-width: $break-mobile) {
+    height: 400px;
+  }
 }
 /* VARS */
 $color-text: #fff;

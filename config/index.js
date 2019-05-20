@@ -49,8 +49,8 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'unlitrounregalo/test/static',
-    assetsPublicPath: 'https://www.centrallecheraasturiana.es/', 
+    assetsSubDirectory: 'static',
+    assetsPublicPath: '//weunleash.com/', 
 
     /**
      * Source Maps

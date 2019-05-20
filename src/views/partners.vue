@@ -3,8 +3,8 @@
     <div class="page-content">
       <unMenu></unMenu>
       <unPageheader type="partners"></unPageheader>
-      <unWrappergrid type="partner_x"></unWrappergrid>
       <unWrappergrid type="partner_global"></unWrappergrid>
+      <unWrappergrid type="partner_x"></unWrappergrid>
       <unWrappergrid type="partner_generations"></unWrappergrid>
       <unWrappergrid type="partner_colaborator" configclass="darked"></unWrappergrid>
       <unQuestion type="partners" qindex=0></unQuestion>
@@ -48,5 +48,8 @@ export default {
   max-width: $pagewidth;
   max-width: 100%;
   background-color: white;
+}
+.component-wrapper.unquestion{
+  background-color: black;
 }
 </style>

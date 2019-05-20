@@ -3,10 +3,10 @@
     <div class="white-band" v-bind:style="'height:'+160*scaleR+'px'"></div>
     <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
-        <div class="text-button" v-html="data[$props.type].title" v-bind:style="'font-size:'+48*scaleR+'px'"></div>
+        <div ref="txtbtn"  class="text-button" v-html="data[$props.type].title" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
-      <div class="unwrap-container opened">
-        <div class="flex-grid" v-bind:style="'height:'+850*scaleR+'px;background-image: url('+data.img_src+data[$props.type].map+')'">
+      <div ref="wcontainer" class="unwrap-container">
+        <div class="flex-grid" v-bind:style="'height:'+1000*scaleR+'px;background-image: url('+data.img_src+data[$props.type].map+')'">
           <div class="col">
           </div>
           <div class="col" v-bind:style="'padding:'+15*scaleR+'px'">
@@ -36,34 +36,44 @@
 import Flickity from 'flickity'
 export default {
   name: 'unWrapperspace',
-  props: ['type', 'configclass'],
+  props: ['type', 'configclass', 'classopened'],
   data () {
     return {
       scaleR: 1,
-      itemActive: 0
+      itemActive: 0,
+      opened: false
     }
   },
   created () {
     let _ = this
     _.data = window.dataConfig.data
-    _.opened = true
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.resizeHandler()
     })
   },
   mounted () {
+    if (this.$props.classopened) {
+      this.$refs.wcontainer.classList.add('opened')
+      this.opened = true
+    }
     this.splitInSpans()
     this.initCarousel()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
-      console.log()
-      this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     splitInSpans () {
-      console.log(this.$props.type)
+      // console.log(this.$refs.txtbtn.innerHTML)
+      var txt = this.$refs.txtbtn.innerHTML
+      var res = ''
+      for (var i = 0; i < txt.length; i++) {
+        res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+      }
+      this.$refs.txtbtn.innerHTML = res
     },
     freezeInteraction (el, time) {
       el.classList.add('freeze')
@@ -72,14 +82,15 @@ export default {
       }, time)
     },
     toogle ($event) {
+      // console.log('click')
       var el = $event.target
       if (this.opened) {
         this.opened = false
-        el.nextElementSibling.classList.remove('opened')
+        this.$refs.wcontainer.classList.remove('opened')
         this.freezeInteraction(el, 500)
       } else {
         this.opened = true
-        el.nextElementSibling.classList.add('opened')
+        this.$refs.wcontainer.classList.add('opened')
         this.freezeInteraction(el, 500)
       }
     },
@@ -166,7 +177,46 @@ export default {
       line-height: 1;
       font-weight: 100;
       text-transform: uppercase;
-      pointer-events: none;
+      /deep/ .ll-container{
+        position: relative;
+        .letter{
+          text-align: center;
+          position: relative;
+          transition: 0.3s;
+          display: inline-block;
+        }
+        .line{
+          position: absolute;
+          height: 2px;
+          width: 60%;
+          display: inline-block;
+          background-color: black;
+          background-color: #FF00FF;
+          bottom: 0;
+          left: 0;
+          transform-origin: center left;
+          transform: scaleX(0);
+          transition: 0.15s;
+        }
+        &:hover{
+          @media (min-width: $break-mobile) {
+            .letter{
+              transform: translate3d(0,-25%,0)
+            }
+            .line{
+              transform: scaleX(1);
+            }
+          }
+        }
+      }
+    }
+    &:hover{
+      @media (min-width: $break-mobile) {
+        background-color: white;
+        .text-button{
+          color: black;
+        }
+      }
     }
   }
   .unwrap-container{

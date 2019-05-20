@@ -10,8 +10,8 @@
         <div class="col">
           <div class="text-container">
             <div class="text-wrapper">
-              <h2>Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span>young talent festival.
-              </h2>
+              <h2 v-bind:style="isMobile? 'margin-bottom:'+15+'px;font-size:30px' : 'margin-bottom:'+30*scaleR+'px;font-size:'+72*scaleR+'px'">Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span> talent festival.</h2>
+              <a href="/#/tickets"><img id="ticketshomeinfo" v-bind:width="225*scaleR+'px'" src="static/unleash/images/ticket.png"></a>
             </div>
           </div>
         </div>
@@ -27,10 +27,18 @@ export default {
   props: ['test'],
   data () {
     return {
-      msg: ''
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+      _.resizeHandler()
+    })
   },
   mounted () {
   },
@@ -39,6 +47,11 @@ export default {
       if (isVisible && !entry.target.classList.contains('displayed')) {
         entry.target.classList.add('displayed')
       }
+    },
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     }
   },
   components: {
@@ -52,13 +65,17 @@ export default {
 @import '../scss/_vars.scss';
 .component-wrapper.homeinfo{
   width: 100%;
-  background-color: darkgrey;
-  background-color: black;
+  //background-color: darkgrey;
+  //background-color: black;
+  padding-top: 126px;
+  @media (max-width: $break-mobile) {
+    padding-top: 50px;
+  }
   .component-container{
     position: relative;
     max-width: $pagewidth;
     margin: 0 auto;
-    background-color: black;
+    //background-color: black;
     box-sizing: border-box;
   }
 }
@@ -75,9 +92,8 @@ export default {
 }
 h2{
   font-family: 'space_monoregular';
-  font-size: 72px;
   font-weight: 100;
-  line-height: 86px;
+  line-height: 1.3;
   margin: 0;
   color: white;
 }
@@ -91,6 +107,22 @@ h2{
     transform: translate3d(-50%,-50%,0);
     display: inline-block;
     width: 85%;
+    a{
+      display: inline-block;
+    }
+    @media (max-width: $break-mobile) {
+      position: initial;
+      transform: translate3d(0,0,0);
+      padding: 30px 0 60px;
+      margin: 0 auto;
+      img{
+        width: 100px;
+      }
+    }
+  }
+  @media (max-width: $break-mobile) {
+    min-height: 200px;
+    text-align: center;
   }
 }
 

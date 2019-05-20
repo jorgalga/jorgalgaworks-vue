@@ -1,7 +1,15 @@
 <template>
-  <div class="page">
+  <div id="page" ref="page" class="page">
+    <unMenu></unMenu>
     <div class="page-content">
-      <unMenu></unMenu>
+      <div class="page-background">
+        <div class="page-background-container">
+          <div class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
+          <div class="circle t1" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
+          <div class="circle t2" v-bind:style="isMobile ? '' : 'height:'+1050*scaleR+'px;width:'+1050*scaleR+'px'"></div>
+          <div class="circle t3" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
+        </div>
+      </div>
       <unHomeinfo></unHomeinfo>
       <unQuestion type="home" qindex=0></unQuestion>
       <unVideo></unVideo>
@@ -23,10 +31,18 @@ export default {
   props: ['id'],
   data () {
     return {
-      msg: '',
-      vh: window.innerHeight / 1.75,
-      vw: Math.min(1024, window.innerWidth / 1.25)
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
+  },
+  created () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.resizeHandler()
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+    })
   },
   components: {
     'unMenu': unMenu,
@@ -37,12 +53,12 @@ export default {
     'unFooter': unFooter
   },
   mounted () {
-    window.addEventListener('resize', this.handleResize)
   },
   methods: {
-    handleResize () {
-      this.vh = window.innerHeight / 1.75
-      this.vw = Math.min(1024, window.innerWidth / 1.25)
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     }
   }
 }
@@ -54,5 +70,57 @@ export default {
 .page-content{
   margin: 0 auto;
   max-width: 100%;
+  position: relative;
+  perspective: 1px
+}
+.page-background{
+  top:50%;
+  left: 50%;
+  transform: translate3d(-50%,-50%,0);
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  opacity: 0.5;
+  .page-background-container{
+    margin: 0 auto;
+    max-width: $pagewidth;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    .square-magenta{
+      background-color: $magenta;
+      position: absolute;
+      top: 35%;
+      right: 0;
+    }
+    .circle.t1{
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid $magenta;
+      top: 28%;
+      right: 0;
+      transform: translate3d(60%,0,0);
+      opacity: 0.75;
+    }
+    .circle.t2{
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid white;
+      top: 35%;
+      left: 0;
+      transform: translate3d(-25%,0,0);
+      opacity: 0.75;
+    }
+    .circle.t3{
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid $magenta;
+      background-color: $magenta;
+      top: 77%;
+      left: 0;
+      transform: translate3d(-40%,0,0);
+      opacity: 0.75;
+    }
+  }
 }
 </style>

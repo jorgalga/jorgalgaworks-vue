@@ -2,21 +2,21 @@
   <div class="component-container">
     <div id="countdown-three"></div>
     <div id="clockdiv">
-      <div class="cd-item">
-        <span class="days" v-html="cd.days"></span>
-        <div class="smalltext">Dias</div>
+      <div class="cd-item" v-bind:style="isMobile ? '' : 'margin:'+10*scaleR+'px;width:'+130*scaleR+'px;'">
+        <span class="days" v-html="cd.days"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <div class="smalltext">Days</div>
       </div>
       <div class="cd-item">
-        <span class="hours" v-html="cd.hours"></span>
-        <div class="smalltext">Horas</div>
+        <span class="hours" v-html="cd.hours"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <div class="smalltext">Hours</div>
       </div>
       <div class="cd-item">
-        <span class="minutes" v-html="cd.mins"></span>
-        <div class="smalltext">Minutos</div>
+        <span class="minutes" v-html="cd.mins"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <div class="smalltext">Minutes</div>
       </div>
       <div class="cd-item">
-        <span class="seconds" v-html="cd.secs"></span>
-        <div class="smalltext">Segundos</div>
+        <span class="seconds" v-html="cd.secs"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <div class="smalltext">Seconds</div>
       </div>
     </div>
   </div>
@@ -29,16 +29,30 @@ export default {
   data () {
     return {
       msg: 'Count down component',
-      cd: {days: 0, hours: '00', mins: '00', secs: '00'}
+      cd: {days: 0, hours: '00', mins: '00', secs: '00'},
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
+    var _ = this
+    _.data = window.dataConfig.data
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.resizeHandler()
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+    })
   },
   mounted () {
     this.tEarth = new ThreeEarth('countdown-three')
     this.initCountDown()
   },
   methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
     initCountDown () {
       let _ = this
       function getTimeRemaining (endtime) {
@@ -70,7 +84,7 @@ export default {
         updateClock()
         var timeinterval = setInterval(updateClock, 1000)
       }
-      var deadline = new Date(Date.parse(new Date('September 27,2019 00:00:00')))
+      var deadline = new Date(Date.parse(new Date(_.data.initDate)))
       initializeClock('clockdiv', deadline)
     }
   }
@@ -79,11 +93,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
+@import '../scss/_vars.scss';
 .component-container{
-  background-color: black;
+  //background-color: black;
   height: 90vh;
-  max-height: 900px;
+  max-height: 650px;
   position: relative;
+  @media (max-width: $break-mobile) {
+    height: 50vh;
+  }
 }
 #countdown-three{
   height: 100%;
@@ -95,6 +113,7 @@ export default {
   transform: translate3d(-50%,-50%,0);
   color: white;
   text-align: center;
+  width: 100%;
   .cd-item{
     background-color: #00000000;
     display: inline-block;
@@ -102,19 +121,31 @@ export default {
     margin: 10px;
     font-family: 'overpass_blackregular';
     color: transparent;
+    @media (max-width: $break-mobile) {
+      width: initial;
+      margin: 5px ;
+    }
     span{
       font-size: 60px;
       font-weight: 900;
-      -webkit-text-stroke-width: 2px;
+      -webkit-text-stroke-width: 1px;
       -webkit-text-stroke-color: white;
       display: block;
+      @media (max-width: $break-mobile) {
+        font-size: 30px;
+      }
     }
     .smalltext{
       color: white;
       text-transform: uppercase;
       display: inline-block;
       line-height: 2.5;
+      letter-spacing: 4px;
       border-top: 2px solid white;
+      font-weight: 100;
+       @media (max-width: $break-mobile) {
+        font-size: 12px;
+      }
     }
   }
 }
