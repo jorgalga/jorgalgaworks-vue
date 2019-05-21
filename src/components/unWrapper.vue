@@ -91,7 +91,7 @@ export default {
       }, time)
     },
     toogle ($event) {
-      console.log('click')
+      // console.log('click')
       var el = $event.target
       if (this.opened) {
         this.opened = false
@@ -168,6 +168,10 @@ export default {
       line-height: 1;
       font-weight: 100;
       text-transform: uppercase;
+      @media (max-width: $break-mobile) {
+        text-align: center;
+        width: 100%;
+      }
       /deep/ .ll-container{
         position: relative;
         display: inline-block;
