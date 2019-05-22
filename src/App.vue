@@ -1,18 +1,16 @@
 <template>
   <div id="app">
-    <!--div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/hello">Hello</router-link>
-    </div-->
     <transition name="router-anim" v-on:before-leave="beforeLeave">
       <router-view/>
     </transition>
-    <div ref="cookie" id="cookie-message" class="hidden">
+    <CMPcookies></CMPcookies>
+    <!--div ref="cookie" id="cookie-message" class="cookie-message hidden">
       <div class="cookie-body">
         <div class="text" v-html="data.cookie_message"></div>
         <div @click.prevent="buttonHandler()" class="button">OK</div>
       </div>
-    </div>
+    </div-->
+
     <div ref="sharepopup" class="popup hidden">
       <div class="close" @click.prevent="closepopup('sharepopup')">
         <div class="line"></div>
@@ -53,21 +51,25 @@
   </div>
 </template>
 <script>
+import CMPcookies from '@/components/CMP_cookies'
 export default {
   name: 'App',
+  components: {
+    'CMPcookies': CMPcookies
+  },
   data () {
     return {
       scaleR: 1,
       menuOpened: false,
-      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
+      isMobile: window.innerWidth < window.dataConfig.mobile_width
     }
   },
   created () {
     var _ = this
-    _.data = window.dataConfig.data
+    _.data = window.dataConfig
     _.resizeHandler()
     window.addEventListener('resize', function () {
-      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
+      _.isMobile = window.innerWidth < _.data.mobile_width
       _.resizeHandler()
     })
   },
@@ -79,10 +81,12 @@ export default {
     document.addEventListener('openPopup', function (e) {
       _.$refs.sharepopup.classList.remove('hidden')
     }, false)
+    /*
     if (_.getCookie('accepted') === '') {
       console.log('no cookie')
       _.$refs.cookie.classList.remove('hidden')
     }
+    */
     // _.$refs.formdata.innerHTML = _.data.hubspot
   },
   methods: {
@@ -352,9 +356,9 @@ export default {
     opacity: 0;
   }
 }
-#cookie-message{
+.cookie-message{
   min-height: 100px;
-  background-color: $magenta;
+  background-color: grey;
   width: calc(100% - 17px);
   bottom: 0;
   left:0;

@@ -2,12 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import VueMasonry from 'vue-masonry-css'
 import Home from '@/views/home'
-import Speakers from '@/views/speakers'
-import Space from '@/views/space'
-import Agenda from '@/views/agenda'
-import Partners from '@/views/partners'
-import Organizers from '@/views/organizers'
-import Tickets from '@/views/tickets'
 import VueObserveVisibility from 'vue-observe-visibility'
 
 Vue.use(Router)
@@ -18,39 +12,16 @@ export default new Router({
   /* mode: 'history', */
   routes: [
     {
-      path: '/',
-      name: 'Home page',
-      component: Home
+      path: '/:lang',
+      name: 'index',
+      component: Home,
+      props: true
     },
     {
-      path: '/speakers',
-      name: 'Speakers & artists',
-      component: Speakers
-    },
-    {
-      path: '/space',
-      name: 'The Space',
-      component: Space
-    },
-    {
-      path: '/agenda',
-      name: 'Agenda',
-      component: Agenda
-    },
-    {
-      path: '/partners',
-      name: 'Partners',
-      component: Partners
-    },
-    {
-      path: '/organizers',
-      name: 'Organizers',
-      component: Organizers
-    },
-    {
-      path: '/tickets',
-      name: 'Tickets',
-      component: Tickets
+      path: '/home/:lang',
+      name: 'Home',
+      component: Home,
+      props: true
     }
   ]
 })
