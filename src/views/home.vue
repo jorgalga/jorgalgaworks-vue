@@ -80,7 +80,7 @@ export default {
   height: 100%;
   width: 100%;
   position: absolute;
-  opacity: 0.5;
+  opacity: 1;
   .page-background-container{
     margin: 0 auto;
     max-width: $pagewidth;
@@ -100,7 +100,6 @@ export default {
       top: 28%;
       right: 0;
       transform: translate3d(60%,0,0);
-      opacity: 0.75;
     }
     .circle.t2{
       position: absolute;
@@ -109,7 +108,6 @@ export default {
       top: 35%;
       left: 0;
       transform: translate3d(-25%,0,0);
-      opacity: 0.75;
     }
     .circle.t3{
       position: absolute;
@@ -119,7 +117,6 @@ export default {
       top: 77%;
       left: 0;
       transform: translate3d(-40%,0,0);
-      opacity: 0.75;
     }
   }
 }

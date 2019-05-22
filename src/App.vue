@@ -19,7 +19,7 @@
         <div class="line"></div>
       </div>
       <div class="popup-container">
-        <div class="title">SHARE WHITH<br>YOUR FRIENDS</div>
+        <div class="title">SHARE WITH<br>YOUR FRIENDS</div>
         <div class="share-links">
           <div class="link-item">
             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fweunleash.com%2F">
@@ -27,12 +27,12 @@
             </a>
           </div>
           <div class="link-item">
-            <a target="_blank" href="https://twitter.com/intent/tweet?text=Say%20hello%20to%20the%20craziest%20talent%20festival.%0Ahttp%3A%2F%2Fweunleash.com%2F">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=The+world%E2%80%99s+greatest+and+craziest+talent+festival+is+coming+soon+with+incredible+young+entrepreneurs+and+artists+located+in+the+beautiful+city+of+Madrid.+Are+you+ready+to+UNLEASH+your+full+potential+and+be+transformed%3F+%23WeUnleash19.%0Ahttp%3A%2F%2Fweunleash.com%2F">
               <span class="icon-twitter"></span>
             </a>
           </div>
           <div class="link-item">
-            <a target="_blank" href="https://wa.me/?text=Say%20hello%20to%20the%20craziest%20talent%20festival.%0Ahttp%3A%2F%2Fweunleash.com%2F">
+            <a target="_blank" href="https://wa.me/?text=The+world%E2%80%99s+greatest+and+craziest+talent+festival+is+coming+soon+with+incredible+young+entrepreneurs+and+artists+located+in+the+beautiful+city+of+Madrid.+Are+you+ready+to+UNLEASH+your+full+potential+and+be+transformed+by+powerful+speakers+and+energetic+artists%3F+%23WeUnleash19.%0Ahttp%3A%2F%2Fweunleash.com%2F">
               <span class="icon-whatsapp"></span>
             </a>
           </div>
