@@ -1,10 +1,12 @@
 $staticpath: '/';
-$fontpath: '/static/fonts/';
-$break-mobile: 800px;
+$fontpath: 'static/minsait/fonts/';
+$break-mobile: 720px;
 //sizes
-$pagewidth: 1024px;
-$pagewidth2: 640px;
+$pagewidth: 1440px;
+$pagewidth2: 720px;
 // colors
 $black: #000;
 $fontcolor: white;
-$magenta: #FF00FF;
+$blue: #1a3b47;
+$darkblue: #0f242c;
+$softblue: #40c7b5;

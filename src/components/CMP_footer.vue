@@ -1,0 +1,119 @@
+<template>
+  <div class="component-wrapper cmpfooter">
+    <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'" >
+      <div class="col">
+        <div class="col-cont"><p>OneSait Platform®</p></div>
+      </div>
+      <div class="col">
+        <div class="col-cont"><p>Reglas del juego</p></div>
+      </div>
+      <div class="col">
+        <div class="col-cont"><a href="" class="link-footer"><span class="icon-twitter"></span></a></div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'CMP_footer',
+  props: ['test'],
+  data () {
+    return {
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.mobile_width,
+      data: window.dataConfig,
+      clang: 'es'
+    }
+  },
+  created () {
+    if (this.$route.params.lang) {
+      this.clang = this.$route.params.lang
+    }
+    var _ = this
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < _.data.mobile_width
+      _.resizeHandler()
+    })
+  },
+  mounted () {
+  },
+  methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+@import '../scss/_vars.scss';
+@import '../scss/_fonts.scss';
+.component-wrapper.cmpfooter{
+  width: 100%;
+  background-color: $darkblue;
+  transition: 1s;
+  position: relative;
+  .component-container{
+    max-width: $pagewidth;
+    margin: 0 auto;
+    box-sizing: border-box;
+    // background-color: #00000011;
+    min-height: 100px;
+    position:relative;
+    display: flex;
+    color: white;
+    font-family: 'SohoGothicPro-Light';
+    .col{
+      flex-grow: 1;
+      flex-basis: 0;
+      position: relative;
+      &:nth-child(2){
+        .col-cont{
+          text-align: center;
+        }
+      }
+      &:nth-child(3){
+        .col-cont{
+          text-align: right;
+        }
+      }
+    }
+    .col-cont{
+      position: absolute;
+      width: 100%;
+      top:50%;
+      transform: translate3d(0,-50%,0);
+      p{
+        margin: 0;
+      }
+    }
+  }
+  .link-footer{
+    background-color: $softblue;
+    text-decoration: none;
+    border-radius: 50%;
+    display: inline-block;
+    transition: 0.5s;
+    position: relative;
+    &:hover{
+      transform: scale(1.1) rotateY(360deg);
+      background-color:white;
+      span{
+      }
+    }
+    span{
+      color:$darkblue;
+      font-size: 30px;
+      line-height: 1;
+      margin: 12px;
+      display: inline-block;
+      position: relative;
+    }
+  }
+}
+</style>

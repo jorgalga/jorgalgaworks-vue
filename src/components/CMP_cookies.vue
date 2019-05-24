@@ -1,9 +1,9 @@
 <template>
-  <div ref="cookie" class="component-wrapper cookies">
+  <div ref="cookie" class="component-wrapper cookies hidden">
     <div class="component-container">
       <div class="cookie-message">
         <div class="cookie-body">
-          <div class="text" v-html="data.cookie_message"></div>
+          <div class="text" v-html="data.copy[clang].cookie_message"></div>
           <div @click.prevent="buttonHandler()" class="button">OK</div>
         </div>
       </div>
@@ -14,14 +14,18 @@
 <script>
 export default {
   name: 'CMP_cookies',
-  props: ['test'],
+  props: ['test', 'lang'],
   data () {
     return {
       scaleR: 1,
-      isMobile: window.innerWidth < window.dataConfig.mobile_width
+      isMobile: window.innerWidth < window.dataConfig.mobile_width,
+      clang: 'es'
     }
   },
   created () {
+    if (this.$route.params.lang) {
+      this.clang = this.$route.params.lang
+    }
     var _ = this
     _.data = window.dataConfig
     _.resizeHandler()
@@ -31,12 +35,43 @@ export default {
     })
   },
   mounted () {
+    var _ = this
+    if (_.getCookie('accepted') === '') {
+      setTimeout(function () {
+        _.$refs.cookie.classList.remove('hidden')
+      }, 1000)
+    }
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    getCookie (cname) {
+      var name = cname + '='
+      var decodedCookie = decodeURIComponent(document.cookie)
+      var ca = decodedCookie.split(';')
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i]
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1)
+        }
+        if (c.indexOf(name) === 0) {
+          return c.substring(name.length, c.length)
+        }
+      }
+      return ''
+    },
+    setCookie (cname, cvalue, exdays) {
+      var d = new Date()
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+      var expires = 'expires=' + d.toUTCString()
+      document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/'
+    },
+    buttonHandler () {
+      this.setCookie('accepted', '1', 7)
+      this.$refs.cookie.classList.add('hidden')
     }
   }
 }
@@ -48,22 +83,27 @@ export default {
 @import '../scss/_fonts.scss';
 .component-wrapper.cookies{
   width: 100%;
-  position: relative;
-  background-color: black;
+  width: calc(100% - 17px);
+  position: absolute;
+  background-color: white;
   display: inline-block;
+  bottom: 0;
+  left: 0;
+  transition: 1s;
+  &.hidden{
+    transform: translate3d(0,100%,0)
+  }
   .component-container{
     position: relative;
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
-    min-height: 100px;
   }
   .cookie-message{
-    min-height: 100px;
-    background-color: grey;
+    min-height: 150px;
+    background-color: $darkblue;
     width: calc(100% - 17px);
     width: 100%;
-    transition: 1s;
     .cookie-body{
       width: 100%;
       max-width: $pagewidth;
@@ -72,6 +112,7 @@ export default {
       top: 50%;
       left: 50%;
       transform: translate3d(-50%,-50%,0);
+      font-family: 'SohoGothicPro-Light';
       .text{
         padding-right: 100px;
         line-height: 1.3;
@@ -84,7 +125,6 @@ export default {
         background-color: black;
         display: inline-block;
         color: white;
-        font-family: 'space_monoregular';
         min-width: 75px;
         text-align: center;
         position: absolute;

@@ -12,14 +12,26 @@ export default new Router({
   /* mode: 'history', */
   routes: [
     {
+      path: '/',
+      name: 'index default',
+      component: Home,
+      props: true
+    },
+    {
       path: '/:lang',
-      name: 'index',
+      name: 'index with lang',
+      component: Home,
+      props: true
+    },
+    {
+      path: '/home/',
+      name: 'Home default',
       component: Home,
       props: true
     },
     {
       path: '/home/:lang',
-      name: 'Home',
+      name: 'Home with lang',
       component: Home,
       props: true
     }

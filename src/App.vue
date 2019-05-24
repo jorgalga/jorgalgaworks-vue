@@ -3,14 +3,7 @@
     <transition name="router-anim" v-on:before-leave="beforeLeave">
       <router-view/>
     </transition>
-    <CMPcookies></CMPcookies>
-    <!--div ref="cookie" id="cookie-message" class="cookie-message hidden">
-      <div class="cookie-body">
-        <div class="text" v-html="data.cookie_message"></div>
-        <div @click.prevent="buttonHandler()" class="button">OK</div>
-      </div>
-    </div-->
-
+    <cmpCookies></cmpCookies>
     <div ref="sharepopup" class="popup hidden">
       <div class="close" @click.prevent="closepopup('sharepopup')">
         <div class="line"></div>
@@ -51,11 +44,12 @@
   </div>
 </template>
 <script>
-import CMPcookies from '@/components/CMP_cookies'
+import cmpCookies from '@/components/CMP_cookies'
 export default {
   name: 'App',
+  props: ['lang'],
   components: {
-    'CMPcookies': CMPcookies
+    'cmpCookies': cmpCookies
   },
   data () {
     return {
@@ -207,12 +201,12 @@ export default {
     margin: 30px auto;
     box-sizing: border-box;
     .title{
-      color: $magenta;
       text-align: center;
       font-family: 'space_monoregular';
       font-size: 24px;
       line-height: 1.3;
       padding: 15px;
+      color: white;
     }
     .share-links{
       padding: 15px;
@@ -223,7 +217,6 @@ export default {
         width: 45px;
         height: 45px;
         margin-right: 15px;
-        border: 2px solid $magenta;
         position: relative;
         cursor: pointer;
         transition: .25s;
@@ -234,17 +227,17 @@ export default {
           position: relative
         }
         span{
+          color: white;
           font-size: 20px;
           line-height: 1;
           display: inline-block;
-          color:$magenta;
           top: 50%;
           left: 50%;
           position: absolute;
           transform: translate3d(-50%,-50%,0)
         }
         &:hover{
-          background-color: $magenta;
+          background-color: white;
           span{
             color: black;
           }
