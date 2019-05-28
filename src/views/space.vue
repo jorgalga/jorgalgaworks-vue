@@ -5,8 +5,8 @@
       <unPageheader type="space"></unPageheader>
       <unFloatingTags type="space"></unFloatingTags>
       <unWrapperspace type="space_enter" classopened="opened"></unWrapperspace>
-      <unWrapperspace type="space_shift"></unWrapperspace>
-      <unWrapperspace type="space_escape" configclass="darked"></unWrapperspace>
+      <unWrapperspace type="space_shift" classopened="opened"></unWrapperspace>
+      <unWrapperspace type="space_escape" classopened="opened" configclass="darked"></unWrapperspace>
       <unMap></unMap>
       <unFooter></unFooter>
     </div>

@@ -12,7 +12,7 @@
       <div id="nav">
         <router-link id="home-desktop" v-bind:style="'padding:'+45*scaleR+'px'" to="/">{{data.page_names.home}}<span class="underline-container"><span class="underline"></span></span></router-link>
         <router-link id="speakers-desktop" v-bind:style="'padding:'+45*scaleR+'px'" to="/speakers">{{data.page_names.speakers}}<span class="underline-container"><span class="underline"></span></span></router-link>
-        <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
+        <router-link id="space-desktop" v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
         <!--router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/agenda">{{data.page_names.agenda}}<span class="underline-container"><span class="underline"></span></span></router-link-->
         <router-link id="partners-desktop" v-bind:style="'padding:'+45*scaleR+'px'" to="/partners">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>
         <router-link id="organizers-desktop" v-bind:style="'padding:'+45*scaleR+'px'" to="/organizers">{{data.page_names.organizers}}<span class="underline-container"><span class="underline"></span></span></router-link>
@@ -29,7 +29,7 @@
             <router-link id="speakers-mobile" to="/speakers">{{data.page_names.speakers}}<span class="underline-container"><span class="underline"></span></span></router-link>
           </div>
           <div>
-            <router-link v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
+            <router-link id="space-mobile" v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
           </div>
           <div>
             <router-link id="partners-mobile" v-bind:style="'padding:'+45*scaleR+'px'" to="/partners">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>

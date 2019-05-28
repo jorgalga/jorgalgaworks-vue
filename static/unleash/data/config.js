@@ -14,7 +14,7 @@ var dataConfig = {
     page_names:{
       home: 'Home',
       speakers: 'Speakers & Artists',
-      space: 'The Space',
+      space: 'Space',
       agenda: 'Agenda',
       partners: 'Partners',
       organizers: 'Organizers'
@@ -578,7 +578,7 @@ var dataConfig = {
         id: 9,
         name: 'THIS COULD BE YOU!',
         img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talento or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
+        description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
         description_short: '<p>Are you interested in sharing your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()" target="_blank">YES</a></p>'
       }
     ],
@@ -716,7 +716,7 @@ var dataConfig = {
       name:'Founding partner',
       gsize: 'col-12',
       items_row: 1,
-      max_height: 800, 
+      max_height: 500, 
       items: [
         {
           id: '0',
@@ -729,9 +729,9 @@ var dataConfig = {
     },
     partner_global:{
       name:'Global partners',
-      gsize: 'col-6',
-      items_row: 2, 
-      max_height: 400, 
+      gsize: 'col-3',
+      items_row: 4, 
+      max_height: 300, 
       items: [
         {
           id: '1',

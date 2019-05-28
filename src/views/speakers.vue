@@ -4,8 +4,8 @@
       <unMenu></unMenu>
       <unPageheader type="speakers"></unPageheader>
       <unWrapper type="speakers" classopened="opened"></unWrapper>
-      <unWrapper type="artists" flipped="inverse"></unWrapper>
-      <unWrappersimple type="host"></unWrappersimple>
+      <unWrapper type="artists" classopened="opened" flipped="inverse"></unWrapper>
+      <unWrappersimple type="host" classopened="opened"></unWrappersimple>
       <unQuestion type="speakers" qindex="0"></unQuestion>
       <unFooter></unFooter>
     </div>

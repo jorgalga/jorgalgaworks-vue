@@ -168,9 +168,19 @@
         opacity: 1;
         z-index: 999;
       }
-      @media (max-width: 800px) {
+      @media (max-width: 840px) {
         .popupB{
           max-width: 90%;
+        }
+      }
+      @media (max-height: 700px) {
+        .popupB{
+          transform: translate3d(-50%,-50%,0) scale(0.75);
+        }
+      }
+      @media (max-height: 600px) {
+        .popupB{
+          transform: translate3d(-50%,-50%,0) scale(0.5);
         }
       }
       .popupB.hidden{
@@ -279,6 +289,25 @@
         font-family: 'overpassregular';
       }
     </style>
+    <!-- Facebook Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', '662762770851183'); 
+      fbq('track', 'PageView');
+    </script>
+    <noscript>
+     <img height="1" width="1" 
+    src="https://www.facebook.com/tr?id=662762770851183&ev=PageView
+    &noscript=1"/>
+    </noscript>
+    <!-- End Facebook Pixel Code -->
   </head>
   <body>
     <!-- Google Tag Manager (noscript) -->

@@ -5,7 +5,7 @@
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
         <div ref="txtbtn" class="text-button" v-html="data[$props.type].name" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
-      <div class="unwrap-container opened" v-bind:style="opened ? 'max-height:'+(data[$props.type].max_height*scaleR)*levels+'px' : 'max-height:0'">
+      <div class="unwrap-container opened" v-bind:style="opened ? 'max-height:'+(mheight*scaleR)*levels+'px' : 'max-height:0'">
         <div class="flex-grid">
           <div class="col" v-for="item in data[$props.type].items" :key="item.index" v-bind:class="data[$props.type].gsize">
             <div class="img-wrapper" v-bind:style="'height:'+data[$props.type].max_height*scaleR+'px'">
@@ -26,15 +26,20 @@ export default {
       scaleR: 1,
       itemActive: 0,
       opened: true,
-      levels: 1
+      levels: 1,
+      mheight: 0,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
     let _ = this
     _.data = window.dataConfig.data
     _.levels = Math.ceil(_.data[_.$props.type].items.length / _.data[_.$props.type].items_row)
+    console.log(_.levels)
+    _.mheight = _.data[_.$props.type].max_height
     _.resizeHandler()
     window.addEventListener('resize', function () {
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
       _.resizeHandler()
     })
   },
@@ -43,6 +48,12 @@ export default {
   },
   methods: {
     resizeHandler () {
+      var _ = this
+      if (_.isMobile) {
+        _.levels = _.data[_.$props.type].items.length
+      } else {
+        _.levels = Math.ceil(_.data[_.$props.type].items.length / _.data[_.$props.type].items_row)
+      }
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
@@ -183,6 +194,7 @@ export default {
     // flex-direction: column;
     border: 1px solid darkgrey;
     box-sizing: border-box;
+    justify-content: center;
   }
   .col-12 {
     flex-basis: 100%;
@@ -196,6 +208,9 @@ export default {
   }
   .col-3 {
     flex-basis: 25%;
+    @media (max-width: $break-mobile) {
+      flex-basis: 100%
+    }
   }
   .col-2 {
     flex-basis: 20%;

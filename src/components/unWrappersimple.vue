@@ -61,6 +61,10 @@ export default {
     })
   },
   mounted () {
+    if (this.$props.classopened) {
+      this.$refs.wcontainer.classList.add('opened')
+      this.opened = true
+    }
     this.splitInSpans()
     this.initCarousel()
   },
