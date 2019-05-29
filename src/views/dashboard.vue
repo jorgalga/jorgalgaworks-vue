@@ -1,21 +1,14 @@
 <template>
-  <div id="page" ref="page" class="page">
-    <compLogin></compLogin>
-    <!--cmpMenu></cmpMenu>
-    <cmpForm></cmpForm>
-    <cmpInfo></cmpInfo>
-    <cmpFooter></cmpFooter-->
+  <div ref="page" class="page">
+    <h1>DASHBOARD</h1>
+    <a href="#" @click="logout">Logout</a>
+    <p>You are logged</p>
   </div>
 </template>
 <script>
-import compLogin from '@/components/COMP_login'
-import cmpMenu from '@/components/CMP_menu'
-import cmpForm from '@/components/CMP_form'
-import cmpInfo from '@/components/CMP_info'
-import cmpFooter from '@/components/CMP_footer'
+import firebase from 'firebase'
 export default {
-  name: 'Home',
-  props: ['id', 'lang'],
+  name: 'Dashboard',
   data () {
     return {
       scaleR: 1,
@@ -24,9 +17,6 @@ export default {
     }
   },
   beforeCreate () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
   },
   created () {
     var _ = this
@@ -37,11 +27,6 @@ export default {
     })
   },
   components: {
-    'compLogin': compLogin,
-    'cmpMenu': cmpMenu,
-    'cmpForm': cmpForm,
-    'cmpInfo': cmpInfo,
-    'cmpFooter': cmpFooter
   },
   mounted () {
   },
@@ -50,6 +35,9 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    logout () {
+      firebase.auth().signOut().then(() => this.$router.replace('login'))
     }
   }
 }
@@ -58,10 +46,14 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 @import '../scss/_vars.scss';
-.page-content{
-  margin: 0 auto;
-  max-width: 100%;
-  position: relative;
-  perspective: 1px;
+.page{
+  h1, p, a{
+    font-family: 'SohoGothicPro-Medium';
+    color:  white;
+    font-size: 36px
+  }
+  a{
+    color: green;
+  }
 }
 </style>

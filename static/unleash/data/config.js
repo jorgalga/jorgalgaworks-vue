@@ -1,8 +1,8 @@
 var dataConfig = {
   testmode: false,
-  max_width_limit: 1440,
-  max_width: 1440,
-  mobile_width: 720,
+  max_width_limit: 1280,
+  max_width: 1280,
+  mobile_width: 640,
   img_src: '/static/minsait/images/',
   cookiespolicy: '/static/unleash/docs/Unleash-cookiespolicy.pdf',
   privacypolicy: '/static/unleash/docs/Unleash-privacypolicy.pdf',
