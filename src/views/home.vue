@@ -1,13 +1,14 @@
 <template>
-  <div id="page" ref="page" class="page">
+  <div ref="page" class="page">
     <unMenu></unMenu>
-    <div class="page-content">
+    <div class="page-content" ref="pgcnt">
       <div class="page-background">
         <div class="page-background-container">
-          <div class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
-          <div class="circle t1" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
-          <div class="circle t2" v-bind:style="isMobile ? '' : 'height:'+1050*scaleR+'px;width:'+1050*scaleR+'px'"></div>
-          <div class="circle t3" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
+          <div ref="sq1" class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
+          <div ref="cr1" class="circle t1" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
+          <div ref="cr2" class="circle t2" v-bind:style="isMobile ? '' : 'height:'+1050*scaleR+'px;width:'+1050*scaleR+'px'"></div>
+          <div ref="cr3" class="circle t3" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
+          <div ref="cr4" class="circle t4" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
         </div>
       </div>
       <unHomeinfo></unHomeinfo>
@@ -32,7 +33,8 @@ export default {
   data () {
     return {
       scaleR: 1,
-      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width,
+      ratio: 0
     }
   },
   created () {
@@ -53,12 +55,29 @@ export default {
     'unFooter': unFooter
   },
   mounted () {
+    console.log('mounted!! home')
+    var _ = this
+    this.el = _.$refs.page
+    this.pg = _.$refs.pgcnt
+    this.el.addEventListener('scroll', function () {
+      _.scrolling()
+    })
+    this.scrolling()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    scrolling () {
+      console.log(this.ratio)
+      this.ratio = this.el.scrollTop / (this.pg.offsetHeight - this.el.clientHeight)
+      this.$refs.sq1.style.transform = 'translate3d(0,' + Math.round((0.35 * this.pg.offsetHeight) - 500 * (0.35 - this.ratio)) + 'px,0)'
+      this.$refs.cr1.style.transform = 'translate3d(60%,' + Math.round((0.28 * this.pg.offsetHeight) - 250 * (0.28 - this.ratio)) + 'px,0)'
+      this.$refs.cr2.style.transform = 'translate3d(-25%,' + Math.round((0.35 * this.pg.offsetHeight) - 200 * (0.35 - this.ratio)) + 'px,0)'
+      this.$refs.cr3.style.transform = 'translate3d(-40%,' + Math.round((0.77 * this.pg.offsetHeight) - 400 * (0.77 - this.ratio)) + 'px,0)'
+      this.$refs.cr4.style.transform = 'translate3d(50%,' + Math.round((0.58 * this.pg.offsetHeight) - 1000 * (0.58 - this.ratio)) + 'px,0)'
     }
   }
 }
@@ -86,37 +105,45 @@ export default {
     max-width: $pagewidth;
     height: 100%;
     position: relative;
-    overflow: hidden;
     .square-magenta{
       background-color: $magenta;
       position: absolute;
-      top: 35%;
+      // top: 35%;
       right: 0;
+      transform: translate3d(0,0,0);
     }
     .circle.t1{
       position: absolute;
       border-radius: 50%;
-      border: 2px solid $magenta;
-      top: 28%;
+      border: 1px solid $magenta;
+      // top: 28%;
       right: 0;
       transform: translate3d(60%,0,0);
     }
     .circle.t2{
       position: absolute;
       border-radius: 50%;
-      border: 2px solid white;
-      top: 35%;
+      border: 1px solid white;
+      // top: 35%;
       left: 0;
       transform: translate3d(-25%,0,0);
     }
     .circle.t3{
       position: absolute;
       border-radius: 50%;
-      border: 2px solid $magenta;
+      border: 1px solid $magenta;
       background-color: $magenta;
-      top: 77%;
+      // top: 77%;
       left: 0;
       transform: translate3d(-40%,0,0);
+    }
+    .circle.t4{
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid white;
+      // top: 58%;
+      right: 0;
+      transform: translate3d(50%,0,0);
     }
   }
 }

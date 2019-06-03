@@ -98,15 +98,16 @@ export default {
 @import '../scss/_vars.scss';
 .component-wrapper.unwrappergrid{
   width: 100%;
-  background-color: white;
   position: relative;
   .white-band{
-    background-color: white;
     position: absolute;
     width: 100%;
   }
   &.darked{
     background-color: black;
+    .white-band{
+      background-color: white;
+    }
   }
   .component-container{
     position: relative;

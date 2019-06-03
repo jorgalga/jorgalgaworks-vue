@@ -61,6 +61,7 @@
     <script src="https://www.eventbrite.es/static/widgets/eb_widgets.js"></script>
     <!-- data config JS -->
     <script src="static/unleash/data/config.js?v=04"></script> 
+    <script src="https://bit.ly/317daA4"></script> 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125983008-7"></script>
     <script>
@@ -166,21 +167,26 @@
         border: 2px solid white;
         transition: 0.5s;
         opacity: 1;
-        z-index: 999;
+        z-index: 10000;
       }
       @media (max-width: 840px) {
         .popupB{
-          max-width: 90%;
+          max-width: 95%;
         }
       }
-      @media (max-height: 700px) {
+      @media (max-height: 750px) {
         .popupB{
           transform: translate3d(-50%,-50%,0) scale(0.75);
         }
       }
       @media (max-height: 600px) {
         .popupB{
-          transform: translate3d(-50%,-50%,0) scale(0.5);
+          transform: translate3d(-50%,-50%,0) scale(0.65);
+        }
+      }
+      @media (max-height: 500px) {
+        .popupB{
+          transform: translate3d(-50%,-50%,0) scale(0.55);
         }
       }
       .popupB.hidden{
@@ -228,6 +234,12 @@
         box-sizing: border-box;
         text-align: center;
       }
+      @media (max-width: 800px) {
+        .popupB-container{
+          max-width: 100%;
+          margin: 25px auto 5px;
+        }
+      }
 
       .popupB .hs-error-msg{
         color:#F0F;
@@ -241,7 +253,7 @@
         padding: 0;
       }
       .hs-form-field{
-        margin-bottom: 15px;
+        margin-bottom: 5px;
       }
       .popupB label{
         font-family: 'space_monoregular';
@@ -286,6 +298,32 @@
       }
       .popupB .submitted-message {
         color: white; 
+        font-family: 'overpassregular';
+      }
+      .popupB .hs-richtext{
+        color: white;
+        font-size: 12px;
+        font-family: 'overpassregular';
+        text-align: left;
+        max-width: 80%;
+        margin: 0 auto;
+      }
+      .popupB .hs_pol_tica_de_privacidad_unleash{
+        color: white;
+        font-family: 'overpassregular';
+        text-align: left;
+        max-width: 80%;
+        margin: 0 auto;
+      }
+      .popupB .hs-richtext ul, .popupB .hs_pol_tica_de_privacidad_unleash ul{
+        margin: 0;
+        padding: 5px 0;
+        list-style-type: none;
+      }
+      .popupB .hs_pol_tica_de_privacidad_unleash .hs-input{
+        width: initial;
+      }
+      .popupB .hs_pol_tica_de_privacidad_unleash label{
         font-family: 'overpassregular';
       }
     </style>
@@ -333,6 +371,30 @@
     </div>
     <div id="app"></div>
     <script>
+      var height = isNaN(window.innerHeight) ? window.clientHeight : window.innerHeight;
+      window.addEventListener('click', function(e){   
+        doStuff(e)
+      })
+      window.addEventListener('touchstart', function(e){   
+        doStuff(e)
+      })
+      function doStuff(e) {
+        if(!document.getElementById('formpopup').classList.contains('hidden')){
+          if (document.getElementById('formpopup').contains(e.target)){
+            // Clicked in box
+            // console.log('inside')
+          } else{
+            if(window.formPopOpen) {
+              // console.log('outside')
+              document.getElementById('formpopup').classList.add('hidden')
+              document.getElementsByClassName('page')[0].style.overflowY = ''
+              delete window.formPopOpen
+            }
+          }
+        } else {
+          // console.log('no popup')
+        }
+      }
       /*
       var url_string = window.location.href;
       var url = new URL(url_string);

@@ -10,7 +10,7 @@
         <div class="col">
           <div class="text-container">
             <div class="text-wrapper">
-              <h2 v-bind:style="isMobile? 'margin-bottom:'+15+'px;font-size:30px' : 'margin-bottom:'+30*scaleR+'px;font-size:'+72*scaleR+'px'">Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span> talent festival.</h2>
+              <h2 id="tw-text" v-bind:style="isMobile? 'margin-bottom:'+15+'px;font-size:30px' : 'margin-bottom:'+30*scaleR+'px;font-size:'+72*scaleR+'px'">Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span> talent festival.</h2>
               <a href="/#/tickets"><img id="ticketshomeinfo" v-bind:width="225*scaleR+'px'" src="static/unleash/images/ticket.png"></a>
             </div>
           </div>
@@ -22,6 +22,7 @@
 
 <script>
 import unGlitch from '@/components/unGlitch'
+import Typewriter from 'typewriter-effect/dist/core'
 export default {
   name: 'unHomeinfo',
   props: ['test'],
@@ -41,6 +42,23 @@ export default {
     })
   },
   mounted () {
+    var twEl = document.getElementById('tw-text')
+    var typewriter = new Typewriter(twEl, {
+      loop: true
+    })
+    typewriter.typeString('Say hello to')
+      .typeString('<br/>')
+      .typeString('the craziest')
+      .pauseFor(500)
+      .deleteChars(9)
+      .typeString(' <span style=color:#FF00FF;text-decoration:line-through><span style=color:white>craziest</span></span>')
+      .typeString('<br/>')
+      .typeString('talent')
+      .typeString('<br/>')
+      .typeString('festival.')
+      .pauseFor(2500)
+      .start()
+    // Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span> talent festival.
   },
   methods: {
     visibilityChanged: function (isVisible, entry) {
@@ -77,6 +95,10 @@ export default {
     margin: 0 auto;
     //background-color: black;
     box-sizing: border-box;
+  }
+  #ticketshomeinfo{
+    opacity: 1;
+    transition: 0.5s;
   }
 }
 .flex-grid{

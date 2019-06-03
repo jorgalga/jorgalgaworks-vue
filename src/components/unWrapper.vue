@@ -128,7 +128,6 @@ export default {
 @import '../scss/_vars.scss';
 .component-wrapper.unwrapper{
   width: 100%;
-  background-color: darkgrey;
   background-color: white;
   .component-container{
     position: relative;

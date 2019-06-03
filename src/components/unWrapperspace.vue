@@ -128,11 +128,16 @@ export default {
 @import '../scss/_vars.scss';
 .component-wrapper.unwrapperspace{
   width: 100%;
-  background-color: white;
+  background-color: transparent;
   .white-band{
-    background-color: white;
+    background-color: transparent;
     position: absolute;
     width: 100%;
+  }
+  &.darked{
+    .white-band{
+      background-color: white;
+    }
   }
   .component-container{
     position: relative;

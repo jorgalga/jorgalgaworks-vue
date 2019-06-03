@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div id="page" class="page">
     <div class="page-content">
       <unMenu></unMenu>
       <unPageheader type="organizers"></unPageheader>

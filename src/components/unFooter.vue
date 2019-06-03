@@ -80,9 +80,15 @@ export default {
     document.addEventListener('openPopupContact', function (e) {
       // _.$refs.formpopup.classList.remove('hidden')
       document.getElementById('formpopup').classList.remove('hidden')
+      document.getElementsByClassName('page')[0].style.overflowY = 'hidden'
+      setTimeout(function () {
+        window.formPopOpen = true
+      }, 1000)
     }, false)
     document.getElementById('formclose').addEventListener('click', function () {
       document.getElementById('formpopup').classList.add('hidden')
+      document.getElementsByClassName('page')[0].style.overflowY = ''
+      delete window.formPopOpen
     })
   },
   methods: {
