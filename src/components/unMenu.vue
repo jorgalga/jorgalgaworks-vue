@@ -110,12 +110,12 @@ export default {
         this.menuOpened = false
         this.$refs.menuMobile.classList.remove('opened')
         this.$refs.burguer.classList.remove('opened')
-        document.getElementById('page').classList.remove('no-scroll')
+        document.getElementsByClassName('page')[0].classList.remove('no-scroll')
       } else {
         this.menuOpened = true
         this.$refs.menuMobile.classList.add('opened')
         this.$refs.burguer.classList.add('opened')
-        document.getElementById('page').classList.add('no-scroll')
+        document.getElementsByClassName('page')[0].classList.add('no-scroll')
       }
     }
   }
@@ -236,7 +236,7 @@ export default {
       padding: 15px;
     }
     div.ticket-black{
-      background-image: url('#{$staticpath}static/unleash/images/ticket_white.png');
+      background-image: url('#{$staticpath}static/unleash/images/ticket_white.svg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -362,12 +362,17 @@ export default {
     top: 50%;
   }
   .ticket-image{
-    background-image: url('#{$staticpath}static/unleash/images/ticket.png');
+    background-image: url('#{$staticpath}static/unleash/images/ticket.svg');
     background-repeat: no-repeat;
     background-size: contain;
     width: 100px;
     height: 30px;
     display: inline-block;
+    transition: .25s;
+    &:hover{
+      transform: scale(1.1);
+      background-image: url('#{$staticpath}static/unleash/images/ticket_white.svg');
+    }
   }
   .share-link{
     display: inline-block;
@@ -389,6 +394,7 @@ export default {
     &:hover{
       span{
         transform: translate3d(-50%,-50%,0) scale(1.1);
+        color: white;
       }
     }
   }

@@ -42,7 +42,7 @@ export class ThreeEarth {
         },
         textures: {
           map: '/static/unleash/threeworld/earthcloudmap.jpg',
-          alphaMap: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/141228/earthcloudmaptrans.jpg'
+          alphaMap: '/static/unleash/threeworld/earthcloudmaptrans.jpg'
         },
         glow: {
           size: 0.25,

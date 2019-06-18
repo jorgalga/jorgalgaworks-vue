@@ -1,7 +1,7 @@
 <template>
-  <div class="component-wrapper unvideo" v-bind:style="isMobile ? '' : 'height:'+1130*scaleR+'px;'">
+  <div class="component-wrapper unvideo" v-bind:style="isMobile ? '' : 'height:'+1300*scaleR+'px;'">
     <div class="component-container parallax__layer parallax__layer--base" v-bind:style="isMobile ? 'padding: 15px;' : 'padding:0 '+15*scaleR+'px;'">
-      <div class="video-block" v-bind:style="isMobile ? 'height:70vw; margin-bottom:30px;' : 'height:'+525*scaleR+'px;margin-bottom:'+80*scaleR+'px'">
+      <div class="video-block" v-bind:style="isMobile ? 'height:70vw; margin-bottom:30px;' : 'height:'+525*scaleR+'px;margin-bottom:'+240*scaleR+'px'">
         <div class="video-container">
           <div id="video1"></div>
           <div id="video1-button" @click.prevent="removeLayer1('video1-button')"></div>

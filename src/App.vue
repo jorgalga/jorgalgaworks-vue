@@ -27,7 +27,7 @@
             </a>
           </div>
           <div class="link-item">
-            <a target="_blank" href="https://twitter.com/intent/tweet?text=The+world%E2%80%99s+greatest+and+craziest+talent+festival+is+coming+soon+with+incredible+young+entrepreneurs+and+artists+located+in+the+beautiful+city+of+Madrid.+Are+you+ready+to+UNLEASH+your+full+potential+and+be+transformed%3F+%23WeUnleash19.%0Ahttp%3A%2F%2Fweunleash.com%2F">
+            <a target="_blank" href="https://twitter.com/intent/tweet?text=The%20world%E2%80%99s%20greatest%20and%20craziest%20talent%20festival%20is%20coming%20soon%20with%20incredible%20young%20entrepreneurs%20and%20artists%20located%20in%20the%20beautiful%20city%20of%20Madrid.%20Are%20you%20ready%20to%20UNLEASH%20your%20full%20potential%20and%20be%20transformed%3F%20%23WeUnleash19">
               <span class="icon-twitter"></span>
             </a>
           </div>
@@ -80,7 +80,7 @@ export default {
       _.$refs.sharepopup.classList.remove('hidden')
     }, false)
     if (_.getCookie('accepted') === '') {
-      console.log('no cookie')
+      // console.log('no cookie')
       _.$refs.cookie.classList.remove('hidden')
     }
     // _.$refs.formdata.innerHTML = _.data.hubspot

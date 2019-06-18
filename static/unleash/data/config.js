@@ -132,7 +132,7 @@ var dataConfig = {
           }
         },
         {
-          src:'/static/unleash/rain/buyticket_white.png',
+          src:'/static/unleash/images/ticket_white.png',
           size: 2,
           position: {
             x: -0.5,
@@ -415,7 +415,7 @@ var dataConfig = {
       },
       agenda: {
         claim: '3 days of<br>nont-stop talent',
-        breadcum: '→ 11 → 12 → 13 September',
+        breadcum: '11 → 12 → 13 SEPTEMBER',
         title: 'Coming soon',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
       },
@@ -454,38 +454,11 @@ var dataConfig = {
         ]
       },
       tickets: {
-        breadcum: '→ 11 → 12 → 13 September',
-        description: '<p>Don´t wait any longer and buy your tickets to the craziest talent festival in the world.</p><p>There´s only one type of ticket that covers all three days. <em>Food & Beer are included</em></p>'
+        breadcum: '11 → 12 → 13 SEPTEMBER',
+        description: '<p>Don´t wait any longer and buy your tickets to the craziest talent festival in the world.<br>There´s only one type of ticket that covers all three days and thanks to Glownet you will hace a wristband which allow you to get your free food and beer among many other cool stuff!</p>'
       }
     },
     speakers: [
-      /*
-      {
-        id: 0,
-        name: 'Melati Wijsen',
-        img: 'MelatiWijsten.jpg',
-        social: [
-          {
-            id: 0,
-            class: 'icon-ig',
-            url: 'www.'
-          },
-          {
-            id: 1,
-            class: 'icon-ig',
-            url: 'www.'
-          }
-        ],
-        description: '<p>In 2013, when she was just 12 years old, Wijsen started a social initiative called Bye Bye Plastic Bags with her younger sister, Isabel Wijsen, who was 10 at that time. Their goal? To help Bali residents say no to plastic bags.</p><p>Her journey in the last five years has taken her to the international stage and given her opportunities to meet world leaders and celebrities, as well as speak at global events — but there’s more to be done.</p><p><span style="color:white">Now it’s time to Unleash.</span></p>'
-      }, // <p>Melati Wijsen is half Indonesian and half Dutch but born and raised on the island of Bali.</p>
-      */
-      /*{
-        id: 1,
-        name: 'Amber Yang',
-        img: 'AmberYang.jpg',
-        description: 'blah blah 2'
-      },
-      */
       {
         id: 0,
         name: 'Ousman Umar',
@@ -506,31 +479,52 @@ var dataConfig = {
           {
             id: 2,
             class: 'icon-instagram',
-            url: 'http://www.instagram.com/ousmanumar'
+            url: 'https://www.instagram.com/ousmanumar'
           }
         ]
       },
-      /*
-      {
-        id: 3,
-        name: 'Benjamin Zaid',
-        img: 'BenjaminZaid.jpg',
-        description: 'blah blah 4'
-      }
-      */
       {
         id: 1,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Guillermo Martinez',
+        img: 'Unleash_Speaker_GuillermoMartinez_Web.jpg',
+        description: '<p>Guillermo Martinez is 25 and from Madrid. He studied business and industrial engineering in college. Currently, he works as a Product Manager but in his free time he uses his hobby (3D printers) to help others. Martinez created a project called Ayudame3D.org to help people who don´t have hands and give them a second chance thanks to 3D printing technology. This project started in Kenya when he traveled there and gave 5 arms to people who requested. Guille created the first 3D-printed-arm with no electronic components for people without an elbow. After that, he expanded the project around the world and nowadays, they send more than 60 arms to people from more than 10 countries. This is what he loves to do, this is his passion. </p>',
+        description_short: '<p>Meet Guillermo, a product manager by day, but an innovator by night. Guille created Ayudame3D.org, a project dedicated to help people without elbow. He created the first 3D-printer arm with no electronic components. Now, his project has expanded worldwide, for more than 10 countries. Are you ready to hear his story @ UNLEASH 2019?</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/willperman'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://facebook.com/ayudame3d'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://instagram.com/ayudame3d'
+          }
+        ]
       },
       {
         id: 2,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Jamala Osman',
+        img: 'Jamala.jpg',
+        description: '<p>Jamala Osman is a 25-year-old social entrepreneur and former Bank Manager at Barclays plc. She was one of the youngest bank managers in the country and was tasked with running her first branch at the age of 21. Having had a difficult start to life, her dramatic turnaround inspired her to create pathways and programmes for other struggling individuals to help break down barriers. Winner of Great Britain and Ireland´s Young Citizen Award for 2018 and TEDx London Speaker, Jamala is on a mission to help bridge the gap between young talent and organizations. </p>',
+        description_short: '<p>Jamala Osman is a 25-year-old social entrepreneur and former Bank Manager at Barclays plc. She was one of the youngest bank managers in the country and was tasked with running her first branch at the age of 21. Having had a difficult start to life, her dramatic turnaround inspired her to create pathways and programmes for other struggling individuals to help break down barriers. Winner of Great Britain and Ireland´s Young Citizen Award for 2018 and TEDx London Speaker, Jamala is on a mission to help bridge the gap between young talent and organizations.</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/Jamala_Osman'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/Jamala_Osman/'
+          }
+        ]
       },
       {
         id: 3,
@@ -585,17 +579,51 @@ var dataConfig = {
     artists: [
       {
         id: 0,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Paloma Pujol',
+        img: 'Paloma-Freestyle.jpg',
+        description: '<p>Paloma Pujol Mayo has always loved soccer. Growing up in Mexico made it difficult for her to play soccer as part of a team, because at that time there were no women teams, so she had to find a way to play in the men teams. Years later, Paloma moved to Madrid. Here she discovered a sport called Footbag, which is played with a small bag filled with steel. This sport has given her the feeling of freestyle, a way of expressing herself. Today, she competes professionally and she is the current world champion. Paloma decided to go further and try something new so she began doing Freestyle Football. Only a few years later, with a lot of training and sacrifice, she became the first professional Freestyler in Spain.</p>',
+        description_short: '<p>Paloma Pujol Mayo is a professional Freestyler in Spain. She is an avid player of freestyle football, where she believes she can openly express herself. Watch her #UNLEASH herself as she takes on the stage to show you her incredible skills at such a young age.</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/freestyle_smile'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/palomafreestyle/'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/paloma_freestyle/'
+          }
+        ]
       },
       {
         id: 1,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'EL TRINIDAD',
+        img: 'ElTrinidad.jpg',
+        description: '<p>EL TRINIDAD is an artist, singer and producer from Madrid, Spain. Having made his live debut in Spain´s FIB Festival, his style moves within club vibes such as trap, dancehall, reggaeton and other electronic hybrids.</p>',
+        description_short: '<p>EL TRINIDAD is an artist, singer and producer from Madrid, Spain. Having made his live debut in Spain´s FIB Festival, his style moves within club vibes such as trap, dancehall, reggaeton and other electronic hybrids.</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/freestyle_smile'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/eltrinidad111'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/eltrinidad111/'
+          }
+        ]
       },
       {
         id: 2,
@@ -773,7 +801,7 @@ var dataConfig = {
           id: '1',
           img: 'partners/BNPPF-2019_IMG_FR_Credtk_big.jpg',
           name: '',
-          url: 'http://www.bnpparibas.es/en/'
+          url: 'https://www.bnpparibas.es/en/'
         },
 
         */
@@ -796,7 +824,21 @@ var dataConfig = {
           tag_id: 'tag-bnp',
           img: 'partners/BNPPF-2019_IMG_FR_Credtk_big.jpg',
           name: '',
-          url: 'http://www.bnpparibas.es/en/'
+          url: 'https://www.bnpparibas.es/en/'
+        },
+        {
+          id: '4',
+          tag_id: 'tag-bplus',
+          img: 'partners/beplus.png',
+          name: '',
+          url: 'https://beplusbio.com/'
+        },
+        {
+          id: '5',
+          tag_id: 'tag-adevinta',
+          img: 'partners/adevinta.png',
+          name: '',
+          url: 'https://www.adevinta.com/'
         }
       ] 
     },

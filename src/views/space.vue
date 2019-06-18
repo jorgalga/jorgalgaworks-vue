@@ -12,13 +12,16 @@
           <div ref="cr7" class="circle t7" v-bind:style="isMobile ? '' : 'height:'+1300*scaleR+'px;width:'+1300*scaleR+'px;right:-'+scaleR*100+'px'"></div>
           <div ref="cr8" class="circle t8" v-bind:style="isMobile ? '' : 'height:'+1400*scaleR+'px;width:'+1400*scaleR+'px;right:-'+scaleR*100+'px'"></div>
           <div ref="cr9" class="circle t9" v-bind:style="isMobile ? '' : 'height:'+1500*scaleR+'px;width:'+1500*scaleR+'px;right:-'+scaleR*100+'px'"></div>
+          <div ref="aspa1" class="aspa t1" v-bind:style="isMobile ? '' : 'height:'+600*scaleR+'px;width:'+600*scaleR+'px;right:-'+scaleR*300+'px'"></div>
+          <div ref="aspa2" class="aspa t2" v-bind:style="isMobile ? '' : 'height:'+650*scaleR+'px;width:'+650*scaleR+'px;left:-'+scaleR*500+'px'"></div>
         </div>
       </div>
       <unPageheader type="space"></unPageheader>
       <unFloatingTags type="space"></unFloatingTags>
       <unWrapperspace type="space_enter" classopened="opened"></unWrapperspace>
       <unWrapperspace type="space_shift" classopened="opened"></unWrapperspace>
-      <unWrapperspace type="space_escape" classopened="opened" configclass="darked"></unWrapperspace>
+      <unWrapperspace type="space_escape" classopened="opened" configclass="darked" ></unWrapperspace>
+      <!--unSpray></unSpray-->
       <unMap></unMap>
       <unFooter></unFooter>
     </div>
@@ -31,6 +34,7 @@ import unFloatingTags from '@/components/unFloatingTags'
 import unWrapperspace from '@/components/unWrapperspace'
 import unMap from '@/components/unMap'
 import unFooter from '@/components/unFooter'
+import unSpray from '@/components/unSpray'
 export default {
   name: 'Space',
   props: ['id'],
@@ -66,7 +70,8 @@ export default {
     'unFloatingTags': unFloatingTags,
     'unWrapperspace': unWrapperspace,
     'unMap': unMap,
-    'unFooter': unFooter
+    'unFooter': unFooter,
+    'unSpray': unSpray
   },
   methods: {
     resizeHandler () {
@@ -75,8 +80,9 @@ export default {
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     scrolling () {
-      console.log(this.ratio)
+      // console.log(this.ratio)
       this.ratio = this.el.scrollTop / (this.pg.offsetHeight - this.el.clientHeight)
+      console.log(this.ratio)
       this.$refs.cr2.style.top = Math.round((0.42 * this.pg.offsetHeight) - 100 * (0.42 - this.ratio)) + 'px'
       this.$refs.cr3.style.top = Math.round((0.42 * this.pg.offsetHeight) - 250 * (0.42 - this.ratio)) + 'px'
       this.$refs.cr4.style.top = Math.round((0.42 * this.pg.offsetHeight) - 400 * (0.42 - this.ratio)) + 'px'
@@ -120,10 +126,24 @@ export default {
       position: absolute;
       border-radius: 50%;
       border: 1px solid $magenta;
-      top: 42%;
+      top: 80%;
       right: -20vw !important;
       transform: translate3d(50%,-50%,0);
       transition: 0.1s;
+    }
+    .aspa{
+      position: absolute;
+      transform: translate3d(0,-50%,0);
+      background-image: url('#{$staticpath}static/unleash/images/aspa.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      &.t1{
+        top: 16%;
+      }
+      &.t2{
+        top: 50%;
+      }
     }
   }
 }

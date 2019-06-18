@@ -5,6 +5,9 @@
       <div class="description" v-html="data.page_content['tickets'].description"></div>
       <div class="eb-wrapper">
         <div id="eventbrite-widget-container-60921653305"></div>
+        <div class="img-whistle"> </div>
+      </div>
+      <div ref="shadow" class="shadow" v-bind:style="'height:'+250*scaleR+'px'">
       </div>
     </div>
   </div>
@@ -39,7 +42,7 @@ export default {
       eventId: '60921653305',
       iframeContainerId: 'eventbrite-widget-container-60921653305',
       // Optional
-      iframeContainerHeight: 640, // Widget height in pixels. Defaults to a minimum of 425px if not provided
+      // iframeContainerHeight: 640, // Widget height in pixels. Defaults to a minimum of 425px if not provided
       onOrderComplete: exampleCallback // Method called when an order has successfully completed
     })
   },
@@ -62,25 +65,90 @@ export default {
   .component-container{
     position: relative;
     max-width: $pagewidth2;
+    max-width: $pagewidth;
     margin: 0 auto;
     background-color: black;
     box-sizing: border-box;
+    text-align: right;
+    .shadow{
+      height: 200px;
+      width: 100%;
+      background-image: url('#{$staticpath}static/unleash/images/spray.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translate3d(0,-52.5%,0);
+      clip-path: polygon(0% 50%, 100% 50%, 100% 100%, 0% 100%);
+      @media (max-width: $break-mobile) {
+        width: 90%;
+        display: block;
+        margin: 0 auto;
+      }
+    }
   }
   .page-breadcum{
-    font-family: 'space_monoregular';
+    font-family: 'overpass_blackregular';
     color: $magenta;
     text-align: center;
-    padding: 20px;
+    padding: 20px 0;
     font-size: 20px;
+    width: 100%;
+    max-width: 75%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    @media (max-width: $break-mobile) {
+      width: 100%;
+      padding: 20px 0;
+      max-width: 90%;
+      text-align: left;
+    }
   }
   .description{
     font-family: 'overpassregular';
     color: white;
     text-align: center;
-    padding: 15px;
+    padding: 15px 0;
     line-height: 1.3;
-    max-width: 66%;
+    width: 100%;
+    max-width: 75%;
     margin: 0 auto;
+    box-sizing: border-box;
+    @media (max-width: $break-mobile) {
+      width: 100%;
+      padding: 15px 0;
+      max-width: 90%;
+      text-align: left;
+    }
+  }
+  .eb-wrapper{
+    display: inline-block;
+    width: 50%;
+    position: relative;
+    @media (max-width: $break-mobile) {
+      width: 90%;
+      display: block;
+      margin: 0 auto;
+    }
+    .img-whistle {
+      display: inline-block;
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      top:0;
+      left: 0;
+      display: inline-block;
+      position: absolute;
+      transform: translate3d(-100%,0,0);
+      background-image: url('#{$staticpath}static/unleash/images/UNLEASH_MATERIALES_PULSERA.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      @media (max-width: $break-mobile) {
+        position: relative;
+        transform: translate3d(0,0,0);
+        height: 300px;
+      }
+    }
   }
 }
 

@@ -14,6 +14,8 @@
           </div>
         </div>
       </div>
+      <div v-if="configclass" ref="shadow" class="shadow" v-bind:style="'height:'+250*scaleR+'px'">
+      </div>
     </div>
   </div>
 </template>
@@ -35,7 +37,7 @@ export default {
     let _ = this
     _.data = window.dataConfig.data
     _.levels = Math.ceil(_.data[_.$props.type].items.length / _.data[_.$props.type].items_row)
-    console.log(_.levels)
+    // console.log(_.levels)
     _.mheight = _.data[_.$props.type].max_height
     _.resizeHandler()
     window.addEventListener('resize', function () {
@@ -115,12 +117,25 @@ export default {
     margin: 0 auto;
     background-color: black;
     box-sizing: border-box;
+    .shadow{
+      height: 200px;
+      width: 100%;
+      background-image: url('#{$staticpath}static/unleash/images/spray.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-position: center;
+      transform: translate3d(0,-55%,0);
+      position:relative;
+      z-index: 0;
+    }
   }
   .unwrap-container{
     background-color: white;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.5s ease-out;
+    position:relative;
+    z-index: 10;
     &.opened{
       max-height: 850px;
       transition: max-height 0.5s ease-in;
@@ -130,6 +145,7 @@ export default {
     background-color: black;
     cursor: pointer;
     position: relative;
+    z-index: 10;
     &.freeze{
       pointer-events: none;
     }
@@ -182,6 +198,7 @@ export default {
     }
     &:hover{
       @media (min-width: $break-mobile) {
+        cursor: url('#{$staticpath}static/unleash/images/cursor.png'), auto;
         background-color: white;
         .text-button{
           color: black;

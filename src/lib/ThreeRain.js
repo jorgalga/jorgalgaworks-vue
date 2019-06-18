@@ -37,7 +37,7 @@ export class ThreeRain {
       // do something
       var mouseX = (event.offsetX / event.target.offsetWidth) * 2 - 1
       var mouseY = -(event.offsetY / event.target.offsetHeight) * 2 + 1
-      console.log(event)
+      // console.log(event)
       var mouse = new THREE.Vector2(mouseX, mouseY)
       _.raycaster.setFromCamera(mouse, _.camera)
       var intersects = _.raycaster.intersectObjects(_.interactiveObj)

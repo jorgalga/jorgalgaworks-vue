@@ -11,7 +11,7 @@
           <div class="text-container">
             <div class="text-wrapper">
               <h2 id="tw-text" v-bind:style="isMobile? 'margin-bottom:'+15+'px;font-size:30px' : 'margin-bottom:'+30*scaleR+'px;font-size:'+72*scaleR+'px'">Say hello to the <span style='color:#FF00FF;text-decoration:line-through'><span style='color:white'>craziest </span></span> talent festival.</h2>
-              <a href="/#/tickets"><img id="ticketshomeinfo" v-bind:width="225*scaleR+'px'" src="static/unleash/images/ticket.png"></a>
+              <a href="/#/tickets"><img @mouseover="mouseOver" @mouseout="mouseOut" ref="thi" id="ticketshomeinfo" v-bind:width="225*scaleR+'px'" src="static/unleash/images/ticket.svg"></a>
             </div>
           </div>
         </div>
@@ -70,6 +70,14 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    mouseOver () {
+      // console.log('mouseover')
+      this.$refs.thi.src = 'static/unleash/images/ticket_white.svg'
+    },
+    mouseOut () {
+      // console.log('mouseout')
+      this.$refs.thi.src = 'static/unleash/images/ticket.svg'
     }
   },
   components: {

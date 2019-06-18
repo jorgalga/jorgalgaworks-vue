@@ -1,5 +1,6 @@
 @font-face {
   font-family: 'overpassregular';
+  font-display: auto;
   src: url('#{$staticpath}static/unleash/fonts/overpass-regular-webfont.woff2') format('woff2'),
        url('#{$staticpath}static/unleash/fonts/overpass-regular-webfont.woff') format('woff');
   font-weight: normal;
@@ -7,6 +8,7 @@
 }
 @font-face {
   font-family: 'overpass_blackregular';
+  font-display: auto;
   src: url('#{$staticpath}static/unleash/fonts/overpass-black-webfont.woff2') format('woff2'),
        url('#{$staticpath}static/unleash/fonts/overpass-black-webfont.woff') format('woff');
   font-weight: normal;
@@ -15,6 +17,7 @@
 }
 @font-face {
   font-family: 'space_monoregular';
+  font-display: auto;
   src: url('#{$staticpath}static/unleash/fonts/spacemono-regular-webfont.woff2') format('woff2'),
        url('#{$staticpath}static/unleash/fonts/spacemono-regular-webfont.woff') format('woff');
   font-weight: normal;
@@ -23,6 +26,7 @@
 
 @font-face {
   font-family: 'icomoon';
+  font-display: auto;
   src:  url('#{$staticpath}static/unleash/fonts/icomoon.eot?k9uv0o');
   src:  url('#{$staticpath}static/unleash/fonts/icomoon.eot?k9uv0o#iefix') format('embedded-opentype'),
     url('#{$staticpath}static/unleash/fonts/icomoon.ttf?k9uv0o') format('truetype'),

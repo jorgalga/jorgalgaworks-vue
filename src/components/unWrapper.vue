@@ -28,7 +28,7 @@
                       <a v-bind:href="item.url" target="_blank"><span v-bind:class="item.class"></span></a>
                     </div>
                   </div>
-                  <div class="name-container" v-html="data[$props.type][itemActive].name" v-bind:style="'font-size:'+60*scaleR+'px;padding:'+15*scaleR+'px'"></div>
+                  <div class="name-container" v-html="data[$props.type][itemActive].name" v-bind:style="'font-size:'+48*scaleR+'px;padding:'+15*scaleR+'px'"></div>
                   <div class="description-container" v-html="isMobile ? data[$props.type][itemActive].description_short : data[$props.type][itemActive].description" v-bind:style="isMobile ? 'font-size:'+32*scaleR+'px;' : 'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'"></div>
                 </div>
             </transition>
@@ -207,6 +207,7 @@ export default {
     }
     &:hover{
       @media (min-width: $break-mobile) {
+        cursor: url('#{$staticpath}static/unleash/images/cursor.png'), auto;
         background-color: white;
         .text-button{
           color: black;
@@ -221,7 +222,6 @@ export default {
     transition: max-height 0.5s ease-out;
     &.opened{
       max-height: 850px;
-      transition: max-height 0.5s ease-in;
     }
   }
   .flex-grid{
@@ -265,6 +265,15 @@ export default {
     box-sizing: border-box;
     position: relative;
     cursor: pointer;
+    transition: 0.33s;
+    &:hover{
+      @media (min-width: $break-mobile) {
+        background-color: #FF00FF;
+        .name-text{
+          color: white;
+        }
+      }
+    }
     &.active{
       background-color: $magenta;
       .name-text{

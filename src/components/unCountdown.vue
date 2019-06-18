@@ -3,19 +3,19 @@
     <div id="countdown-three"></div>
     <div id="clockdiv">
       <div class="cd-item" v-bind:style="isMobile ? '' : 'margin:'+10*scaleR+'px;width:'+130*scaleR+'px;'">
-        <span class="days" v-html="cd.days"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <span class="days" v-html="cd.days"  v-bind:style="isMobile ? '' : 'font-size:'+90*scaleR+'px;'"></span>
         <div class="smalltext">Days</div>
       </div>
       <div class="cd-item">
-        <span class="hours" v-html="cd.hours"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <span class="hours" v-html="cd.hours"  v-bind:style="isMobile ? '' : 'font-size:'+90*scaleR+'px;'"></span>
         <div class="smalltext">Hours</div>
       </div>
       <div class="cd-item">
-        <span class="minutes" v-html="cd.mins"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <span class="minutes" v-html="cd.mins"  v-bind:style="isMobile ? '' : 'font-size:'+90*scaleR+'px;'"></span>
         <div class="smalltext">Minutes</div>
       </div>
       <div class="cd-item">
-        <span class="seconds" v-html="cd.secs"  v-bind:style="isMobile ? '' : 'font-size:'+60*scaleR+'px;'"></span>
+        <span class="seconds" v-html="cd.secs"  v-bind:style="isMobile ? '' : 'font-size:'+90*scaleR+'px;'"></span>
         <div class="smalltext">Seconds</div>
       </div>
     </div>
@@ -141,7 +141,7 @@ export default {
       display: inline-block;
       line-height: 2.5;
       letter-spacing: 4px;
-      border-top: 2px solid white;
+      border-top: 1px solid white;
       font-weight: 100;
        @media (max-width: $break-mobile) {
         font-size: 12px;

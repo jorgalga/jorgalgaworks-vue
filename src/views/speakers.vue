@@ -4,15 +4,19 @@
     <div ref="pgcnt" class="page-content">
       <div class="page-background">
         <div class="page-background-container">
-          <div ref="sq1" class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
-          <div ref="cr1" class="circle t1" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
-          <div ref="cr2" class="circle t2" v-bind:style="isMobile ? '' : 'height:'+800*scaleR+'px;width:'+800*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr3" class="circle t3" v-bind:style="isMobile ? '' : 'height:'+900*scaleR+'px;width:'+900*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr4" class="circle t4" v-bind:style="isMobile ? '' : 'height:'+1000*scaleR+'px;width:'+1000*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr5" class="circle t5" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr6" class="circle t6" v-bind:style="isMobile ? '' : 'height:'+1200*scaleR+'px;width:'+1200*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr7" class="circle t7" v-bind:style="isMobile ? '' : 'height:'+1300*scaleR+'px;width:'+1300*scaleR+'px;left:-'+scaleR*100+'px'"></div>
-          <div ref="cr8" class="circle t8" v-bind:style="isMobile ? '' : 'height:'+1400*scaleR+'px;width:'+1400*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="sq0" class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
+          <!--div ref="sq1" class="square-white" v-bind:style="isMobile ? '' : 'height:'+160*scaleR+'px;width:'+120*scaleR+'px;right:'+scaleR*75+'px'"></div>
+          <div ref="sq2" class="square-white" v-bind:style="isMobile ? '' : 'height:'+160*scaleR+'px;width:'+120*scaleR+'px;right:'+scaleR*0+'px'"></div>
+          <div ref="sq3" class="square-white" v-bind:style="isMobile ? '' : 'height:'+160*scaleR+'px;width:'+120*scaleR+'px;right:'+scaleR*-75+'px'"></div>
+          <div ref="sq4" class="square-white" v-bind:style="isMobile ? '' : 'height:'+160*scaleR+'px;width:'+120*scaleR+'px;right:'+scaleR*-150+'px'"></div-->
+          <div ref="cr1" class="circle t1" v-bind:style="isMobile ? '' : 'display:none;height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
+          <div ref="cr2" class="circle t2" v-bind:style="isMobile ? '' : 'display:none;height:'+800*scaleR+'px;width:'+800*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr3" class="circle t3" v-bind:style="isMobile ? '' : 'display:none;height:'+900*scaleR+'px;width:'+900*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr4" class="circle t4" v-bind:style="isMobile ? '' : 'display:none;height:'+1000*scaleR+'px;width:'+1000*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr5" class="circle t5" v-bind:style="isMobile ? '' : 'display:none;height:'+1100*scaleR+'px;width:'+1100*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr6" class="circle t6" v-bind:style="isMobile ? '' : 'display:none;height:'+1200*scaleR+'px;width:'+1200*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr7" class="circle t7" v-bind:style="isMobile ? '' : 'display:none;height:'+1300*scaleR+'px;width:'+1300*scaleR+'px;left:-'+scaleR*100+'px'"></div>
+          <div ref="cr8" class="circle t8" v-bind:style="isMobile ? '' : 'display:none;height:'+1400*scaleR+'px;width:'+1400*scaleR+'px;left:-'+scaleR*100+'px'"></div>
           <div ref="cr9" class="circle t9" v-bind:style="isMobile ? '' : 'height:'+1500*scaleR+'px;width:'+1500*scaleR+'px;left:-'+scaleR*100+'px'"></div>
         </div>
       </div>
@@ -20,6 +24,7 @@
       <unWrapper type="speakers" classopened="opened"></unWrapper>
       <unWrapper type="artists" classopened="opened" flipped="inverse"></unWrapper>
       <unWrappersimple type="host" classopened="opened"></unWrappersimple>
+      <!--unSpray></unSpray-->
       <unQuestion type="speakers" qindex="0"></unQuestion>
       <unFooter></unFooter>
     </div>
@@ -32,6 +37,7 @@ import unWrapper from '@/components/unWrapper'
 import unWrappersimple from '@/components/unWrappersimple'
 import unQuestion from '@/components/unQuestion'
 import unFooter from '@/components/unFooter'
+import unSpray from '@/components/unSpray'
 export default {
   name: 'Speakers',
   props: ['id'],
@@ -48,7 +54,8 @@ export default {
     'unWrapper': unWrapper,
     'unWrappersimple': unWrappersimple,
     'unQuestion': unQuestion,
-    'unFooter': unFooter
+    'unFooter': unFooter,
+    'unSpray': unSpray
   },
   created () {
     var _ = this
@@ -76,9 +83,14 @@ export default {
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     scrolling () {
-      console.log(this.ratio)
       this.ratio = this.el.scrollTop / (this.pg.offsetHeight - this.el.clientHeight)
-      this.$refs.sq1.style.transform = 'translate3d(0,' + Math.round((0.35 * this.pg.offsetHeight) - 500 * (0.35 - this.ratio)) + 'px,0)'
+      this.$refs.sq0.style.transform = 'translate3d(0,' + Math.round((0.35 * this.pg.offsetHeight) - 500 * (0.35 - this.ratio)) + 'px,0)'
+      /*
+      this.$refs.sq1.style.transform = 'translate3d(0,' + Math.round((0.78 * this.pg.offsetHeight) - 500 * (0.78 - this.ratio)) + 'px,0)'
+      this.$refs.sq2.style.transform = 'translate3d(0,' + Math.round((0.78 * this.pg.offsetHeight) - 520 * (0.78 - this.ratio)) + 'px,0)'
+      this.$refs.sq3.style.transform = 'translate3d(0,' + Math.round((0.78 * this.pg.offsetHeight) - 540 * (0.78 - this.ratio)) + 'px,0)'
+      this.$refs.sq4.style.transform = 'translate3d(0,' + Math.round((0.78 * this.pg.offsetHeight) - 560 * (0.78 - this.ratio)) + 'px,0)'
+      */
       this.$refs.cr1.style.transform = 'translate3d(100%,' + Math.round((0.18 * this.pg.offsetHeight) - 500 * (0.28 - this.ratio)) + 'px,0)'
       /*
       this.$refs.cr2.style.transform = 'translate3d(-50%,' + Math.round((0.85 * this.pg.offsetHeight) - 250 * (0.85 - this.ratio)) + 'px,0)' */
@@ -129,6 +141,14 @@ export default {
       // top: 35%;
       right: 0;
       transform: translate3d(0,0,0);
+    }
+    .square-white{
+      background-color: white;
+      position: absolute;
+      // top: 35%;
+      right: 0;
+      transform: translate3d(0,0,0);
+      clip-path: polygon(0 0, 50% 0, 100% 100%, 50% 100%)
     }
     .circle.t1{
       position: absolute;

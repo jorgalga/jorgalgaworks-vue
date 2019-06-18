@@ -102,7 +102,6 @@ export default {
     position: relative;
     max-width: $pagewidth;
     margin: 0 auto;
-    background-color: black;
     box-sizing: border-box;
   }
 }

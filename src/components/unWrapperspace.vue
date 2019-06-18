@@ -29,6 +29,8 @@
           </div>
         </div>
       </div>
+      <div v-if="configclass" ref="shadow" class="shadow" v-bind:style="'height:'+250*scaleR+'px'">
+      </div>
     </div>
   </div>
 </template>
@@ -163,12 +165,22 @@ export default {
       order:1;
     }
   }
+  .shadow{
+    height: 200px;
+    width: 100%;
+    background-image: url('#{$staticpath}static/unleash/images/spray.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    transform: translate3d(0,-55%,0);
+  }
 }
 .unwrapperspace {
   .unwrap-button{
     background-color: black;
     cursor: pointer;
     position: relative;
+    z-index: 10;
     &.freeze{
       pointer-events: none;
     }
@@ -217,6 +229,7 @@ export default {
     }
     &:hover{
       @media (min-width: $break-mobile) {
+        cursor: url('#{$staticpath}static/unleash/images/cursor.png'), auto;
         background-color: white;
         .text-button{
           color: black;
@@ -229,6 +242,8 @@ export default {
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.5s ease-out;
+    position: relative;
+    z-index: 10;
     &.opened{
       max-height: 850px;
       transition: max-height 0.5s ease-in;

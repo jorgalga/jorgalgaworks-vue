@@ -4,11 +4,11 @@
     <div class="page-content" ref="pgcnt">
       <div class="page-background">
         <div class="page-background-container">
-          <div ref="sq1" class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
+          <!-- div ref="sq1" class="square-magenta" v-bind:style="isMobile ? '' : 'height:'+250*scaleR+'px;width:'+40*scaleR+'px'"></div>
           <div ref="cr1" class="circle t1" v-bind:style="isMobile ? '' : 'height:'+1100*scaleR+'px;width:'+1100*scaleR+'px'"></div>
           <div ref="cr2" class="circle t2" v-bind:style="isMobile ? '' : 'height:'+1050*scaleR+'px;width:'+1050*scaleR+'px'"></div>
           <div ref="cr3" class="circle t3" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
-          <div ref="cr4" class="circle t4" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div>
+          <div ref="cr4" class="circle t4" v-bind:style="isMobile ? '' : 'height:'+300*scaleR+'px;width:'+300*scaleR+'px'"></div -->
         </div>
       </div>
       <unHomeinfo></unHomeinfo>
@@ -23,6 +23,7 @@
 <script>
 import unMenu from '@/components/unMenu'
 import unHomeinfo from '@/components/unHomeinfo'
+import unSpray from '@/components/unSpray'
 import unQuestion from '@/components/unQuestion'
 import unVideo from '@/components/unVideo'
 import unCountdown from '@/components/unCountdown'
@@ -49,13 +50,14 @@ export default {
   components: {
     'unMenu': unMenu,
     'unHomeinfo': unHomeinfo,
+    'unSpray': unSpray,
     'unQuestion': unQuestion,
     'unCountdown': unCountdown,
     'unVideo': unVideo,
     'unFooter': unFooter
   },
   mounted () {
-    console.log('mounted!! home')
+    // console.log('mounted!! home')
     var _ = this
     this.el = _.$refs.page
     this.pg = _.$refs.pgcnt
@@ -71,13 +73,15 @@ export default {
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     scrolling () {
-      console.log(this.ratio)
+      // console.log(this.ratio)
       this.ratio = this.el.scrollTop / (this.pg.offsetHeight - this.el.clientHeight)
+      /*
       this.$refs.sq1.style.transform = 'translate3d(0,' + Math.round((0.35 * this.pg.offsetHeight) - 500 * (0.35 - this.ratio)) + 'px,0)'
       this.$refs.cr1.style.transform = 'translate3d(60%,' + Math.round((0.28 * this.pg.offsetHeight) - 250 * (0.28 - this.ratio)) + 'px,0)'
       this.$refs.cr2.style.transform = 'translate3d(-25%,' + Math.round((0.35 * this.pg.offsetHeight) - 200 * (0.35 - this.ratio)) + 'px,0)'
       this.$refs.cr3.style.transform = 'translate3d(-40%,' + Math.round((0.77 * this.pg.offsetHeight) - 400 * (0.77 - this.ratio)) + 'px,0)'
       this.$refs.cr4.style.transform = 'translate3d(50%,' + Math.round((0.58 * this.pg.offsetHeight) - 1000 * (0.58 - this.ratio)) + 'px,0)'
+      */
     }
   }
 }
