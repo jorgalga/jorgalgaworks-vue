@@ -11,6 +11,14 @@ var dataConfig = {
     cookie_message: '<p>We use our own and third-party cookies to improve the user´s experience through your browsing. If you continue browsing we understand that you accept its use. <a href="/static/unleash/docs/Unleash-cookiespolicy.pdf" target="_blank">Cookie policy</a></p>',
     hubspot: '<!--[if lte IE 8]><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script> <![endif]--><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script> <script>hbspt.forms.create({portalId: "3937715",formId: "45d1019d-f008-42a3-8945-73942b7160d8"});</script>',
     initDate: 'September 11,2019 00:00:00',
+    toffers:{
+      half: { 
+        path: '/half',
+        name: 'Tickets with 50% discount',
+        eb_id: '65098500367',
+        setCookie: false,
+      }
+    },
     page_names:{
       home: 'Home',
       speakers: 'Speakers & Artists',
@@ -132,15 +140,15 @@ var dataConfig = {
           }
         },
         {
-          src:'/static/unleash/images/ticket_white.png',
+          src:'/static/unleash/rain/buyticket_magenta.png',
           size: 2,
           position: {
-            x: -0.5,
-            y: 11,
-            z: -1
+            x: -0.7,
+            y: 12.8,
+            z: 0
           },
           rotation: {
-            z: 5
+            z: -15
           }
         },
         {
@@ -408,7 +416,7 @@ var dataConfig = {
         claim: 'Teatro Goya<br>Calle Sepúlveda, 3 - 5<br>Madrid',
         breadcum: '→ Enter → Shift → Escape', 
         title: 'Where talent emerges',
-        description: 'This year’s ticket isn’t just a regular entry: Unleash 2019 enforces new technologies, this is why with something as simple as a Glownet wristband you’ll have access to tons of activities, food and drinks!',
+        description: 'This year’s ticket isn’t just a regular entry: Unleash 2019 enforces new technologies, this is why with something as simple as a wristband you’ll have access to tons of activities, food and drinks!',
         qheight: 850,
         ftheight: 850,
         mapinfo: 'Teatro Goya -> Calle Sepúlveda, 3 - 5. Madrid',
@@ -455,7 +463,7 @@ var dataConfig = {
       },
       tickets: {
         breadcum: '11 → 12 → 13 SEPTEMBER',
-        description: '<p>Don´t wait any longer and buy your tickets to the craziest talent festival in the world.<br>There´s only one type of ticket that covers all three days and thanks to Glownet you will hace a wristband which allow you to get your free food and beer among many other cool stuff!</p>'
+        description: '<p>Don´t wait any longer and buy your tickets to the craziest talent festival in the world.<br>There´s only one type of ticket that covers all three days and thanks to Glownet you will have a wristband which allow you to get your free food and beer among many other cool stuff!</p>'
       }
     },
     speakers: [
@@ -528,38 +536,113 @@ var dataConfig = {
       },
       {
         id: 3,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Benjamin Zand',
+        img: 'BenjaminZand.jpg',
+        description: '<p>Named ‘Young talent of the year’ by the Royal Television Society, Benjamin Zand is an Iranian-British journalist and filmmaker for the BBC from Liverpool. He makes controversial and thought-provoking documentaries. He focuses on big investigations into some of the most controversial characters of our time, such as “R Kelly: Sex Girls and Videotapes”, and documentaries that take us to places we may not care to go ourselves, such as “World’s Most Dangerous Cities”. He was previously head of the BBC´s documentary bureau, BBC Pop Up, and his work has taken him around the world – meeting some of the most dangerous, and famous, people.</p>',
+        description_short: '<p>Named ‘Young talent of the year’ by the Royal Television Society, Benjamin Zand is an Iranian-British journalist and filmmaker for the BBC from Liverpool. He makes controversial and thought-provoking documentaries. He focuses on big investigations into some of the most controversial characters of our time, such as “R Kelly: Sex Girls and Videotapes”, and documentaries that take us to places we may not care to go ourselves, such as “World’s Most Dangerous Cities”. He was previously head of the BBC´s documentary bureau, BBC Pop Up, and his work has taken him around the world – meeting some of the most dangerous, and famous, people.</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/BenjaminZand'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/benjaminzand/'
+          },
+          {
+            id: 2,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/benjaminzand'
+          }
+        ]
       },
       {
         id: 4,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Simon Bernard',
+        img: 'Simon.jpg',
+        description: '<p>Simon Bernard, 24, is a graduate of the French merchant navy academy (ENSM). He has sailed on several merchant vessels as a deck officer and engine officer. Passionate about finding solutions to environmental issues, he carried out several studies and projects on eco-friendly ships, CO2 emission reduction, circular economy and low technologies for developing countries. In 2016, he won the Green Tech Award initiated by the Ministry of the environment before founding Plastic Odyssey NGO that aims to reduce ocean’s pollution by promoting plastic recycling solutions adapted to developing countries. In 2020, he is set to depart on the world’s first round-the-world expedition on a boat powered solely by plastic waste.</p>',
+        description_short: '<p>Simon is passionate about finding solutions to environment issues. He founded Plastic Odyssey NGO that aims to reduce the ocean`s pollution by promoting plastic recycling solutions adapted to developing countries. Find out what #SimonSays at UNLEASH 2019</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/simn_bernard'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/plasticodyssey/'
+          },
+          {
+            id: 2,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/plasticodyssey'
+          }
+        ]
       },
       {
         id: 5,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Bisman deu',
+        img: 'Bisman_Deu.jpg',
+        description: '<p>At the young age of 15 years, Bisman invented a low-cost building material, called ‘Green Wood’, a substance made from rice waste and an alternative to more expensive, less eco-friendly products. Bisman is passionate about sustainability and innovation, looking to provide more affordable housing with ‘Green Wood’ and further develop underprivileged areas. Bisman works hard to be a role model in entrepreneurship and leadership among girls, ultimately aiming to bridge the gap in ambition. She has spoken at several notable conferences and summits with big-name organizations like Unicef and Nexus, and she leads her own campaign, ‘Coulour the World Pink’, promoting women’s rights and empowerment.</p>',
+        description_short: '<p>At the young age of 15, Bisman Deu invented a low-cost building material, called ‘Green Wood’, a substance made from rice waste and an alternative to more expensive, less eco-friendly products. Bisman is also a big promoter of women’s rights and empowerment leading her own campaign, ‘Coulour the World Pink’.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/BismanDeu'
+          }
+        ]
       },
       {
         id: 6,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Hanan Challouki',
+        img: 'Hanan_Challouki.jpg',
+        description: '<p>Hanan Challouki, age 26, studied Strategic Communications at the University of Antwerp and today, she`s a managing partner at the creative agency Allyens. The main expertise of Allyens is inclusive, viral communications, with millennials as primary target group. Besides this, she’s also the co-founder of the online platform Mvslim.com, created to break stereotypes about Muslims. Mvslim spreads inspiring stories of role models and has already reached millions of people worldwide. Meanwhile, Hanan Challouki is also on the prestigious "30-Under-30"-list of Forbes, awarded for her innovative approach in creating a more inclusive society. </p>',
+        description_short: '<p>Hanan Challouki is making things happen at creative agency Allyens & online media platform Mvslim.com. She wants a more inclusive society and is working on that through her website ‘Mvslim’, which allows for people to learn more about Muslims and how diverse the community is. Hanan is a powerful woman who wants people to be more accepting of distinct cultures in this world. Attend Unleash 2019 and learn more about Hanan’s life story.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/HananChll'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/hananchll/'
+          },
+          {
+            id: 2,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/HananChallouki'
+          }
+        ]
       },
       {
         id: 7,
         name: 'Coming soon',
         img: 'Unleash_Web_Speaker.jpg',
         description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/HananChll'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/hananchll/'
+          },
+          {
+            id: 2,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/HananChallouki'
+          }
+        ]
       },
       {
         id: 8,
@@ -627,24 +710,70 @@ var dataConfig = {
       },
       {
         id: 2,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Gabyx & Ali Beats',
+        img: 'GabyxAliBeats.jpg',
+        description: '<p>Meet the actual Spanish BeatBox Champions, Gabyx & Ali Beats. They play their show called "BEATBOX LIVE MUSIC" all around Spain. Gabyx & Ali Beats have been in Spanish TV SHOWS like GOT TALENT, FACTOR X, and LA VOZ. They create their own versions of any style of music. This creative duo has been playing together for 5 years, but they have played this style of music for more than 10 years. Gabyx is the one who creates the music with just his mouth and records it live in a LoopStation, where he has unlimited options to create any type of Music. Pop, Comercial, Rock, House, Techno, Chill Out, Reggaeton, and more. Ali Beats is the "Multi" vocalist who sings all styles. She arrived with her unique voice to the TV program "La Voz" in Spain. Together, they can create any song in less than 1 minute. These two do not use any instrument, MP3 player, or any Dj, but simply just their mouth.</p>',
+        description_short: '<p>Meet the actual Spanish BeatBox Champions, Gabyx & Ali Beats. They play their show called "BEATBOX LIVE MUSIC" all around Spain. Gabyx & Ali Beats have been in Spanish TV SHOWS like GOT TALENT, FACTOR X, and LA VOZ. They create their own versions of any style of music. This creative duo has been playing together for 5 years, but they have played this style of music for more than 10 years. Gabyx is the one who creates the music with just his mouth and records it live in a LoopStation, where he has unlimited options to create any type of Music. Pop, Comercial, Rock, House, Techno, Chill Out, Reggaeton, and more. Ali Beats is the "Multi" vocalist who sings all styles. She arrived with her unique voice to the TV program "La Voz" in Spain. Together, they can create any song in less than 1 minute. These two do not use any instrument, MP3 player, or any Dj, but simply just their mouth.</p>', 
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/Gabyx_Beatbox'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/GabyxBeatBox/'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/alibeats.92/'
+          }
+        ]
       },
       {
         id: 3,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Andrés Madruga',
+        img: 'Ándres_Madrugá.jpg',
+        description: '<p>Andres Madruga is 34 years old and he is a magician and stand up comedian. He would love to contribute his experience about what changes someone´s life when they do what they love. Andres dedicated himself to computer science. He had a job that he didn’t necessarily dislike and he was doing well, but he did not feel fulfilled. One day, through a course he took, they gave him the opportunity to get on stage. He felt a rush of adrenaline and experienced a sensation that he has become addicted to. Andres discovered what he was passionate about at the age of 26. He made decisions, he made changes, and with work and effort he finally got what he was set out to do. He changed his profession and now he dedicates himself to acting. He can provide the tools, tricks and tips that helped him a lot along the way. And of course, he has the incredible talent to entertain everyone and leave them surprised like never before</p>',
+        description_short: '<p>Andres Madruga, a magician and stand up comedian who loves the feeling of being on stage and acting in front of people. Madruga is truly a talented artist who went through a lot of changes/decisions to be who he truly wanted to be. Get ready for surprises because a touch of magic is coming to UNLEASH 2019. VOILA!</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/m4drug4dor'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/Mago.Madruga/'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/andres.madruga/'
+          }
+        ]
       },
       {
         id: 4,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Burdeos',
+        img: 'Burdeos.jpg',
+        description: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicar (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
+        description_short: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicar (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/burdeosmusica/'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/burdeosmusica/'
+          }
+        ]
       },
       {
         id: 5,
@@ -713,6 +842,11 @@ var dataConfig = {
           id: 0,
           name: '',
           img: 'Unleash_EnterCover.jpg'
+        },
+        {
+          id: 1,
+          name: '',
+          img: 'Unleash_Web_Enter_2.jpg'
         }
       ]
     },
@@ -725,6 +859,11 @@ var dataConfig = {
           id: 0,
           name: '',
           img: 'Unleash_ShiftCover.jpg'
+        },
+        {
+          id: 1,
+          name: '',
+          img: 'Unleash_Web_Shift_2.jpg'
         }
       ]
     },
@@ -735,6 +874,11 @@ var dataConfig = {
       items: [
         {
           id: 0,
+          name: '',
+          img: 'Unleash_Espacios_Escape_2.jpg'
+        },
+        {
+          id: 1,
           name: '',
           img: 'Unleash_EscapeCover.jpg'
         }
@@ -836,19 +980,39 @@ var dataConfig = {
         {
           id: '5',
           tag_id: 'tag-adevinta',
-          img: 'partners/adevinta.png',
+          img: 'partners/adevinta.jpg',
           name: '',
           url: 'https://www.adevinta.com/'
+        },
+        {
+          id: '6',
+          tag_id: 'tag-schneider',
+          img: 'partners/schneider.png',
+          name: '',
+          url: 'https://www.se.com/es/es/'
         }
       ] 
     },
     partner_colaborator:{
       name:'Colaborators',
-      gsize: 'col-2',
-      items_row: 5, 
-      max_height: 200, 
+      gsize: 'col-3',
+      items_row: 4, 
+      max_height: 300,
       items: [
-        /*
+        {
+          id: '1',
+          tag_id: 'tag-sparkup',
+          img: 'partners/Sparkup_logo.png',
+          name: '',
+          url: 'https://sparkup.app/es/'
+        },
+        {
+          id: '2',
+          tag_id: 'tag-fuckupmadrid',
+          img: 'partners/Fuckup_Nights_Madrid.png',
+          name: '',
+          url: 'https://fuckupnights.com/madrid/?locale=en'
+        },/*
         {
           id: '0',
           img: 'partners/logo.png',

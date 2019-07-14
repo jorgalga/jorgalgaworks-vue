@@ -45,7 +45,7 @@ export default {
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
-    openPopup () {
+    openPopup (e) {
       var customevent = new Event('openPopupContact')
       document.dispatchEvent(customevent)
     }

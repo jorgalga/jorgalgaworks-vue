@@ -371,7 +371,8 @@ export default {
     transition: .25s;
     &:hover{
       transform: scale(1.1);
-      background-image: url('#{$staticpath}static/unleash/images/ticket_white.svg');
+      filter: brightness(0) invert(1);
+      // background-image: url('#{$staticpath}static/unleash/images/ticket_white.svg');
     }
   }
   .share-link{

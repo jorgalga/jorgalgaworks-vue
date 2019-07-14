@@ -136,6 +136,8 @@ export default {
   height: 100%;
   width: 100%;
   background-color: black;
+  z-index: 100000000;
+  position: fixed;
 }
 #app.no-scroll{
   overflow-y: hidden;

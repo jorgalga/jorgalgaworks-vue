@@ -168,7 +168,7 @@ export class ThreeRain {
         var radius = 1 // m
         var sphereBody = new CANNON.Body({
           mass: 5, // kg
-          position: new CANNON.Vec3(obj.position.x, obj.position.z, (obj.position.y + 10) * 1.75), // m
+          position: new CANNON.Vec3(obj.position.x, obj.position.z, (obj.position.y + 0) * 1.75), // m
           shape: new CANNON.Sphere(radius)
         })
         sphereBody.collisionResponse = 0

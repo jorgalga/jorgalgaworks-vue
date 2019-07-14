@@ -4,7 +4,7 @@
       <div class="page-breadcum" v-html="data.page_content['tickets'].breadcum"></div>
       <div class="description" v-html="data.page_content['tickets'].description"></div>
       <div class="eb-wrapper">
-        <div id="eventbrite-widget-container-60921653305"></div>
+        <div v-bind:id="'eventbrite-widget-container-' + defCode"></div>
         <div class="img-whistle"> </div>
       </div>
       <div ref="shadow" class="shadow" v-bind:style="'height:'+250*scaleR+'px'">
@@ -20,12 +20,29 @@ export default {
   data () {
     return {
       scaleR: 1,
-      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width,
+      defCode: 60921653305
     }
   },
   created () {
     var _ = this
     _.data = window.dataConfig.data
+    var key = this.$route.path.replace('/', '')
+    if (this.$route.path === '/tickets') {
+      console.log('es la default. Check cookie')
+      var toCookie = this.getCookie('ticketoffer')
+      if (toCookie) {
+        this.defCode = toCookie
+      }
+    } else {
+      console.log('vienes de otra ruta. Usa el ID')
+      console.log(this.data.toffers[key].eb_id)
+      this.defCode = this.data.toffers[key].eb_id
+      if (this.data.toffers[key].setCookie) {
+        console.log('set cookie')
+        this.setCookie('ticketoffer', this.data.toffers[key].eb_id, 3)
+      }
+    }
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.resizeHandler()
@@ -39,8 +56,8 @@ export default {
     window.EBWidgets.createWidget({
       // Required
       widgetType: 'checkout',
-      eventId: '60921653305',
-      iframeContainerId: 'eventbrite-widget-container-60921653305',
+      eventId: this.defCode,
+      iframeContainerId: 'eventbrite-widget-container-' + this.defCode,
       // Optional
       // iframeContainerHeight: 640, // Widget height in pixels. Defaults to a minimum of 425px if not provided
       onOrderComplete: exampleCallback // Method called when an order has successfully completed
@@ -51,6 +68,27 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    getCookie (cname) {
+      var name = cname + '='
+      var decodedCookie = decodeURIComponent(document.cookie)
+      var ca = decodedCookie.split(';')
+      for (var i = 0; i < ca.length; i++) {
+        var c = ca[i]
+        while (c.charAt(0) === ' ') {
+          c = c.substring(1)
+        }
+        if (c.indexOf(name) === 0) {
+          return c.substring(name.length, c.length)
+        }
+      }
+      return ''
+    },
+    setCookie (cname, cvalue, exdays) {
+      var d = new Date()
+      d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+      var expires = 'expires=' + d.toUTCString()
+      document.cookie = cname + '=' + cvalue + ';' + expires + ';path=/'
     }
   }
 }
