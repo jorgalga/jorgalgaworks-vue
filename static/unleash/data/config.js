@@ -12,9 +12,9 @@ var dataConfig = {
     hubspot: '<!--[if lte IE 8]><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2-legacy.js"></script> <![endif]--><script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/v2.js"></script> <script>hbspt.forms.create({portalId: "3937715",formId: "45d1019d-f008-42a3-8945-73942b7160d8"});</script>',
     initDate: 'September 11,2019 00:00:00',
     toffers:{
-      half: { 
-        path: '/half',
-        name: 'Tickets with 50% discount',
+      "2x1offer": { 
+        path: '/2x1offer',
+        name: 'Two tickets by the price of one',
         eb_id: '65098500367',
         setCookie: false,
       }
@@ -424,7 +424,7 @@ var dataConfig = {
       agenda: {
         claim: '3 days of<br>nont-stop talent',
         breadcum: '11 → 12 → 13 SEPTEMBER',
-        title: 'Coming soon',
+        title: '→ Non-stop talent ←',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
       },
       partners: {
@@ -622,37 +622,101 @@ var dataConfig = {
       },
       {
         id: 7,
-        name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
+        name: 'Eric Matamoros',
+        img: 'EricMatamoros.jpg',
+        description: '<p>Eric Matamoros Morales’ passion for curing cancer developed overtime after seeing his aunt, a superwoman, fight and survive cancer multiple times. At the age of 15, Eric was exposed to science in a way that changed him. He began a three-year entrepreneurial journey that landed him as COO and co-founder of Biop AI, a leading startup making usage of computer vision and artificial intelligence for skin cancer analysis. While running his company, Eric is passionate about motivational speaking to the youth in an effort to show them the impact that they can make at a young age. At age 15, Barcelona native, Eric Matamoros Morales’, started the entrepreneurial journey of founding Biop AI. Three years later, it is a leading startup making usage of computer vision and artificial intelligence for skin cancer analysis. Eric is passionate about curing cancer and teaching young people that they can make an impact in science no matter their age.</p>',
+        description_short: '<p>Talent transcends age for this young entrepreneur. At 15 years, Eric Matamoros Morales manifested a passion for curing cancer, and, 3 years later, established himself as COO and co-founder of Biop AI. Using computers, the firm analyzes skin cancer and saves lives!</p>',
         social: [
           {
             id: 0,
-            class: 'icon-twitter',
-            url: 'https://twitter.com/HananChll'
-          },
-          {
-            id: 1,
             class: 'icon-instagram',
-            url: 'https://www.instagram.com/hananchll/'
+            url: 'https://www.instagram.com/biop.ai/'
           },
           {
-            id: 2,
+            id: 1	,
             class: 'icon-facebook',
-            url: 'https://www.facebook.com/HananChallouki'
+            url: 'https://www.facebook.com/mariajose.moralesmulet'
           }
         ]
       },
       {
         id: 8,
+        name: 'Benjamin Stern',
+        img: 'BenjaminStern.jpg',
+        description: '<p>Ben Stern, 20 years old, runs a 18,000 sqft. beauty and personal care manufacturing factory in Melbourne, Florida, which is not only limited to producing and making Nohbo Drops for its commercial partners, but also makes a variety of goodies for sustainable beauty brands. NOHBO Drops are single use, water soluble Drops containing shampoo, conditioner, body wash or shaving cream. Each Drop, when mixed with shower water for 2-4 seconds, will produce an excellent personal care experience with no harsh chemicals, free of parabens and sulfates, and NO DAMAGE to the environment.</p>',
+        description_short: '<p>Benjamin Zand is an Iranian-British journalist and filmmaker working primarily for the BBC from Liverpool, England. He makes documentaries for different channels in the UK and beyond as a documentary maker for BBC Studios and his own production company, ZANDLAND Films. He was formerly head of BBC documentary team, BBC Pop Up and also presents the BBC podcast, The Next Episode.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/itsbenjyyy/'
+          },
+          {
+            id: 1	,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/NohboDrops/'
+          },
+        {
+            id: 2	,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/nohbodrops/'
+          }
+        ]
+      },
+      {
+        id: 9,
+        name: 'Jeremy Miller',
+        img: 'JeremyMiller.jpg',
+        description: '<p>20-year-old Jeremy Miller is no stranger to entrepreneurship. He started his first business, custom longboarding, at the age of 16 as a way to bring his community together and create a safe space for people to talk about life. Although his first venture didnâ€™t pan out, he couldnâ€™t give up his passion for entrepreneurship after seeing the positive impact it made. Since then, Jeremy has built an advertising agency called Inspired Blue Media gaining national clients and national press recognition. Now, still only 20 years old, he is the co-founder and VP of Marketing at the STARTedUP Foundation where he inspires and creates opportunities for students to act on their business ideas.</p>',
+        description_short: '<p>Longboards are more than just a mode for transportation, this young entrepreneur used his first venture, a longboard business as a vehicle for bringing people together. Two businesses later, 20-year-old Jeremy Miller is inspiring students to go after their dreams through his STARTedUP Foundation.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/jjeremymiller/'
+          },
+          {
+            id: 1	,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/JeremyRossmiller/'
+          },
+        {
+            id: 2	,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/jeremyrossmiller/'
+          }
+        ]
+      },
+      {
+        id: 10,
         name: 'Coming soon',
-        img: 'Unleash_Web_Speaker.jpg',
+        img: 'artist.jpg',
         description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
         description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
       },
       {
-        id: 9,
+        id: 11,
+        name: 'Coming soon',
+        img: 'artist.jpg',
+        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
+        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+      },
+      {
+        id: 12,
+        name: 'Coming soon',
+        img: 'artist.jpg',
+        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
+        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+      },
+      {
+        id: 13,
+        name: 'Coming soon',
+        img: 'artist.jpg',
+        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
+        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+      },
+      {
+        id: 14,
         name: 'THIS COULD BE YOU!',
         img: 'Unleash_Web_Speaker.jpg',
         description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
@@ -777,10 +841,22 @@ var dataConfig = {
       },
       {
         id: 5,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Simply Broke',
+        img: 'SimplyBroke.jpg',
+        description: '<p>We are a musical duo that emerged in the streets of Madrid, frequently playing in places in Madrid such as Parque Reitor, the templo de debod, the calle preciados as well as open mic and jams. Then we started to perform concerts and little by little our repertoire grew with our own music. We then extended the project to duo format + band format.</p>',
+        description_short: '<p>We are a musical duo that emerged in the streets of Madrid, frequently playing in places in Madrid such as Parque Reitor, the templo de debod, the calle preciados as well as open mic and jams. Then we started to perform concerts and little by little our repertoire grew with our own music. We then extended the project to duo format + band format.</p>',
+      social: [
+          {
+            id: 0,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/wearesimplybroke/'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/wearesimplybroke/'
+          }
+        ]
       },
       {
         id: 6,
@@ -1075,6 +1151,66 @@ var dataConfig = {
         }
         */
       ] 
+    },
+    agenda_list: {
+      day_1: [
+        {id: 0, class:'magenta-txt', time:'09:30 - 11:00', text: 'CHECK-IN'},
+        {id: 1, class:'black-txt', time:'11:00 - 11:15', text: 'Open Performance'},
+        {id: 2, class:'black-txt', time:'11:15 - 11:45', text: 'Welcome'},
+        {id: 3, class:'black-txt', time:'11:45 - 12:15', text: 'Eric Matamoros'},
+        {id: 4, class:'black-txt', time:'12:15 - 12:25', text: 'Xperience'},
+        {id: 5, class:'black-txt', time:'12:25 - 12:40', text: 'Refresh One'},
+        {id: 6, class:'black-txt', time:'12:40 - 13:00', text: 'Hanna Herbst'},
+        {id: 7, class:'black-txt', time:'13:00 - 13:30', text: 'Ousman Umar'},
+        {id: 8, class:'black-txt', time:'13:30 - 13:45', text: 'Performance'},
+        {id: 9, class:'magenta-txt', time:'13:45 - 15:30', text: 'SCAPE ZONE'},
+        {id: 10, class:'black-txt', time:'15:30 - 15:50', text: 'Jeremy Ross Miller'},
+        {id: 11, class:'black-txt', time:'15:50 - 16:00', text: 'Xperience'},
+        {id: 12, class:'black-txt', time:'16:00 - 16:20', text: 'Refresh Two'},
+        {id: 13, class:'black-txt', time:'16:30 - 16:45', text: 'Performance'},
+        {id: 14, class:'black-txt', time:'16:45 - 17:15', text: 'Jamala Osman'},
+        {id: 15, class:'black-txt', time:'17:15 - 17:25', text: 'Xperience'},
+        {id: 16, class:'black-txt', time:'17:25 - 17:55', text: 'Robert Fratilla'},
+        {id: 17, class:'black-txt', time:'17:55 - 18:10', text: 'Xperience'},
+        {id: 18, class:'black-txt', time:'18:10 - 18:20', text: 'Performance'},
+        {id: 19, class:'magenta-txt', time:'18:30 - 19:30', text: 'SCAPE ZONE'},
+      ],
+      day_2: [
+        {id: 0, class:'magenta-txt', time:'10:00 - 11:00', text: 'CHECK-IN'},
+        {id: 1, class:'black-txt', time:'11:00 - 11:15', text: 'Performance'},
+        {id: 2, class:'black-txt', time:'11:15 - 11:35', text: 'Tashi Baig'},
+        {id: 3, class:'black-txt', time:'11:35 - 11:45', text: 'Xperience'},
+        {id: 4, class:'black-txt', time:'11:45 - 12:15', text: 'Refresh Three'},
+        {id: 5, class:'black-txt', time:'12:15 - 12:25', text: 'Xperience'},
+        {id: 6, class:'black-txt', time:'12:25 - 12:45', text: 'Mach Mateuz'},
+        {id: 7, class:'black-txt', time:'12:45 - 13:00', text: 'Performance'},
+        {id: 8, class:'black-txt', time:'13:00 - 13:20', text: 'Benjamin Zand'},
+        {id: 9, class:'black-txt', time:'13:20 - 13:30', text: 'Performance'},
+        {id: 10, class:'magenta-txt', time:'13:30 - 15:30', text: 'SCAPE ZONE'},
+        {id: 11, class:'black-txt', time:'15:30 - 15:50', text: 'Bisman Deu'},
+        {id: 12, class:'black-txt', time:'15:50 - 16:00', text: 'Xperience'},
+        {id: 13, class:'black-txt', time:'16:00 - 16:30', text: 'Refresh Four'},
+        {id: 14, class:'black-txt', time:'16:30 - 16:40', text: 'Performance'},
+        {id: 15, class:'black-txt', time:'16:40 - 17:00', text: 'Benjamin Stern'},
+        {id: 16, class:'black-txt', time:'17:00 - 17:10', text: 'Xperience'},
+        {id: 17, class:'black-txt', time:'17:10 - 17:30', text: 'Hanan Challouki'},
+        {id: 18, class:'black-txt', time:'17:30 - 17:40', text: 'Xperience'},
+        {id: 19, class:'black-txt', time:'17:40 - 18:00', text: 'Speaker Merck'},
+        {id: 20, class:'black-txt', time:'18:00 - 18:10', text: 'Xperience'},
+        {id: 21, class:'black-txt', time:'18:10 - 18:20', text: 'Performance'}
+      ],
+      day_3: [
+        {id: 0, class:'magenta-txt', time:'10:00 - 11:00', text: 'CHECK-IN'},
+        {id: 1, class:'black-txt', time:'11:00 - 11:15', text: 'Performance'},
+        {id: 2, class:'black-txt', time:'11:15 - 11:35', text: 'Guillermo Martínez'},
+        {id: 3, class:'black-txt', time:'11:35 - 11:45', text: 'Xperience'},
+        {id: 4, class:'black-txt', time:'11:45 - 12:15', text: 'Refresh Five'},
+        {id: 5, class:'black-txt', time:'12:15 - 12:25', text: 'Xperience'},
+        {id: 6, class:'black-txt', time:'12:25 - 12:45', text: 'Speaker'},
+        {id: 7, class:'black-txt', time:'12:45 - 13:45', text: 'Unleash Awards'},
+        {id: 8, class:'black-txt', time:'13:45 - 14:45', text: 'Farewell Surprise'},
+        {id: 9, class:'magenta-txt', time:'14:45 - 15:30', text: 'SCAPE ZONE'},
+      ]
     }
   } 
 }

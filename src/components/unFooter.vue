@@ -1,6 +1,7 @@
 <template>
   <div class="component-wrapper unfooter">
     <div class="component-container">
+      <div class="ribbon"></div>
       <div class="top-footer">
       </div>
       <footer v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'">
@@ -114,6 +115,25 @@ export default {
   position: relative;
   background-color: black;
   display: inline-block;
+  .ribbon{
+    position: absolute;
+    width: 25vh;
+    height: 25vh;
+    max-width: 150px;
+    max-height: 150px;
+    opacity: 0.95;
+    mix-blend-mode: normal;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-image: url('#{$staticpath}static/unleash/images/ribbon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    @media (max-width: $break-mobile) {
+      width: 18vh;
+      height: 18vh;
+    }
+  }
   .component-container{
     position: relative;
     max-width: 100%;

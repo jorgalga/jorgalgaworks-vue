@@ -60,10 +60,11 @@ for (var i = 0; i < window.dataConfig.data.toffers.length; i++) {
 }
 */
 for (var key in window.dataConfig.data.toffers) {
+  console.log(key)
   if (window.dataConfig.data.toffers.hasOwnProperty(key)) {
     // console.log(key + ':' + window.dataConfig.data.toffers[key].path)
     sRoutes.push({
-      path: window.dataConfig.data.toffers[key].path,
+      path: '/' + key,
       name: window.dataConfig.data.toffers[key].name,
       component: Tickets
     })

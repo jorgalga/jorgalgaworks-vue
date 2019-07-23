@@ -3,6 +3,9 @@
     <div class="page-content">
       <unMenu></unMenu>
       <unPageheader type="agenda"></unPageheader>
+      <unWrappertime type="day_1" date="SEPTEMBER 12" white=whitened classopened="opened"></unWrappertime>
+      <unWrappertime type="day_2" date="SEPTEMBER 13" white=whitened classopened="opened"  flipped="inverse"></unWrappertime>
+      <unWrappertime type="day_3" date="SEPTEMBER 14" classopened="opened" sdisplay="displayed"></unWrappertime>
       <unCountdown></unCountdown>
       <unFooter></unFooter>
     </div>
@@ -11,6 +14,7 @@
 <script>
 import unMenu from '@/components/unMenu'
 import unPageheader from '@/components/unPageheader'
+import unWrappertime from '@/components/unWrapperTime'
 import unCountdown from '@/components/unCountdown'
 import unFooter from '@/components/unFooter'
 export default {
@@ -24,6 +28,7 @@ export default {
   components: {
     'unMenu': unMenu,
     'unPageheader': unPageheader,
+    'unWrappertime': unWrappertime,
     'unCountdown': unCountdown,
     'unFooter': unFooter
   },
@@ -41,6 +46,6 @@ export default {
   margin: 0 auto;
   max-width: $pagewidth;
   max-width: 100%;
-  background-color: white;
+  background-color: black;
 }
 </style>

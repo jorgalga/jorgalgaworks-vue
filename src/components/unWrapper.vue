@@ -7,9 +7,9 @@
       <div ref="wcontainer" class="unwrap-container">
         <div class="flex-grid">
           <div class="col names">
-            <div id="names" v-bind:style="'height:'+850*scaleR+'px'">
-              <div v-for="(item, index) in data[$props.type]" @click.prevent="goToItem(index)" v-bind:class="{'name-item':true, 'active': index === itemActive }" v-bind:style="'height:'+80*scaleR+'px'" :key="item.id">
-                <div class="name-text" v-html="item.name" v-bind:style="'font-size:'+36*scaleR+'px'"></div>
+            <div id="names" v-bind:style="'height:'+940*scaleR+'px'">
+              <div v-for="(item, index) in data[$props.type]" @click.prevent="goToItem(index)" v-bind:class="{'name-item':true, 'active': index === itemActive }" v-bind:style="'height:'+60*scaleR+'px'" :key="item.id">
+                <div class="name-text" v-html="item.name" v-bind:style="'font-size:'+26*scaleR+'px'"></div>
               </div>
             </div>
           </div>

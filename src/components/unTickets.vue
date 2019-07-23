@@ -40,7 +40,7 @@ export default {
       this.defCode = this.data.toffers[key].eb_id
       if (this.data.toffers[key].setCookie) {
         console.log('set cookie')
-        this.setCookie('ticketoffer', this.data.toffers[key].eb_id, 3)
+        this.setCookie('ticketoffer', this.data.toffers[key].eb_id, this.data.toffers[key].daysCookie)
       }
     }
     _.resizeHandler()
