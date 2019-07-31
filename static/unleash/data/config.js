@@ -425,7 +425,7 @@
         claim: '3 days of<br>nont-stop talent',
         breadcum: '11 → 12 → 13 SEPTEMBER',
         title: 'Coming soon',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+        description: 'Don’t miss out on our newest edition of Unleash'
       },
       partners: {
         claim: 'The most ambitious<br>entities that support<br>the best talent',
