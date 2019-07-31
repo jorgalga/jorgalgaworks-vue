@@ -1,4 +1,4 @@
-var dataConfig = {
+	var dataConfig = {
   data: {
     testmode: false,
     max_width_limit: 1024,
@@ -424,7 +424,7 @@ var dataConfig = {
       agenda: {
         claim: '3 days of<br>nont-stop talent',
         breadcum: '11 → 12 → 13 SEPTEMBER',
-        title: '→ Non-stop talent ←',
+        title: 'Coming soon',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
       },
       partners: {
@@ -624,7 +624,7 @@ var dataConfig = {
         id: 7,
         name: 'Eric Matamoros',
         img: 'EricMatamoros.jpg',
-        description: '<p>Eric Matamoros Morales’ passion for curing cancer developed overtime after seeing his aunt, a superwoman, fight and survive cancer multiple times. At the age of 15, Eric was exposed to science in a way that changed him. He began a three-year entrepreneurial journey that landed him as COO and co-founder of Biop AI, a leading startup making usage of computer vision and artificial intelligence for skin cancer analysis. While running his company, Eric is passionate about motivational speaking to the youth in an effort to show them the impact that they can make at a young age. At age 15, Barcelona native, Eric Matamoros Morales’, started the entrepreneurial journey of founding Biop AI. Three years later, it is a leading startup making usage of computer vision and artificial intelligence for skin cancer analysis. Eric is passionate about curing cancer and teaching young people that they can make an impact in science no matter their age.</p>',
+        description: '<p>Eric Matamoros Morales’ passion for curing cancer developed overtime after seeing his aunt, a superwoman, fight and survive cancer multiple times. At the age of 15, Eric was exposed to science in a way that changed him. He began a three-year entrepreneurial journey that landed him as COO and co-founder of Biop AI, a leading startup making usage of computer vision and artificial intelligence for skin cancer analysis. While running his company, Eric is passionate about motivational speaking to the youth in an effort to show them the impact that they can make at any age.</p>',
         description_short: '<p>Talent transcends age for this young entrepreneur. At 15 years, Eric Matamoros Morales manifested a passion for curing cancer, and, 3 years later, established himself as COO and co-founder of Biop AI. Using computers, the firm analyzes skin cancer and saves lives!</p>',
         social: [
           {
@@ -667,7 +667,7 @@ var dataConfig = {
         id: 9,
         name: 'Jeremy Miller',
         img: 'JeremyMiller.jpg',
-        description: '<p>20-year-old Jeremy Miller is no stranger to entrepreneurship. He started his first business, custom longboarding, at the age of 16 as a way to bring his community together and create a safe space for people to talk about life. Although his first venture didnâ€™t pan out, he couldnâ€™t give up his passion for entrepreneurship after seeing the positive impact it made. Since then, Jeremy has built an advertising agency called Inspired Blue Media gaining national clients and national press recognition. Now, still only 20 years old, he is the co-founder and VP of Marketing at the STARTedUP Foundation where he inspires and creates opportunities for students to act on their business ideas.</p>',
+        description: '<p>20-year-old Jeremy Miller is no stranger to entrepreneurship. He started his first business, custom longboarding, at the age of 16 as a way to bring his community together and create a safe space for people to talk about life. Although his first venture didn’t pan out, he couldn’t give up his passion for entrepreneurship after seeing the positive impact it made. Since then, Jeremy has built an advertising agency called Inspired Blue Media gaining national clients and national press recognition. Now, still only 20 years old, he is the co-founder and VP of Marketing at the STARTedUP Foundation where he inspires and creates opportunities for students to act on their business ideas.</p>',
         description_short: '<p>Longboards are more than just a mode for transportation, this young entrepreneur used his first venture, a longboard business as a vehicle for bringing people together. Two businesses later, 20-year-old Jeremy Miller is inspiring students to go after their dreams through his STARTedUP Foundation.</p>',
         social: [
           {
@@ -689,34 +689,94 @@ var dataConfig = {
       },
       {
         id: 10,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Matheusz Mach',
+        img: 'MateuszMach.jpg',
+        description: '<p>22-year-old Mateusz Mach got his start when he created the world’s first sign-language messenger, leading him to become Poland’s youngest person to secure a $200,000 investment from a VC. After his first taste of entrepreneurship, Mateusz discovered an interest in cryptocurrency and blockchain. He is now Co-Founder and CEO of Nextrope.com - a blockchain-oriented software house delivering scalable blockchain platforms to startups, enterprises, and governments. His diverse ventures have gained Mateusz international recognition in the technology sector; among others, he is a Forbes 30 Under 30 winner.</p>',
+        description_short: '<p>Since the age of 18, Mateusz Mach has been taking the world by storm with his innovative ideas. He created Five App, the world’s first sign language messenger and now he is the CEO and co-founder of Nextrope.com, a blockchain platform. What will he come up with next?</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/mandmach/'
+          },
+          {
+            id: 1	,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/mach.mateusz/'
+          },
+        {
+            id: 2	,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/mach.matteusz/'
+          }
+        ]
       },
       {
         id: 11,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Hannah Herbst',
+        img: 'HannahHerbst.jpg',
+        description: '<p>Hannah Herbst is a 19-year-old student and social innovator. At age 14, she invented a small turbine that converts energy from ocean currents into electricity, earning her the title “America’s Top Young Scientist” in 2015. She recently graduated from high school after being dually enrolled in Florida Atlantic University (having the earned-credit equivalency of a college junior) and is pursuing her undergraduate degree in Management IT. She is exploring the properties of shark skin for medical applications at the Florida Atlantic Biomechanics Lab and has additionally researched identification methods for hazardous airborne chemicals. Hannah’s efforts have granted her a well-earned place on the prestigious Forbes Forbes 30 Under 30 list in 2018.</p>',
+        description_short: '<p>Age is just a number! Student and social innovator, Hannah Herbst, created her first big invention when she was 14! She currently researches shark skin for medical applications and identifies methods for hazardous airborne chemicals at Florida Atlantic Biomechanics Lab. Hear what’s up next for her at #Unleash 2019.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/hannahherbst07/'
+          },
+          {
+            id: 1	,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/profile.php?id=100010927574962/'
+          },
+        {
+            id: 2	,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/hannahherbst/'
+          }
+        ]
       },
       {
         id: 12,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Robert Fratila',
+        img: 'RobertFratila.jpg',
+        description: '<p>Through the study of computer science and biology, Robert Fratila has developed a passion for combining medicine and artificial intelligence (AI). While a student at McGill University, he worked as a software developer at the Montreal Neurological Institute, where he developed state-of-the-art deep learning techniques in the healthcare industry, specifically brain imaging. He participated in the NeuroTechX Competition with a team and won the Consumer Grand Prize for building a tool to identify the user’s attentive state with a commercially available EEG headset. During this time, he also co-founded Aifred Health, the leading startup in the IBM Watson AI XPRIZE global competition, and now serves as the CTO. Fratila is working hard to develop machine learning to process brain scans and improve treatments for mental health.</p>',
+        description_short: '<p>Through the study of computer science and biology, Robert Fratila has developed a passion for combining medicine and artificial intelligence (AI). While a student at McGill University, he worked as a software developer at the Montreal Neurological Institute, where he developed state-of-the-art deep learning techniques in the healthcare industry, specifically brain imaging. He participated in the NeuroTechX Competition with a team and won the Consumer Grand Prize for building a tool to identify the user’s attentive state with a commercially available EEG headset. During this time, he also co-founded Aifred Health, the leading startup in the IBM Watson AI XPRIZE global competition, and now serves as the CTO. Fratila is working hard to develop machine learning to process brain scans and improve treatments for mental health.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/robert__fratila/'
+          }
+        ]
       },
       {
         id: 13,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Tashi Baiguerra',
+        img: 'TashiBaiguerra.jpg',
+        description: '<p>Born and raised in Melbourne, Australia, Natasha graduated from the Howard Fine Acting Studio and moved to London in 2018 to train with Frantic Assembly and work in the vibrant London theatre scene. As an actor with Aspergers Syndrome, Natasha is proud to be a voice for the Autism community through her work, playing both autistic and non-autistic roles, and spoke about her autism journey at TEDxLondon 2019, after being chosen out of over 500 young Londoners. She is passionate about including disability in the arts, and often works with companies to ensure their work is diverse and innovative. Alongside theatre, Natasha also works as a vocalist and folk musician, playing multiple instruments including strings and keys, as well as contemporary dance and puppeteer work. She is a proud member of Actors Equity Australia and UK.</p>',
+        description_short: '<p>Born and raised in Melbourne, Australia, Natasha graduated from the Howard Fine Acting Studio and moved to London in 2018 to train with Frantic Assembly and work in the vibrant London theatre scene. As an actor with Aspergers Syndrome, Natasha is proud to be a voice for the Autism community through her work, playing both autistic and non-autistic roles. She is passionate about including disability in the arts and often works with companies to ensure their work is diverse and innovative. Alongside theatre, Natasha also works as a vocalist and folk musician, playing multiple instruments including strings and keys, as well as contemporary dance and puppeteer work.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/tashiktt/'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/tashiktt/'
+          }
+        ]
       },
       {
         id: 14,
+        name: 'COMING SOON',
+        img: 'Unleash_Web_Speaker.jpg',
+        description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
+        description_short: '<p>Are you interested in sharing your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()" target="_blank">YES</a></p>'
+      },
+      {
+        id: 15,
         name: 'THIS COULD BE YOU!',
         img: 'Unleash_Web_Speaker.jpg',
         description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
@@ -800,7 +860,7 @@ var dataConfig = {
         id: 3,
         name: 'Andrés Madruga',
         img: 'Ándres_Madrugá.jpg',
-        description: '<p>Andres Madruga is 34 years old and he is a magician and stand up comedian. He would love to contribute his experience about what changes someone´s life when they do what they love. Andres dedicated himself to computer science. He had a job that he didn’t necessarily dislike and he was doing well, but he did not feel fulfilled. One day, through a course he took, they gave him the opportunity to get on stage. He felt a rush of adrenaline and experienced a sensation that he has become addicted to. Andres discovered what he was passionate about at the age of 26. He made decisions, he made changes, and with work and effort he finally got what he was set out to do. He changed his profession and now he dedicates himself to acting. He can provide the tools, tricks and tips that helped him a lot along the way. And of course, he has the incredible talent to entertain everyone and leave them surprised like never before</p>',
+        description: '<p>Andres Madruga is 34 years old and he is a magician and stand up comedian. He would love to contribute his experience about what changes someone´s life when they do what they love. Andres dedicated himself to computer science. He had a job that he didn’t necessarily dislike and he was doing well, but he did not feel fulfilled. One day, through a course he took, they gave him the opportunity to get on stage. He felt a rush of adrenaline and experienced a sensation that he has become addicted to. Andres discovered what he was passionate about at the age of 26. He made decisions, he made changes, and with work and effort he finally got what he was set out to do. He changed his profession and now he dedicates himself to acting. He can provide the tools, tricks and tips that helped him a lot along the way. And of course, he has the incredible talent to entertain everyone and leave them surprised like never before.</p>',
         description_short: '<p>Andres Madruga, a magician and stand up comedian who loves the feeling of being on stage and acting in front of people. Madruga is truly a talented artist who went through a lot of changes/decisions to be who he truly wanted to be. Get ready for surprises because a touch of magic is coming to UNLEASH 2019. VOILA!</p>',
         social: [
           {
@@ -845,7 +905,7 @@ var dataConfig = {
         img: 'SimplyBroke.jpg',
         description: '<p>We are a musical duo that emerged in the streets of Madrid, frequently playing in places in Madrid such as Parque Reitor, the templo de debod, the calle preciados as well as open mic and jams. Then we started to perform concerts and little by little our repertoire grew with our own music. We then extended the project to duo format + band format.</p>',
         description_short: '<p>We are a musical duo that emerged in the streets of Madrid, frequently playing in places in Madrid such as Parque Reitor, the templo de debod, the calle preciados as well as open mic and jams. Then we started to perform concerts and little by little our repertoire grew with our own music. We then extended the project to duo format + band format.</p>',
-      social: [
+        social: [
           {
             id: 0,
             class: 'icon-facebook',
@@ -860,10 +920,22 @@ var dataConfig = {
       },
       {
         id: 6,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Expoart',
+        img: 'Expoart.jpg',
+        description: '<p>When Javier was 8-years-old, he noticed the colorful graffiti painted on the streets of his neighborhood and spent his afternoons trying to understand what their message portrayed. Some years passed, and at age 14, an innate feeling of expression came out, and he decided to buy his first spray can. Javier now paints with friends, traveling to new cities, and enjoying all of the amazing things that the different cultures bring. He continues to enhance his painting in local festivals and contests, and he also teaches classes in a school setting. Today, he has a clear goal to devote all of his time and effort to continually improve and paint all over the world.</p>',
+        description_short: '<p>When Javier was 8-years-old, he noticed the colorful graffiti painted on the streets of his neighborhood and spent his afternoons trying to understand what their message portrayed. Some years passed, and at age 14, an innate feeling of expression came out, and he decided to buy his first spray can. Javier now paints with friends, traveling to new cities, and enjoying all of the amazing things that the different cultures bring. He continues to enhance his painting in local festivals and contests, and he also teaches classes in a school setting. Today, he has a clear goal to devote all of his time and effort to continually improve and paint all over the world.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/decoracionesexpoart/'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/decoracionesexpoart/'
+          }
+        ]
       },
       {
         id: 7,
@@ -1030,7 +1102,7 @@ var dataConfig = {
           tag_id: 'tag-cepsa',
           img: 'partners/Cepsa_Logo.png',
           name: 'Cepsa',
-          url: 'https://www.cepsa.es/'
+          url: 'https://www.cepsa.com/es/talento'
         },
         {
           id: '3',
@@ -1070,7 +1142,7 @@ var dataConfig = {
       ] 
     },
     partner_colaborator:{
-      name:'Colaborators',
+      name:'Collaborators',
       gsize: 'col-3',
       items_row: 4, 
       max_height: 300,
