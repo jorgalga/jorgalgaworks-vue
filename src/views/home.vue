@@ -1,14 +1,18 @@
 <template>
   <div id="page" ref="page" class="page">
     <cmpMenu></cmpMenu>
-    <cmpForm></cmpForm>
+    <cmpHeader></cmpHeader>
+    <cmpVideo></cmpVideo>
     <cmpInfo></cmpInfo>
+    <cmpForm></cmpForm>
     <cmpFooter></cmpFooter>
   </div>
 </template>
 <script>
+import cmpHeader from '@/components/CMP_header'
 import cmpMenu from '@/components/CMP_menu'
 import cmpForm from '@/components/CMP_form'
+import cmpVideo from '@/components/CMP_video'
 import cmpInfo from '@/components/CMP_info'
 import cmpFooter from '@/components/CMP_footer'
 export default {
@@ -35,10 +39,12 @@ export default {
     })
   },
   components: {
+    'cmpHeader': cmpHeader,
     'cmpMenu': cmpMenu,
     'cmpForm': cmpForm,
     'cmpInfo': cmpInfo,
-    'cmpFooter': cmpFooter
+    'cmpFooter': cmpFooter,
+    'cmpVideo': cmpVideo
   },
   mounted () {
   },

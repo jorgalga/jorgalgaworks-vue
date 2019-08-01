@@ -1,23 +1,35 @@
 <template>
   <div class="component-wrapper cmpform">
-    <div class="page-title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+360*scaleR+'px'" v-html="data.copy[clang].form_ptitle">
-    </div>
     <div class="component-container">
-      <div class="logo" v-bind:style="isMobile ? '' : 'height:' + 77*scaleR+'px; margin-top:'+23*scaleR+'px'"></div>
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <form v-bind:style="isMobile ? '' : 'max-width:'+550*scaleR+'px'">
-          <input type="text" name="firstname" placeholder="<nombre>">
-          <input type="text" name="lastname" placeholder="<email>">
-          <input type="text" name="lastname" placeholder="<twitter>">
-          <br><br><br><br>
-          <input @click.prevent="sendform()" class="submit" type="submit" value="> GO">
+        <form v-bind:style="isMobile ? '' : 'max-width:'+550*scaleR+'px; font-size:'+21*scaleR+'px;'">
+          <label for="firstname">Nombre</label>
+          <input type="text" name="firstname" placeholder=""><br>
+          <label for="email">Email:</label>
+          <input type="text" name="email" placeholder=""><br>
+          <label for="twitter">Twitter:</label>
+          <input type="text" name="twitter" placeholder=""><br>
+          <div class="check-container">
+            <input type="checkbox" class="check-bases">
+            <label class="check-bases">Acepto las bases legales de la competición</label>
+          </div>
+          <br>
+          <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*scaleR+'px;padding:'+15*scaleR+'px'">
         </form>
       </div>
-      <div class="scroll-container">
+      <!--div class="scroll-container">
         <div class="chevron"></div>
         <div class="chevron"></div>
         <div class="chevron"></div>
         <span class="text" v-html="data.copy[clang].make_scroll"></span>
+      </div-->
+    </div>
+    <div class="contact-block triangle" v-bind:style="isMobile ? '' : 'height: '+100*scaleR+'px'">
+    </div>
+    <div class="contact-block" v-bind:style="isMobile ? '' : 'font-size:'+25*scaleR+'px;height: '+300*scaleR+'px'">
+      <div class="contact-element">
+        <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
+        <a class="btn white" v-bind:style="isMobile ? '' : 'padding: '+15*scaleR+'px'">Contacta con nosotros</a>
       </div>
     </div>
   </div>
@@ -87,15 +99,41 @@ export default {
 @import '../scss/_fonts.scss';
 .component-wrapper.cmpform{
   width: 100%;
-  background-color: $blue;
+  background-color: #f7f7f7;
   transition: 1s;
   position: relative;
+  .btn{
+    &.white{
+      border: 2px solid white;
+      &:hover{
+        background-color: white;
+        color: #6ac7b1;
+        cursor: pointer;
+      }
+    }
+  }
+  .contact-block{
+    background-color: #6ac7b1;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &.triangle{
+      clip-path: polygon(0 100%, 100% 0, 100% 100%);
+    }
+    .contact-element{
+      color: white;
+      font-family: 'SohoGothicPro-Regular';
+      text-align: center;
+    }
+  }
   .component-container{
     max-width: $pagewidth;
     margin: 0 auto;
     box-sizing: border-box;
     // background-color: #00000011;
-    min-height: 100vh;
+    min-height: 50vh;
     position:relative;
     .logo{
       background: url('#{$staticpath}static/minsait/images/logo.png');
@@ -108,7 +146,6 @@ export default {
     }
     .form-container{
       min-height: 100px;
-      // background-color: #ffffff11;
       position: absolute;
       top: 50%;
       left: 50%;
@@ -116,29 +153,56 @@ export default {
       width: 50%;
       form{
         margin: 0 auto;
-        input{
+        .check-container{
           width: 100%;
+          text-align: right;
+        }
+        label{
+          width: 20%;
+          color: $darkblue;
+          font-family: 'SohoGothicPro-Light';
           display: inline-block;
           box-sizing: border-box;
+          position: relative;
+          text-align: right;
+          padding-right: 20px;
+          &.check-bases{
+            width: initial;
+            text-align: right;
+            display: inline-block;
+          }
+        }
+        input{
+          width: 75%;
+          display: inline-block;
+          box-sizing: border-box;
+          position: relative;
           border: 0;
-          background-color: $darkblue;
+          background-color: transparent;
+          border: 2px solid $darkblue;
           font-family: 'SohoGothicPro-Light';
           color: white;
-          font-size: 22px;
           line-height: 1;
           padding: 7px;
           margin-bottom: 30px;
+          &.check-bases{
+            width: initial;
+          }
           &.submit{
-            background: white;
-            color: $darkblue;
-            width: 20%;
+            border: 2px solid #6ac7b1;
+            color: #6ac7b1;
+            width: 40%;
             cursor: pointer;
-            font-weight: 800;
-            font-family: 'SohoGothicPro-Medium';
+            font-family: 'SohoGothicPro-Regular';
+            margin: 0 auto;
+            display: block;
+            &:hover{
+              background-color: #6ac7b1;
+              color: white;
+            }
           }
           &::placeholder{
             color: white;
-            font-size: 22px;
             line-height: 1;
           }
         }
@@ -149,13 +213,7 @@ export default {
     color: white;
     font-size: 460px;
     font-family: 'SohoGothicPro-Light';
-    line-height: 0.9;
-    position: absolute;
-    transform-origin: top left;
-    transform: rotate(90deg) translate3d(0,-100%,0);
-    z-index: 999;
-    top:0;
-    left: 0;
+    line-height: 1;
   }
 }
 .scroll-container {

@@ -9,8 +9,11 @@
           </div>
         </div>
       </div>
-      <div class="lang-selector" v-bind:style="isMobile ? '' : 'right:'+220*scaleR+'px;height:'+60*scaleR+'px;width:'+220*scaleR+'px'">
+      <div class="lang-selector" v-bind:style="isMobile ? '' : 'right: -'+220*scaleR+'px;height:'+60*scaleR+'px;width:'+220*scaleR+'px'">
         <div class="text-button" v-bind:style="isMobile ? '' : 'font-size:'+22*scaleR+'px; letter-spacing:'+4*scaleR+'px'"><a @click.prevent="toggleLang('es')" ref="link-es" href="" class="lang-link">ES</a> | <a @click.prevent="toggleLang('en')" ref="link-en" href="" class="lang-link">EN</a></div>
+      </div>
+      <div class="participa-button" v-bind:style="isMobile ? '' : 'right: '+240*scaleR+'px;height:'+60*scaleR+'px;width:'+180*scaleR+'px'">
+        <div class="btn-copy" v-bind:style="isMobile ? '' : 'font-size:'+22*scaleR+'px; letter-spacing:'+4*scaleR+'px'" v-html="data.copy[clang].menuparticipabtn"></div>
       </div>
       <div @click.prevent="toggleMenu()" class="menu-button" v-bind:style="isMobile ? '' : 'height:'+60*scaleR+'px;width:'+220*scaleR+'px'">
         <div class="text-button" v-bind:style="isMobile ? '' : 'font-size:'+22*scaleR+'px; letter-spacing:'+4*scaleR+'px'" v-html="data.copy[clang].menubtn"></div>
@@ -89,6 +92,7 @@ export default {
   z-index: 999;
   .component-container{
     max-width: $pagewidth;
+    max-width: 80%;
     margin: 0 auto;
     box-sizing: border-box;
     min-height: 100px;
@@ -103,7 +107,7 @@ export default {
         position: absolute;
         top: 50%;
         left: 55%;
-        transform: translate3d(-25%,-50%,0);
+        transform: translate3d(-75%,-50%,0);
         color: white;
         .lang-link{
           color: white;
@@ -131,13 +135,14 @@ export default {
         }
       }
       .menu-item{
-        background-color: #ff8ba4;
+        background-color: #6ac7b1;
+        color: white;
         width: 100%;
         transition: 0.5s;
         position: relative;
         cursor:pointer;
         &:hover{
-          background-color:  #ffaacc;
+          background-color:  #60b0a0;
           transition-delay: 0s !important;
           transition: 0.25s;
           transform: translate3d(-3%,0,0)
@@ -150,7 +155,7 @@ export default {
           left: 50%;
           transform: translate3d(-50%,-50%,0);
           font-family: 'SohoGothicPro-Light';
-          color: #111111;
+          color: white;
           .arrow{
             position: absolute;
             top:50%;
@@ -176,8 +181,28 @@ export default {
         }
       }
     }
+    .participa-button{
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+      display: inline-block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate3d(0,-50%,0);
+      transition: 0.25s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &:hover{
+        background-color: white;
+        color:#6ac7b1;
+        cursor: pointer;
+      }
+    }
     .menu-button{
       background-color: white;
+      border: 2px solid white;
       display: inline-block;
       position: absolute;
       right: 0;

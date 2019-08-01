@@ -28,6 +28,26 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'MyriadPro-Regular';
+  src: url('#{$staticpath}static/minsait/fonts/MyriadPro-Regular.eot?#iefix') format('embedded-opentype'),
+    url('#{$staticpath}static/minsait/fonts/MyriadPro-Regular.woff') format('woff'),
+    url('#{$staticpath}static/minsait/fonts/MyriadPro-Regular.ttf')  format('truetype'),
+    url('#{$staticpath}static/minsait/fonts/MyriadPro-Regular.svg#MyriadPro-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PlayfairDisplay-Regular';
+  src: url('#{$staticpath}static/minsait/fonts/PlayfairDisplay-Regular.eot?#iefix') format('embedded-opentype'),
+    url('#{$staticpath}static/minsait/fonts/PlayfairDisplay-Regular.woff') format('woff'),
+    url('#{$staticpath}static/minsait/fonts/PlayfairDisplay-Regular.ttf')  format('truetype'),
+    url('#{$staticpath}static/minsait/fonts/PlayfairDisplay-Regular.svg#PlayfairDisplay-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
 
 @font-face {
   font-family: 'icomoon';

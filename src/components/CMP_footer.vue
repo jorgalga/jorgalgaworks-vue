@@ -1,15 +1,19 @@
 <template>
   <div class="component-wrapper cmpfooter">
-    <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'" >
-      <div class="col">
-        <div class="col-cont"><p>OneSait Platform®</p></div>
+    <div class="wrapper">
+      <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'" >
+        <div class="col">
+          <div class="col-cont"><p>OneSait Platform®</p></div>
+        </div>
+        <div class="col">
+          <div class="col-cont"><p>Reglas del juego</p></div>
+        </div>
+        <div class="col">
+          <div class="col-cont"><a href="" class="link-footer"><span class="icon-twitter"></span></a></div>
+        </div>
       </div>
-      <div class="col">
-        <div class="col-cont"><p>Reglas del juego</p></div>
-      </div>
-      <div class="col">
-        <div class="col-cont"><a href="" class="link-footer"><span class="icon-twitter"></span></a></div>
-      </div>
+    </div>
+    <div class="fterminal triangle" v-bind:style="isMobile ? '' : 'height:'+100*scaleR+'px'">
     </div>
   </div>
 </template>
@@ -55,10 +59,20 @@ export default {
 @import '../scss/_fonts.scss';
 .component-wrapper.cmpfooter{
   width: 100%;
-  background-color: $darkblue;
   transition: 1s;
   position: relative;
+  background-color: white;
+  .fterminal{
+    background-color: $darkblue;
+    &.triangle{
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+  }
+  .wrapper{
+    background-color: $darkblue;
+  }
   .component-container{
+    background-color: $darkblue;
     max-width: $pagewidth;
     margin: 0 auto;
     box-sizing: border-box;

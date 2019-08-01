@@ -1,16 +1,19 @@
 <template>
   <div id="cmpinfo" class="component-wrapper cmpinfo">
-    <div class="page-title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+360*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
-    </div>
-    <div class="component-container">
-      <div class="video-container" v-bind:style="isMobile ? '' : 'height:'+840*scaleR+'px'">
+    <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0;'">
+      <!-- div class="video-container" v-bind:style="isMobile ? '' : 'height:'+840*scaleR+'px'">
+      </div -->
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
       </div>
-      <div class="info-container" v-bind:style="isMobile ? '' : 'height:'+900*scaleR+'px; margin: '+100*scaleR+'px 0;'">
+      <div class="page-description" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+24*scaleR+'px'" v-html="data.copy[clang].info_description">
+      </div>
+      <div class="info-container" v-bind:style="isMobile ? '' : 'height:'+400*scaleR+'px; margin: '+0*scaleR+'px 0;'">
         <div class="info-item" v-for="item in data.copy[clang].infoitems" :key="item.order">
           <div class="info-item-container">
-            <div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+220*scaleR+'px'"><span class="hash" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+110*scaleR+'px'">#</span>{{item.order}}</div>
-            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+38*scaleR+'px'"></div>
-            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'"></div>
+            <!-- div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'">{{item.order}}</div -->
+            <div class="icon-image" v-bind:style="isMobile ? '' : 'height:'+128*scaleR+'px;'"></div>
+            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+32*scaleR+'px'"></div>
+            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+24*scaleR+'px'"></div>
           </div>
         </div>
       </div>
@@ -61,100 +64,110 @@ export default {
 .component-wrapper.cmpinfo{
   width: 100%;
   background-color: $blue;
+  background-color: white;
   transition: 1s;
   position: relative;
   .component-container{
     max-width: $pagewidth;
     margin: 0 auto;
     box-sizing: border-box;
-    background-color: #00000011;
-    min-height: 100vh;
     position:relative;
+    background-color: white;
     .video-container{
       width: 100%;
       background-color: $darkblue;
     }
     .info-container{
       width: 100%;
-      background-color: #00000011;
       display: inline-block;
       position: relative;
       .info-item{
         position: absolute;
-        width: 50%;
-        height: 50%;
+        width: 25%;
+        height: 100%;
         display: inline-block;
         box-sizing: border-box;
         border: 0;
-        color: white;
-        font-family: 'SohoGothicPro-Light';
+        color: $blue;
         .info-item-container{
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate3d(-50%,-50%,0);
-          width: 45%;
-          .hash{
-            font-size: 110px;
-            line-height: 0.9;
-            position: relative;
-            transform: translate3d(0,-25%,0);
-            display: inline-block;
+          width: 85%;
+          text-align: center;
+          .icon-image{
+            width: 100%;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
           }
           .order{
             line-height: 0.9;
-            position: absolute;
-            left: 0;
-            top: 0;
-            transform: translate3d(-100%,-50%,0)
           }
-          .description{
-            position: relative;
-            transform: translate3d(10%,0,0)
+          .title{
+            font-family: 'SohoGothicPro-Medium';
+            display: inline-block;
+          }
+          .description {
+            font-family: 'SohoGothicPro-Regular';
           }
         }
         &:nth-child(1){
           top:0;
           left: 0;
+          .icon-image{
+            background-image: url('#{$staticpath}static/minsait/images/icon1.jpg');
+          }
           .info-item-container{
-            transform: translate3d(-25%,-50%,0)
+            transform: translate3d(-50%,-50%,0)
           }
         }
         &:nth-child(2){
           top:0;
-          left: 50%;
+          left: 25%;
+          .icon-image{
+            background-image: url('#{$staticpath}static/minsait/images/icon2.jpg');
+          }
           .info-item-container{
-            transform: translate3d(-25%,50%,0)
+            transform: translate3d(-50%,-50%,0)
           }
         }
         &:nth-child(3){
-          top:50%;
-          left: 0;
+          top: 0;
+          left: 50%;
+          .icon-image{
+            background-image: url('#{$staticpath}static/minsait/images/icon3.jpg');
+          }
           .info-item-container{
-            transform: translate3d(0,-50%,0)
+            transform: translate3d(-50%,-50%,0)
           }
         }
         &:nth-child(4){
-          top:50%;
-          left: 50%;
+          top: 0%;
+          left: 75%;
+          .icon-image{
+            background-image: url('#{$staticpath}static/minsait/images/icon4.jpg');
+          }
           .info-item-container{
-            transform: translate3d(-25%,75%,0)
+            transform: translate3d(-50%,-50%,0)
           }
         }
       }
     }
   }
   .page-title{
-    color: white;
-    font-size: 460px;
-    font-family: 'SohoGothicPro-Light';
+    color: $blue;
+    font-family: 'PlayfairDisplay-Regular';
     line-height: 0.9;
-    position: absolute;
-    transform-origin: top right;
-    transform: rotate(-90deg) translate3d(-50%,-100%,0);
-    z-index: 999;
-    top:0;
-    right: 0;
+    text-align: center;
+  }
+  .page-description{
+    font-family: 'SohoGothicPro-Regular';
+    color: $blue;
+    text-align: center;
+    max-width: 66%;
+    margin: 0 auto;
   }
 }
 </style>
