@@ -7,8 +7,9 @@
       <footer v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'">
         <div class="flex-grid" v-bind:style="isMobile ? '' : 'font-size:'+24*scaleR+'px;padding:'+15*scaleR+'px'">
           <div class="col">
+            <div class='seal' v-bind:style="isMobile ? 'width:100px; height:50px;' : 'width:'+100*scaleR+'px;height:'+100*scaleR+'px; margin-bottom:'+40*scaleR+'px'"></div>
             <div class='logo' v-bind:style="isMobile ? 'width:100px; height:50px;' : 'width:'+150*scaleR+'px;height:'+50*scaleR+'px; margin-bottom:'+40*scaleR+'px'"></div>
-             <div class="flex-grid">
+            <div class="flex-grid">
               <div class="col">
                 Unleash 2019
               </div>
@@ -222,9 +223,23 @@ export default {
       background-image: url('#{$staticpath}static/unleash/logo-unleash-blanco.png');
       background-repeat: no-repeat;
       background-size: contain;
+      display: inline-block;
       @media (max-width: $break-mobile) {
         background-position: center;
         display: inline-block;
+      }
+    }
+    .seal{
+      background-image: url('#{$staticpath}static/unleash/images/sello_evento_recomendado.png');
+      background-repeat: no-repeat;
+      background-size: contain;
+      display: inline-block;
+      position: absolute;
+      transform: translate3d(-100%,-25%,0);
+      @media (max-width: $break-mobile) {
+        background-position: center;
+        display: inline-block;
+        transform: translate3d(-80%,12.5%,0);
       }
     }
     .social-links{

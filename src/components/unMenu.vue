@@ -141,7 +141,7 @@ export default {
     width: 100%;
     height: 100%;
     position: absolute;
-    background-image: linear-gradient(to bottom, black, black 95%, transparent 100%);
+    background-image: linear-gradient(to bottom, black, black 100%, transparent 100%);
   }
   .component-container{
     position: relative;
