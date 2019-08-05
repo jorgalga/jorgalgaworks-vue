@@ -16,7 +16,7 @@
         path: '/2x1offer',
         name: 'Two tickets by the price of one',
         eb_id: '65098500367',
-        setCookie: false,
+        setCookie: true,
       }
     },
     page_names:{
@@ -770,10 +770,27 @@
       },
       {
         id: 14,
-        name: 'COMING SOON',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
-        description_short: '<p>Are you interested in sharing your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()" target="_blank">YES</a></p>'
+        name: 'Pau García-Milà',
+        img: 'PauGarcia-Mila.jpg',
+        description: '<p>Pau Garcia-Milá Pujol is a Spanish businessman and entrepreneur. He co-founded his first company, eyeOS, a pioneer in the development of virtualization solutions in cloud computing when he was only 17 year old, later acquired by Telefónica in 2014. After his first taste in entrepreneurship, he pursued more opportunities such as his social networking site, Bananity, in 2011, as well as IdeaFoster, an innovation consultancy aimed at helping companies create projects following methodologies by Start-ups. He is currently an associate professor in the ESADE Digital Business Master, making him the youngest teacher in this entity.</a></p>',
+        description_short: '<p>Pau co-founded his first company, eyeOS, when he was only 17 year old, later acquired by Telefónica in 2014. After his first taste in entrepreneurship, he pursued more opportunities such as his social networking site, Bananity, in 2011, as well as IdeaFoster, an innovation consultancy aimed at helping companies create projects following methodologies by Start-ups. He is currently an associate professor in the ESADE Digital Business Master, making him the youngest teacher in this entity.</a></p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/pau'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/paugarciamila'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/paugarciamila/'
+          }
+        ]
       },
       {
         id: 15,
@@ -1113,31 +1130,38 @@
         },
         {
           id: '1',
-          tag_id: 'tag-bnp',
-          img: 'partners/BNPPF-2019_IMG_FR_Credtk_big.jpg',
-          name: '',
-          url: 'https://www.bnpparibas.es/en/'
+          tag_id: 'tag-mediamark',
+          img: 'partners/MediaMarkPeople.jpg',
+          name: 'MediaMarkPeople',
+          url: 'https://specials.mediamarkt.es/nuestra-empresa/nuestros-valores-y-principios-eticos/'
         },
         {
           id: '4',
           tag_id: 'tag-bplus',
           img: 'partners/beplus.png',
-          name: '',
+          name: 'bplus',
           url: 'https://beplusbio.com/'
         },
         {
           id: '5',
           tag_id: 'tag-adevinta',
           img: 'partners/adevinta.jpg',
-          name: '',
+          name: 'adevinta',
           url: 'https://www.adevinta.com/'
         },
         {
           id: '6',
           tag_id: 'tag-schneider',
           img: 'partners/schneider.png',
-          name: '',
+          name: 'schneider',
           url: 'https://www.se.com/es/es/'
+        },
+        {
+          id: '7',
+          tag_id: 'tag-merck',
+          img: 'partners/Merck.png',
+          name: 'Merck',
+          url: 'https://www.merckgroup.com/es-es'
         }
       ] 
     },
@@ -1160,13 +1184,14 @@
           img: 'partners/Fuckup_Nights_Madrid.png',
           name: '',
           url: 'https://fuckupnights.com/madrid/?locale=en'
-        },/*
+        },
         {
           id: '0',
-          img: 'partners/logo.png',
+          tag_id: 'tag-REDI',
+          img: 'partners/REDI.png',
           name: '',
-          url: ''
-        },
+          url: 'http://www.redi-lgbti.org/'
+        },/*
         {
           id: '1',
           img: 'partners/logo.png',
@@ -1267,7 +1292,7 @@
         {id: 16, class:'black-txt', time:'17:00 - 17:10', text: 'Xperience'},
         {id: 17, class:'black-txt', time:'17:10 - 17:30', text: 'Hanan Challouki'},
         {id: 18, class:'black-txt', time:'17:30 - 17:40', text: 'Xperience'},
-        {id: 19, class:'black-txt', time:'17:40 - 18:00', text: 'Speaker Merck'},
+        {id: 19, class:'black-txt', time:'17:40 - 18:00', text: 'Pau García-Milà'},
         {id: 20, class:'black-txt', time:'18:00 - 18:10', text: 'Xperience'},
         {id: 21, class:'black-txt', time:'18:10 - 18:20', text: 'Performance'}
       ],
