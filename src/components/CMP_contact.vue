@@ -1,6 +1,6 @@
 <template>
   <div class="component-wrapper cmpcontact">
-    <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'" >
+    <div class="component-container" v-bind:style="isMobile ? 'height:'+200*scaleR+'px' : 'height:'+200*scaleR+'px'" >
     </div>
   </div>
 </template>

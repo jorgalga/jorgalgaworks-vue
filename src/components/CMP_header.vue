@@ -1,10 +1,10 @@
 <template>
   <div id="cmpheader" class="component-wrapper cmpheader">
-    <div class="component-container" v-bind:style="isMobile ? '' : 'height: '+300*scaleR+'px'">
-      <div v-bind:style="isMobile ? '' : 'width: '+300*scaleR+'px; height:'+150*scaleR+'px'" class="logo"></div>
-      <div class="copy-logo" v-html="data.copy[clang].logo_copy" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+24*scaleR+'px'"></div>
+    <div class="component-container" >
+      <div class="logo"></div>
+      <div class="copy-logo" v-html="data.copy[clang].logo_copy"></div>
     </div>
-    <div class="component-container triangle" v-bind:style="isMobile ? '' : 'height: '+100*scaleR+'px'">
+    <div class="component-container triangle" >
     </div>
   </div>
 </template>
@@ -26,10 +26,10 @@ export default {
       this.clang = this.$route.params.lang
     }
     var _ = this
-    _.resizeHandler()
+    // _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
-      _.resizeHandler()
+      // _.resizeHandler()
     })
   },
   mounted () {
@@ -39,7 +39,6 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
-      console.log(this.scaleR)
     }
   }
 }
@@ -56,12 +55,15 @@ export default {
   transition: 1s;
   position: relative;
   z-index: 90;
+  margin-top: -1px;
+  @media (max-width: $break-mobile) {
+    margin-top: 80px;
+  }
   .component-container{
     max-width: $pagewidth;
     max-width: 100%;
     margin: 0 auto;
-    box-sizing: border-box;
-    position:relative;
+    display: block;
     background-color: #6ac7b1;
     text-align: center;
     .logo{
@@ -70,14 +72,36 @@ export default {
       background-repeat: no-repeat;
       background-position: center;
       display: inline-block;
+      width: 300px;
+      height: 150px;
+      margin: 30px;
+      @media (max-width: $break-mobile) {
+        width: 150px;
+        height: 75px;
+        margin: 10px;
+      }
     }
     .copy-logo{
       color: white;
-      font-family: 'SohoGothicPro-Regular';
+      font-family: 'SohoGothicPro-Light';
       text-align: center;
+      line-height: 1.3;
+      font-size: 23px;
+      padding: 15px;
+      max-width: $pagewidth;
+      margin: 0 auto;
+      @media (max-width: $break-mobile) {
+        padding: 10px;
+        font-size: 15px;
+      }
     }
     &.triangle{
       clip-path: polygon(0 0, 100% 0, 0 100%);
+      margin-top: -1px;
+      height: 100px;
+      @media (max-width: $break-mobile) {
+        height: 50px;
+      }
     }
   }
 }

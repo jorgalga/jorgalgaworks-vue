@@ -1,22 +1,12 @@
 <template>
   <div id="page" ref="page" class="page">
     <cmpMenutwo></cmpMenutwo>
-    <cmpHeader></cmpHeader>
-    <cmpVideo></cmpVideo>
-    <cmpInfo></cmpInfo>
-    <cmpForm></cmpForm>
-    <cmpFooter></cmpFooter>
   </div>
 </template>
 <script>
 import cmpHeader from '@/components/CMP_header'
-import cmpMenutwo from '@/components/CMP_menutwo'
-import cmpForm from '@/components/CMP_form'
-import cmpVideo from '@/components/CMP_video'
-import cmpInfo from '@/components/CMP_info'
-import cmpFooter from '@/components/CMP_footer'
 export default {
-  name: 'Home',
+  name: 'Ranking',
   props: ['id', 'lang'],
   data () {
     return {
@@ -39,12 +29,7 @@ export default {
     })
   },
   components: {
-    'cmpHeader': cmpHeader,
-    'cmpMenutwo': cmpMenutwo,
-    'cmpForm': cmpForm,
-    'cmpInfo': cmpInfo,
-    'cmpFooter': cmpFooter,
-    'cmpVideo': cmpVideo
+    'cmpHeader': cmpHeader
   },
   mounted () {
   },

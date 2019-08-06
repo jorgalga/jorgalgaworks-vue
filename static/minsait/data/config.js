@@ -1,7 +1,7 @@
 var dataConfig = {
   testmode: false,
-  max_width_limit: 1200,
-  max_width: 1200,
+  max_width_limit: 1024,
+  max_width: 1500,
   mobile_width: 600,
   img_src: '/static/minsait/images/',
   cookiespolicy: '',
@@ -14,12 +14,13 @@ var dataConfig = {
     en:{
       make_scroll: '&#60 more info &#62',
       cookie_message: '<p>We use our own and third-party cookies to improve the user´s experience through your browsing. If you continue browsing we understand that you accept its use. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank">Cookie policy</a></p>',
-      logo_copy: '<p>Revoluciona nuestra OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.</p>',
+      logo_copy: 'Revoluciona nuestra OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
       video_ptitle: 'Info',
       video_description: '<p>Queremos crear la plataforma <b>Opensource</b> de referencia, donde se comparten conocimientos de diversas disciplinas como <b>Big Data, Internet of Everything, Intelligencia Artificial...</br> y para conseguirlo necesitamos a los mejores.</b></p>',
       form_ptitle: 'form',
       info_ptitle: 'info',
       info_description: 'bla bla',
+      menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participa',
       menubtn: 'MENU',
       menuitems: [
@@ -70,12 +71,13 @@ var dataConfig = {
     es:{
       make_scroll: '&#60 más info &#62',
       cookie_message: '<p>Utilizamos cookies propias y de terceros para mejorar la experiencia del usuario a través de su navegación. Si continúa navegando entendemos que acepta su uso. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank">Política de cookies</a></p>',
-      logo_copy: '<p>Revoluciona nuestra OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.</p>',
+      logo_copy: 'Revoluciona nuestra OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
       video_ptitle: 'Info',
       video_description: '<p>Queremos crear la plataforma <b>Opensource</b> de referencia, donde se comparten conocimientos de diversas disciplinas como <b>Big Data, Internet of Everything, Intelligencia Artificial...</br> y para conseguirlo necesitamos a los mejores.</b></p>',
       form_ptitle: 'formulario',
       info_ptitle: 'Fases',
       info_description: '<p>Pasarás por dos fases de competición, una individual y otra en equipo.<br>Asistiendo a aun evento online donde se conocerán todos los detalles de la revolución.</p>',
+      menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
       menuitems: [

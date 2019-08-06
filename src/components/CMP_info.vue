@@ -3,17 +3,17 @@
     <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0;'">
       <!-- div class="video-container" v-bind:style="isMobile ? '' : 'height:'+840*scaleR+'px'">
       </div -->
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
       </div>
-      <div class="page-description" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+24*scaleR+'px'" v-html="data.copy[clang].info_description">
+      <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+24*scaleR+'px'" v-html="data.copy[clang].info_description">
       </div>
-      <div class="info-container" v-bind:style="isMobile ? '' : 'height:'+400*scaleR+'px; margin: '+0*scaleR+'px 0;'">
+      <div class="info-container" v-bind:style="isMobile ? 'height:'+800*1+'px;' : 'height:'+400*scaleR+'px; margin: '+0*scaleR+'px 0;'">
         <div class="info-item" v-for="item in data.copy[clang].infoitems" :key="item.order">
           <div class="info-item-container">
             <!-- div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'">{{item.order}}</div -->
-            <div class="icon-image" v-bind:style="isMobile ? '' : 'height:'+128*scaleR+'px;'"></div>
+            <div class="icon-image" v-bind:style="isMobile ? 'height:'+200*scaleR+'px;' : 'height:'+128*scaleR+'px;'"></div>
             <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+32*scaleR+'px'"></div>
-            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+24*scaleR+'px'"></div>
+            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+24*scaleR+'px'"></div>
           </div>
         </div>
       </div>
@@ -89,6 +89,12 @@ export default {
         box-sizing: border-box;
         border: 0;
         color: $blue;
+        @media (max-width: $break-mobile) {
+          width: 100%;
+          height: 200px;
+          display: block;
+          position: relative;
+        }
         .info-item-container{
           position: absolute;
           top: 50%;
@@ -122,6 +128,10 @@ export default {
           .info-item-container{
             transform: translate3d(-50%,-50%,0)
           }
+          @media (max-width: $break-mobile) {
+            top: unset;
+            left: unset;
+          }
         }
         &:nth-child(2){
           top:0;
@@ -131,6 +141,10 @@ export default {
           }
           .info-item-container{
             transform: translate3d(-50%,-50%,0)
+          }
+          @media (max-width: $break-mobile) {
+            top: unset;
+            left: unset;
           }
         }
         &:nth-child(3){
@@ -142,6 +156,10 @@ export default {
           .info-item-container{
             transform: translate3d(-50%,-50%,0)
           }
+          @media (max-width: $break-mobile) {
+            top: unset;
+            left: unset;
+          }
         }
         &:nth-child(4){
           top: 0%;
@@ -152,6 +170,10 @@ export default {
           .info-item-container{
             transform: translate3d(-50%,-50%,0)
           }
+          @media (max-width: $break-mobile) {
+            top: unset;
+            left: unset;
+          }
         }
       }
     }
@@ -161,6 +183,11 @@ export default {
     font-family: 'PlayfairDisplay-Regular';
     line-height: 0.9;
     text-align: center;
+    @media (max-width: $break-mobile) {
+      text-align: center;
+      margin-top: 30px;
+      margin-left: 10px;
+    }
   }
   .page-description{
     font-family: 'SohoGothicPro-Regular';
@@ -168,6 +195,15 @@ export default {
     text-align: center;
     max-width: 66%;
     margin: 0 auto;
+    @media (max-width: $break-mobile) {
+      display: block;
+      max-width: 100%;
+      margin: 15px;
+      /deep/  p{
+        margin: 0;
+        padding: 30px 0 0 0;
+      }
+    }
   }
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="component-wrapper cmpform">
     <div class="component-container">
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <form v-bind:style="isMobile ? '' : 'max-width:'+550*scaleR+'px; font-size:'+21*scaleR+'px;'">
+        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+550*scaleR+'px; font-size:'+21*scaleR+'px;'">
           <label for="firstname">Nombre</label>
           <input type="text" name="firstname" placeholder=""><br>
           <label for="email">Email:</label>
@@ -17,19 +17,13 @@
           <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*scaleR+'px;padding:'+15*scaleR+'px'">
         </form>
       </div>
-      <!--div class="scroll-container">
-        <div class="chevron"></div>
-        <div class="chevron"></div>
-        <div class="chevron"></div>
-        <span class="text" v-html="data.copy[clang].make_scroll"></span>
-      </div-->
     </div>
-    <div class="contact-block triangle" v-bind:style="isMobile ? '' : 'height: '+100*scaleR+'px'">
+    <div class="contact-block triangle" v-bind:style="isMobile ? 'height: '+50*1+'px' : 'height: '+100*scaleR+'px'">
     </div>
-    <div class="contact-block" v-bind:style="isMobile ? '' : 'font-size:'+25*scaleR+'px;height: '+300*scaleR+'px'">
+    <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+25*scaleR+'px;height: '+300*scaleR+'px'">
       <div class="contact-element">
         <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
-        <a class="btn white" v-bind:style="isMobile ? '' : 'padding: '+15*scaleR+'px'">Contacta con nosotros</a>
+        <a class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*scaleR+'px'">Contacta con nosotros</a>
       </div>
     </div>
   </div>
@@ -103,6 +97,7 @@ export default {
   transition: 1s;
   position: relative;
   .btn{
+    display: inline-block;
     &.white{
       border: 2px solid white;
       &:hover{
@@ -126,6 +121,9 @@ export default {
       color: white;
       font-family: 'SohoGothicPro-Regular';
       text-align: center;
+      @media (max-width: $break-mobile) {
+        margin: 30px 0 45px 0;
+      }
     }
   }
   .component-container{
@@ -135,6 +133,9 @@ export default {
     // background-color: #00000011;
     min-height: 50vh;
     position:relative;
+    @media (max-width: $break-mobile) {
+      min-height: 75vh
+    }
     .logo{
       background: url('#{$staticpath}static/minsait/images/logo.png');
       background-size: contain;
@@ -151,11 +152,17 @@ export default {
       left: 50%;
       transform: translate3d(-50%,-50%,0);
       width: 50%;
+      @media (max-width: $break-mobile) {
+        width: 80%;
+      }
       form{
         margin: 0 auto;
         .check-container{
           width: 100%;
           text-align: right;
+          @media (max-width: $break-mobile) {
+            text-align: left;
+          }
         }
         label{
           width: 20%;
@@ -170,6 +177,11 @@ export default {
             width: initial;
             text-align: right;
             display: inline-block;
+            @media (max-width: $break-mobile) {
+              text-align: left;
+              padding: 0;
+              font-size: 12px !important;
+            }
           }
         }
         input{
@@ -278,7 +290,7 @@ export default {
   }
   .text {
     display: block;
-    font-size: 16px;
+    font-size: 15px;
     color: #fff;
     opacity: .25;
     animation: pulse 2s linear alternate infinite;

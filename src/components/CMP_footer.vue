@@ -13,7 +13,11 @@
         </div>
       </div>
     </div>
-    <div class="fterminal triangle" v-bind:style="isMobile ? '' : 'height:'+100*scaleR+'px'">
+    <div class="fterminal triangle" v-bind:style="isMobile ? 'height:'+50*1+'px' : 'height:'+100*scaleR+'px'">
+    </div>
+    <div class="component-container2 subline">
+      <div class="logo"></div>
+      <div class="left-copy" v-html="data.copy[clang].menu_left_copy"></div>
     </div>
   </div>
 </template>
@@ -82,10 +86,23 @@ export default {
     display: flex;
     color: white;
     font-family: 'SohoGothicPro-Light';
+    @media (max-width: $break-mobile) {
+      min-height: 180px;
+      display: block;
+    }
     .col{
       flex-grow: 1;
       flex-basis: 0;
       position: relative;
+      @media (max-width: $break-mobile) {
+        flex: 0 0 auto;
+        height: 60px;
+        width: 100%;
+        text-align: center;
+        p{
+          font-size: 15px;
+        }
+      }
       &:nth-child(2){
         .col-cont{
           text-align: center;
@@ -94,6 +111,9 @@ export default {
       &:nth-child(3){
         .col-cont{
           text-align: right;
+          @media (max-width: $break-mobile) {
+            text-align: center;
+          }
         }
       }
     }
@@ -127,6 +147,57 @@ export default {
       margin: 12px;
       display: inline-block;
       position: relative;
+    }
+  }
+  .logo{
+    background-image: url('#{$staticpath}static/minsait/images/logoMinsait2.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 80%;
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    transform: translate3d(15px,-50%,0);
+    @media (max-width: $break-mobile) {
+      width: 100px;
+      height: 40%;
+      transform: translate3d(0,-50%,0);
+      left: 10px;
+    }
+  }
+  .component-container2{
+    max-width: $pagewidth;
+    margin: 0 auto;
+    box-sizing: border-box;
+    position:relative;
+    transition: 0.5s;
+    height: 100px;
+    @media (max-width: $break-mobile) {
+      height: 80px;
+      &:nth-child(2){
+        height: unset;
+        transition: 0.5s;
+        background-color: white;
+        max-height: 350px;
+        overflow: hidden;
+        &.hidden{
+           max-height: 0;
+        }
+      }
+    }
+  }
+  .left-copy{
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translate3d(0,-50%,0);
+    font-size: 15px;
+    padding: 15px;
+    font-family: 'SohoGothicPro-Regular';
+    color: $darkblue;
+    @media (max-width: $break-mobile) {
+      padding: 10px;
     }
   }
 }

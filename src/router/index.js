@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import VueMasonry from 'vue-masonry-css'
 import Home from '@/views/home'
+import Ranking from '@/views/ranking'
 import VueObserveVisibility from 'vue-observe-visibility'
 
 Vue.use(Router)
@@ -33,6 +34,18 @@ export default new Router({
       path: '/home/:lang',
       name: 'Home with lang',
       component: Home,
+      props: true
+    },
+    {
+      path: '/ranking/',
+      name: 'Ranking default',
+      component: Ranking,
+      props: true
+    },
+    {
+      path: '/ranking/:lang',
+      name: 'Ranking with lang',
+      component: Ranking,
       props: true
     }
   ]
