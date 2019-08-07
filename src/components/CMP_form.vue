@@ -2,7 +2,7 @@
   <div class="component-wrapper cmpform">
     <div class="component-container">
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+550*scaleR+'px; font-size:'+21*scaleR+'px;'">
+        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+550*scaleR+'px; font-size:'+21*1+'px;'">
           <label for="firstname">Nombre</label>
           <input type="text" name="firstname" placeholder=""><br>
           <label for="email">Email:</label>
@@ -14,16 +14,16 @@
             <label class="check-bases">Acepto las bases legales de la competición</label>
           </div>
           <br>
-          <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*scaleR+'px;padding:'+15*scaleR+'px'">
+          <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*1+'px;padding:'+15*1+'px'">
         </form>
       </div>
     </div>
     <div class="contact-block triangle" v-bind:style="isMobile ? 'height: '+50*1+'px' : 'height: '+100*scaleR+'px'">
     </div>
-    <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+25*scaleR+'px;height: '+300*scaleR+'px'">
+    <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+25*1+'px;height: '+300*1+'px'">
       <div class="contact-element">
         <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
-        <a class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*scaleR+'px'">Contacta con nosotros</a>
+        <a class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Contacta con nosotros</a>
       </div>
     </div>
   </div>
@@ -131,7 +131,7 @@ export default {
     margin: 0 auto;
     box-sizing: border-box;
     // background-color: #00000011;
-    min-height: 50vh;
+    min-height: 66vh;
     position:relative;
     @media (max-width: $break-mobile) {
       min-height: 75vh
@@ -177,6 +177,7 @@ export default {
             width: initial;
             text-align: right;
             display: inline-block;
+            font-size: 16px !important;
             @media (max-width: $break-mobile) {
               text-align: left;
               padding: 0;

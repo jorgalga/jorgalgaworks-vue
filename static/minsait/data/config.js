@@ -23,6 +23,8 @@ var dataConfig = {
       menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participa',
       menubtn: 'MENU',
+      ranking_ptitle: 'Ranking',
+      ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
       menuitems: [
         {
           id: 1,
@@ -80,6 +82,8 @@ var dataConfig = {
       menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
+      ranking_ptitle: 'Ranking',
+      ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
       menuitems: [
         {
           id: 1,

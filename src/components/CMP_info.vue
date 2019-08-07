@@ -5,15 +5,15 @@
       </div -->
       <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
       </div>
-      <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+24*scaleR+'px'" v-html="data.copy[clang].info_description">
+      <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+23*1+'px'" v-html="data.copy[clang].info_description">
       </div>
       <div class="info-container" v-bind:style="isMobile ? 'height:'+800*1+'px;' : 'height:'+400*scaleR+'px; margin: '+0*scaleR+'px 0;'">
         <div class="info-item" v-for="item in data.copy[clang].infoitems" :key="item.order">
           <div class="info-item-container">
             <!-- div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'">{{item.order}}</div -->
             <div class="icon-image" v-bind:style="isMobile ? 'height:'+200*scaleR+'px;' : 'height:'+128*scaleR+'px;'"></div>
-            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+32*scaleR+'px'"></div>
-            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+24*scaleR+'px'"></div>
+            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+23*1+'px'"></div>
+            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'"></div>
           </div>
         </div>
       </div>
@@ -193,7 +193,7 @@ export default {
     font-family: 'SohoGothicPro-Regular';
     color: $blue;
     text-align: center;
-    max-width: 66%;
+    max-width: 75%;
     margin: 0 auto;
     @media (max-width: $break-mobile) {
       display: block;

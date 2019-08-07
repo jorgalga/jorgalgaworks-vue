@@ -10,43 +10,16 @@ Vue.use(Router)
 Vue.use(VueObserveVisibility)
 
 export default new Router({
-  /* mode: 'history', */
   routes: [
     {
       path: '/',
       name: 'index default',
-      component: Home,
-      props: true
-    },
-    {
-      path: '/:lang',
-      name: 'index with lang',
-      component: Home,
-      props: true
-    },
-    {
-      path: '/home/',
-      name: 'Home default',
-      component: Home,
-      props: true
-    },
-    {
-      path: '/home/:lang',
-      name: 'Home with lang',
-      component: Home,
-      props: true
+      component: Home
     },
     {
       path: '/ranking/',
       name: 'Ranking default',
-      component: Ranking,
-      props: true
-    },
-    {
-      path: '/ranking/:lang',
-      name: 'Ranking with lang',
-      component: Ranking,
-      props: true
+      component: Ranking
     }
   ]
 })

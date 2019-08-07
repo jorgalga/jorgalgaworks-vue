@@ -10,7 +10,7 @@
       <div class="pd-container triangle" v-bind:style="isMobile ? 'margin-top:-'+250*scaleR+'px;height:'+250*scaleR+'px' : 'margin-top:-'+400*scaleR+'px;height:'+400*scaleR+'px'">
       </div>
       <div class="pd-container withtext">
-        <div class="page-description" v-html="data.copy[clang].video_description">
+        <div class="page-description"  v-html="data.copy[clang].video_description">
         </div>
       </div>
     </div>

@@ -18,7 +18,7 @@
           <li><a href="">Info</a></li>
           <li><a href="">Fases</a></li>
           <li><a href="">Participa</a></li>
-          <li><a href="/ranking">Ranking</a></li>
+          <li><router-link to="/ranking">Ranking</router-link></li>
           <li><a href="">Contacta</a></li>
           <li><a href="">Blog</a></li>
         </ul>
@@ -257,6 +257,7 @@ export default {
             color: white;
             display: inline-block;
             text-decoration: none;
+            border-bottom: 2px solid #6ac7b1;;
             &:hover{
               border-bottom: 2px solid white;
               color: $darkblue;
