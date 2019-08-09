@@ -1172,81 +1172,47 @@
       max_height: 300,
       items: [
         {
-          id: '1',
+          id: '0',
           tag_id: 'tag-sparkup',
           img: 'partners/Sparkup_logo.png',
           name: '',
           url: 'https://sparkup.app/es/'
         },
         {
-          id: '2',
+          id: '1',
           tag_id: 'tag-fuckupmadrid',
           img: 'partners/Fuckup_Nights_Madrid.png',
           name: '',
           url: 'https://fuckupnights.com/madrid/?locale=en'
         },
         {
-          id: '0',
+          id: '2',
           tag_id: 'tag-REDI',
           img: 'partners/REDI.png',
           name: '',
           url: 'http://www.redi-lgbti.org/'
-        },/*
-        {
-          id: '1',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
-        },
-        {
-          id: '2',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
         },
         {
           id: '3',
-          img: 'partners/logo.png',
+          tag_id: 'tag-womenalia',
+          img: 'partners/positivo_con_lema.png',
           name: '',
-          url: ''
+          url: 'http://www.womenalia.com/es/'
         },
         {
           id: '4',
-          img: 'partners/logo.png',
+          tag_id: 'tag-focus',
+          img: 'partners/Focus_V4.png',
           name: '',
-          url: ''
+          url: 'http://focusprogramme.com/'
         },
         {
           id: '5',
-          img: 'partners/logo.png',
+          tag_id: 'tag-uxer',
+          img: 'partners/Logo_UXER_Positivo.png',
           name: '',
-          url: ''
-        },
-        {
-          id: '6',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
-        },
-        {
-          id: '7',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
-        },
-        {
-          id: '8',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
-        },
-        {
-          id: '9',
-          img: 'partners/logo.png',
-          name: '',
-          url: ''
+          url: 'http://www.uxerschool.com/'
         }
-        */
       ] 
     },
     agenda_list: {
