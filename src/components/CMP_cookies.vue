@@ -90,6 +90,7 @@ export default {
   bottom: 0;
   left: 0;
   transition: 1s;
+  z-index: 9999;
   &.hidden{
     transform: translate3d(0,100%,0)
   }

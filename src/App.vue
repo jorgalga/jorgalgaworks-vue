@@ -3,7 +3,7 @@
     <transition name="router-anim" v-on:before-leave="beforeLeave">
       <router-view/>
     </transition>
-    <!--cmpCookies></cmpCookies-->
+    <cmpCookies></cmpCookies>
     <div ref="sharepopup" class="popup hidden">
       <div class="close" @click.prevent="closepopup('sharepopup')">
         <div class="line"></div>

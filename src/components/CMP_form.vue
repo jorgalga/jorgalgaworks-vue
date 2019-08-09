@@ -2,8 +2,8 @@
   <div class="component-wrapper cmpform">
     <div class="component-container">
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+550*scaleR+'px; font-size:'+21*1+'px;'">
-          <label for="firstname">Nombre</label>
+        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+640+'px; font-size:'+21*1+'px;'">
+          <label for="firstname">Nombre:</label>
           <input type="text" name="firstname" placeholder=""><br>
           <label for="email">Email:</label>
           <input type="text" name="email" placeholder=""><br>
@@ -14,7 +14,9 @@
             <label class="check-bases">Acepto las bases legales de la competición</label>
           </div>
           <br>
-          <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*1+'px;padding:'+15*1+'px'">
+          <div class="input-wrapper">
+            <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*1+'px;padding:'+15*1+'px'">
+          </div>
         </form>
       </div>
     </div>
@@ -23,7 +25,7 @@
     <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+25*1+'px;height: '+300*1+'px'">
       <div class="contact-element">
         <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
-        <a class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Contacta con nosotros</a>
+        <a href="https://www.minsait.com/es/contacto" target="_blank" class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Contacta con nosotros</a>
       </div>
     </div>
   </div>
@@ -76,10 +78,13 @@ export default {
       var xhttp = new XMLHttpRequest()
       xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
+          console.log('RESPONSE')
           console.log(this.responseText)
         }
       }
-      xhttp.open('POST', 'https://www.onesaitplatform.online/api-manager/server/api/v1/hackathon-event/', true)
+      // encodeURIComponent('demo22@hackathon.com')
+      console.log(encodeURIComponent('demo22@hackathon.com'))
+      xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/user/', true)
       xhttp.setRequestHeader('X-OP-APIKey', 'd028185e6b5f481e9e1153d0babc067e')
       xhttp.send(JSON.stringify(jsonvar))
     }
@@ -98,8 +103,10 @@ export default {
   position: relative;
   .btn{
     display: inline-block;
+    text-decoration: none;
     &.white{
       border: 2px solid white;
+      color: white;
       &:hover{
         background-color: white;
         color: #6ac7b1;
@@ -185,6 +192,9 @@ export default {
             }
           }
         }
+        .input-wrapper{
+          text-align: center;
+        }
         input{
           width: 75%;
           display: inline-block;
@@ -204,11 +214,17 @@ export default {
           &.submit{
             border: 2px solid #6ac7b1;
             color: #6ac7b1;
-            width: 40%;
+            width: initial;
             cursor: pointer;
             font-family: 'SohoGothicPro-Regular';
             margin: 0 auto;
-            display: block;
+            display: inline-block;
+            @media (max-width: $break-mobile) {
+              padding: 5px 10px;
+              background-color: #6ac7b1;
+              color: white;
+              font-size: 15px;
+            }
             &:hover{
               background-color: #6ac7b1;
               color: white;

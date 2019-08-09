@@ -1,18 +1,18 @@
 <template>
   <div id="page" ref="page" class="page">
-    <cmpMenutwo type="pinky"></cmpMenutwo>
-    <cmpHeader type="pinky"></cmpHeader>
-    <cmpRanking></cmpRanking>
+    <cmpMenutwo type="whity"></cmpMenutwo>
+    <cmpHeader type="whity"></cmpHeader>
+    <cmpReglas></cmpReglas>
     <cmpFooter></cmpFooter>
   </div>
 </template>
 <script>
 import cmpHeader from '@/components/CMP_header'
 import cmpMenutwo from '@/components/CMP_menutwo'
-import cmpRanking from '@/components/CMP_ranking'
+import cmpReglas from '@/components/CMP_reglas'
 import cmpFooter from '@/components/CMP_footer'
 export default {
-  name: 'Ranking',
+  name: 'Reglas',
   props: ['id', 'lang'],
   data () {
     return {
@@ -37,7 +37,7 @@ export default {
   components: {
     'cmpHeader': cmpHeader,
     'cmpMenutwo': cmpMenutwo,
-    'cmpRanking': cmpRanking,
+    'cmpReglas': cmpReglas,
     'cmpFooter': cmpFooter
   },
   mounted () {

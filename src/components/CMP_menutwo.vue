@@ -1,5 +1,5 @@
 <template>
-  <div class="component-wrapper cmpmenutwo">
+  <div class="component-wrapper cmpmenutwo" v-bind:class="$props.type">
     <div class="component-container subline">
       <div ref="burguer" class="toggle" @click.prevent="toggleMenu()">
         <div class="toggle-center">
@@ -9,21 +9,22 @@
           <div class="line"></div>
         </div>
       </div>
-      <div class="logo"></div>
+      <div class="logo" @click.prevent="goTo2('/')"></div>
       <div class="left-copy" v-html="data.copy[clang].menu_left_copy"></div>
     </div>
     <div ref="menucontainer" class="component-container hidden">
       <nav>
         <ul>
-          <li><a href="">Info</a></li>
-          <li><a href="">Fases</a></li>
-          <li><a href="">Participa</a></li>
+          <li><router-link to="/">Home</router-link></li>
+          <li><router-link to="/reglas">Reglas</router-link></li>
+          <!--li><router-link to="/proposito">Propósito</router-link></li-->
           <li><router-link to="/ranking">Ranking</router-link></li>
-          <li><a href="">Contacta</a></li>
-          <li><a href="">Blog</a></li>
+          <li><router-link to="/webex">Webex</router-link></li>
+          <li><a target="_blank" href="https://www.minsait.com/es/contacto">Contacta</a></li>
+          <li><a target="_blank" href="https://www.minsait.com">Blog</a></li>
         </ul>
       </nav>
-      <div class="btn white participa">
+      <div class="btn white participa" @click.prevent="goTo('/?participa')">
         Participa
       </div>
     </div>
@@ -33,7 +34,7 @@
 <script>
 export default {
   name: 'CMP_menutwo',
-  props: ['test'],
+  props: ['type'],
   data () {
     return {
       scaleR: 1,
@@ -44,7 +45,7 @@ export default {
     }
   },
   created () {
-    console.log(this.$route.params.lang)
+    console.log(this.$props.type)
     if (this.$route.params.lang) {
       this.clang = this.$route.params.lang
     }
@@ -57,12 +58,34 @@ export default {
   },
   mounted () {
     // this.$refs['link-' + this.clang].classList.add('active')
+    this.getParams(window.location.href)
   },
   methods: {
+    getParams (url) {
+      if (url.split('?')[1] === 'participa') {
+        setTimeout(function () {
+          console.log('scrollTO')
+          document.getElementsByClassName('page')[0].scrollTo(0, document.getElementsByClassName('cmpform')[0].offsetTop)
+        }, 1000)
+      }
+    },
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    goTo2 (site) {
+      window.location.href = '/#' + site
+    },
+    goTo (site) {
+      if (document.getElementsByClassName('home').length > 0) {
+        // move scroll only
+        console.log('GO')
+        document.getElementsByClassName('page')[0].scrollTo(0, document.getElementsByClassName('cmpform')[0].offsetTop)
+      } else {
+        console.log('to Site')
+        window.location.href = '/#' + site
+      }
     },
     toggleMenu () {
       if (this.menuOpened) {
@@ -94,6 +117,68 @@ export default {
   transition: 1s;
   z-index: 999;
   background-color: #6ac7b1;
+  &.pinky{
+    background-color: #fde3d4;
+    .component-container.subline{
+      border-bottom: 2px solid $darkblue;
+      @media (max-width: $break-mobile) {
+        border-bottom: none;
+      }
+    }
+    .component-container nav ul li a{
+      color: $darkblue;
+      @media (min-width: $break-mobile) {
+        border-bottom: 2px solid #fde3d4;
+      }
+      &:hover{
+        @media (min-width: $break-mobile) {
+          color: white;
+          border-bottom: 2px solid white;
+        }
+      }
+    }
+    .btn.white{
+      color: $darkblue;
+      border: 2px solid $darkblue;
+      &:hover{
+        @media (min-width: $break-mobile) {
+          background-color: $darkblue;
+          color: #fde3d4;
+        }
+      }
+    }
+  }
+  &.whity{
+    background-color: white;
+    .component-container.subline{
+      @media (min-width: $break-mobile) {
+        border-bottom: 2px solid $darkblue;
+      }
+      @media (max-width: $break-mobile) {
+        border-bottom: none;
+      }
+    }
+    .component-container nav ul li a{
+      color: $darkblue;
+      border-bottom: 2px solid white;
+      &:hover{
+        @media (min-width: $break-mobile) {
+          color: #6ac7b1;
+          border-bottom: 2px solid #6ac7b1;
+        }
+      }
+    }
+    .btn.white{
+      color: $darkblue;
+      border: 1px solid $darkblue;
+      &:hover{
+        @media (min-width: $break-mobile) {
+          background-color: $darkblue;
+          color: white;
+        }
+      }
+    }
+  }
   @media (max-width: $break-mobile) {
     position: fixed;
   }
@@ -131,7 +216,7 @@ export default {
         height: unset;
         transition: 0.5s;
         background-color: white;
-        max-height: 350px;
+        max-height: 375px;
         overflow: hidden;
         &.hidden{
            max-height: 0;
@@ -223,6 +308,7 @@ export default {
       position: absolute;
       top: 50%;
       transform: translate3d(15px,-50%,0);
+      cursor: pointer;
       @media (max-width: $break-mobile) {
         width: 100px;
         height: 40%;
@@ -257,10 +343,15 @@ export default {
             color: white;
             display: inline-block;
             text-decoration: none;
-            border-bottom: 2px solid #6ac7b1;;
+            border-bottom: 2px solid #6ac7b1;
+            @media (max-width: $break-mobile) {
+              border-bottom: none;
+            }
             &:hover{
-              border-bottom: 2px solid white;
-              color: $darkblue;
+              @media (min-width: $break-mobile) {
+                border-bottom: 2px solid white;
+                color: $darkblue;
+              }
             }
           }
         }

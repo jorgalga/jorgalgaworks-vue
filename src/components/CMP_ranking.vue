@@ -11,8 +11,8 @@
         </div>
       </div>
       <div class="colran">
-        <div class="ranking-list">
-          <div class="ranking-list-item blued">
+        <div id=style-1 class="ranking-list">
+          <!--div class="ranking-list-item blued">
             <div class="rli-wrapper">
               <div class="position">1<sup>st</sup></div>
               <div class="data">
@@ -63,17 +63,17 @@
                 22
               </div>
             </div>
-          </div>
-          <div class="ranking-list-item">
+          </div-->
+          <div v-for="(item, index) in ritems" :key="item._id"  class="ranking-list-item">
             <div class="rli-wrapper">
-              <div class="position">1<sup>st</sup></div>
+              <div class="position">{{index+1}}<sup>st</sup></div>
               <div class="data">
-                <div class="name">Francisco Javier Perez</div>
-                <div class="place">Lima</div>
+                <div class="name">{{item.UsuarioHackathon.name}}</div>
+                <div class="place">{{item.UsuarioHackathon.mail}}</div>
                 <div class="icon">Github</div>
               </div>
               <div class="score">
-                22
+                {{item.UsuarioHackathon.score}}
               </div>
             </div>
           </div>
@@ -86,13 +86,24 @@
 <script>
 export default {
   name: 'CMP_ranking',
-  props: ['test'],
+  props: ['type'],
   data () {
     return {
       scaleR: 1,
       isMobile: window.innerWidth < window.dataConfig.mobile_width,
       data: window.dataConfig,
-      clang: 'es'
+      clang: 'es',
+      ritems: [
+        {
+          _id: '01',
+          UsuarioHackathon: {
+            name: 'Paco',
+            mail: 'the mail',
+            score: 222,
+            github: 'Github'
+          }
+        }
+      ]
     }
   },
   created () {
@@ -107,12 +118,30 @@ export default {
     })
   },
   mounted () {
+    this.getRanking()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    getRanking () {
+      var _ = this
+      var xhttp = new XMLHttpRequest()
+      xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          // console.log('RESPONSE')
+          // console.log(JSON.parse(this.responseText))
+          _.ritems = JSON.parse(this.responseText)
+          setTimeout(function () {
+            document.getElementsByClassName('ranking-list-item')[0].classList.add('blued')
+          }, 1000)
+        }
+      }
+      xhttp.open('GET', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/ranking', true)
+      xhttp.setRequestHeader('X-OP-APIKey', 'd028185e6b5f481e9e1153d0babc067e')
+      xhttp.send()
     }
   }
 }
@@ -158,6 +187,7 @@ export default {
       }
     }
     .colran{
+      overflow: hidden;
       position: absolute;
       display: inline-block;
       width: 50%;
@@ -200,16 +230,41 @@ export default {
       }
     }
   }
+  #style-1::-webkit-scrollbar-track
+  {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+  }
+
+  #style-1::-webkit-scrollbar
+  {
+    width: 10px;
+    background-color: #F5F5F5;
+  }
+
+  #style-1::-webkit-scrollbar-thumb
+  {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+    background-color: $darkblue;
+  }
   .ranking-list{
+    height: 100%;
+    overflow-y: scroll;
+    @media (max-width: $break-mobile) {
+      overflow-y: hidden;
+    }
     .ranking-list-item{
       height: 150px;
-      width: 100%;
+      width: 98%;
       position: relative;
       background-color: white;
       color: $darkblue;
       border-bottom: 1px solid $darkblue;
       @media (max-width: $break-mobile) {
         height: 100px;
+        width: 100%;
       }
       &.blued{
         background-color: $darkblue;
@@ -217,32 +272,35 @@ export default {
       }
       .rli-wrapper{
         position: absolute;
-        width: 85%;
+        width: 90%;
         height: 60%;
         top: 50%;
         left: 50%;
         transform: translate3d(-50%,-50%,0);
         @media (max-width: $break-mobile) {
-           width: 95%;
+           width: 97.5%;
            height: 85%;
         }
         .position{
-          width: 20%;
+          width: 15%;
           height: 100%;
           position: absolute;
           top: 0;
           left: 0;
           font-family: 'SohoGothicPro-Medium';
           text-align: right;
-          padding: 0 15px;
+          padding: 0 15px 0 0;
           box-sizing: border-box;
-          font-size: 40px;
+          font-size: 30px;
           sup{
             font-size: 20px;
+            @media (max-width: $break-mobile) {
+              font-size: 12px;
+            }
           }
           @media (max-width: $break-mobile) {
             width: 15%;
-            font-size: 23px;
+            font-size: 21px;
             text-align: left;
             padding: 0;
           }
@@ -252,13 +310,13 @@ export default {
           height: 100%;
           position: absolute;
           top: 0;
-          left: 20%;
+          left: 15%;
           font-family: 'SohoGothicPro-Regular';
           padding: 5px 15px;
           text-align: left;
           box-sizing: border-box;
           @media (max-width: $break-mobile) {
-            width: 75%;
+            width: 65%;
             left: 15%;
           }
           .name{
@@ -275,21 +333,21 @@ export default {
           }
         }
         .score{
-          width: 20%;
+          width: 25%;
           height: 100%;
           position: absolute;
           top: 0;
-          left: 80%;
+          left: 75%;
           font-family: 'SohoGothicPro-Medium';
           text-align: left;
-          padding: 0 15px;
+          padding: 0 0 0 15px;
           box-sizing: border-box;
-          font-size: 40px;
+          font-size: 30px;
           color: #40c6b5;
           @media (max-width: $break-mobile) {
-            width: 15%;
-            left: 85%;
-            font-size: 23px;
+            width: 20%;
+            left: 80%;
+            font-size: 21px;
             text-align: right;
             padding: 0;
           }

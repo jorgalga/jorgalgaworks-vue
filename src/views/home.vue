@@ -1,5 +1,5 @@
 <template>
-  <div id="page" ref="page" class="page">
+  <div id="page" ref="page" class="page home">
     <cmpMenutwo></cmpMenutwo>
     <cmpHeader></cmpHeader>
     <cmpVideo></cmpVideo>

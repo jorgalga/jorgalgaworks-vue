@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 // import VueMasonry from 'vue-masonry-css'
 import Home from '@/views/home'
+import Reglas from '@/views/reglas'
+import Proposito from '@/views/proposito'
 import Ranking from '@/views/ranking'
 import VueObserveVisibility from 'vue-observe-visibility'
 
@@ -15,6 +17,16 @@ export default new Router({
       path: '/',
       name: 'index default',
       component: Home
+    },
+    {
+      path: '/reglas/',
+      name: 'Reglas default',
+      component: Reglas
+    },
+    {
+      path: '/proposito/',
+      name: 'Proposito default',
+      component: Proposito
     },
     {
       path: '/ranking/',

@@ -6,10 +6,10 @@
           <div class="col-cont"><p>OneSait Platform®</p></div>
         </div>
         <div class="col">
-          <div class="col-cont"><p>Reglas del juego</p></div>
+          <div class="col-cont"><a href="/#/reglas">Reglas del juego</a></div>
         </div>
         <div class="col">
-          <div class="col-cont"><a href="" class="link-footer"><span class="icon-twitter"></span></a></div>
+          <div class="col-cont"><a href="https://twitter.com/minsaitbyindra" target="_blank" class="link-footer"><span class="icon-twitter"></span></a></div>
         </div>
       </div>
     </div>
@@ -124,6 +124,13 @@ export default {
       transform: translate3d(0,-50%,0);
       p{
         margin: 0;
+      }
+      a{
+        color: white;
+        text-decoration: none;
+        &:hover{
+          text-decoration: underline;
+        }
       }
     }
   }

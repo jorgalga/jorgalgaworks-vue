@@ -1,5 +1,5 @@
 <template>
-  <div id="cmpheader" class="component-wrapper cmpheader">
+  <div id="cmpheader" class="component-wrapper cmpheader" v-bind:class="$props.type">
     <div class="component-container" >
       <div class="logo"></div>
       <div class="copy-logo" v-html="data.copy[clang].logo_copy"></div>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'CMP_header',
-  props: ['test'],
+  props: ['type'],
   data () {
     return {
       scaleR: 1,
@@ -58,6 +58,31 @@ export default {
   margin-top: -1px;
   @media (max-width: $break-mobile) {
     margin-top: 80px;
+  }
+  &.pinky{
+    .component-container{
+      background-color: #fde3d4;
+      .copy-logo{
+        display: none;
+      }
+      .logo{
+        background-image: url('#{$staticpath}static/minsait/images/logoMinsaitPink.jpg');
+      }
+    }
+  }
+  &.whity{
+    .component-container{
+      background-color: white;
+      .copy-logo{
+        display: none;
+      }
+      .logo{
+        background-image: url('#{$staticpath}static/minsait/images/logoMinsaitWhite.jpg');
+      }
+      &.triangle{
+        display: none;
+      }
+    }
   }
   .component-container{
     max-width: $pagewidth;
