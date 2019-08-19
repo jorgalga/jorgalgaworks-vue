@@ -17,6 +17,8 @@
             </div>
           </div>
           <div class="col">
+            <div class="bg-image" v-bind:class="type">
+            </div>
           </div>
         </div>
       </div>
@@ -144,6 +146,30 @@ export default {
     display: none;
     &.displayed{
       display: block;
+    }
+  }
+  .bg-image{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    &.day_1{
+      background-image: url('#{$staticpath}static/unleash/images/Unleash_Web_Agenda_Day1.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    &.day_2{
+      background-image: url('#{$staticpath}static/unleash/images/Unleash_Web_Agenda_Day2.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    &.day_3{
+      background-image: url('#{$staticpath}static/unleash/images/Unleash_Web_Agenda_Day3.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
   }
 }

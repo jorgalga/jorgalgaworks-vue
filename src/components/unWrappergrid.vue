@@ -3,7 +3,7 @@
     <div class="white-band" v-bind:style="'height:'+160*scaleR+'px'"></div>
     <div class="component-container " v-bind:style="'max-width:'+(data.max_width - 30)*scaleR+'px'">
       <div class="unwrap-button" @click.prevent="toogle($event)" v-bind:style="'height:'+160*scaleR+'px'">
-        <div ref="txtbtn" class="text-button" v-html="data[$props.type].name" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
+        <div ref="txtbtn" class="text-button" v-html="data[$props.type].name" v-bind:style="isMobile ? 'letter-spacing:'+8*scaleR+'px;font-size:'+48*scaleR+'px' : 'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
       <div class="unwrap-container opened" v-bind:style="opened ? 'max-height:'+(mheight*scaleR)*levels+'px' : 'max-height:0'">
         <div class="flex-grid">
@@ -64,7 +64,12 @@ export default {
       var txt = this.$refs.txtbtn.innerHTML
       var res = ''
       for (var i = 0; i < txt.length; i++) {
-        res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+        if (txt[i] === '<' && txt[i + 1] === 'b' && txt[i + 2] === 'r' && txt[i + 3] === '>') {
+          res += '<span class="ll-container br"></span><br>'
+          i = i + 3
+        } else {
+          res += '<span class="ll-container"><span class="letter">' + txt[i] + '</span><span class="line"></span></span>'
+        }
       }
       this.$refs.txtbtn.innerHTML = res
     },
@@ -161,10 +166,24 @@ export default {
       text-transform: uppercase;
       width: 70%;
       text-align: center;
+      /deep/ br{
+        display: none;
+        @media (max-width: $break-mobile) {
+          display: initial
+        }
+      }
       /deep/ .ll-container{
         position: relative;
         min-width: 20px;
         display: inline-block;
+        @media (max-width: $break-mobile) {
+          min-width: 12px;
+        }
+        &.br{
+          @media (max-width: $break-mobile) {
+            width: 0;
+          }
+        }
         .letter{
           text-align: center;
           position: relative;

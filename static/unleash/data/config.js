@@ -1050,7 +1050,7 @@
       ]
     },
     partner_x:{
-      name:'Founding partner',
+      name:'Founding<br>partner',
       gsize: 'col-12',
       items_row: 1,
       max_height: 500, 
@@ -1065,7 +1065,7 @@
       ]
     },
     partner_global:{
-      name:'Global partners',
+      name:'Global<br>partners',
       gsize: 'col-3',
       items_row: 4, 
       max_height: 300, 
@@ -1094,7 +1094,7 @@
       ] 
     },
     partner_generations:{
-      name:'Generation partners',
+      name:'Generation<br>partners',
       gsize: 'col-3',
       items_row: 4, 
       max_height: 300, 

@@ -6,7 +6,7 @@
         <div ref="txtbtn"  class="text-button" v-html="data[$props.type].title" v-bind:style="'letter-spacing:'+20*scaleR+'px;font-size:'+48*scaleR+'px'"></div>
       </div>
       <div ref="wcontainer" class="unwrap-container">
-        <div class="flex-grid" v-bind:style="'height:'+1000*scaleR+'px;background-image: url('+data.img_src+data[$props.type].map+')'">
+        <div class="flex-grid" v-bind:style="isMobile ? '' : 'height:'+1000*scaleR+'px;background-image: url('+data.img_src+data[$props.type].map+')'">
           <div class="col">
           </div>
           <div class="col" v-bind:style="'padding:'+15*scaleR+'px'">
@@ -43,7 +43,8 @@ export default {
     return {
       scaleR: 1,
       itemActive: 0,
-      opened: false
+      opened: false,
+      isMobile: window.innerWidth < window.dataConfig.data.mobile_width
     }
   },
   created () {
@@ -52,6 +53,7 @@ export default {
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.resizeHandler()
+      _.isMobile = window.innerWidth < window.dataConfig.data.mobile_width
     })
   },
   mounted () {
@@ -316,6 +318,9 @@ export default {
   }
   .main-carousel{
     height: 60%;
+    @media (max-width: $break-mobile) {
+      height: 70vh;
+    }
   }
   .carousel-cell{
     width: 100%;
