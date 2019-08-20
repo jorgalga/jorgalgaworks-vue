@@ -105,9 +105,7 @@ export default {
         cellAlign: 'left',
         contain: true,
         pageDots: true,
-        prevNextButtons: false,
-        freeScroll: true,
-        wrapAround: true
+        prevNextButtons: false
       })
       // vanilla JS
       _.flkty.on('change', function (index) {
@@ -119,10 +117,10 @@ export default {
       this.flkty.select(index)
     },
     flkPrev () {
-      this.flkty.previous(true)
+      this.flkty.previous(false)
     },
     flkNext () {
-      this.flkty.next(true)
+      this.flkty.next(false)
     }
   }
 }
