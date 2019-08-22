@@ -429,7 +429,7 @@
       },
       partners: {
         claim: 'The most ambitious<br>entities that support<br>the best talent',
-        breadcum: 'Globals → Generation → Collaborators',
+        breadcum: 'Global → Generation → Collaborators',
         title: 'It´s all about talent',
         description: 'Our partners help us bring you to Unleash. Thanks to their sponsorship, your tickets are affordable. Take a look and you will see which firms are going to be at the biggest and craziest talent festival.',
         qheight: 850,
@@ -584,16 +584,26 @@
       },
       {
         id: 5,
-        name: 'Bisman deu',
-        img: 'Bisman_Deu.jpg',
-        description: '<p>At the young age of 15 years, Bisman invented a low-cost building material, called ‘Green Wood’, a substance made from rice waste and an alternative to more expensive, less eco-friendly products. Bisman is passionate about sustainability and innovation, looking to provide more affordable housing with ‘Green Wood’ and further develop underprivileged areas. Bisman works hard to be a role model in entrepreneurship and leadership among girls, ultimately aiming to bridge the gap in ambition. She has spoken at several notable conferences and summits with big-name organizations like Unicef and Nexus, and she leads her own campaign, ‘Coulour the World Pink’, promoting women’s rights and empowerment.</p>',
-        description_short: '<p>At the young age of 15, Bisman Deu invented a low-cost building material, called ‘Green Wood’, a substance made from rice waste and an alternative to more expensive, less eco-friendly products. Bisman is also a big promoter of women’s rights and empowerment leading her own campaign, ‘Coulour the World Pink’.</p>',
+        name: 'Laura García Pesquera',
+        img: 'LauraGarcíaPesquera.jpg',
+        description: '<p>Laura García Pesquera is the winner of the 15th speaker! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
+        description_short: '<p>Laura García Pesquera is the winner of the 15th speaker! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
         social: [
           {
             id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/OficialRewind'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/oficialrewind/'
+          },
+          {
+            id: 2,
             class: 'icon-facebook',
-            url: 'https://www.facebook.com/BismanDeu'
-          }
+            url: 'https://www.facebook.com/OficialRewind/'
+          } 
         ]
       },
       {
@@ -791,13 +801,6 @@
             url: 'https://www.instagram.com/paugarciamila/'
           }
         ]
-      },
-      {
-        id: 15,
-        name: 'THIS COULD BE YOU!',
-        img: 'Unleash_Web_Speaker.jpg',
-        description: '<p>Be part of Unleash, the craziest talent festival. You can show what you have to all the people attending the festival. You are interested to share your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()"  target="_blank">YES</a></p>',
-        description_short: '<p>Are you interested in sharing your art, talent or history with an awesome audience?</p><p class="cta-parent"><a class="cta" onclick="openPopupcontact()" target="_blank">YES</a></p>'
       }
     ],
     artists: [
@@ -901,8 +904,8 @@
         id: 4,
         name: 'Burdeos',
         img: 'Burdeos.jpg',
-        description: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicar (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
-        description_short: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicar (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
+        description: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicer (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
+        description_short: '<p>Music group from Madrid born in 2017 formed by Pablo Rojo (voice and rhythmic guitar), Juan Carlos Alonso-Esturillo (drums), Toni Matesanz (bass) and Miguel Pellicer (solo guitar). In their songs you can recognize a great influence of rock and indie English that is integrated with Spanish lyrics giving rise to themes with strength and personality. In April of 2018 they published their debut EP recorded at the Neo de Aranda de Duero studios, which is named `Burdeos’ as a presentation.</p>',
         social: [
           {
             id: 0,
@@ -956,24 +959,60 @@
       },
       {
         id: 7,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Rita Gasala',
+        img: 'RitaGasala.jpg',
+        description: '<p>Born in Spain, at just 21 years old, mezzosoprano Rita Gasala has already performed in national and international stages like El Ateneo (Madrid), the Teatro Rosalía de Castro (A Coruña), and the Theâtre des Champs Elysées (Paris). Currently she is studying with Claire Lefilliâtre, one of the most renowned specialists in the 17th century French and Italian music. Rita has been recognised for her dedication and talent in a variety of ways. In 2016, she placed as finalist in the V Concurso para Jóvenes Intérpretes of the Wagner Association of Madrid. More recently, in 2018 she recorded the Kur for the Spanish Olympic medallist of Dressage Beatriz Ferrer-Salat & Delgado. Lastly, she was invited to present a TEDx conference which now has over 15,000 views on YouTube.</p>',
+        description_short: '<p>Born in Spain, at just 21 years old, mezzosoprano Rita Gasala has already performed in national and international stages like El Ateneo (Madrid), the Teatro Rosalía de Castro (A Coruña), and the Theâtre des Champs Elysées (Paris). Currently she is studying with Claire Lefilliâtre, one of the most renowned specialists in the 17th century French and Italian music. Rita has been recognised for her dedication and talent in a variety of ways. In 2016, she placed as finalist in the V Concurso para Jóvenes Intérpretes of the Wagner Association of Madrid. More recently, in 2018 she recorded the Kur for the Spanish Olympic medallist of Dressage Beatriz Ferrer-Salat & Delgado. Lastly, she was invited to present a TEDx conference which now has over 15,000 views on YouTube.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/ritagasala/'
+          }
+        ]
       },
       {
         id: 8,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Carla Prado',
+        img: 'CarlaPrado.jpg',
+        description: '<p>Carla Prado is a professional Spanish-dance dancer. She´s been dancing since she was 3 years old, which it´s her profession, dance.</p>',        
+        description_short: '<p>Carla Prado is a professional Spanish-dance dancer. She´s been dancing since she was 3 years old, which it´s her profession, dance.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/carla.pradogonzalez'
+          },
+          {
+            id: 1,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/carlapg_/'
+          }
+        ]
       },
       {
         id: 9,
-        name: 'Coming soon',
-        img: 'artist.jpg',
-        description: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>',
-        description_short: '<p>You will see who´s coming soon, but just know one thing: It´s going to be AMAZING!</p>'
+        name: 'Leonardo Iker',
+        img: 'LeonardoIker.jpg',
+        description: '<p>Leonardo is a breakdancer and hip-hop artist, and he has his own project called "Killin Makako". Their mission is to get talented young people out of the streets through dancing and singing. He wants to create a worldwide community of artists and give them the connections and resources they need to become professionals. He has been dancing in many cities like Madrid, Barcelona, ​​London, Rio de Janeiro or Milan. Luckily, he has had the opportunity to perform in clubs, theaters, television shows, commercials and even in the cinema. But, sometimes it is hard to get the job of your dreams, so you have to work in a normal job or just go and hit the streets to not starve.</p>',
+        description_short: '<p>Leonardo is a breakdancer and hip-hop artist, and he has his own project called "Killin Makako". Their mission is to get talented young people out of the streets through dancing and singing. He wants to create a worldwide community of artists and give them the connections and resources they need to become professionals. He has been dancing in many cities like Madrid, Barcelona, ​​London, Rio de Janeiro or Milan. Luckily, he has had the opportunity to perform in clubs, theaters, television shows, commercials and even in the cinema. But, sometimes it is hard to get the job of your dreams, so you have to work in a normal job or just go and hit the streets to not starve.</p>',
+        social: [
+          {
+            id: 0,
+            class: 'icon-twitter',
+            url: 'https://twitter.com/wikerfcw'
+          },
+          {
+            id: 1,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/leonardo.iker'
+          },
+          {
+            id: 2,
+            class: 'icon-instagram',
+            url: 'https://www.instagram.com/leonardo.iker/'
+          }
+        ] 
       }
     ],
     host: [
@@ -1196,7 +1235,7 @@
           id: '3',
           tag_id: 'tag-womenalia',
           img: 'partners/positivo_con_lema.png',
-          name: '',
+          name: 'womenalia',
           url: 'http://www.womenalia.com/es/'
         },
         {
@@ -1212,6 +1251,13 @@
           img: 'partners/Logo_UXER_Positivo.png',
           name: '',
           url: 'http://www.uxerschool.com/'
+        },
+        {
+          id: '6',
+          tag_id: 'tag-fever',
+          img: 'partners/fever.png',
+          name: 'fever',
+          url: 'https://feverup.com/madrid'
         }
       ] 
     },

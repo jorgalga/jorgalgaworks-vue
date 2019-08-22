@@ -152,7 +152,7 @@ export default {
     display: inline-block;
     width: 100%;
     height: 100%;
-    background-color: red;
+    background-color: black;
     &.day_1{
       background-image: url('#{$staticpath}static/unleash/images/Unleash_Web_Agenda_Day1.jpg');
       background-repeat: no-repeat;
