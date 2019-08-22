@@ -1,0 +1,62 @@
+<template>
+  <div id="page" ref="page" class="page">
+    <cmpMenutwo type="whity"></cmpMenutwo>
+    <cmpHeader type="whity"></cmpHeader>
+    <iframe width="100%" height="800" src="https://meetings.indra.es/orion/joinmeeting.do?MTID=0093bfffa769db50d7b55ec23698a01f"></iframe>
+    <cmpFooter></cmpFooter>
+  </div>
+</template>
+<script>
+import cmpHeader from '@/components/CMP_header'
+import cmpMenutwo from '@/components/CMP_menutwo'
+import cmpFooter from '@/components/CMP_footer'
+export default {
+  name: 'Webex',
+  props: ['id', 'lang'],
+  data () {
+    return {
+      scaleR: 1,
+      isMobile: window.innerWidth < window.dataConfig.mobile_width,
+      data: window.dataConfig
+    }
+  },
+  beforeCreate () {
+    if (this.$route.params.lang) {
+      this.clang = this.$route.params.lang
+    }
+  },
+  created () {
+    var _ = this
+    _.resizeHandler()
+    window.addEventListener('resize', function () {
+      _.resizeHandler()
+      _.isMobile = window.innerWidth < _.data.mobile_width
+    })
+  },
+  components: {
+    'cmpHeader': cmpHeader,
+    'cmpMenutwo': cmpMenutwo,
+    'cmpFooter': cmpFooter
+  },
+  mounted () {
+  },
+  methods: {
+    resizeHandler () {
+      var w = Math.min(window.innerWidth, this.data.max_width)
+      this.scaleR = Math.max(0.5, w / this.data.max_width)
+      this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    }
+  }
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+@import '../scss/_vars.scss';
+.page-content{
+  margin: 0 auto;
+  max-width: 100%;
+  position: relative;
+  perspective: 1px
+}
+</style>

@@ -5,6 +5,7 @@ import Home from '@/views/home'
 import Reglas from '@/views/reglas'
 import Proposito from '@/views/proposito'
 import Ranking from '@/views/ranking'
+import Webex from '@/views/webex'
 import VueObserveVisibility from 'vue-observe-visibility'
 
 Vue.use(Router)
@@ -32,6 +33,11 @@ export default new Router({
       path: '/ranking/',
       name: 'Ranking default',
       component: Ranking
+    },
+    {
+      path: '/webex/',
+      name: 'Webex default',
+      component: Webex
     }
   ]
 })
