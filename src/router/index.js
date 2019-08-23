@@ -16,16 +16,36 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'index default',
+      name: 'index default loc:es',
+      component: Home
+    },
+    {
+      path: '/es',
+      name: 'index spanish loc:es',
+      component: Home
+    },
+    {
+      path: '/en',
+      name: 'index english loc:en',
       component: Home
     },
     {
       path: '/reglas/',
-      name: 'Reglas default',
+      name: 'Reglas default loc:es',
       component: Reglas
     },
     {
-      path: '/proposito/',
+      path: '/reglas/es',
+      name: 'Reglas spanish loc:es',
+      component: Reglas
+    },
+    {
+      path: '/reglas/en',
+      name: 'Reglas english loc:en',
+      component: Reglas
+    },
+    {
+      path: '/proposito',
       name: 'Proposito default',
       component: Proposito
     },

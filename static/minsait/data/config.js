@@ -14,7 +14,7 @@ var dataConfig = {
     en:{
       make_scroll: '&#60 más info &#62',
       cookie_message: '<p>Utilizamos cookies propias y de terceros para mejorar la experiencia del usuario a través de su navegación. Si continúa navegando entendemos que acepta su uso. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank">Política de cookies</a></p>',
-      logo_copy: 'Revoluciona nuestra OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
+      logo_copy: 'Revolution our OpenSource, from inside.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
       video_ptitle: 'Info',
       video_description: '<p>Queremos crear la plataforma <b>Opensource</b> de referencia, donde se comparten conocimientos de diversas disciplinas como <b>Big Data, Internet of Everything, Intelligencia Artificial...</br> y para conseguirlo necesitamos a los mejores.</b></p>',
       form_ptitle: 'formulario',
@@ -45,30 +45,8 @@ var dataConfig = {
       ranking_ptitle: 'Ranking',
       ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
       menu_left_copy: 'An Indra company',
-      menuparticipabtn: 'Participa',
-      menubtn: 'MENÚ',
-      menuitems: [
-        {
-          id: 1,
-          text: 'FORM<br>Se parte del cambio'
-        },
-        {
-          id: 2,
-          text: 'INFO<br>Sobre el reto'
-        },
-        {
-          id: 3,
-          text: 'RANKING<br>Los mejores'
-        },
-        {
-          id: 4,
-          text: 'CONTACTO<br>¿Dudas?'
-        },
-        {
-          id: 5,
-          text: 'REGLAS<br>¿Cómo funciona la revolución?'
-        }
-      ],
+      menuparticipabtn: 'Participate',
+      menubtn: 'MENU',
       reglas_ptitle: 'Reglas',
       reglas_items: [
         {
@@ -130,31 +108,9 @@ var dataConfig = {
       ],
       ranking_ptitle: 'Ranking',
       ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
-      menu_left_copy: 'An Indra company',
+      menu_left_copy: 'Una empresa de Indra',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
-      menuitems: [
-        {
-          id: 1,
-          text: 'FORM<br>Se parte del cambio'
-        },
-        {
-          id: 2,
-          text: 'INFO<br>Sobre el reto'
-        },
-        {
-          id: 3,
-          text: 'RANKING<br>Los mejores'
-        },
-        {
-          id: 4,
-          text: 'CONTACTO<br>¿Dudas?'
-        },
-        {
-          id: 5,
-          text: 'REGLAS<br>¿Cómo funciona la revolución?'
-        }
-      ],
       reglas_ptitle: 'Reglas',
       reglas_items: [
         {

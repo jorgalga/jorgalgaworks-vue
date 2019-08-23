@@ -24,6 +24,9 @@
           <li><a target="_blank" href="https://www.minsait.com">Blog</a></li>
         </ul>
       </nav>
+      <div class="lang-selector" v-bind:style="isMobile ? '' : 'e'">
+        <div class="text-button" v-bind:style="isMobile ? '' : ''"><a @click.prevent="toggleLang('es')" ref="link-es" href="" class="lang-link">ES</a> | <a @click.prevent="toggleLang('en')" ref="link-en" href="" class="lang-link">EN</a></div>
+      </div>
       <div class="btn white participa" @click.prevent="goTo('/?participa')">
         Participa
       </div>
@@ -45,12 +48,9 @@ export default {
     }
   },
   created () {
-    console.log(this.$props.type)
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
     // _.resizeHandler()
+    this.clang = this.$route.name.split('loc:')[1]
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
       // _.resizeHandler()
@@ -101,8 +101,16 @@ export default {
       }
     },
     toggleLang (to) {
-      window.location.href = '/#' + this.$route.fullPath.replace(this.clang, to)
-      location.reload()
+      var fpath = this.$route.fullPath.replace('/es', '')
+      fpath = fpath.replace('/en', '')
+      if (fpath === '/') {
+        window.location.href = '/#' + fpath + '' + to
+        location.reload()
+      } else {
+        console.log(fpath)
+        window.location.href = '/#' + fpath + '/' + to
+        location.reload()
+      }
     }
   }
 }
@@ -168,6 +176,7 @@ export default {
         }
       }
     }
+
     .btn.white{
       color: $darkblue;
       border: 1px solid $darkblue;
@@ -216,7 +225,7 @@ export default {
         height: unset;
         transition: 0.5s;
         background-color: white;
-        max-height: 375px;
+        max-height: 400px;
         overflow: hidden;
         &.hidden{
            max-height: 0;
@@ -367,6 +376,44 @@ export default {
               color: $darkblue;
             }
           }
+        }
+      }
+    }
+  }
+  .lang-selector{
+    position: absolute;
+    display: inline-block;
+    top: 50%;
+    right: 125px;
+    transform: translate3d(0,-50%,0);
+    padding: 8px 20px;
+    line-height: 1;
+    font-family: 'SohoGothicPro-Medium';
+    @media (max-width: $break-mobile) {
+      position: relative;
+      transform: initial;
+      right: initial;
+      padding: 15px 0;
+      border-bottom: 1px solid grey;
+      display: block;
+    }
+    .text-button{
+      color: white;
+      @media (max-width: $break-mobile) {
+        color: black;
+      }
+      .lang-link{
+        color: white;
+        text-decoration: none;
+        padding: 0 15px;
+        @media (max-width: $break-mobile) {
+          color: black;
+        }
+        &.active{
+          font-family: 'SohoGothicPro-Medium';
+        }
+        &:hover{
+          text-decoration: underline;
         }
       }
     }
