@@ -17,13 +17,7 @@
         name: 'Two tickets by the price of one',
         eb_id: '65098500367',
         setCookie: true,
-      },
-      "ESNoffer": { 
-        path: '/ESNoffer',
-        name: 'Special tickets ESN',
-        eb_id: '70477085861',
-        setCookie: true,
-    }
+      }
     },
     page_names:{
       home: 'Home',
@@ -592,8 +586,8 @@
         id: 5,
         name: 'Laura García Pesquera',
         img: 'LauraGarcíaPesquera.jpg',
-        description: '<p>Laura García Pesquera is the winner of the Unleash Speaker Contest! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
-        description_short: '<p>Laura García Pesquera is the winner of the Unleash Speaker Contest! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
+        description: '<p>Laura García Pesquera is the winner of the 15th speaker! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
+        description_short: '<p>Laura García Pesquera is the winner of the 15th speaker! She is a journalist and advertiser & PR graduate, cofounder of Oficial Rewind, a project lead by young people that fights against hate speech in social media that has been recognized the third best idea worldwide to stop online hate speech by Facebook for the second time. They propose the use of the Rewind emoji as an universal answer to hate speech. Plus, they focus on education on the use of social media and creating awareness on the identification of hate speech.</p>',
         social: [
           {
             id: 0,
@@ -647,6 +641,11 @@
             id: 0,
             class: 'icon-instagram',
             url: 'https://www.instagram.com/biop.ai/'
+          },
+          {
+            id: 1	,
+            class: 'icon-facebook',
+            url: 'https://www.facebook.com/mariajose.moralesmulet'
           }
         ]
       },
@@ -1019,19 +1018,19 @@
     host: [
       {
         id: 0,
-        name: 'Berry Berryuca',
-        img: 'BerryBerryuca.jpg',
-        description: '<p>Irene, better known as Berry Berryuca, is the new host of UNLEASH Festival 2019 - the largest festival of talent in the world. The young Youtuber, who studies Teaching, began her career in Vine, where she grew enormously to make then the great jump to YouTube, in which she accumulates more than 143,000 subscribers and 10 million reproductions. Now it’s your time to see her at UNLEASH.Are you ready?</p>',
+        name: 'Coming soon',
+        img: 'Unleash_Web_Host.jpg',
+        description: '<p>Our host will be the soul of Unleash. Any ideas of who it can be? We are listening to you all on social media, let us know!</p>',
         social: [
           {
             id: 0,
             class: 'icon-instagram',
-            url: 'https://www.instagram.com/berryuca/'
+            url: 'www.'
           },
           {
             id: 1,
-            class: 'icon-twitter',
-            url: 'https://twitter.com/berry_qb_'
+            class: 'icon-instagram',
+            url: 'www.'
           }
         ]
       }
@@ -1257,69 +1256,6 @@
           img: 'partners/fever.png',
           name: 'fever',
           url: 'https://feverup.com/madrid'
-        },
-        {
-          id: '7',
-          tag_id: 'tag-ESN',
-          img: 'partners/ESN_colour.png',
-          name: 'ESN',
-          url: 'https://www.esn-spain.org'
-        },
-        {
-          id: '8',
-          tag_id: 'tag-VOI',
-          img: 'partners/voi_logo_coral.png',
-          name: 'VOI',
-          url: 'https://www.voiscooters.com/es/'
-        },
-        {
-          id: '9',
-          tag_id: 'tag-badi',
-          img: 'partners/badi_logo.png',
-          name: 'badi',
-          url: 'https://badi.com/es'
-        },
-        {
-          id: '10',
-          tag_id: 'tag-BlueBanana',
-          img: 'partners/BlueBanana.png',
-          name: 'BlueBanana',
-          url: 'https://www.bluebananabrand.com'
-        },
-        {
-          id: '11',
-          tag_id: 'tag-Utopicus',
-          img: 'partners/Utopicus.png',
-          name: 'Utopicus',
-          url: 'https://www.utopicus.es/'
-        },
-        {
-          id: '12',
-          tag_id: 'tag-Campton',
-          img: 'partners/campton.png',
-          name: 'campton',
-          url: 'https://www.instagram.com/campton.official/'
-        },
-        {
-          id: '13',
-          tag_id: 'tag-Icex',
-          img: 'partners/icex_denominacion.png',
-          name: 'Icex',
-          url: 'https://www.icex.es/icex/es/index.html'
-        },
-        {
-          id: '14',
-          tag_id: 'tag-Esgoa',
-          img: 'partners/Esgoa.png',
-          name: 'Esgoa',
-          url: 'https://esgoa.es'
-        },
-        {
-          id: '15',
-          tag_id: 'tag-UnLtd',
-          img: 'partners/UnLtd.png',
-          name: 'UnLtd',
-          url: 'https://www.unltdspain.org'
         }
       ] 
     },

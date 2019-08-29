@@ -26,6 +26,7 @@
                 <div class="info-item-container" v-bind:style="isMobile ? '' : 'height:'+850*scaleR+'px;padding:'+15*scaleR+'px'" :key="data[$props.type][itemActive].id">
                   <div class="social-container" v-bind:style="'padding:'+15*scaleR+'px'">
                     <div v-for="item in data[$props.type][itemActive].social" class="social-link" v-bind:style="'width:'+50*scaleR+'px;height:'+50*scaleR+'px;margin-right:'+15*scaleR+'px;border:'+3*scaleR+'px solid white'" :key="item.id">
+                      <a v-bind:href="item.url" target="_blank"><span v-bind:class="item.class"></span></a>
                     </div>
                   </div>
                   <div class="name-container" v-html="data[$props.type][itemActive].name" v-bind:style="'font-size:'+60*scaleR+'px;padding:'+15*scaleR+'px'"></div>
@@ -316,9 +317,20 @@ export default {
   }
   .social-container{
     .social-link{
-      display: inline-block;
+     display: inline-block;
       box-sizing: border-box;
       border-radius: 50%;
+      position: relative;
+      span{
+        display: inline-block;
+        font-size: 12px;
+        color: white;
+        line-height: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%,-50%,0)
+      }
     }
   }
   .name-container{
