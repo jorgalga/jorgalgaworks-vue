@@ -1,8 +1,18 @@
 <template>
   <div class="component-wrapper cmpform">
+    <div  class="response">
+      <div class="response body">
+        <div ref="copy-response" class="copy">Todo correcto</div>
+        <div ref="copy-btn-response" class="btn">OK</div>
+      </div>
+    </div>
     <div class="component-container">
+      <div ref="splash" class="splash-spiner">
+        <div class="spiner-icon"></div>
+      </div>
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+640+'px; font-size:'+21*1+'px;'">
+        <p>Dinos quien eres para participar.</p>
+        <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+640+'px; font-size:'+18*1+'px;'">
           <label for="firstname">Nombre:</label>
           <input type="text" name="firstname" placeholder=""><br>
           <label for="email">Email:</label>
@@ -15,17 +25,17 @@
           </div>
           <br>
           <div class="input-wrapper">
-            <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+25*1+'px;padding:'+15*1+'px'">
+            <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
           </div>
         </form>
       </div>
     </div>
     <div class="contact-block triangle" v-bind:style="isMobile ? 'height: '+50*1+'px' : 'height: '+100*scaleR+'px'">
     </div>
-    <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+25*1+'px;height: '+300*1+'px'">
+    <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px;height: '+300*1+'px'">
       <div class="contact-element">
         <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
-        <a href="https://www.minsait.com/es/contacto" target="_blank" class="btn white" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Contacta con nosotros</a>
+        <a href="https://www.minsait.com/es/contacto" target="_blank" class="btn white" v-bind:style="isMobile ? 'padding: 10px 20px' : 'padding:15px '+30*1+'px'">Contacta con nosotros</a>
       </div>
     </div>
   </div>
@@ -64,6 +74,9 @@ export default {
       console.log(this.scaleR)
     },
     sendform () {
+      var _ = this
+      _.$refs.splash.classList.add('displayed')
+      return
       var jsonvar = {
         UsuarioHackathon: {
           name: 'usuario_demo2',
@@ -101,11 +114,46 @@ export default {
   background-color: #f7f7f7;
   transition: 1s;
   position: relative;
+  .response{
+    position: absolute;
+    width: 100%;
+    background-color: greenyellow;
+    &.error{
+      background-color: red;
+    }
+  }
+  .splash-spiner{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #ffffffcc;
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+    &.displayed{
+      opacity: 1;
+      pointer-events: initial;
+    }
+    .spiner-icon{
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      top: 50%;
+      left: 50%;
+      transform: translate3d(-50%,-50%,0);
+      background: url('#{$staticpath}static/minsait/images/loading.gif');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
   .btn{
     display: inline-block;
     text-decoration: none;
+    font-size: 15px;
     &.white{
-      border: 2px solid white;
+      border: 1px solid white;
       color: white;
       &:hover{
         background-color: white;
@@ -135,6 +183,7 @@ export default {
   }
   .component-container{
     max-width: $pagewidth;
+    max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
     // background-color: #00000011;
@@ -154,11 +203,19 @@ export default {
     }
     .form-container{
       min-height: 100px;
+      max-width: 600px;
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate3d(-50%,-50%,0);
       width: 50%;
+      p{
+        font-family: 'SohoGothicPro-Light';
+        text-align: center;
+        font-size: 18px;
+        color: $darkblue;
+        margin-bottom: 60px;
+      }
       @media (max-width: $break-mobile) {
         width: 80%;
       }
@@ -184,7 +241,7 @@ export default {
             width: initial;
             text-align: right;
             display: inline-block;
-            font-size: 16px !important;
+            font-size: 12px !important;
             @media (max-width: $break-mobile) {
               text-align: left;
               padding: 0;
@@ -202,7 +259,7 @@ export default {
           position: relative;
           border: 0;
           background-color: transparent;
-          border: 2px solid $darkblue;
+          border: 1px solid $darkblue;
           font-family: 'SohoGothicPro-Light';
           color: white;
           line-height: 1;
@@ -212,7 +269,7 @@ export default {
             width: initial;
           }
           &.submit{
-            border: 2px solid #6ac7b1;
+            border: 1px solid #6ac7b1;
             color: #6ac7b1;
             width: initial;
             cursor: pointer;
@@ -220,7 +277,7 @@ export default {
             margin: 0 auto;
             display: inline-block;
             @media (max-width: $break-mobile) {
-              padding: 5px 10px;
+              padding: 10px 20px;
               background-color: #6ac7b1;
               color: white;
               font-size: 15px;

@@ -1248,7 +1248,7 @@ export default {
       background-color: $claBlue;
     }
     &.colorFB{
-      border: 2px solid #3c5a99;
+      border: 1px solid #3c5a99;
       color: #3c5a99;
       transition: 0.25s;
       &:hover{
@@ -1256,7 +1256,7 @@ export default {
       }
     }
     &.colorTW{
-      border: 2px solid #33ccff;
+      border: 1px solid #33ccff;
       color: #33ccff;
       transition: 0.25s;
       &:hover{
@@ -1264,7 +1264,7 @@ export default {
       }
     }
     &.colorWH{
-      border: 2px solid #25D366;
+      border: 1px solid #25D366;
       color: #25D366;
       transition: 0.25s;
       display: none;
@@ -2062,7 +2062,7 @@ export default {
         text-align: center;
         line-height: 100px;
         color: white;
-        border: 2px solid white;
+        border: 1px solid white;
         border-radius: 50%;
         //background: $claBlue;
         cursor: pointer;

@@ -1,7 +1,7 @@
 <template>
   <div id="cmpvideo" class="component-wrapper cmpvideo" v-bind:style="isMobile ? '' : 'margin-top: -'+100*scaleR+'px'">
     <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0 '+0*scaleR+'px 0;'">
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+200*scaleR+'px; margin-bottom:'+45*scaleR+'px'" v-html="data.copy[clang].video_ptitle">
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px; margin-bottom:'+45*scaleR+'px'" v-html="data.copy[clang].video_ptitle">
       </div>
       <div class="video-container" v-bind:style="isMobile ? 'height:'+476*scaleR+'px' : 'height:'+846*scaleR+'px'">
         <!--div class="icon-video" v-bind:style="isMobile ? 'height:'+150*scaleR+'px;width:'+150*scaleR+'px' : 'height:'+200*scaleR+'px;width:'+200*scaleR+'px'"></div-->
@@ -146,7 +146,7 @@ export default {
     color: $blue;
     text-align: center;
     max-width: $pagewidth;
-    font-size: 23px;
+    font-size: 18px;
     line-height: 1.3;
     display: inline-block;
     /deep/  p{

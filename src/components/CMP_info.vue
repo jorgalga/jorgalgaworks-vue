@@ -3,7 +3,7 @@
     <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0;'">
       <!-- div class="video-container" v-bind:style="isMobile ? '' : 'height:'+840*scaleR+'px'">
       </div -->
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].info_ptitle">
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px'" v-html="data.copy[clang].info_ptitle">
       </div>
       <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : ''" v-html="data.copy[clang].info_description">
       </div>
@@ -12,8 +12,8 @@
           <div class="info-item-container">
             <!-- div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'">{{item.order}}</div -->
             <div class="icon-image" v-bind:style="isMobile ? 'height:'+200*scaleR+'px;' : 'height:'+128*scaleR+'px;'"></div>
-            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+23*1+'px'"></div>
-            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'"></div>
+            <div class="title" v-html="item.title" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+18*1+'px'"></div>
+            <div class="description" v-html="item.description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+15*1+'px'"></div>
           </div>
         </div>
       </div>
@@ -189,7 +189,7 @@ export default {
     @media (max-width: $break-mobile) {
       text-align: center;
       margin-top: 30px;
-      margin-left: 10px;
+      margin-left: 0;
     }
   }
   .page-description, .final-claim{
@@ -198,7 +198,7 @@ export default {
     text-align: center;
     max-width: 75%;
     margin: 0 auto;
-    font-size: 23px;
+    font-size: 18px;
     @media (max-width: $break-mobile) {
       display: block;
       max-width: 100%;

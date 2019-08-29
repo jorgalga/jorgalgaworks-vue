@@ -111,7 +111,7 @@ export default {
       font-family: 'SohoGothicPro-Light';
       text-align: center;
       line-height: 1.3;
-      font-size: 23px;
+      font-size: 18px;
       padding: 15px;
       max-width: $pagewidth;
       margin: 0 auto;

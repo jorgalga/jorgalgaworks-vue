@@ -15,21 +15,19 @@
     <div ref="menucontainer" class="component-container hidden">
       <nav>
         <ul>
-          <li><router-link to="/">Home</router-link></li>
-          <li><router-link to="/reglas">Reglas</router-link></li>
+          <li><router-link v-bind:to="'/' + clang" v-html="data.copy[clang].menu_links.home"></router-link></li>
+          <li><router-link v-bind:to="'/reglas/' + clang" v-html="data.copy[clang].menu_links.rules"></router-link></li>
           <!--li><router-link to="/proposito">Propósito</router-link></li-->
-          <li><router-link to="/ranking">Ranking</router-link></li>
-          <li><router-link to="/webex">Webex</router-link></li>
-          <li><a target="_blank" href="https://www.minsait.com/es/contacto">Contacta</a></li>
-          <li><a target="_blank" href="https://www.minsait.com">Blog</a></li>
+          <li><router-link v-bind:to="'/ranking/' + clang" v-html="data.copy[clang].menu_links.ranking"></router-link></li>
+          <li><router-link v-bind:to="'/webex/' + clang" v-html="data.copy[clang].menu_links.webex"></router-link></li>
+          <li><a target="_blank" href="https://www.minsait.com/es/contacto" v-html="data.copy[clang].menu_links.contact"></a></li>
+          <li><a target="_blank" href="https://www.minsait.com" v-html="data.copy[clang].menu_links.blog"></a></li>
         </ul>
       </nav>
       <div class="lang-selector" v-bind:style="isMobile ? '' : 'e'">
         <div class="text-button" v-bind:style="isMobile ? '' : ''"><a @click.prevent="toggleLang('es')" ref="link-es" href="" class="lang-link">ES</a> | <a @click.prevent="toggleLang('en')" ref="link-en" href="" class="lang-link">EN</a></div>
       </div>
-      <div class="btn white participa" @click.prevent="goTo('/?participa')">
-        Participa
-      </div>
+      <div class="btn white participa" @click.prevent="goTo('/?participa')" v-html="data.copy[clang].menuparticipabtn"></div>
     </div>
   </div>
 </template>
@@ -105,11 +103,13 @@ export default {
       fpath = fpath.replace('/en', '')
       if (fpath === '/') {
         window.location.href = '/#' + fpath + '' + to
-        location.reload()
+        // location.reload()
+        this.$router.go()
       } else {
         console.log(fpath)
         window.location.href = '/#' + fpath + '/' + to
-        location.reload()
+        // location.reload()
+        this.$router.go()
       }
     }
   }
@@ -128,7 +128,7 @@ export default {
   &.pinky{
     background-color: #fde3d4;
     .component-container.subline{
-      border-bottom: 2px solid $darkblue;
+      border-bottom: 1px solid $darkblue;
       @media (max-width: $break-mobile) {
         border-bottom: none;
       }
@@ -136,22 +136,30 @@ export default {
     .component-container nav ul li a{
       color: $darkblue;
       @media (min-width: $break-mobile) {
-        border-bottom: 2px solid #fde3d4;
+        border-bottom: 1px solid #fde3d4;
       }
       &:hover{
         @media (min-width: $break-mobile) {
           color: white;
-          border-bottom: 2px solid white;
+          border-bottom: 1px solid white;
         }
       }
     }
     .btn.white{
       color: $darkblue;
-      border: 2px solid $darkblue;
+      border: 1px solid $darkblue;
       &:hover{
         @media (min-width: $break-mobile) {
           background-color: $darkblue;
           color: #fde3d4;
+        }
+      }
+    }
+    .lang-selector{
+      .text-button{
+        color: $darkblue;
+        .lang-link{
+          color: $darkblue;
         }
       }
     }
@@ -160,7 +168,7 @@ export default {
     background-color: white;
     .component-container.subline{
       @media (min-width: $break-mobile) {
-        border-bottom: 2px solid $darkblue;
+        border-bottom: 1px solid $darkblue;
       }
       @media (max-width: $break-mobile) {
         border-bottom: none;
@@ -168,11 +176,11 @@ export default {
     }
     .component-container nav ul li a{
       color: $darkblue;
-      border-bottom: 2px solid white;
+      border-bottom: 1px solid white;
       &:hover{
         @media (min-width: $break-mobile) {
           color: #6ac7b1;
-          border-bottom: 2px solid #6ac7b1;
+          border-bottom: 1px solid #6ac7b1;
         }
       }
     }
@@ -187,15 +195,24 @@ export default {
         }
       }
     }
+    .lang-selector{
+      .text-button{
+        color: $darkblue;
+        .lang-link{
+          color: $darkblue;
+        }
+      }
+    }
   }
   @media (max-width: $break-mobile) {
     position: fixed;
   }
   .btn{
-    border: 2px solid black;
+    font-size: 15px;
+    border: 1px solid black;
     display: inline-block;
     line-height: 1;
-    padding: 8px 20px;
+    padding: 10px 30px;
     font-family: 'SohoGothicPro-Regular';
     cursor: pointer;
     &.participa{
@@ -203,13 +220,19 @@ export default {
       top: 50%;
       position: absolute;
       transform: translate3d(0,-50%,0);
+      @media (min-width: $break-mobile) {
+        &:hover{
+          background-color: white;
+          color: $softblue;
+        }
+      }
       @media (max-width: $break-mobile) {
         display: none;
       }
     }
     &.white{
       color: white;
-      border: 2px solid white;
+      border: 1px solid white;
     }
   }
   .component-container{
@@ -218,7 +241,7 @@ export default {
     box-sizing: border-box;
     position:relative;
     transition: 0.5s;
-    height: 100px;
+    height: 65px;
     @media (max-width: $break-mobile) {
       height: 80px;
       &:nth-child(2){
@@ -233,7 +256,7 @@ export default {
       }
     }
     &.subline{
-      border-bottom: 2px solid white;
+      border-bottom: 1px solid white;
       @media (max-width: $break-mobile) {
         border-bottom: none;
       }
@@ -312,8 +335,8 @@ export default {
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      height: 80%;
-      width: 200px;
+      height: 26px;
+      width: 130px;
       position: absolute;
       top: 50%;
       transform: translate3d(15px,-50%,0);
@@ -330,6 +353,7 @@ export default {
       height: 100%;
       display: flex;
       align-items: center;
+      padding: 0 15px;
       ul{
         display: inline-block;
         margin: 0;
@@ -342,23 +366,23 @@ export default {
           width: auto;
           padding: 0;
           position: static;
-          margin-right: 30px;
+          margin-right: 45px;
           display: inline-block;
           list-style-type: none;
           a{
             font-size: 15px;
-            padding: 15px;
+            padding: 15px 0;
             font-family: 'SohoGothicPro-Regular';
             color: white;
             display: inline-block;
             text-decoration: none;
-            border-bottom: 2px solid #6ac7b1;
+            border-bottom: 1px solid #6ac7b1;
             @media (max-width: $break-mobile) {
               border-bottom: none;
             }
             &:hover{
               @media (min-width: $break-mobile) {
-                border-bottom: 2px solid white;
+                border-bottom: 1px solid white;
                 color: $darkblue;
               }
             }
@@ -380,14 +404,15 @@ export default {
       }
     }
   }
+
   .lang-selector{
     position: absolute;
     display: inline-block;
     top: 50%;
-    right: 125px;
+    right: 150px;
     transform: translate3d(0,-50%,0);
     padding: 8px 20px;
-    line-height: 1;
+    line-height: 1.3;
     font-family: 'SohoGothicPro-Medium';
     @media (max-width: $break-mobile) {
       position: relative;
@@ -400,7 +425,7 @@ export default {
     .text-button{
       color: white;
       @media (max-width: $break-mobile) {
-        color: black;
+        color:$darkblue;
       }
       .lang-link{
         color: white;

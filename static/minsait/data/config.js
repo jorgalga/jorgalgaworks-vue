@@ -47,7 +47,15 @@ var dataConfig = {
       menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participate',
       menubtn: 'MENU',
-      reglas_ptitle: 'Reglas',
+      menu_links: {
+        home: 'Home',
+        rules: 'Rules',
+        ranking: 'Ranking',
+        webex: 'Webex',
+        contact: 'Contact',
+        blog: 'Blog'
+      },
+      reglas_ptitle: 'Rules',
       reglas_items: [
         {
           title: 'Regla 1',
@@ -111,6 +119,14 @@ var dataConfig = {
       menu_left_copy: 'Una empresa de Indra',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
+      menu_links: {
+        home: 'Inicio',
+        rules: 'Reglas',
+        ranking: 'Ranking',
+        webex: 'Webex',
+        contact: 'Contacto',
+        blog: 'Blog'
+      },
       reglas_ptitle: 'Reglas',
       reglas_items: [
         {

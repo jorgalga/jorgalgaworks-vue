@@ -79,6 +79,7 @@ export default {
     background-color: $darkblue;
     max-width: $pagewidth;
     margin: 0 auto;
+    padding: 0 15px;
     box-sizing: border-box;
     // background-color: #00000011;
     min-height: 100px;
@@ -162,7 +163,7 @@ export default {
     background-repeat: no-repeat;
     background-position: center;
     height: 80%;
-    width: 200px;
+    width: 120px;
     position: absolute;
     top: 50%;
     transform: translate3d(15px,-50%,0);

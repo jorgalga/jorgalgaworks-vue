@@ -184,7 +184,7 @@ export default {
     .participa-button{
       background-color: transparent;
       color: white;
-      border: 2px solid white;
+      border: 1px solid white;
       display: inline-block;
       position: absolute;
       right: 0;
@@ -202,7 +202,7 @@ export default {
     }
     .menu-button{
       background-color: white;
-      border: 2px solid white;
+      border: 1px solid white;
       display: inline-block;
       position: absolute;
       right: 0;

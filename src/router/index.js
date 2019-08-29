@@ -51,12 +51,32 @@ export default new Router({
     },
     {
       path: '/ranking/',
-      name: 'Ranking default',
+      name: 'Ranking default loc:es',
+      component: Ranking
+    },
+    {
+      path: '/ranking/es',
+      name: 'Ranking spanish loc:es',
+      component: Ranking
+    },
+    {
+      path: '/ranking/en',
+      name: 'Ranking english loc:en',
       component: Ranking
     },
     {
       path: '/webex/',
-      name: 'Webex default',
+      name: 'Webex default loc:es',
+      component: Webex
+    },
+    {
+      path: '/webex/',
+      name: 'Webex spanish loc:es',
+      component: Webex
+    },
+    {
+      path: '/webex/',
+      name: 'Webex english loc:en',
       component: Webex
     }
   ]

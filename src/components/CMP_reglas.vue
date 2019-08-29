@@ -1,7 +1,7 @@
 <template>
   <div id="cmpinfo" class="component-wrapper cmpreglas">
     <div class="component-container" >
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+200*scaleR+'px'" v-html="data.copy[clang].reglas_ptitle">
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px'" v-html="data.copy[clang].reglas_ptitle">
       </div>
       <div class="fterminal triangle" v-bind:style="isMobile ? 'height:'+50*1+'px' : 'height:'+100*scaleR+'px'">
       </div>
@@ -98,16 +98,16 @@ export default {
       padding: 30px;
       margin: 0 auto;
       .regla-title{
-        font-size: 28px;
+        font-size: 23px;
         color: $darkblue;
         font-family: 'SohoGothicPro-Medium';
         @media (max-width: $break-mobile) {
-          font-size: 18px;
+          font-size: 15px;
         }
       }
       .regla-body{
         color: $darkblue;
-        font-size: 23px;
+        font-size: 18px;
         line-height: 1.3;
         font-family: 'SohoGothicPro-Regular';
         @media (max-width: $break-mobile) {

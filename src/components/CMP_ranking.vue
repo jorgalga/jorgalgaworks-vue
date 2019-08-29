@@ -2,11 +2,11 @@
   <div id="cmpheader" class="component-wrapper cmpranking">
     <div class="component-container" v-bind:style="isMobile ? 'height:auto' : 'height:'+800*scaleR+'px'">
       <div class="colran">
-        <div class="page-title" v-bind:style="isMobile ? 'font-size:80px' : 'font-size:'+120*scaleR+'px; margin-bottom:'+15*scaleR+'px'" v-html="data.copy[clang].ranking_ptitle">
+        <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px; margin-bottom:'+15*scaleR+'px'" v-html="data.copy[clang].ranking_ptitle">
         </div>
         <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'" v-html="data.copy[clang].ranking_description">
         </div>
-        <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'">
+        <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+15*1+'px'">
           <a class="btn blue" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Sigue el Ranking en Twitter</a>
         </div>
       </div>
@@ -166,7 +166,7 @@ export default {
     font-family: 'SohoGothicPro-Medium';
     display: inline-block;
     &.blue{
-      border: 2px solid $darkblue;
+      border: 1px solid $darkblue;
       &:hover{
         background-color:$darkblue;
         color: white;
@@ -291,9 +291,9 @@ export default {
           text-align: right;
           padding: 0 15px 0 0;
           box-sizing: border-box;
-          font-size: 30px;
+          font-size: 23px;
           sup{
-            font-size: 20px;
+            font-size: 15px;
             @media (max-width: $break-mobile) {
               font-size: 12px;
             }
@@ -320,13 +320,13 @@ export default {
             left: 15%;
           }
           .name{
-            font-size: 23px;
+            font-size: 18px;
             @media (max-width: $break-mobile) {
-              font-size: 18px;
+              font-size: 15px;
             }
           }
           .place, .icon {
-            font-size: 18px;
+            font-size: 15px;
             @media (max-width: $break-mobile) {
                font-size: 15px;
             }
@@ -342,7 +342,7 @@ export default {
           text-align: left;
           padding: 0 0 0 15px;
           box-sizing: border-box;
-          font-size: 30px;
+          font-size: 23px;
           color: #40c6b5;
           @media (max-width: $break-mobile) {
             width: 20%;

@@ -147,7 +147,7 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate3d(-50%,-50%,0);
-  border: 2px solid white;
+  border: 1px solid white;
   transition: 0.5s;
   opacity: 1;
   z-index: 999;
