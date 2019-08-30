@@ -46,7 +46,17 @@ export default new Router({
     },
     {
       path: '/proposito',
-      name: 'Proposito default',
+      name: 'Proposito default loc:es',
+      component: Proposito
+    },
+    {
+      path: '/proposito/es',
+      name: 'Proposito spanish loc:es',
+      component: Proposito
+    },
+    {
+      path: '/proposito/en',
+      name: 'Proposito english loc:en',
       component: Proposito
     },
     {

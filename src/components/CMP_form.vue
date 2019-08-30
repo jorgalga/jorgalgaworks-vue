@@ -1,9 +1,9 @@
 <template>
   <div class="component-wrapper cmpform">
-    <div  class="response">
-      <div class="response body">
-        <div ref="copy-response" class="copy">Todo correcto</div>
-        <div ref="copy-btn-response" class="btn">OK</div>
+    <div ref="response"  class="response">
+      <div class="response-body">
+        <div ref="copy-response" class="copy" v-html="response_msg"></div>
+        <div ref="copy-btn-response" class="btn" v-html="response_btn"></div>
       </div>
     </div>
     <div class="component-container">
@@ -11,21 +11,21 @@
         <div class="spiner-icon"></div>
       </div>
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
-        <p>Dinos quien eres para participar.</p>
+        <p v-html="data.copy[clang].form_fisrtP"></p>
         <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+640+'px; font-size:'+18*1+'px;'">
-          <label for="firstname">Nombre:</label>
-          <input type="text" name="firstname" placeholder=""><br>
-          <label for="email">Email:</label>
-          <input type="text" name="email" placeholder=""><br>
-          <label for="twitter">Twitter:</label>
-          <input type="text" name="twitter" placeholder=""><br>
+          <label for="firstname" v-html="data.copy[clang].form_name"></label>
+          <input ref="form-name" type="text" name="firstname" placeholder=""><br>
+          <label for="email" v-html="data.copy[clang].form_email"></label>
+          <input ref="form-email" type="text" name="email" placeholder=""><br>
+          <label for="twitter" v-html="data.copy[clang].form_twitter"></label>
+          <input ref="form-twitter" type="text" name="twitter" placeholder=""><br>
           <div class="check-container">
-            <input type="checkbox" class="check-bases">
-            <label class="check-bases">Acepto las bases legales de la competición</label>
+            <input ref="checkOK" type="checkbox" class="check-bases">
+            <label class="check-bases" v-html="data.copy[clang].form_check_bases"></label>
           </div>
           <br>
           <div class="input-wrapper">
-            <input @click.prevent="sendform()" class="submit" type="submit" value="Deja huella" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
+            <input @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
           </div>
         </form>
       </div>
@@ -34,8 +34,8 @@
     </div>
     <div class="contact-block" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px;height: '+300*1+'px'">
       <div class="contact-element">
-        <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'">Si aun tienes dudas:</p>
-        <a href="https://www.minsait.com/es/contacto" target="_blank" class="btn white" v-bind:style="isMobile ? 'padding: 10px 20px' : 'padding:15px '+30*1+'px'">Contacta con nosotros</a>
+        <p v-bind:style="isMobile ? '' : 'margin-bottom: '+45*scaleR+'px'" v-html="data.copy[clang].form_contact"></p>
+        <a href="mailto:platformrevolution@minsait.com" target="_blank" class="btn white" v-bind:style="isMobile ? 'padding: 10px 20px' : 'padding:15px '+30*1+'px'" v-html="data.copy[clang].form_contact_btn"></a>
       </div>
     </div>
   </div>
@@ -50,14 +50,14 @@ export default {
       scaleR: 1,
       isMobile: window.innerWidth < window.dataConfig.mobile_width,
       data: window.dataConfig,
-      clang: 'es'
+      clang: 'es',
+      response_msg: 'test',
+      response_btn: 'test button'
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -65,6 +65,16 @@ export default {
     })
   },
   mounted () {
+    /*
+    var _ = this
+    window.addEventListener('click', function (e) {
+      if (_.$refs.response.classList.contains('displayed')) {
+        if (!_.$refs.response.classList.contains(e.target)) {
+          _.$refs.response.classList.remove('displayed')
+        }
+      }
+    })
+    */
   },
   methods: {
     resizeHandler () {
@@ -73,32 +83,60 @@ export default {
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
       console.log(this.scaleR)
     },
+    resetform () {
+      this.$refs['form-name'].value = ''
+      this.$refs['form-email'].value = ''
+      this.$refs['form-twitter'].value = ''
+    },
     sendform () {
       var _ = this
       _.$refs.splash.classList.add('displayed')
-      return
+      if (!_.$refs.checkOK.checked) {
+        _.$refs.splash.classList.add('displayed')
+        alert('Aceptar primero las Bases de la competición.')
+        _.$refs.splash.classList.remove('displayed')
+        return
+      }
       var jsonvar = {
         UsuarioHackathon: {
-          name: 'usuario_demo2',
-          mail: 'demo22@hackathon.com',
+          name: _.$refs['form-name'].value,
+          mail: _.$refs['form-email'].value,
           motivation: '',
           codewars: '',
-          twitter: '',
+          twitter: _.$refs['form-twitter'].value,
           github: '',
           score: 0
         }
       }
       var xhttp = new XMLHttpRequest()
       xhttp.onreadystatechange = function () {
-        if (this.readyState === 4 && this.status === 200) {
-          console.log('RESPONSE')
-          console.log(this.responseText)
+        // console.log(this)
+        _.resetform()
+        if (this.readyState === 4 && this.status === 200) { // User allowed to register
+          _.$data.response_msg = _.data.copy[_.clang].response_msg
+          _.$data.response_btn = _.data.copy[_.clang].response_btn
+          _.$refs.splash.classList.remove('displayed')
+          _.$refs.response.classList.add('displayed')
+        }
+        if (this.readyState === 4 && this.status === 400) { // User NOT allowed
+          _.$refs.response.classList.add('error')
+          setTimeout(function () {
+            _.$refs.splash.classList.remove('displayed')
+            _.$refs.response.classList.add('displayed')
+            console.log(_.data.copy[_.clang].response_msg_error)
+            _.$data.response_msg = _.data.copy[_.clang].response_msg_error
+            _.$data.response_btn = _.data.copy[_.clang].response_btn_error
+            setTimeout(function () {
+              _.$refs.response.classList.remove('displayed')
+            }, 5000)
+          }, 500)
         }
       }
-      // encodeURIComponent('demo22@hackathon.com')
-      console.log(encodeURIComponent('demo22@hackathon.com'))
-      xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/user/', true)
+      _.$refs.response.classList.remove('error')
+      xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/', true)
       xhttp.setRequestHeader('X-OP-APIKey', 'd028185e6b5f481e9e1153d0babc067e')
+      xhttp.setRequestHeader('Accept', 'application/json')
+      xhttp.setRequestHeader('Content-type', 'application/json')
       xhttp.send(JSON.stringify(jsonvar))
     }
   }
@@ -114,12 +152,53 @@ export default {
   background-color: #f7f7f7;
   transition: 1s;
   position: relative;
+  overflow-y: hidden;
   .response{
     position: absolute;
     width: 100%;
-    background-color: greenyellow;
+    background-color: #88cc66;
+    color: $darkblue;
+    font-family: 'SohoGothicPro-Regular';
+    text-align: center;
+    font-size: 18px;
+    transition: 0.5s;
+    transform: translateY(-100%);
+    z-index: 500;
     &.error{
-      background-color: red;
+      background-color: #e99e9f;
+      .response-body{
+        .btn{
+        @media (min-width: $break-mobile) {
+            &:hover{
+              color: #e99e9f;
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+    &.displayed{
+      transform: translateY(0);
+    }
+    .copy{
+      margin-bottom: 30px;
+    }
+    .response-body{
+      margin: auto;
+      max-width: $pagewidth;
+      padding: 50px 0;
+      .btn{
+        padding: 10px 30px;
+        border: 1px solid white;
+        color: white;
+        cursor: pointer;
+        @media (min-width: $break-mobile) {
+          &:hover{
+            color: #88cc66;
+            background-color: white;
+          }
+        }
+      }
     }
   }
   .splash-spiner{
@@ -242,6 +321,12 @@ export default {
             text-align: right;
             display: inline-block;
             font-size: 12px !important;
+            /deep/ a{
+              color:$softblue;
+            }
+            /deep/ a:visited{
+              color:soft$blue;
+            }
             @media (max-width: $break-mobile) {
               text-align: left;
               padding: 0;
@@ -261,7 +346,7 @@ export default {
           background-color: transparent;
           border: 1px solid $darkblue;
           font-family: 'SohoGothicPro-Light';
-          color: white;
+          color: $darkblue;
           line-height: 1;
           padding: 7px;
           margin-bottom: 30px;

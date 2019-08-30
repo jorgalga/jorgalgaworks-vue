@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="final-claim">
-        <p>Solo Tú puedes ser developer de Minsait,<br>puedes dejar huella.</p>
+        <p v-html="data.copy[clang].info_claim"></p>
       </div>
     </div>
   </div>
@@ -37,10 +37,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -196,7 +194,7 @@ export default {
     font-family: 'SohoGothicPro-Regular';
     color: $blue;
     text-align: center;
-    max-width: 75%;
+    max-width: 650px;
     margin: 0 auto;
     font-size: 18px;
     @media (max-width: $break-mobile) {

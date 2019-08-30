@@ -3,13 +3,13 @@
     <div class="wrapper">
       <div class="component-container" v-bind:style="isMobile ? '' : 'height:'+200*scaleR+'px'" >
         <div class="col">
-          <div class="col-cont"><p>OneSait Platform®</p></div>
+          <div class="col-cont"><p v-html="data.copy[clang].footer_col1"></p></div>
         </div>
         <div class="col">
-          <div class="col-cont"><a href="/#/reglas">Reglas del juego</a></div>
+          <div class="col-cont"><a href="/#/reglas" v-html="data.copy[clang].footer_col2"></a></div>
         </div>
         <div class="col">
-          <div class="col-cont"><a href="https://twitter.com/minsaitbyindra" target="_blank" class="link-footer"><span class="icon-twitter"></span></a></div>
+          <div class="col-cont"><a href="https://twitter.com/onesaitplatform" target="_blank" class="link-footer"><span class="icon-twitter"></span></a></div>
         </div>
       </div>
     </div>
@@ -35,10 +35,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width

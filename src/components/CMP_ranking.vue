@@ -7,70 +7,21 @@
         <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'" v-html="data.copy[clang].ranking_description">
         </div>
         <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+15*1+'px'">
-          <a class="btn blue" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'">Sigue el Ranking en Twitter</a>
+          <a class="btn blue" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'" v-html="data.copy[clang].ranking_btn_copy"></a>
         </div>
       </div>
       <div class="colran">
         <div id=style-1 class="ranking-list">
-          <!--div class="ranking-list-item blued">
-            <div class="rli-wrapper">
-              <div class="position">1<sup>st</sup></div>
-              <div class="data">
-                <div class="name">Francisco Javier Perez</div>
-                <div class="place">Lima</div>
-                <div class="icon">Github</div>
-              </div>
-              <div class="score">
-                22
-              </div>
-            </div>
-          </div>
-          <div class="ranking-list-item">
-            <div class="rli-wrapper">
-              <div class="position">1<sup>st</sup></div>
-              <div class="data">
-                <div class="name">Francisco Javier Perez</div>
-                <div class="place">Lima</div>
-                <div class="icon">Github</div>
-              </div>
-              <div class="score">
-                22
-              </div>
-            </div>
-          </div>
-          <div class="ranking-list-item">
-            <div class="rli-wrapper">
-              <div class="position">1<sup>st</sup></div>
-              <div class="data">
-                <div class="name">Francisco Javier Perez</div>
-                <div class="place">Lima</div>
-                <div class="icon">Github</div>
-              </div>
-              <div class="score">
-                22
-              </div>
-            </div>
-          </div>
-          <div class="ranking-list-item">
-            <div class="rli-wrapper">
-              <div class="position">1<sup>st</sup></div>
-              <div class="data">
-                <div class="name">Francisco Javier Perez</div>
-                <div class="place">Lima</div>
-                <div class="icon">Github</div>
-              </div>
-              <div class="score">
-                22
-              </div>
-            </div>
-          </div-->
           <div v-for="(item, index) in ritems" :key="item._id"  class="ranking-list-item">
             <div class="rli-wrapper">
               <div class="position">{{index+1}}<sup>st</sup></div>
               <div class="data">
                 <div class="name">{{item.UsuarioHackathon.name}}</div>
                 <div class="place">{{item.UsuarioHackathon.mail}}</div>
-                <div class="icon">Github</div>
+                <div class="icon">
+                  <img width="30px" src="/static/minsait/images/Octicons-mark-github.svg">
+                  <div class="gh-name">{{item.UsuarioHackathon.github}}</div>
+                </div>
               </div>
               <div class="score">
                 {{item.UsuarioHackathon.score}}
@@ -132,7 +83,7 @@ export default {
       xhttp.onreadystatechange = function () {
         if (this.readyState === 4 && this.status === 200) {
           // console.log('RESPONSE')
-          // console.log(JSON.parse(this.responseText))
+          console.log(JSON.parse(this.responseText))
           _.ritems = JSON.parse(this.responseText)
           setTimeout(function () {
             document.getElementsByClassName('ranking-list-item')[0].classList.add('blued')
@@ -325,8 +276,19 @@ export default {
               font-size: 15px;
             }
           }
+          .icon{
+            // margin: 5px 0;
+          }
           .place, .icon {
             font-size: 15px;
+            position: relative;
+            .gh-name {
+              display: inline-block;
+              position: absolute;
+              top: 50%;
+              left: 40px;
+              transform: translateY(-50%)
+            }
             @media (max-width: $break-mobile) {
                font-size: 15px;
             }

@@ -1,6 +1,6 @@
 <template>
   <div id="cmpheader" class="component-wrapper cmpheader" v-bind:class="$props.type">
-    <div class="component-container" >
+    <div class="component-container" v-bind:class="$props.visibility">
       <div class="logo"></div>
       <div class="copy-logo" v-html="data.copy[clang].logo_copy"></div>
     </div>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'CMP_header',
-  props: ['type'],
+  props: ['type', 'visibility'],
   data () {
     return {
       scaleR: 1,
@@ -22,10 +22,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     // _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -91,13 +89,16 @@ export default {
     display: block;
     background-color: #6ac7b1;
     text-align: center;
+    &.disabled{
+      display: none;
+    }
     .logo{
-      background-image: url('#{$staticpath}static/minsait/images/logoMinsait.jpg');
+      background-image: url('#{$staticpath}static/minsait/images/logoMinsaitWhite_alpha.png');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
       display: inline-block;
-      width: 300px;
+      width: 275px;
       height: 150px;
       margin: 30px;
       @media (max-width: $break-mobile) {
@@ -115,6 +116,7 @@ export default {
       padding: 15px;
       max-width: $pagewidth;
       margin: 0 auto;
+      max-width: 500px;
       @media (max-width: $break-mobile) {
         padding: 10px;
         font-size: 15px;

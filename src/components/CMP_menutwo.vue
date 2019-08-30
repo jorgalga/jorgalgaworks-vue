@@ -17,11 +17,12 @@
         <ul>
           <li><router-link v-bind:to="'/' + clang" v-html="data.copy[clang].menu_links.home"></router-link></li>
           <li><router-link v-bind:to="'/reglas/' + clang" v-html="data.copy[clang].menu_links.rules"></router-link></li>
-          <!--li><router-link to="/proposito">Propósito</router-link></li-->
+          <li><router-link to="/proposito">Propósito</router-link></li>
           <li><router-link v-bind:to="'/ranking/' + clang" v-html="data.copy[clang].menu_links.ranking"></router-link></li>
-          <li><router-link v-bind:to="'/webex/' + clang" v-html="data.copy[clang].menu_links.webex"></router-link></li>
-          <li><a target="_blank" href="https://www.minsait.com/es/contacto" v-html="data.copy[clang].menu_links.contact"></a></li>
-          <li><a target="_blank" href="https://www.minsait.com" v-html="data.copy[clang].menu_links.blog"></a></li>
+          <!--li><router-link v-bind:to="'/webex/' + clang" v-html="data.copy[clang].menu_links.webex"></router-link></li-->
+          <li><a target="_blank" v-bind:href="data.webex_url" v-html="data.copy[clang].menu_links.webex"></a></li>
+          <li><a target="_blank" href="mailto:platformrevolution@minsait.com" v-html="data.copy[clang].menu_links.contact"></a></li>
+          <li><a target="_blank" href="https://blog.onesaitplatformrevolution.com/" v-html="data.copy[clang].menu_links.blog"></a></li>
         </ul>
       </nav>
       <div class="lang-selector" v-bind:style="isMobile ? '' : 'e'">

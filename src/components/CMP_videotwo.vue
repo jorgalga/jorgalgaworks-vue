@@ -1,16 +1,14 @@
 <template>
-  <div id="cmpvideo" class="component-wrapper cmpvideo" v-bind:style="isMobile ? '' : 'margin-top: -'+100*scaleR+'px'">
-    <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0 '+0*scaleR+'px 0;'">
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px; margin-bottom:'+45*scaleR+'px'" v-html="data.copy[clang].video_ptitle">
+  <div id="cmpvideo" class="component-wrapper cmpvideo" v-bind:style="isMobile ? '' : 'margin-top: -'+0*scaleR+'px'">
+    <div class="component-container" v-bind:style="isMobile ? '' : 'padding: 0'">
+      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px; margin-bottom:'+45*scaleR+'px'" v-html="data.copy[clang].video_ptitle2">
       </div>
       <div class="video-container" v-bind:style="isMobile ? 'height:'+476*scaleR+'px' : 'height:'+846*scaleR+'px'">
         <!--div class="icon-video" v-bind:style="isMobile ? 'height:'+150*scaleR+'px;width:'+150*scaleR+'px' : 'height:'+200*scaleR+'px;width:'+200*scaleR+'px'"></div-->
         <div id="player"></div>
       </div>
-      <div class="pd-container triangle" v-bind:style="isMobile ? 'margin-top:-'+250*scaleR+'px;height:'+250*scaleR+'px' : 'margin-top:-'+400*scaleR+'px;height:'+400*scaleR+'px'">
-      </div>
       <div class="pd-container withtext">
-        <div class="page-description"  v-html="data.copy[clang].video_description">
+        <div class="page-description"  v-html="data.copy[clang].video_description2">
         </div>
       </div>
     </div>
@@ -19,7 +17,7 @@
 
 <script>
 export default {
-  name: 'CMP_video',
+  name: 'CMP_videotwo',
   props: ['test'],
   data () {
     return {
@@ -30,8 +28,10 @@ export default {
     }
   },
   created () {
+    if (this.$route.params.lang) {
+      this.clang = this.$route.params.lang
+    }
     var _ = this
-    this.clang = this.$route.name.split('loc:')[1]
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -115,20 +115,27 @@ export default {
     color: $blue;
     font-family: 'PlayfairDisplay-Regular';
     line-height: 1;
-    text-align: left;
+    text-align: center;
     max-width: $pagewidth;
     margin: 0 auto;
+    /deep/ span{
+      font-size: 40px;
+    }
     @media (max-width: $break-mobile) {
       text-align: center;
-      margin-top: 30px;
-      margin-left: 10px;
+      margin: 100px 10px 0 10px;
+      /deep/ span{
+        font-size: 23px;
+      }
     }
   }
   .pd-container{
     width: 100%;
-    background-color: #fde3d4;
     margin: 0 auto;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     &.triangle{
       clip-path: polygon(0 25%, 100% 0, 100% 100%, 0 100%);
     }
@@ -140,11 +147,11 @@ export default {
     }
   }
   .page-description{
-    font-family: 'SohoGothicPro-Regular';
+    font-family: 'PlayfairDisplay-Regular';
     color: $blue;
     text-align: center;
     max-width: $pagewidth;
-    font-size: 18px;
+    font-size: 40px;
     line-height: 1.3;
     display: inline-block;
     /deep/  p{
@@ -152,10 +159,8 @@ export default {
       padding-top: 30px;
     }
     @media (max-width: $break-mobile) {
-      font-size: 15px;
-      /deep/  p{
-        padding: 15px 0 45px;
-      }
+      font-size: 23px;
+       padding: 45px 10px 0;
     }
   }
 }
