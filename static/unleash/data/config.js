@@ -1144,14 +1144,7 @@
           name: 'Durex',
           url: 'https://www.durex.es/'
         },
-       {
-          id: '1',
-          img: 'partners/BNPPF-2019_IMG_FR_Credtk_big.jpg',
-          name: '',
-          url: 'https://www.bnpparibas.es/en/'
-        },
-
-        */
+       */ 
         {
           id: '2',
           tag_id: 'tag-cepsa',
@@ -1200,14 +1193,20 @@
           img: 'partners/Merck.png',
           name: 'Merck',
           url: 'https://www.merckgroup.com/es-es'
-        }
+        },
+        {
+          id: '8',
+          img: 'partners/N26_Logo.png',
+          name: '',
+          url: 'https://n26.com/es-es'
+        },
       ] 
     },
     partner_colaborator:{
       name:'Collaborators',
-      gsize: 'col-3',
-      items_row: 4, 
-      max_height: 300,
+      gsize: 'col-2',
+      items_row: 5, 
+      max_height: 200,
       items: [
         {
           id: '0',
@@ -1309,20 +1308,48 @@
         },
         {
           id: '14',
+          tag_id: 'tag-UnLtd',
+          img: 'partners/UnLtd.png',
+          name: 'UnLtd',
+          url: 'https://www.unltdspain.org'
+        },
+        {
+          id: '15',
+          tag_id: 'tag-FutureLeaders',
+          img: 'partners/FutureLEaders.png',
+          name: 'FutureLEaders',
+          url: 'https://thefutureleaders.thepowermba.com'
+        },
+        {
+          id: '16',
+          tag_id: 'tag-TalentGarden',
+          img: 'partners/Talent_Garden.png',
+          name: 'TalentGarden',
+          url: 'https://talentgarden.org/es/'
+        },
+        {
+          id: '17',
           tag_id: 'tag-Esgoa',
           img: 'partners/Esgoa.png',
           name: 'Esgoa',
           url: 'https://esgoa.es'
         },
         {
-          id: '15',
-          tag_id: 'tag-UnLtd',
-          img: 'partners/UnLtd.png',
-          name: 'UnLtd',
-          url: 'https://www.unltdspain.org'
+          id: '18',
+          tag_id: 'tag->GoStudy',
+          img: 'partners/GOSTUDY.png',
+          name: 'GoStudy',
+          url: 'https://www.gostudyaus.es'
+        },
+        {
+          id: '19',
+          tag_id: 'tag->ACNUR',
+          img: 'partners/ACNUR.png',
+          name: 'ACNUR',
+          url: 'https://eacnur.org/es'
         }
       ] 
-    },
+    },     
     agenda_list: {
       day_1: [
         {id: 0, class:'magenta-txt', time:'09:30 - 11:00', text: 'CHECK-IN'},

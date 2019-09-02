@@ -251,6 +251,9 @@ export default {
   }
   .col-2 {
     flex-basis: 20%;
+    @media (max-width: $break-mobile) {
+      flex-basis: 50%
+    }
   }
   .img-wrapper{
     position: relative;

@@ -1204,9 +1204,9 @@
     },
     partner_colaborator:{
       name:'Collaborators',
-      gsize: 'col-3',
-      items_row: 4, 
-      max_height: 300,
+      gsize: 'col-2',
+      items_row: 5,  
+      max_height: 200,
       items: [
         {
           id: '0',
