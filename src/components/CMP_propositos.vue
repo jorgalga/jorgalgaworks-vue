@@ -1,7 +1,7 @@
 <template>
   <div id="cmpheader" class="component-wrapper cmppropositos" v-bind:class="$props.type">
     <div class="component-container" >
-      <div class="proposito-block" v-for="item in data.copy[clang].props_items" :key="item.id">
+      <div v-observe-visibility="fadeInElement" class="proposito-block" v-for="item in data.copy[clang].props_items" :key="item.id">
         <div class="left-icons">
           <div class="icon" v-for="itemB in item.icon_items" :key="itemB.id" v-bind:style="'background-image:url(static/minsait/images/propositos/'+itemB.src+')'">
             <div v-if="itemB.txt" class="icon-txt" style="position: absolute" v-html="itemB.txt"></div>
@@ -36,10 +36,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     // _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -53,6 +51,13 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    fadeInElement (isVisible, entry) {
+      if (isVisible) {
+        if (!entry.target.classList.contains('fadedIn')) {
+          entry.target.classList.add('fadedIn')
+        }
+      }
     }
   }
 }
@@ -86,6 +91,17 @@ export default {
       align-items: top;
       padding: 30px 10px 45px 10px;
       margin-bottom: 50px;
+      transition: 0.5s;
+      opacity: 0;
+      transform: translate3d(0,50%,0);
+      &.fadedIn{
+        opacity: 1;
+        transform: translate3d(0,0,0);
+        .right-text{
+          opacity: 1;
+          transform: translate3d(0,0,0)
+        }
+      }
       @media (max-width: $break-mobile) {
         // display: block;
         margin: 15px;
@@ -124,6 +140,10 @@ export default {
         width: 50%;
         height: 100%;
         padding: 50px 15px 50px 0;
+        transition: 0.5s;
+        transition-delay: 0.1s;
+        opacity: 0;
+        transform: translate3d(0,50%,0);
         @media (max-width: $break-mobile) {
           width: 100%;
           box-sizing: border-box;

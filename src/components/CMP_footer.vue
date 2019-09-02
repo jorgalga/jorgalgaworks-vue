@@ -6,7 +6,7 @@
           <div class="col-cont"><p v-html="data.copy[clang].footer_col1"></p></div>
         </div>
         <div class="col">
-          <div class="col-cont"><a href="/#/reglas" v-html="data.copy[clang].footer_col2"></a></div>
+          <div class="col-cont"><a href="/static/minsait/docs/Bases_legales_Minsait_onesaitRevolution.pdf" target="_blank" v-html="data.copy[clang].footer_col2"></a></div>
         </div>
         <div class="col">
           <div class="col-cont"><a href="https://twitter.com/onesaitplatform" target="_blank" class="link-footer"><span class="icon-twitter"></span></a></div>

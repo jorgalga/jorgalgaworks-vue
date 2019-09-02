@@ -88,7 +88,6 @@ export default {
       this.$refs[id].classList.add('hidden')
     },
     beforeLeave () {
-      // console.log('beforeleave')
     },
     openLink (link) {
       window.open(link, '_blank')

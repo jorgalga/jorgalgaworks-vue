@@ -39,27 +39,30 @@ export default {
     })
   },
   mounted () {
-    this.checkYT()
+    var _ = this
+    setTimeout(function () {
+      _.checkYT()
+    }, 1000)
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
-      console.log(this.scaleR)
+      // console.log(this.scaleR)
     },
     checkYT () {
       var _ = this
       if (window.YTapi === true) {
-        console.log('YT ready')
-        _.player = new window.YT.Player('player', {
+        console.log('videoTWO YT ready')
+        _.YTplayer2 = new window.YT.Player('player', {
           height: '100%',
           width: '100%',
           playerVars: {rel: 0},
           videoId: 'AwLoe7_Lo_s'
         })
       } else {
-        console.log('we go!!')
+        // console.log('we go!!')
         setTimeout(function () {
           _.checkYT()
         }, 100)

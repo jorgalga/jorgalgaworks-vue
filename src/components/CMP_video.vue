@@ -39,20 +39,24 @@ export default {
     })
   },
   mounted () {
-    this.checkYT()
+    var _ = this
+    setTimeout(function () {
+      _.checkYT()
+    }, 1000)
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
-      console.log(this.scaleR)
+      // console.log(this.scaleR)
     },
     checkYT () {
       var _ = this
+      console.log('we enter here!!!')
       if (window.YTapi === true) {
         console.log('YT ready')
-        _.player = new window.YT.Player('player', {
+        _.YTplayer1 = new window.YT.Player('player', {
           height: '100%',
           width: '100%',
           playerVars: {rel: 0},
@@ -118,6 +122,8 @@ export default {
     text-align: left;
     max-width: $pagewidth;
     margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
     @media (max-width: $break-mobile) {
       text-align: center;
       margin-top: 30px;

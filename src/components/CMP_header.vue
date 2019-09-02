@@ -116,7 +116,7 @@ export default {
       padding: 15px;
       max-width: $pagewidth;
       margin: 0 auto;
-      max-width: 500px;
+      max-width: 650px;
       @media (max-width: $break-mobile) {
         padding: 10px;
         font-size: 15px;

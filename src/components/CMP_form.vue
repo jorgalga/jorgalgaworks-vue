@@ -13,19 +13,19 @@
       <div class="form-container" v-bind:style="isMobile ? '' : 'margin-top:'+0*scaleR+'px'">
         <p v-html="data.copy[clang].form_fisrtP"></p>
         <form v-bind:style="isMobile ? 'font-size:'+15*1+'px;' : 'max-width:'+640+'px; font-size:'+18*1+'px;'">
-          <label for="firstname" v-html="data.copy[clang].form_name"></label>
-          <input ref="form-name" type="text" name="firstname" placeholder=""><br>
-          <label for="email" v-html="data.copy[clang].form_email"></label>
-          <input ref="form-email" type="text" name="email" placeholder=""><br>
-          <label for="twitter" v-html="data.copy[clang].form_twitter"></label>
-          <input ref="form-twitter" type="text" name="twitter" placeholder=""><br>
+          <label v-observe-visibility="fadeInElement" for="firstname" v-html="data.copy[clang].form_name"></label>
+          <input v-observe-visibility="fadeInElement" ref="form-name" type="text" name="firstname" placeholder="">
+          <label v-observe-visibility="fadeInElement" for="email" v-html="data.copy[clang].form_email"></label>
+          <input v-observe-visibility="fadeInElement" ref="form-email" type="text" name="email" placeholder="">
+          <label v-observe-visibility="fadeInElement" for="twitter" v-html="data.copy[clang].form_twitter"></label>
+          <input v-observe-visibility="fadeInElement" ref="form-twitter" type="text" name="twitter" placeholder="">
           <div class="check-container">
-            <input ref="checkOK" type="checkbox" class="check-bases">
-            <label class="check-bases" v-html="data.copy[clang].form_check_bases"></label>
+            <input v-observe-visibility="fadeInElement" ref="checkOK" type="checkbox" class="check-bases">
+            <label v-observe-visibility="fadeInElement" class="check-bases" v-html="data.copy[clang].form_check_bases"></label>
           </div>
           <br>
           <div class="input-wrapper">
-            <input @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
+            <input v-observe-visibility="fadeInElement" @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
           </div>
         </form>
       </div>
@@ -81,7 +81,7 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
-      console.log(this.scaleR)
+      // console.log(this.scaleR)
     },
     resetform () {
       this.$refs['form-name'].value = ''
@@ -123,7 +123,7 @@ export default {
           setTimeout(function () {
             _.$refs.splash.classList.remove('displayed')
             _.$refs.response.classList.add('displayed')
-            console.log(_.data.copy[_.clang].response_msg_error)
+            // (_.data.copy[_.clang].response_msg_error)
             _.$data.response_msg = _.data.copy[_.clang].response_msg_error
             _.$data.response_btn = _.data.copy[_.clang].response_btn_error
             setTimeout(function () {
@@ -138,6 +138,13 @@ export default {
       xhttp.setRequestHeader('Accept', 'application/json')
       xhttp.setRequestHeader('Content-type', 'application/json')
       xhttp.send(JSON.stringify(jsonvar))
+    },
+    fadeInElement (isVisible, entry) {
+      if (isVisible) {
+        if (!entry.target.classList.contains('fadedIn')) {
+          entry.target.classList.add('fadedIn')
+        }
+      }
     }
   }
 }
@@ -316,6 +323,19 @@ export default {
           position: relative;
           text-align: right;
           padding-right: 20px;
+          transition: 0.5s;
+          opacity: 0;
+          transform: translate3d(0,100%,0);
+          &.fadedIn{
+            opacity: 1;
+            transform: translate3d(0,0,0)
+          }
+          &:nth-child(3){
+            transition-delay: 0.1s;
+          }
+          &:nth-child(5){
+            transition-delay: 0.2s;
+          }
           &.check-bases{
             width: initial;
             text-align: right;
@@ -350,6 +370,19 @@ export default {
           line-height: 1;
           padding: 7px;
           margin-bottom: 30px;
+          transition: 0.5s;
+          opacity: 0;
+          transform: translate3d(0,100%,0);
+          &.fadedIn{
+            opacity: 1;
+            transform: translate3d(0,0,0)
+          }
+          &:nth-child(4){
+            transition-delay: 0.2s;
+          }
+          &:nth-child(6){
+            transition-delay: 0.4s;
+          }
           &.check-bases{
             width: initial;
           }
@@ -361,6 +394,13 @@ export default {
             font-family: 'SohoGothicPro-Regular';
             margin: 0 auto;
             display: inline-block;
+            transition: 0.5s;
+            opacity: 0;
+            transform: translate3d(0,100%,0);
+            &.fadedIn{
+              opacity: 1;
+              transform: translate3d(0,0,0)
+            }
             @media (max-width: $break-mobile) {
               padding: 10px 20px;
               background-color: #6ac7b1;

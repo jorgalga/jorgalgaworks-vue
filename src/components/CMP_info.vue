@@ -3,12 +3,12 @@
     <div class="component-container" v-bind:style="isMobile ? '' : 'padding: '+100*scaleR+'px 0;'">
       <!-- div class="video-container" v-bind:style="isMobile ? '' : 'height:'+840*scaleR+'px'">
       </div -->
-      <div class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px'" v-html="data.copy[clang].info_ptitle">
+      <div v-observe-visibility="fadeInElement"  class="page-title" v-bind:style="isMobile ? 'font-size:50px' : 'font-size:'+70*1+'px'" v-html="data.copy[clang].info_ptitle">
       </div>
-      <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : ''" v-html="data.copy[clang].info_description">
+      <div v-observe-visibility="fadeInElement" class="page-description" v-bind:style="isMobile ? 'font-size:15px' : ''" v-html="data.copy[clang].info_description">
       </div>
       <div class="info-container" v-bind:style="isMobile ? 'height:'+800*1+'px;' : 'height:'+400*scaleR+'px; margin: '+0*scaleR+'px 0;'">
-        <div class="info-item" v-for="item in data.copy[clang].infoitems" :key="item.order">
+        <div v-observe-visibility="fadeInElement" class="info-item" v-for="item in data.copy[clang].infoitems" :key="item.order">
           <div class="info-item-container">
             <!-- div class="order" v-bind:style="isMobile ? 'font-size:20px' : 'font-size:'+28*scaleR+'px'">{{item.order}}</div -->
             <div class="icon-image" v-bind:style="isMobile ? 'height:'+200*scaleR+'px;' : 'height:'+128*scaleR+'px;'"></div>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </div>
-      <div class="final-claim">
+      <div v-observe-visibility="fadeInElement" class="final-claim">
         <p v-html="data.copy[clang].info_claim"></p>
       </div>
     </div>
@@ -52,7 +52,24 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
-      console.log(this.scaleR)
+      // console.log(this.scaleR)
+    },
+    /*
+    visibilityChanged (isVisible, entry) {
+      if (isVisible) {
+        if (!entry.target.classList.contains('fadedIn')) {
+          console.log('fadedIn')
+          entry.target.classList.add('fadedIn')
+        }
+      }
+    },
+    */
+    fadeInElement (isVisible, entry) {
+      if (isVisible) {
+        if (!entry.target.classList.contains('fadedIn')) {
+          entry.target.classList.add('fadedIn')
+        }
+      }
     }
   }
 }
@@ -90,7 +107,24 @@ export default {
         box-sizing: border-box;
         border: 0;
         color: $blue;
+        transition: 0.5s;
+        opacity: 0;
+        transform: translate3d(0,50%,0);
+        &.fadedIn{
+          opacity: 1;
+          transform: translate3d(0,0,0)
+        }
+        &:nth-child(2){
+          transition-delay: 0.1s;
+        }
+        &:nth-child(3){
+          transition-delay: 0.2s;
+        }
+        &:nth-child(4){
+          transition-delay: 0.3s;
+        }
         @media (max-width: $break-mobile) {
+          transition-delay: 0;
           width: 100%;
           height: 200px;
           display: block;
@@ -184,6 +218,13 @@ export default {
     font-family: 'PlayfairDisplay-Regular';
     line-height: 0.9;
     text-align: center;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translate3d(0,100%,0);
+    &.fadedIn{
+      opacity: 1;
+      transform: translate3d(0,0,0)
+    }
     @media (max-width: $break-mobile) {
       text-align: center;
       margin-top: 30px;
@@ -194,9 +235,16 @@ export default {
     font-family: 'SohoGothicPro-Regular';
     color: $blue;
     text-align: center;
-    max-width: 650px;
+    max-width: 90%;
     margin: 0 auto;
     font-size: 18px;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translate3d(0,100%,0);
+    &.fadedIn{
+      opacity: 1;
+      transform: translate3d(0,0,0)
+    }
     @media (max-width: $break-mobile) {
       display: block;
       max-width: 100%;

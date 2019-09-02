@@ -7,7 +7,7 @@
         <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+18*1+'px'" v-html="data.copy[clang].ranking_description">
         </div>
         <div class="page-description" v-bind:style="isMobile ? 'font-size:15px' : 'font-size:'+15*1+'px'">
-          <a class="btn blue" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'" v-html="data.copy[clang].ranking_btn_copy"></a>
+          <a class="btn blue" href="https://twitter.com/onesaitplatform" target="_blank" v-bind:style="isMobile ? 'padding: 5px 10px' : 'padding: '+15*1+'px'" v-html="data.copy[clang].ranking_btn_copy"></a>
         </div>
       </div>
       <div class="colran">
@@ -116,6 +116,10 @@ export default {
   .btn{
     font-family: 'SohoGothicPro-Medium';
     display: inline-block;
+    text-decoration: none;
+    &:visited{
+      color: $darkblue;
+    }
     &.blue{
       border: 1px solid $darkblue;
       &:hover{
@@ -133,6 +137,9 @@ export default {
     position: relative;
     .page-title{
       text-align: left;
+      padding: 0 10px;
+      box-sizing: border-box;
+      font-family: 'PlayfairDisplay-Regular';
       @media (max-width: $break-mobile) {
         text-align: center;
       }

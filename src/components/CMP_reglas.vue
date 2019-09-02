@@ -28,10 +28,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.resizeHandler()
     window.addEventListener('resize', function () {
       _.isMobile = window.innerWidth < _.data.mobile_width
@@ -76,6 +74,8 @@ export default {
     text-align: left;
     max-width: $pagewidth;
     margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
     @media (max-width: $break-mobile) {
       text-align: center;
     }
@@ -101,6 +101,7 @@ export default {
         font-size: 23px;
         color: $darkblue;
         font-family: 'SohoGothicPro-Medium';
+        margin-bottom: 15px;
         @media (max-width: $break-mobile) {
           font-size: 15px;
         }
@@ -115,6 +116,17 @@ export default {
         }
         /deep/ p{
           margin: 0;
+          margin-bottom: 15px;
+        }
+        /deep/ ol li{
+          line-height: 1.3;
+        }
+        /deep/ a{
+          color:$darkblue;
+           font-family: 'SohoGothicPro-Medium';
+          &:visited{
+            color:$darkblue;
+          }
         }
       }
     }
