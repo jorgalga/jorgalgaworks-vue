@@ -1200,6 +1200,12 @@
           name: '',
           url: 'https://n26.com/es-es'
         },
+        {
+          id: '9',
+          img: 'partners/ISDI_NEGRO.png',
+          name: '',
+          url: 'https://www.isdi.education/es#slide0'
+        }
       ] 
     },
     partner_colaborator:{
@@ -1343,34 +1349,63 @@
         },
         {
           id: '19',
+          tag_id: 'tag->IED',
+          img: 'partners/IED_iil.png',
+          name: 'IED',
+          url: 'https://iedinnovationlab.com'
+        },
+        {
+          id: '20',
           tag_id: 'tag->ACNUR',
           img: 'partners/ACNUR.png',
           name: 'ACNUR',
           url: 'https://eacnur.org/es'
+        },
+         {
+          id: '21',
+          tag_id: 'tag->KeepCoding',
+          img: 'partners/Keepcoding.png',
+          name: 'KeepCoding',
+          url: 'https://keepcoding.io/es'
+        },
+        {
+          id: '22',
+          tag_id: 'tag->MaildelViernes',
+          img: 'partners/MDV_1.PNG',
+          name: 'MaildelViernes',
+          url: 'https://maildelviernes.es'
+        },
+        {
+          id: '23',
+          tag_id: 'tag->Codenotch',
+          img: 'partners/codenotch.png',
+          name: 'Codenotch',
+          url: 'https://www.codenotch.com'
         }
       ] 
     },     
     agenda_list: {
       day_1: [
         {id: 0, class:'magenta-txt', time:'09:30 - 11:00', text: 'CHECK-IN'},
-        {id: 1, class:'black-txt', time:'11:00 - 11:15', text: 'Open Performance'},
-        {id: 2, class:'black-txt', time:'11:15 - 11:45', text: 'Welcome'},
-        {id: 3, class:'black-txt', time:'11:45 - 12:15', text: 'Eric Matamoros'},
-        {id: 4, class:'black-txt', time:'12:15 - 12:25', text: 'Xperience'},
-        {id: 5, class:'black-txt', time:'12:25 - 12:40', text: 'Refresh One'},
-        {id: 6, class:'black-txt', time:'12:40 - 13:00', text: 'Hanna Herbst'},
-        {id: 7, class:'black-txt', time:'13:00 - 13:30', text: 'Ousman Umar'},
-        {id: 8, class:'black-txt', time:'13:30 - 13:45', text: 'Performance'},
-        {id: 9, class:'magenta-txt', time:'13:45 - 15:30', text: 'SCAPE ZONE'},
+        {id: 1, class:'black-txt', time:'11:00 - 11:15', text: 'Simply Broke'},
+        {id: 2, class:'black-txt', time:'11:15 - 11:55', text: 'Welcome & Opening Remarks'},
+        {id: 3, class:'black-txt', time:'11:55 - 12:20', text: 'Eric Matamoros'},
+        {id: 4, class:'black-txt', time:'12:20 - 12:30', text: 'Xperience: CEPSA'},
+        {id: 5, class:'black-txt', time:'12:30 - 12:50', text: 'SPEED DATING: Let´s mingle'},
+        {id: 6, class:'black-txt', time:'12:50 - 13:10', text: 'Hanna Herbst'},
+        {id: 7, class:'black-txt', time:'13:10 - 13:20', text: 'Xperience: IBERIA EXPRESS'},
+        {id: 8, class:'black-txt', time:'13:20 - 13:40', text: 'Ousman Osman'},
+        {id: 8.2, class:'black-txt', time:'13:40 - 13:50', text: 'Expoart'},
+        {id: 9, class:'magenta-txt', time:'13:50 - 15:30', text: 'SCAPE ZONE'},
         {id: 10, class:'black-txt', time:'15:30 - 15:50', text: 'Jeremy Ross Miller'},
-        {id: 11, class:'black-txt', time:'15:50 - 16:00', text: 'Xperience'},
-        {id: 12, class:'black-txt', time:'16:00 - 16:20', text: 'Refresh Two'},
-        {id: 13, class:'black-txt', time:'16:30 - 16:45', text: 'Performance'},
+        {id: 11, class:'black-txt', time:'15:50 - 16:00', text: 'Xperience: FUNDACIÓN RAFAEL DEL PINO'},
+        {id: 12, class:'black-txt', time:'16:00 - 16:30', text: 'Authenticity means Diversity: Millenials at the workplace - Powered by REDI & Womenalia'},
+        {id: 13, class:'black-txt', time:'16:30 - 16:45', text: 'El Trinidad'},
         {id: 14, class:'black-txt', time:'16:45 - 17:15', text: 'Jamala Osman'},
-        {id: 15, class:'black-txt', time:'17:15 - 17:25', text: 'Xperience'},
-        {id: 16, class:'black-txt', time:'17:25 - 17:55', text: 'Robert Fratilla'},
+        {id: 15, class:'black-txt', time:'17:15 - 17:25', text: 'Xperience: ADEVINTA'},
+        {id: 16, class:'black-txt', time:'17:25 - 17:55', text: 'Robert Fratila'},
         {id: 17, class:'black-txt', time:'17:55 - 18:10', text: 'Xperience'},
-        {id: 18, class:'black-txt', time:'18:10 - 18:20', text: 'Performance'},
+        {id: 18, class:'black-txt', time:'18:10 - 18:20', text: 'Paloma Pujol'},
         {id: 19, class:'magenta-txt', time:'18:30 - 19:30', text: 'SCAPE ZONE'},
       ],
       day_2: [

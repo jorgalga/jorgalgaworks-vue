@@ -129,7 +129,8 @@ export default {
       order:1;
     }
     .text-button.opened{
-      left: 75%;
+      left: 80%;
+      width: 40%;
     }
     .text-date.opened{
       left: 25%;
@@ -274,14 +275,16 @@ export default {
     position: relative;
     z-index: 10;
     &.opened{
-      max-height: 850px;
+      max-height: 1500px;
       transition: max-height 0.5s ease-in;
     }
     .time-item{
-      padding: 5px 0;
+      padding: 2px 0;
       margin: 5px 25px;
       font-family: 'space_monoregular';
       font-weight: 800;
+      font-size: 15px;
+      line-height: 1.2;
       @media (max-width: $break-mobile) {
         font-size: 14px;
         margin: 5px 15px;
@@ -297,12 +300,15 @@ export default {
       }
       .time{
         display: inline-block;
+        position: absolute;
+        @media (max-width: $break-mobile) {
+        }
       }
       .text{
-        padding-left: 30px;
+        padding-left: 150px;
         display: inline-block;
         @media (max-width: $break-mobile) {
-          padding-left: 15px;
+          padding-left: 150px;
         }
       }
     }
