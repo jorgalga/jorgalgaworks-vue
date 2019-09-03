@@ -123,7 +123,8 @@ export default {
       }
       .button{
         padding: 15px 8px;
-        background-color: black;
+        background-color: transparent;
+        border: 1px solid white;
         display: inline-block;
         color: white;
         min-width: 75px;
@@ -131,11 +132,14 @@ export default {
         position: absolute;
         right: 0;
         top: 50%;
-        transform: translate3d(0,-50%,0) scale(0.95);
+        transform: translate3d(0,-50%,0);
         cursor: pointer;
         transition: 0.25s;
         &:hover{
-          transform: translate3d(0,-50%,0) scale(1.0);
+          @media (min-width: $break-mobile) {
+            background-color: white;
+            color: $darkblue;
+          }
         }
         @media (max-width: $break-mobile) {
           right: 10px;

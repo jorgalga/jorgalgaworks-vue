@@ -81,17 +81,12 @@ var dataConfig = {
         {
           id: '2',
           title: 'Rule 2',
-          text: '<p> There are 2 phases of the competition, one individual and one in teams. </p> <p> In the individual phase the participants will accumulate points when completing tests and will be selected for their skills. Those who get the highest number of points will be part of the selected ones and will be able to move on to the second phase. </p> <p> How do I accumulate points in the individual phase? </p> <ol> <li> Follow on Twitter User @onesaitplatform. </li> <li> Follow github to <a href="https://github.com/onesaitplatform/" target="_blank"> https://github.com/onesaitplatform/ </a> </li> <li> Request on github a Pull Request in the onesaitplatform repository. </li> <li> Complete challenges on https://www.codewars.com that give points. </li> </ol> <p> In the group stage, The teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase. </p> <p> How is the group phase evaluated? </p> <ol> <li> Based on the contribution to Onesait Platform </li> <li> Depending on the technological complexity of development </ li > <li> How it brings value to the company </li> <li> Teamwork with the mentor. </li> </ol> '
-        },
-        {
-          id: '3',
-          title: 'Rule 3',
-          text: '<p> There is no set limit of participants, all those who meet minimum knowledge requirements may participate. </p>'
+          text: '<p> There are 2 phases of the competition, one individual and one in teams. </p> <p> In the individual phase the participants will accumulate points when completing tests and will be selected for their skills. Those who get the highest number of points will be part of the selected ones and will be able to move on to the second phase. </p> <p> How do I accumulate points in the individual phase? </p> <ol> <li> Follow on Twitter User <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform.</a> </li> <li> Follow github to <a href="https://github.com/onesaitplatform/" target="_blank"> https://github.com/onesaitplatform/ </a> </li> <li> Request on github a Pull Request in the onesaitplatform repository. </li> <li> Complete challenges on <a href="https://www.codewars.com" target="_blank">https://www.codewars.com</a> that give points. </li> </ol> <p> In the group stage, The teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase. </p> <p> How is the group phase evaluated? </p> <ol> <li> Based on the contribution to Onesait Platform </li> <li> Depending on the technological complexity of development </ li > <li> How it brings value to the company </li> <li> Teamwork with the mentor. </li> </ol> '
         },
         {
           id: '4',
           title: 'OpenSource presentation event',
-          text: '<p> The three finalist teams will be transferred to Madrid to attend the OpenSource presentation event. </p> <p> All the participants will be able to attend the presentation event at their own expense while transporting their expenses. </ p> '
+          text: '<p> The three finalist teams will be transferred to Madrid to attend the OpenSource presentation event. </p> <p> All the participants with level 2 will be able to attend the presentation event at their own expense while transporting their expenses. </ p> '
         }
       ],
       props_items: [{
@@ -362,17 +357,12 @@ var dataConfig = {
         {
           id: '2',
           title: 'Regla 2',
-          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p>¿Cómo acumulo puntos en la fase individual?</p><ol><li>Sigue en Twitter el usuario @onesaitplatform.</li><li>Sigue en github a <a href="https://github.com/onesaitplatform/" target="_blank">https://github.com/onesaitplatform/</a></li><li>Solicita en github una Pull Request en el repositorio onesaitplatform.</li><li> Completa retos en https://www.codewars.com que dan puntos.</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p>¿Cómo se evalúa la fase grupal?</p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
-        },
-        {
-          id: '3',
-          title: 'Regla 3',
-          text: '<p>No hay un límite fijado de participantes, podrán participar todos los que cumplan con unos requisitos mínimos de conocimiento.</p>'
+          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p>¿Cómo acumulo puntos en la fase individual?</p><ol><li>Sigue en Twitter el usuario <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform.</a></li><li>Sigue en github a <a href="https://github.com/onesaitplatform/" target="_blank">https://github.com/onesaitplatform/</a></li><li>Solicita en github una Pull Request en el repositorio onesaitplatform.</li><li> Completa retos en <a href="https://www.codewars.com" target="_blank">https://www.codewars.com</a> que dan puntos.</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p>¿Cómo se evalúa la fase grupal?</p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
         },
         {
           id: '4',
           title: 'Evento de presentación OpenSource',
-          text: '<p>Los tres equipos finalistas serán trasladados a Madrid para acudir al evento de presentación de OpenSource.</p><p>Todos los participantes podrán asistir al evento de presentación corriendo a sus cargo los gastos de transporte.</p>'
+          text: '<p>Los tres equipos finalistas serán trasladados a Madrid para acudir al evento de presentación de OpenSource.</p><p>Todos los participantes de Nivel 2 podrán asistir al evento de presentación corriendo a su cargo los gastos de transporte.</p>'
         }
       ],
       props_items: [{

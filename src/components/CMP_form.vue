@@ -3,7 +3,7 @@
     <div ref="response"  class="response">
       <div class="response-body">
         <div ref="copy-response" class="copy" v-html="response_msg"></div>
-        <div ref="copy-btn-response" class="btn" v-html="response_btn"></div>
+        <div @click.prevent="buttonHandler()" ref="copy-btn-response" class="btn" v-html="response_btn"></div>
       </div>
     </div>
     <div class="component-container">
@@ -16,7 +16,7 @@
           <label v-observe-visibility="fadeInElement" for="firstname" v-html="data.copy[clang].form_name"></label>
           <input v-observe-visibility="fadeInElement" ref="form-name" type="text" name="firstname" placeholder="">
           <label v-observe-visibility="fadeInElement" for="email" v-html="data.copy[clang].form_email"></label>
-          <input v-observe-visibility="fadeInElement" ref="form-email" type="text" name="email" placeholder="">
+          <input v-observe-visibility="fadeInElement" ref="form-email" type="email" name="email" placeholder="">
           <label v-observe-visibility="fadeInElement" for="twitter" v-html="data.copy[clang].form_twitter"></label>
           <input v-observe-visibility="fadeInElement" ref="form-twitter" type="text" name="twitter" placeholder="">
           <div class="check-container">
@@ -24,7 +24,7 @@
             <label v-observe-visibility="fadeInElement" class="check-bases" v-html="data.copy[clang].form_check_bases"></label>
           </div>
           <br>
-          <div class="input-wrapper">
+          <div class="input-wrapper submit-m">
             <input v-observe-visibility="fadeInElement" @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
           </div>
         </form>
@@ -88,6 +88,9 @@ export default {
       this.$refs['form-email'].value = ''
       this.$refs['form-twitter'].value = ''
     },
+    buttonHandler () {
+      window.location.href = '/#/external'
+    },
     sendform () {
       var _ = this
       _.$refs.splash.classList.add('displayed')
@@ -110,7 +113,7 @@ export default {
       }
       var xhttp = new XMLHttpRequest()
       xhttp.onreadystatechange = function () {
-        // console.log(this)
+        console.log(this)
         _.resetform()
         if (this.readyState === 4 && this.status === 200) { // User allowed to register
           _.$data.response_msg = _.data.copy[_.clang].response_msg
@@ -387,6 +390,8 @@ export default {
             width: initial;
           }
           &.submit{
+            -webkit-appearance: none;
+            border-radius: 0;
             border: 1px solid #6ac7b1;
             color: #6ac7b1;
             width: initial;

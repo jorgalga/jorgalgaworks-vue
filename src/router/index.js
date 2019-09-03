@@ -6,6 +6,7 @@ import Reglas from '@/views/reglas'
 import Proposito from '@/views/proposito'
 import Ranking from '@/views/ranking'
 import Webex from '@/views/webex'
+import External from '@/views/newexternal'
 import VueObserveVisibility from 'vue-observe-visibility'
 
 Vue.use(Router)
@@ -80,14 +81,29 @@ export default new Router({
       component: Webex
     },
     {
-      path: '/webex/',
+      path: '/webex/es',
       name: 'Webex spanish loc:es',
       component: Webex
     },
     {
-      path: '/webex/',
+      path: '/webex/en',
       name: 'Webex english loc:en',
       component: Webex
+    },
+    {
+      path: '/external/',
+      name: 'External default loc:es',
+      component: External
+    },
+    {
+      path: '/external/es',
+      name: 'External spanish loc:es',
+      component: External
+    },
+    {
+      path: '/external/en',
+      name: 'External english loc:en',
+      component: External
     }
   ]
 })

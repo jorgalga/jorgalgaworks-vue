@@ -47,12 +47,36 @@ export default {
     'cmpVideo': cmpVideo
   },
   mounted () {
+    this.scrollHandler()
   },
   methods: {
     resizeHandler () {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(0.5, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    scrollHandler () {
+      var _ = this
+      var top = true
+      if (document.getElementById('pc').classList.contains('displayed')) {
+        document.getElementById('pc').classList.remove('displayed')
+      }
+      _.$refs.page.addEventListener('scroll', function () {
+        // console.log(_.$refs.page.scrollTop)
+        if (_.$refs.page.scrollTop < 200) {
+          if (top === false) {
+            top = true
+            console.log('hide btn fix')
+            document.getElementById('pc').classList.remove('displayed')
+          }
+        } else {
+          if (top === true) {
+            top = false
+            console.log('show btn fix')
+            document.getElementById('pc').classList.add('displayed')
+          }
+        }
+      })
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="cmpheader" class="component-wrapper cmpheader" v-bind:class="$props.type">
+  <div id="cmpheader" class="component-wrapper cmpheader" v-bind:class="$props.type + ' ' + $props.nologocopy ">
     <div class="component-container" v-bind:class="$props.visibility">
       <div class="logo"></div>
       <div class="copy-logo" v-html="data.copy[clang].logo_copy"></div>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: 'CMP_header',
-  props: ['type', 'visibility'],
+  props: ['type', 'visibility', 'nologocopy'],
   data () {
     return {
       scaleR: 1,
@@ -56,6 +56,11 @@ export default {
   margin-top: -1px;
   @media (max-width: $break-mobile) {
     margin-top: 80px;
+  }
+  &.nologocopy{
+    .copy-logo{
+      display: none;
+    }
   }
   &.pinky{
     .component-container{

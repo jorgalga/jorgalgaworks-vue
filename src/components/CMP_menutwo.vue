@@ -25,10 +25,15 @@
           <li><a target="_blank" href="http://blog.onesaitplatformrevolution.com/" v-html="data.copy[clang].menu_links.blog"></a></li>
         </ul>
       </nav>
-      <div class="lang-selector" v-bind:style="isMobile ? '' : 'e'">
-        <div class="text-button" v-bind:style="isMobile ? '' : ''"><a @click.prevent="toggleLang('es')" ref="link-es" href="" class="lang-link">ES</a> | <a @click.prevent="toggleLang('en')" ref="link-en" href="" class="lang-link">EN</a></div>
+      <div class="lang-selector">
+        <div class="text-button"><a @click.prevent="toggleLang('es')" ref="link-es" href="" class="lang-link">ES</a> | <a @click.prevent="toggleLang('en')" ref="link-en" href="" class="lang-link">EN</a></div>
       </div>
       <div class="btn white participa" @click.prevent="goTo('/?participa')" v-html="data.copy[clang].menuparticipabtn"></div>
+    </div>
+    <div id="pc" class="participa-container">
+      <div class="pwrapper">
+        <div class="btn-participa" @click.prevent="goTo('/?participa')" v-html="data.copy[clang].menuparticipabtn"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -273,6 +278,7 @@ export default {
       color: $darkblue;
       @media (max-width: $break-mobile) {
         padding: 10px;
+        display: none;
       }
     }
     .toggle{
@@ -380,6 +386,7 @@ export default {
             border-bottom: 1px solid #6ac7b1;
             @media (max-width: $break-mobile) {
               border-bottom: none;
+              width: 100%;
             }
             &:hover{
               @media (min-width: $break-mobile) {
@@ -405,7 +412,6 @@ export default {
       }
     }
   }
-
   .lang-selector{
     position: absolute;
     display: inline-block;
@@ -441,6 +447,50 @@ export default {
         &:hover{
           text-decoration: underline;
         }
+      }
+    }
+  }
+  .participa-container{
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    transition: 0.5s;
+    transform: translateY(-100%);
+    @media (max-width: $break-mobile) {
+      height: 80px;
+      left: initial;
+      right: 0;
+      width: 50%;
+    }
+    &.displayed{
+      transform: translateY(0)
+    }
+    .pwrapper{
+      margin: 0 auto;
+      max-width: $pagewidth;
+      max-width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      box-sizing: border-box;
+      padding: 0 15px;
+      @media (max-width: $break-mobile) {
+        padding: 0;
+      }
+      .btn-participa{
+        border: 1px solid $darkblue;
+        padding: 10px 30px;
+        color: white;
+        background-color: $darkblue;
+        flex-grow: 0;
+        font-family: 'SohoGothicPro-Regular';
+        font-size: 15px;
+        margin: 15px;
+        cursor: pointer;
       }
     }
   }
