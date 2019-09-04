@@ -2,7 +2,7 @@
   <div id="page" class="page">
     <div class="page-content">
       <unMenu></unMenu>
-      <unPageheader type="agenda"></unPageheader>
+      <unPageheader nowhite="nowhite" type="agenda"></unPageheader>
       <unWrappertime type="day_1" date="SEPTEMBER 11" white=whitened classopened="opened"></unWrappertime>
       <unWrappertime type="day_2" date="SEPTEMBER 12" white=whitened classopened="opened"  flipped="inverse"></unWrappertime>
       <unWrappertime type="day_3" date="SEPTEMBER 13" classopened="opened" sdisplay="displayed"></unWrappertime>

@@ -26,7 +26,7 @@
       <div class="line"><div class="line-fill"></div></div>
       <div class="line"><div class="line-fill"></div></div>
     </div>
-    <div class="page-intro" v-bind:style="isMobile ? 'min-height:'+300*scaleR+'px' : 'height:'+550*scaleR+'px'">
+    <div class="page-intro" v-bind:class="$props.nowhite" v-bind:style="isMobile ? 'min-height:'+300*scaleR+'px' : 'height:'+550*scaleR+'px'">
       <div class="page-intro-container">
           <div v-if="data.page_content[$props.type].title" class="page-intro-title" v-bind:style="isMobile ? 'font-size:30px;' : 'font-size:'+90*scaleR+'px'" v-html="data.page_content[$props.type].title">
           </div>
@@ -43,7 +43,7 @@
 import MarqueeText from 'vue-marquee-text-component'
 export default {
   name: 'unPageheader',
-  props: ['type'],
+  props: ['type', 'nowhite'],
   data () {
     return {
       scaleR: 1,
@@ -236,6 +236,9 @@ export default {
   .page-intro{
     background-color: white;
     position: relative;
+    &.nowhite{
+      display: none;
+    }
     .page-intro-container{
       position: absolute;
       display: inline-block;
