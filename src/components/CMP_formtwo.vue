@@ -150,7 +150,7 @@ export default {
             document.dispatchEvent(customevent)
           }, 100)
         } else {
-          
+          //
         }
       }
       xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/external', true)
