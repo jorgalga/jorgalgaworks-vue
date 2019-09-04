@@ -13,6 +13,20 @@ var dataConfig = {
   },
   copy: {
     en: {
+      responses: {
+        code_200: {
+          response_msg: 'The user has been successfully registered',
+          response_btn: 'OK',
+        },
+        code_400: {
+          response_msg: 'The email address is not valid. Only Minsait members can participate in that phase. <br> If you want to be the first to be part of the community once it is open to the public. Sign up here. ',
+          response_btn: 'I want to participate',
+        },
+        code_406: {
+          response_msg: 'It seems that you have already registered with this email, keep an eye on your email to receive the following steps.',
+          response_btn: 'OK',
+        }
+      },
       make_scroll: '& # 60 more info & # 62',
       cookie_message: '<p> We use our own and third party cookies to improve the user experience through your browsing. If you continue browsing we understand that you accept its use. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank"> Cookies policy </a> </p> ',
       logo_copy: 'Help us to build an OpenSource community, from the inside. <br> We need the best. <br> Join the revolution.',
@@ -56,10 +70,6 @@ var dataConfig = {
       ranking_ptitle: 'Ranking',
       ranking_description: '<p> Our developers are trying to revolutionize Onesait Platform <br> The revolution begins </p>',
       ranking_btn_copy: 'Follow the Ranking on Twitter',
-      response_msg: 'The user has been successfully registered',
-      response_btn: 'OK',
-      response_msg_error: 'The email address is not valid. Only Minsait members can participate in that phase. <br> If you want to be the first to be part of the community once it is open to the public. Sign up here. ',
-      response_btn_error: 'I want to participate',
       menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participate',
       menubtn: 'MENU',
@@ -81,7 +91,7 @@ var dataConfig = {
         {
           id: '2',
           title: 'Rule 2',
-          text: '<p> There are 2 phases of the competition, one individual and one in teams. </p> <p> In the individual phase the participants will accumulate points when completing tests and will be selected for their skills. Those who get the highest number of points will be part of the selected ones and will be able to move on to the second phase. </p> <p> How do I accumulate points in the individual phase? </p> <ol> <li> Follow on Twitter User <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform.</a> </li> <li> Follow github to <a href="https://github.com/onesaitplatform/" target="_blank"> https://github.com/onesaitplatform/ </a> </li> <li> Request on github a Pull Request in the onesaitplatform repository. </li> <li> Complete challenges on <a href="https://www.codewars.com" target="_blank">https://www.codewars.com</a> that give points. </li> </ol> <p> In the group stage, The teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase. </p> <p> How is the group phase evaluated? </p> <ol> <li> Based on the contribution to Onesait Platform </li> <li> Depending on the technological complexity of development </ li > <li> How it brings value to the company </li> <li> Teamwork with the mentor. </li> </ol> '
+          text: '<p> There are 2 phases of the competition, one individual and one in teams. </p> <p> In the individual phase the participants will accumulate points when completing tests and will be selected for their skills. Those who get the highest number of points will be part of the selected ones and will be able to move on to the second phase. </p> <p> How do I accumulate points in the individual phase? </p> <ol> <li> Follow on Twitter the initiative profile <a href="https://twitter.com/onesaitplatform" target="_blank"> @onesaitplatform </a>. <br> (5 points) </li> <li> Follow on Github with your Minsait user the user <a href="https://github.com/onesaitplatform/" target="_blank"> onesaitplatform </a>. <br> (5 points) </li> <li> Request in github a Pull Request in our repository <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank"> onesaitplatform-revolution </a>. <br> (10 points) </ li> <li> Complete with your Minsait user challenges on the platform <a href="https://www.codewars.com" target="_blank"> Codewars </a>. (As many points as kyus you get at the time of the contest) </li> </ol> <p> In the group stage, teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase. </p> <p> How is the group phase evaluated? </p> <ol> <li> Based on the contribution to Onesait Platform </li> <li> Depending on the technological complexity of development </ li > <li> How it brings value to the company </li> <li> Teamwork with the mentor. </li> </ol>'
         },
         {
           id: '4',
@@ -227,7 +237,7 @@ var dataConfig = {
             },
             {
               id: 1,
-              src: 'Rancher.jpg'
+              src: 'Rancher.png'
             },
             {
               id: 2,
@@ -235,7 +245,7 @@ var dataConfig = {
             },
             {
               id: 3,
-              src: 'AWS.png'
+              src: 'AmazonWebservices_Logo.svg'
             },
             {
               id: 4,
@@ -260,35 +270,193 @@ var dataConfig = {
           id: 5,
           title: '6. It brings strength to the deployment of your applications',
           description: 'Complements the Open Source distribution with an Enterprise version in which we make sure everything is ready for the most critical business processes and allows the deployment of On Premise and On Cloud applications.',
-          icon_items: []
+          icon_items: [{
+            id: 0,
+            src: 'connect.png'
+          }]
         }
       ],
       props_trust_title: 'They already trust Onesait Platform',
-      trust_items: [{
-          id: 0,
-          src: 'sgalegosalude.png'
+      trust_items: [
+        {
+        id: 0,
+        src: 'acerinox.png'
         },
         {
           id: 1,
-          src: 'logos-unespa.png'
+          src: 'airbus.png'
         },
         {
           id: 2,
-          src: 'new-logo-ecoembes_0.png'
+          src: 'antewerk.png'
         },
         {
           id: 3,
-          src: 'download.png'
+          src: 'aspo.png'
         },
         {
           id: 4,
-          src: 'logronosmartcity.jpg'
+          src: 'azkar.png'
+        },
+        {
+          id: 5,
+          src: 'bancooccidente.png'
+        },
+        {
+          id: 6,
+          src: 'bimbo.png'
+        },
+        {
+          id: 7,
+          src: 'bsh.png'
+        },
+        {
+          id: 8,
+          src: 'caceressmartcity.png'
+        },
+        {
+          id: 9,
+          src: 'campofrio.png'
+        },
+        {
+          id: 10,
+          src: 'claro.png'
+        },
+        {
+          id: 11,
+          src: 'cpse.png'
+        },
+        {
+          id: 12,
+          src: 'devops.png'
+        },
+        {
+          id: 13,
+          src: 'dia.png'
+        },
+        {
+          id: 14,
+          src: 'ecoembes.png'
+        },
+        {
+          id: 15,
+          src: 'enaire.png'
+        },
+        {
+          id: 16,
+          src: 'ence.png'
+        },
+        {
+          id: 17,
+          src: 'endesa.png'
+        },
+        {
+          id: 18,
+          src: 'entet.png'
+        },
+        {
+          id: 19,
+          src: 'eputacion.png'
+        },
+        {
+          id: 20,
+          src: 'esa.png'
+        },
+        {
+          id: 21,
+          src: 'eu.png'
+        },
+        {
+          id: 22,
+          src: 'evacuate.png'
+        },
+        {
+          id: 23,
+          src: 'ficosa.png'
+        },
+        {
+          id: 24,
+          src: 'helsinki.png'
+        },
+        {
+          id: 25,
+          src: 'ie.png'
+        },
+        {
+          id: 26,
+          src: 'ibbva.png'
+        },
+        {
+          id: 27,
+          src: 'IT2rail.png'
+        },
+        {
+          id: 28,
+          src: 'las_palmas_smart_city.png'
+        },
+        {
+          id: 29,
+          src: 'logronyosmartcity.png'
+        },
+        {
+          id: 30,
+          src: 'musei_vaticani.png'
+        },
+        {
+          id: 31,
+          src: 'palenciasmartcity.png'
+        },
+        {
+          id: 32,
+          src: 'pascual.png'
+        },
+        {
+          id: 33,
+          src: 'repsol.png'
+        },
+        {
+          id: 34,
+          src: 'sena.png'
+        },
+        {
+          id: 35,
+          src: 'servicio_gallegosalud.png'
+        },
+        {
+          id: 36,
+          src: 'smartcity.png'
+        },
+        {
+          id: 37,
+          src: 'TIM.png'
+        },
+        {
+          id: 38,
+          src: 'wizink.png'
+        },
+        {
+          id: 39,
+          src: 'woldbank.png'
         }
       ],
       footer_col1: 'Onesait Platform®',
       footer_col2: 'Game rules'
     },
     es: {
+      responses: {
+        code_200: {
+          response_msg: 'El usuario ha sido registrado correctamente',
+          response_btn: 'OK',
+        },
+        code_400: {
+          response_msg: 'La dirección de correo electrónico no es válida. En esa fase solo pueden participar integrantes de Minsait.<br>Si quieres ser el primero en formar parte de la comunidad una vez esté abierta al publico. Apúntate aqui.',
+          response_btn: 'Quiero participar',
+        },
+        code_406: {
+          response_msg: 'Parece que ya te has registrado con este correo, estáte atento a tu email para recibir los siguietes pasos.',
+          response_btn: 'OK',
+        }
+      },
       make_scroll: '&#60 más info &#62',
       cookie_message: '<p>Utilizamos cookies propias y de terceros para mejorar la experiencia del usuario a través de su navegación. Si continúa navegando entendemos que acepta su uso. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank">Política de cookies</a></p>',
       logo_copy: 'Ayúdanos a construir una comunidad OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
@@ -332,10 +500,6 @@ var dataConfig = {
       ranking_ptitle: 'Ranking',
       ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
       ranking_btn_copy: 'Sigue el Ranking en Twitter',
-      response_msg: 'El usuario ha sido registrado correctamente',
-      response_btn: 'OK',
-      response_msg_error: 'La dirección de correo electrónico no es válida. En esa fase solo pueden participar integrantes de Minsait.<br>Si quieres ser el primero en formar parte de la comunidad una vez esté abierta al publico. Apúntate aqui.',
-      response_btn_error: 'Quiero participar',
       menu_left_copy: 'Una empresa de Indra',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
@@ -357,7 +521,7 @@ var dataConfig = {
         {
           id: '2',
           title: 'Regla 2',
-          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p>¿Cómo acumulo puntos en la fase individual?</p><ol><li>Sigue en Twitter el usuario <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform.</a></li><li>Sigue en github a <a href="https://github.com/onesaitplatform/" target="_blank">https://github.com/onesaitplatform/</a></li><li>Solicita en github una Pull Request en el repositorio onesaitplatform.</li><li> Completa retos en <a href="https://www.codewars.com" target="_blank">https://www.codewars.com</a> que dan puntos.</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p>¿Cómo se evalúa la fase grupal?</p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
+          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p>¿Cómo acumulo puntos en la fase individual?</p><ol><li>Sigue en Twitter el perfil de la iniciativa <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform</a>.<br>(5 puntos)</li><li>Sigue en Github con tu usuario de Minsait al usuario <a href="https://github.com/onesaitplatform/" target="_blank">onesaitplatform</a>.<br>(5 puntos)</li><li>Solicita en github una Pull Request en nuestro repositorio <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank">onesaitplatform-revolution</a>.<br>(10 puntos)</li><li> Completa con tu usuario de Minsait retos en la plataforma <a href="https://www.codewars.com" target="_blank">Codewars</a>. (Tantos puntos como kyus obtengas en el tiempo del concurso)</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p>¿Cómo se evalúa la fase grupal?</p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
         },
         {
           id: '4',
@@ -503,7 +667,7 @@ var dataConfig = {
             },
             {
               id: 1,
-              src: 'Rancher.jpg'
+              src: 'Rancher.png'
             },
             {
               id: 2,
@@ -511,7 +675,7 @@ var dataConfig = {
             },
             {
               id: 3,
-              src: 'AWS.png'
+              src: 'AmazonWebservices_Logo.svg'
             },
             {
               id: 4,
@@ -536,29 +700,172 @@ var dataConfig = {
           id: 5,
           title: '6. Aporta solidez al despliegue de tus aplicaciones',
           description: 'Complementa la distribución Open Source con una versión Enterprise en la que nos aseguramos de que todo esté listo para los procesos de negocio más críticos y permitimos el despliegue de aplicaciones On Premise y On Cloud.',
-          icon_items: []
+          icon_items: [{
+            id: 0,
+            src: 'connect.png'
+          }]
         }
       ],
       props_trust_title: 'Ellos ya confían en Onesait Platform',
       trust_items: [{
           id: 0,
-          src: 'sgalegosalude.png'
+          src: 'acerinox.png'
         },
         {
           id: 1,
-          src: 'logotipos-unespa.png'
+          src: 'airbus.png'
         },
         {
           id: 2,
-          src: 'nuevo-logo-ecoembes_0.png'
+          src: 'antewerk.png'
         },
         {
           id: 3,
-          src: 'descarga.png'
+          src: 'aspo.png'
         },
         {
           id: 4,
-          src: 'logronosmartcity.jpg'
+          src: 'azkar.png'
+        },
+        {
+          id: 5,
+          src: 'bancooccidente.png'
+        },
+        {
+          id: 6,
+          src: 'bimbo.png'
+        },
+        {
+          id: 7,
+          src: 'bsh.png'
+        },
+        {
+          id: 8,
+          src: 'caceressmartcity.png'
+        },
+        {
+          id: 9,
+          src: 'campofrio.png'
+        },
+        {
+          id: 10,
+          src: 'claro.png'
+        },
+        {
+          id: 11,
+          src: 'cpse.png'
+        },
+        {
+          id: 12,
+          src: 'devops.png'
+        },
+        {
+          id: 13,
+          src: 'dia.png'
+        },
+        {
+          id: 14,
+          src: 'ecoembes.png'
+        },
+        {
+          id: 15,
+          src: 'enaire.png'
+        },
+        {
+          id: 16,
+          src: 'ence.png'
+        },
+        {
+          id: 17,
+          src: 'endesa.png'
+        },
+        {
+          id: 18,
+          src: 'entet.png'
+        },
+        {
+          id: 19,
+          src: 'eputacion.png'
+        },
+        {
+          id: 20,
+          src: 'esa.png'
+        },
+        {
+          id: 21,
+          src: 'eu.png'
+        },
+        {
+          id: 22,
+          src: 'evacuate.png'
+        },
+        {
+          id: 23,
+          src: 'ficosa.png'
+        },
+        {
+          id: 24,
+          src: 'helsinki.png'
+        },
+        {
+          id: 25,
+          src: 'ie.png'
+        },
+        {
+          id: 26,
+          src: 'ibbva.png'
+        },
+        {
+          id: 27,
+          src: 'IT2rail.png'
+        },
+        {
+          id: 28,
+          src: 'las_palmas_smart_city.png'
+        },
+        {
+          id: 29,
+          src: 'logronyosmartcity.png'
+        },
+        {
+          id: 30,
+          src: 'musei_vaticani.png'
+        },
+        {
+          id: 31,
+          src: 'palenciasmartcity.png'
+        },
+        {
+          id: 32,
+          src: 'pascual.png'
+        },
+        {
+          id: 33,
+          src: 'repsol.png'
+        },
+        {
+          id: 34,
+          src: 'sena.png'
+        },
+        {
+          id: 35,
+          src: 'servicio_gallegosalud.png'
+        },
+        {
+          id: 36,
+          src: 'smartcity.png'
+        },
+        {
+          id: 37,
+          src: 'TIM.png'
+        },
+        {
+          id: 38,
+          src: 'wizink.png'
+        },
+        {
+          id: 39,
+          src: 'woldbank.png'
         }
       ],
       footer_col1: 'Onesait Platform®',

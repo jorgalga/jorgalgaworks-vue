@@ -48,9 +48,9 @@ export default {
         {
           _id: '01',
           UsuarioHackathon: {
-            name: 'Paco',
-            mail: 'the mail',
-            score: 222,
+            name: 'Name',
+            mail: 'email',
+            score: 0,
             github: 'Github'
           }
         }
@@ -78,9 +78,13 @@ export default {
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
     },
     getRanking () {
+      console.log('GR')
       var _ = this
       var xhttp = new XMLHttpRequest()
       xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 403) {
+          console.log('NOT AUTHORIZED TO REQUEST')
+        }
         if (this.readyState === 4 && this.status === 200) {
           // console.log('RESPONSE')
           console.log(JSON.parse(this.responseText))
@@ -136,6 +140,7 @@ export default {
     text-align: center;
     position: relative;
     .page-title{
+      color: $blue;
       text-align: left;
       padding: 0 10px;
       box-sizing: border-box;

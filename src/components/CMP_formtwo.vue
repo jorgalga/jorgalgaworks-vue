@@ -7,19 +7,19 @@
         <form>
           <div class="form-col">
             <label for="name" >Nombre y apellidos</label>
-            <input type="text" name="name" placeholder="">
+            <input @focus="togglePicker('form-name')" ref=form-name type="text" name="name" placeholder="" required>
           </div>
           <div class="form-col">
             <label for="company" >Empresa</label>
-            <input type="text" name="company" placeholder="">
+            <input ref=form-company type="text" name="company" placeholder="">
           </div>
           <div class="form-col">
             <label for="phone" >Teléfono</label>
-            <input type="number" name="phone" placeholder="">
+            <input ref=form-phone type="tel" name="phone" placeholder="">
           </div>
           <div class="form-col">
             <label for="email" >Email</label>
-            <input type="email" name="email" placeholder="">
+            <input @focus="togglePicker('form-email')" ref=form-email type="email" name="email" placeholder="" required>
           </div>
           <div class="form-col full">
             <div class="fc-wrapper">
@@ -35,7 +35,7 @@
           </div>
           <div class="form-col full">
             <div class="fc-wrapper submit-w">
-              <input v-observe-visibility="fadeInElement" @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
+              <input @click.prevent="sendform()" class="submit" type="submit" v-bind:value="data.copy[clang].form_inputvalue" v-bind:style="isMobile ? '' : 'font-size:'+15*1+'px;padding: 15px '+30*1+'px'">
             </div>
           </div>
            <div class="form-col full">
@@ -76,6 +76,88 @@ export default {
       var w = Math.min(window.innerWidth, this.data.max_width)
       this.scaleR = Math.max(this.data.mobile_width / this.data.max_width, w / this.data.max_width)
       this.scaleR = Math.min(this.scaleR, (this.data.max_width_limit / this.data.max_width))
+    },
+    togglePicker (e) {
+      this.$refs[e].classList.remove('error')
+    },
+    resetform () {
+      this.$refs['form-email'].value = ''
+      this.$refs['form-name'].value = ''
+      this.$refs['form-phone'].value = ''
+      this.$refs['form-company'].value = ''
+    },
+    sendform () {
+      var _ = this
+      var acopy0 = {
+        es: 'El nombre y el email son campos requeridos.',
+        en: 'Name and emal are required fields.'
+      }
+      var acopy1 = {
+        es: 'Para poder registrarse debes aceptar el uso y cesión de tus datos.',
+        en: 'To register you must accept the use and transfer of your data.'
+      }
+      var acopy2 = {
+        es: 'Hemos registrado correctamente tus datos.',
+        en: 'We have just stored your data.'
+      }
+      let customevent = {}
+      // console.log('send form')
+      if (_.$refs['form-name'].value === '' || _.$refs['form-email'].value === '') {
+        // alert(acopy0[_.clang])
+        customevent = new CustomEvent('OpenPopup', {detail: acopy0[_.clang]})
+        setTimeout(function () {
+          document.dispatchEvent(customevent)
+        }, 100)
+        if (_.$refs['form-name'].value === '') {
+          _.$refs['form-name'].classList.add('error')
+        }
+        if (_.$refs['form-email'].value === '') {
+          _.$refs['form-email'].classList.add('error')
+        }
+        return
+      }
+      if (!_.$refs.checkOK1.checked || !_.$refs.checkOK2.checked) {
+        // alert(acopy1[_.clang])
+        customevent = new CustomEvent('OpenPopup', {detail: acopy1[_.clang]})
+        setTimeout(function () {
+          document.dispatchEvent(customevent)
+        }, 100)
+        return
+      }
+      var jsonvar = {
+        UsuarioHackathonExterno: {
+          mail: _.$refs['form-email'].value,
+          name: _.$refs['form-name'].value,
+          motivation: '',
+          twitter: '',
+          github: '',
+          phoneNumber: _.$refs['form-phone'].value,
+          address: '',
+          company: _.$refs['form-company'].value
+        }
+      }
+      // https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/external
+      console.log(jsonvar)
+      var xhttp = new XMLHttpRequest()
+      xhttp.onreadystatechange = function () {
+        // console.log(this)
+        let status = this.status
+        if (this.readyState === 4 && status === 200) { // User allowed to register
+          _.resetform()
+          // alert(acopy2[_.clang])
+          customevent = new CustomEvent('OpenPopup_home', {detail: acopy2[_.clang]})
+          setTimeout(function () {
+            document.dispatchEvent(customevent)
+          }, 100)
+        } else {
+          
+        }
+      }
+      xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/external', true)
+      xhttp.setRequestHeader('X-OP-APIKey', 'd028185e6b5f481e9e1153d0babc067e')
+      xhttp.setRequestHeader('Accept', 'application/json')
+      xhttp.setRequestHeader('Content-type', 'application/json')
+      xhttp.send(JSON.stringify(jsonvar))
     }
   }
 }
@@ -204,6 +286,9 @@ export default {
       display:inline-block;
       border: 1px solid $darkblue;
       box-sizing: border-box;
+      &.error{
+        border: 1px solid red;
+      }
       &.submit{
         -webkit-appearance: none;
         border-radius: 0;

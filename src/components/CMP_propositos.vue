@@ -94,6 +94,8 @@ export default {
       transition: 0.5s;
       opacity: 0;
       transform: translate3d(0,50%,0);
+      align-items: center;
+      color: $darkblue;
       &.fadedIn{
         opacity: 1;
         transform: translate3d(0,0,0);
@@ -155,11 +157,13 @@ export default {
           margin-bottom: 15px;
           text-align: left;
           font-size: 1.3;
+          color: $blue;
         }
         .desc-prop{
           font-family: 'SohoGothicPro-Regular';
           text-align: left;
           font-size: 1.3;
+          color: $blue;
           @media (max-width: $break-mobile) {
             font-size: 15px;
           }
@@ -182,12 +186,12 @@ export default {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-around;
-        max-width: 650px;
+        // max-width: 650px;
         margin: 0 auto;
         .trust-icon{
           margin: 20px;
-          width: 150px;
-          height: 150px;
+          width: 100px;
+          height: 100px;
           background-repeat: no-repeat;
           background-position: center;
           background-size: contain;

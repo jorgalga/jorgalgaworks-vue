@@ -69,7 +69,8 @@ export default {
       if (url.split('?')[1] === 'participa') {
         setTimeout(function () {
           console.log('scrollTO')
-          document.getElementsByClassName('page')[0].scrollTo(0, document.getElementsByClassName('cmpform')[0].offsetTop)
+          // document.getElementsByClassName('page')[0].scrollTo(0, document.getElementsByClassName('cmpform')[0].offsetTop)
+          document.getElementsByClassName('page')[0].scrollTop = document.getElementsByClassName('cmpform')[0].offsetTop
         }, 1000)
       }
     },
@@ -226,6 +227,9 @@ export default {
       top: 50%;
       position: absolute;
       transform: translate3d(0,-50%,0);
+      @media (max-width: 1000px) {
+        display: none;
+      }
       @media (min-width: $break-mobile) {
         &:hover{
           background-color: white;
@@ -376,6 +380,9 @@ export default {
           margin-right: 45px;
           display: inline-block;
           list-style-type: none;
+          @media (max-width: 1000px) {
+            margin-right: 10px;
+          }
           a{
             font-size: 15px;
             padding: 15px 0;
@@ -421,6 +428,9 @@ export default {
     padding: 8px 20px;
     line-height: 1.3;
     font-family: 'SohoGothicPro-Medium';
+    @media (max-width: 1000px) {
+      right: 0;
+    }
     @media (max-width: $break-mobile) {
       position: relative;
       transform: initial;

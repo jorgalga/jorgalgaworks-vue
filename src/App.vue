@@ -4,7 +4,8 @@
       <router-view/>
     </transition>
     <cmpCookies></cmpCookies>
-    <div ref="sharepopup" class="popup hidden">
+    <cmpPopup></cmpPopup>
+    <!--div ref="sharepopup" class="popup hidden">
       <div class="close" @click.prevent="closepopup('sharepopup')">
         <div class="line"></div>
         <div class="line"></div>
@@ -40,26 +41,30 @@
         </div>
         <div class="link"></div>
       </div>
-    </div>
+    </div-->
   </div>
 </template>
 <script>
 import cmpCookies from '@/components/CMP_cookies'
+import cmpPopup from '@/components/CMP_popup'
 export default {
   name: 'App',
   props: ['lang'],
   components: {
-    'cmpCookies': cmpCookies
+    'cmpCookies': cmpCookies,
+    'cmpPopup': cmpPopup
   },
   data () {
     return {
       scaleR: 1,
       menuOpened: false,
-      isMobile: window.innerWidth < window.dataConfig.mobile_width
+      isMobile: window.innerWidth < window.dataConfig.mobile_width,
+      clang: 'es'
     }
   },
   created () {
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.data = window.dataConfig
     _.resizeHandler()
     window.addEventListener('resize', function () {
@@ -75,13 +80,23 @@ export default {
     document.addEventListener('openPopup', function (e) {
       _.$refs.sharepopup.classList.remove('hidden')
     }, false)
-    /*
-    if (_.getCookie('accepted') === '') {
-      console.log('no cookie')
-      _.$refs.cookie.classList.remove('hidden')
+    var reg = _.getArgs(window.location.href).register
+    var copyred = {
+      en: {
+        true: 'Registration has been completed successfully.',
+        false: 'Registration could not be completed.'
+      },
+      es: {
+        true: 'El registro ha sido completado con éxito.',
+        false: 'El registro no se ha podido completar.'
+      }
     }
-    */
-    // _.$refs.formdata.innerHTML = _.data.hubspot
+    if (reg) {
+      var customevent = new CustomEvent('OpenPopup', {detail: copyred[_.clang][reg]})
+      setTimeout(function () {
+        document.dispatchEvent(customevent)
+      }, 2000)
+    }
   },
   methods: {
     closepopup (id) {
@@ -120,6 +135,58 @@ export default {
     buttonHandler () {
       this.setCookie('accepted', '1', 7)
       this.$refs.cookie.classList.add('hidden')
+    },
+    getArgs (url) {
+      // get query string from url (optional) or window
+      var queryString = url ? url.split('?')[1] : window.location.search.slice(1)
+      // we'll store the parameters here
+      var obj = {}
+      // if query string exists
+      if (queryString) {
+        // stuff after # is not part of query string, so get rid of it
+        queryString = queryString.split('#')[0]
+        // split our query string into its component parts
+        var arr = queryString.split('&')
+        for (var i = 0; i < arr.length; i++) {
+          // separate the keys and the values
+          var a = arr[i].split('=')
+          // set parameter name and value (use 'true' if empty)
+          var paramName = a[0]
+          var paramValue = typeof (a[1]) === 'undefined' ? true : a[1]
+          // (optional) keep case consistent
+          paramName = paramName.toLowerCase()
+          if (typeof paramValue === 'string') paramValue = paramValue.toLowerCase()
+          // if the paramName ends with square brackets, e.g. colors[] or colors[2]
+          if (paramName.match(/\[(\d+)?\]$/)) {
+            // create key if it doesn't exist
+            var key = paramName.replace(/\[(\d+)?\]/, '')
+            if (!obj[key]) obj[key] = []
+            // if it's an indexed array e.g. colors[2]
+            if (paramName.match(/\[\d+\]$/)) {
+              // get the index value and add the entry at the appropriate position
+              var index = /\[(\d+)\]/.exec(paramName)[1]
+              obj[key][index] = paramValue
+            } else {
+              // otherwise add the value to the end of the array
+              obj[key].push(paramValue)
+            }
+          } else {
+            // we're dealing with a string
+            if (!obj[paramName]) {
+              // if it doesn't exist, create property
+              obj[paramName] = paramValue
+            } else if (obj[paramName] && typeof obj[paramName] === 'string') {
+              // if property does exist and it's a string, convert it to an array
+              obj[paramName] = [obj[paramName]]
+              obj[paramName].push(paramValue)
+            } else {
+              // otherwise add the property
+              obj[paramName].push(paramValue)
+            }
+          }
+        }
+      }
+      return obj
     }
   }
 }
@@ -128,7 +195,7 @@ export default {
 <style scoped lang="scss">
 @import 'scss/_vars.scss';
 @import 'scss/_fonts.scss';
-a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}:focus{outline:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration{-webkit-appearance:none;-moz-appearance:none}input[type=search]{-webkit-appearance:none;-moz-appearance:none;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}textarea{overflow:auto;vertical-align:top;resize:vertical}audio,canvas,video{display:inline-block;max-width:100%}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}a:focus{outline:thin dotted}a:active,a:hover{outline:0}img{border:0;-ms-interpolation-mode:bicubic}figure{margin:0}form{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}button,html,input,select,textarea{color:#222}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}img{vertical-align:middle}fieldset{border:0;margin:0;padding:0}textarea{resize:vertical}.chromeframe{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}
+// a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,caption,center,cite,code,dd,del,details,dfn,div,dl,dt,em,embed,fieldset,figcaption,figure,footer,form,h1,h2,h3,h4,h5,h6,header,hgroup,html,i,iframe,img,ins,kbd,label,legend,li,mark,menu,nav,object,ol,output,p,pre,q,ruby,s,samp,section,small,span,strike,strong,sub,summary,sup,table,tbody,td,tfoot,th,thead,time,tr,tt,u,ul,var,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline}:focus{outline:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:after,blockquote:before,q:after,q:before{content:'';content:none}table{border-collapse:collapse;border-spacing:0}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration,input[type=search]::-webkit-search-results-button,input[type=search]::-webkit-search-results-decoration{-webkit-appearance:none;-moz-appearance:none}input[type=search]{-webkit-appearance:none;-moz-appearance:none;-webkit-box-sizing:content-box;-moz-box-sizing:content-box;box-sizing:content-box}textarea{overflow:auto;vertical-align:top;resize:vertical}audio,canvas,video{display:inline-block;max-width:100%}audio:not([controls]){display:none;height:0}[hidden]{display:none}html{font-size:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%}a:focus{outline:thin dotted}a:active,a:hover{outline:0}img{border:0;-ms-interpolation-mode:bicubic}figure{margin:0}form{margin:0}fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}legend{border:0;padding:0;white-space:normal}button,input,select,textarea{font-size:100%;margin:0;vertical-align:baseline}button,input{line-height:normal}button,select{text-transform:none}button,html input[type=button],input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer}button[disabled],html input[disabled]{cursor:default}input[type=checkbox],input[type=radio]{box-sizing:border-box;padding:0}input[type=search]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}input[type=search]::-webkit-search-cancel-button,input[type=search]::-webkit-search-decoration{-webkit-appearance:none}button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}textarea{overflow:auto;vertical-align:top}table{border-collapse:collapse;border-spacing:0}button,html,input,select,textarea{color:#222}::-moz-selection{background:#b3d4fc;text-shadow:none}::selection{background:#b3d4fc;text-shadow:none}img{vertical-align:middle}fieldset{border:0;margin:0;padding:0}textarea{resize:vertical}.chromeframe{margin:.2em 0;background:#ccc;color:#000;padding:.2em 0}
 #app {
   display: inline-block;
   height: 100%;
@@ -138,6 +205,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
   overflow-y: hidden;
   height: 100%
 }
+/*
 .popup{
   width: 100%;
   max-width: $pagewidth2;
@@ -309,6 +377,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
     }
   }
 }
+*/
 .page{
   position: absolute;
   width: 100%;

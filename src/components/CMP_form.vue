@@ -89,14 +89,27 @@ export default {
       this.$refs['form-twitter'].value = ''
     },
     buttonHandler () {
-      window.location.href = '/#/external'
+      if (this.$refs.response.classList.contains('err-400')) {
+        clearTimeout(this.timeout)
+        window.location.href = '/#/external'
+      } else {
+        this.$refs.response.classList.remove('displayed')
+      }
     },
     sendform () {
       var _ = this
+      var acopy = {
+        es: 'Para poder participar debes aceptar las bases.',
+        en: 'To participate you must accept the rules.'
+      }
       _.$refs.splash.classList.add('displayed')
       if (!_.$refs.checkOK.checked) {
         _.$refs.splash.classList.add('displayed')
-        alert('Aceptar primero las Bases de la competición.')
+        // alert(acopy[_.clang])
+        var customevent = new CustomEvent('OpenPopup', {detail: acopy[_.clang]})
+        setTimeout(function () {
+          document.dispatchEvent(customevent)
+        }, 100)
         _.$refs.splash.classList.remove('displayed')
         return
       }
@@ -113,29 +126,34 @@ export default {
       }
       var xhttp = new XMLHttpRequest()
       xhttp.onreadystatechange = function () {
-        console.log(this)
+        let status = this.status
         _.resetform()
-        if (this.readyState === 4 && this.status === 200) { // User allowed to register
-          _.$data.response_msg = _.data.copy[_.clang].response_msg
-          _.$data.response_btn = _.data.copy[_.clang].response_btn
+        if (this.readyState === 4 && status === 200) { // User allowed to register
+          _.$data.response_msg = _.data.copy[_.clang].responses['code_' + status].response_msg
+          _.$data.response_btn = _.data.copy[_.clang].responses['code_' + status].response_btn
           _.$refs.splash.classList.remove('displayed')
           _.$refs.response.classList.add('displayed')
         }
-        if (this.readyState === 4 && this.status === 400) { // User NOT allowed
+        if (this.readyState === 4 && (status === 400 || status === 406)) { // User NOT valid or already registered
           _.$refs.response.classList.add('error')
+          _.$refs.response.classList.add('err-' + status)
           setTimeout(function () {
             _.$refs.splash.classList.remove('displayed')
             _.$refs.response.classList.add('displayed')
             // (_.data.copy[_.clang].response_msg_error)
-            _.$data.response_msg = _.data.copy[_.clang].response_msg_error
-            _.$data.response_btn = _.data.copy[_.clang].response_btn_error
-            setTimeout(function () {
-              _.$refs.response.classList.remove('displayed')
-            }, 5000)
+            _.$data.response_msg = _.data.copy[_.clang].responses['code_' + status].response_msg
+            _.$data.response_btn = _.data.copy[_.clang].responses['code_' + status].response_btn
+            _.timeout = setTimeout(function () {
+              if (_.$refs.response.classList.contains('displayed')) {
+                _.$refs.response.classList.remove('displayed')
+              }
+            }, 10000)
           }, 500)
         }
       }
       _.$refs.response.classList.remove('error')
+      _.$refs.response.classList.remove('err-400')
+      _.$refs.response.classList.remove('err-406')
       xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/', true)
       xhttp.setRequestHeader('X-OP-APIKey', 'd028185e6b5f481e9e1153d0babc067e')
       xhttp.setRequestHeader('Accept', 'application/json')
@@ -279,7 +297,8 @@ export default {
     min-height: 66vh;
     position:relative;
     @media (max-width: $break-mobile) {
-      min-height: 75vh
+      min-height: 75vh;
+      margin-bottom: 30px;
     }
     .logo{
       background: url('#{$staticpath}static/minsait/images/logo.png');
