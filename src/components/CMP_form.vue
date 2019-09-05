@@ -293,13 +293,16 @@ export default {
     max-width: 100%;
     margin: 0 auto;
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
     // background-color: #00000011;
-    min-height: 66vh;
+    // min-height: 66vh;
     position:relative;
     @media (max-width: $break-mobile) {
-      min-height: 75vh;
-      margin-bottom: 30px;
+      // min-height: 75vh;
+      // margin-bottom: 30px;
     }
+
     .logo{
       background: url('#{$staticpath}static/minsait/images/logo.png');
       background-size: contain;
@@ -312,11 +315,19 @@ export default {
     .form-container{
       min-height: 100px;
       max-width: 600px;
+      display: inline-block;
+      padding: 50px;
+      box-sizing: border-box;
+      @media (max-width: $break-mobile) {
+        padding: 25px 0 50px 0;
+      }
+      /*
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate3d(-50%,-50%,0);
       width: 50%;
+      */
       p{
         font-family: 'SohoGothicPro-Light';
         text-align: center;

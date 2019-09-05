@@ -60,13 +60,13 @@ export default {
         if (_.$refs.page.scrollTop < 200) {
           if (top === false) {
             top = true
-            console.log('hide btn fix')
+            // console.log('hide btn fix')
             document.getElementById('pc').classList.remove('displayed')
           }
         } else {
           if (top === true) {
             top = false
-            console.log('show btn fix')
+            // console.log('show btn fix')
             document.getElementById('pc').classList.add('displayed')
           }
         }

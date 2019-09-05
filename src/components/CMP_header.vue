@@ -105,7 +105,7 @@ export default {
       display: inline-block;
       width: 275px;
       height: 150px;
-      margin: 30px;
+      margin: 30px 0 0 0;
       @media (max-width: $break-mobile) {
         width: 150px;
         height: 75px;

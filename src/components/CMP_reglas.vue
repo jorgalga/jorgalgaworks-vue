@@ -89,7 +89,7 @@ export default {
   .reglas-container{
     min-height: 300px;
     background-color: #bce2da;
-    padding: 100px 45px;
+    padding: 25px 45px;
     @media (max-width: $break-mobile) {
       padding: 10px;
     }

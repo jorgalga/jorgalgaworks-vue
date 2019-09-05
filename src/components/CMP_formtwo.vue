@@ -100,6 +100,10 @@ export default {
         es: 'Hemos registrado correctamente tus datos.',
         en: 'We have just stored your data.'
       }
+      var acopy2err = {
+        es: 'No hemos podido registrar tus datos correctamente.',
+        en: 'We could not register your data correctly.'
+      }
       let customevent = {}
       // console.log('send form')
       if (_.$refs['form-name'].value === '' || _.$refs['form-email'].value === '') {
@@ -149,8 +153,13 @@ export default {
           setTimeout(function () {
             document.dispatchEvent(customevent)
           }, 100)
-        } else {
-          //
+        }
+        if (this.readyState === 4 && status !== 200) {
+          _.resetform()
+          customevent = new CustomEvent('OpenPopup', {detail: acopy2err[_.clang]})
+          setTimeout(function () {
+            document.dispatchEvent(customevent)
+          }, 100)
         }
       }
       xhttp.open('POST', 'https://www.onesaitplatform.online/gravitee/gateway/hackathon-event/v1/external', true)
