@@ -31,9 +31,9 @@
           <div>
             <router-link id="space-mobile" v-bind:style="'padding:'+45*scaleR+'px'" to="/space">{{data.page_names.space}}<span class="underline-container"><span class="underline"></span></span></router-link>
           </div>
-          <!--div>
+          <div>
             <router-link id="agenda-mobile" v-bind:style="'padding:'+45*scaleR+'px'" to="/agenda">{{data.page_names.agenda}}<span class="underline-container"><span class="underline"></span></span></router-link>
-          </div-->
+          </div>
           <div>
             <router-link id="partners-mobile" v-bind:style="'padding:'+45*scaleR+'px'" to="/partners">{{data.page_names.partners}}<span class="underline-container"><span class="underline"></span></span></router-link>
           </div>

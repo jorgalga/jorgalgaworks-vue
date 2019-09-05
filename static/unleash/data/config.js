@@ -1111,9 +1111,9 @@
         {
           id: '1',
           tag_id: 'tag-estrellagalicia',
-          img: 'partners/estrellagalicia.png',
+          img: 'partners/HIJOSDERIVERA.jpg',
           name: 'Estrella Galicia',
-          url: 'https://estrellagalicia.es/'
+          url: 'https://estrellagalicia.es'
         },
         {
           id: '2',
@@ -1296,7 +1296,7 @@
           tag_id: 'tag-Campton',
           img: 'partners/campton.png',
           name: 'campton',
-          url: 'https://www.instagram.com/campton.official/'
+          url: 'https://www.campton.es'
         },
         {
           id: '13',
@@ -1385,7 +1385,7 @@
         {id: 3, class:'black-txt', time:'11:55 - 12:20', text: 'Eric Matamoros'},
         {id: 4, class:'black-txt', time:'12:20 - 12:30', text: 'Xperience - CEPSA'},
         {id: 5, class:'black-txt', time:'12:30 - 12:50', text: 'SPEED DATING: Let´s mingle'},
-        {id: 6, class:'black-txt', time:'12:50 - 13:10', text: 'Hanna Herbst'},
+        {id: 6, class:'black-txt', time:'12:50 - 13:10', text: 'Hannah Herbst'},
         {id: 7, class:'black-txt', time:'13:10 - 13:20', text: 'Xperience - IBERIA EXPRESS'},
         {id: 8, class:'black-txt', time:'13:20 - 13:40', text: 'Ousman Osman'},
         {id: 8.2, class:'black-txt', time:'13:40 - 13:50', text: 'Expoart'},
