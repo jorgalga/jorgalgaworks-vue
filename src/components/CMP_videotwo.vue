@@ -5,7 +5,10 @@
       </div>
       <div class="video-container" v-bind:style="isMobile ? 'height:'+476*scaleR+'px' : 'height:'+846*scaleR+'px'">
         <!--div class="icon-video" v-bind:style="isMobile ? 'height:'+150*scaleR+'px;width:'+150*scaleR+'px' : 'height:'+200*scaleR+'px;width:'+200*scaleR+'px'"></div-->
-        <div id="player"></div>
+        <div id="player">
+           <div class='embed-container' v-html="video[clang]">
+          </div>
+        </div>
       </div>
       <div class="pd-container withtext">
         <div class="page-description"  v-html="data.copy[clang].video_description2">
@@ -24,7 +27,8 @@ export default {
       scaleR: 1,
       isMobile: window.innerWidth < window.dataConfig.mobile_width,
       data: window.dataConfig,
-      clang: 'es'
+      clang: 'es',
+      video: window.dataConfig.video_purposes
     }
   },
   created () {
@@ -37,10 +41,12 @@ export default {
     })
   },
   mounted () {
+    /*
     var _ = this
     setTimeout(function () {
       _.checkYT()
     }, 1000)
+    */
   },
   methods: {
     resizeHandler () {

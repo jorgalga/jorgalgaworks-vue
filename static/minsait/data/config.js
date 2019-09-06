@@ -11,6 +11,15 @@ var dataConfig = {
   page_names: {
     home: 'Home'
   },
+  video_home: {
+    en: '<iframe src="https://player.vimeo.com/video/356611066" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>',
+    es: '<iframe src="https://player.vimeo.com/video/357822581" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+  },
+  /* Hay que borrar el parametro with y height del embed code para que el video sea responsive */
+  video_purposes: {
+    en: '<iframe src="https://player.vimeo.com/video/358023797" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>',
+    es: '<iframe src="https://player.vimeo.com/video/358023797" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
+  },
   copy: {
     en: {
       responses: {
@@ -19,46 +28,46 @@ var dataConfig = {
           response_btn: 'OK',
         },
         code_400: {
-          response_msg: 'The email address is not valid. Only Minsait members can participate in that phase. <br> If you want to be the first to be part of the community once it is open to the public. Sign up here. ',
+          response_msg: 'The e-mail address is not valid. Only Minsait members can participate in this phase.<br>If you want to be the first one to be part of this community, once it is open to the public. Sign up  over here:',
           response_btn: 'I want to participate',
         },
         code_406: {
-          response_msg: 'It seems that you have already registered with this email, keep an eye on your email to receive the following steps.',
+          response_msg: 'It seems that you have already registered with this e-mail, stay tuned because you will receive some steps to follow.',
           response_btn: 'OK',
         }
       },
       make_scroll: '& # 60 more info & # 62',
       cookie_message: '<p> We use our own and third party cookies to improve the user experience through your browsing. If you continue browsing we understand that you accept its use. <a href="/static/minsait/docs/minsait-cookiespolicy.pdf" target="_blank"> Cookies policy </a> </p> ',
-      logo_copy: 'Help us to build an OpenSource community, from the inside. <br> We need the best. <br> Join the revolution.',
+      logo_copy: 'Help us build an OpenSource community, from the inside.<br>We need the best ones.<br>Join to the revolution.',
       video_ptitle: 'Info',
-      video_description: '<p> We want to create the reference <b> Opensource </b> platform, where knowledge of various disciplines such as <b> Big Data, Internet of Everything, Artificial Intelligence ... </br> and to get it we need the best. </b> </p> ',
-      video_ptitle2: 'Onesait Platform <br> <span> Towards the data economy </span>',
+      video_description: '<p>We want to create an <b>Opensource</b> platform of reference, where people share knowledge of various disciplines such as <b>Big Data, Internet of Everything, Intelligencia Artificial...</br> and to get do so we need the best.</b></p>',
+      video_ptitle2: 'Onesait Platform<br><span>Driving the creation of new solutions<br>in the digital age.</span>',
       video_description2: 'Build new business applications.',
       form_ptitle: 'form',
       form_fisrtP: 'Tell us who you are to participate.',
       form_name: 'Name:',
       form_email: 'Email:',
       form_twitter: 'Twitter:',
-      form_check_bases: 'I accept the <a target="_blank" href="/static/minsait/docs/Bases_legales_Minsait_onesaitRevolution.pdf"> competition rules </a>',
-      form_inputvalue: 'Leave a mark',
-      form_contact: 'If you still have doubts:',
-      form_contact_btn: 'Contact us',
+      form_check_bases: 'I Accept <a target="_blank" href="/static/minsait/docs/Bases_legales_Minsait_onesaitRevolution.pdf">the competition rules</a>',
+      form_inputvalue: 'Leave your mark',
+      form_contact: 'If you still have any doubts:',
+      form_contact_btn: 'CONTACT US',
       info_ptitle: 'Phases',
-      info_description: '<p> You will pass by for two phases of competition, one individual and one as a team. <br> Attending an online event where all the details of the revolution will be known. </p>',
+      info_description: '<p>You will go through two phases of the competition, one individual and the other in teams.<br>Be part of an online event where all the details of the revolution will be unveiled.</p>',
       infoitems: [{
           order: 1,
-          title: '1. Postulate ',
-          description: 'Individual challenges <br> as initial phase.'
+          title: '1. Apply ',
+          description: 'Individual Challenges<br>during the initial phase.'
         },
         {
           order: 2,
           title: '2. WebEx ',
-          description: 'We will tell you all about the revolution.'
+          description: 'We will tell you everything<br>about the revolution.'
         },
         {
           order: 3,
-          title: '3. Compete as a team ',
-          description: '2 weeks working as a team to win.'
+          title: '3. Compete as a team',
+          description: '2 weeks working <br>as a team to win.'
         },
         {
           order: 4,
@@ -66,10 +75,10 @@ var dataConfig = {
           description: 'Only the best will get their prize in the afterwork and leave their mark.'
         }
       ],
-      info_claim: 'We rely on our internal talent to consolidate Minsait as a benchmark for open culture. Leave your mark',
+      info_claim: 'We trust in our internal talent to consolidate Minsait as a leader brand for open culture. Leave your mark',
       ranking_ptitle: 'Ranking',
-      ranking_description: '<p> Our developers are trying to revolutionize Onesait Platform <br> The revolution begins </p>',
-      ranking_btn_copy: 'Follow the Ranking on Twitter',
+      ranking_description: '<p>Our developers are<br>are trying to revolutionize Onesait Platform<br>The revolution is now</p>',
+      ranking_btn_copy: 'Follow it on Twitter',
       menu_left_copy: 'An Indra company',
       menuparticipabtn: 'Participate',
       menubtn: 'MENU',
@@ -86,23 +95,23 @@ var dataConfig = {
       reglas_items: [{
           id: '1',
           title: 'Rule 1',
-          text: '<p> Only Minsait employees may participate. Remember that this initiative is optional and therefore must be developed after working hours. </p> '
+          text: '<p>Only Minsait employees may participate. Remember that this initiative is optional and should therefore be developed after working hours.</p>'
         },
         {
           id: '2',
           title: 'Rule 2',
-          text: '<p> There are 2 phases of the competition, one individual and one in teams. </p> <p> In the individual phase the participants will accumulate points when completing tests and will be selected for their skills. Those who get the highest number of points will be part of the selected ones and will be able to move on to the second phase. </p> <p> How do I accumulate points in the individual phase? </p> <ol> <li> Follow on Twitter the initiative profile <a href="https://twitter.com/onesaitplatform" target="_blank"> @onesaitplatform </a>. <br> (5 points) </li> <li> Follow on Github with your Minsait user the user <a href="https://github.com/onesaitplatform/" target="_blank"> onesaitplatform </a>. <br> (5 points) </li> <li> Request in github a Pull Request in our repository <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank"> onesaitplatform-revolution </a>. <br> (10 points) </ li> <li> Complete with your Minsait user challenges on the platform <a href="https://www.codewars.com" target="_blank"> Codewars </a>. (As many points as kyus you get at the time of the contest) </li> </ol> <p> In the group stage, teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase. </p> <p> How is the group phase evaluated? </p> <ol> <li> Based on the contribution to Onesait Platform </li> <li> Depending on the technological complexity of development </ li > <li> How it brings value to the company </li> <li> Teamwork with the mentor. </li> </ol>'
+          text: '<p>There are 2 phases of the competition, one individual and one in teams.</p><p>In the individual phase the participants will earn points by completing different tests and will be selected for their skills. Those who obtain the highest number of points will be part of the priviledged ones that will be able to move on to the second phase.</p><p><b>How do I earn points during the individual phase?</b></p><p>It is essential that you register with Github and Codewars with the corporate mail with which you have registered at first.</p><ol><li>Follow this iniciative on Twitter<a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform</a>.<br>(5 puntos)</li><li>Follow on Github with your Minsait user the user <a href="https://github.com/onesaitplatform/" target="_blank">onesaitplatform</a>.<br>(5 puntos)</li><li>Request in github a Pull Request in our repository <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank">onesaitplatform-revolution</a>.<br>(10 points)</li><li> Complete with your Minsait user challenges on the platform <a href="https://www.codewars.com" target="_blank">Codewars</a>. (As many points as kyus you get at the time of the contest)</li></ol><p>In the group stage, teams will be set up and a mentor will be assigned to help them in their development. The operation through a Webex will be explained in detail to those who manage to move on to the second phase.</p><p><b>¿How is the group phase evaluated?</b></p><ol><li>Based on the contribution to Onesait Platform</li><li>Depending on the technological complexity of development</li><li>CHow it brings value to the company</li><li>Teamwork with the mentor.</li></ol>'
         },
         {
           id: '4',
           title: 'OpenSource presentation event',
-          text: '<p> The three finalist teams will be transferred to Madrid to attend the OpenSource presentation event. </p> <p> All the participants with level 2 will be able to attend the presentation event at their own expense while transporting their expenses. </ p> '
+          text: '<p>The three finalist teams will be transferred to Madrid to attend the OpenSource presentation event.</p><p>All the participants with level 2 will be able to attend the presentation event at their own expense while transporting their expenses.</p>'
         }
       ],
       props_items: [{
           id: 0,
           title: '1. Build a comprehensive data strategy ',
-          description: 'Because you understand the relevance of the data for decision making in business processes, we offer you the tools you need to unify data management, wherever it occurs and with the latest technologies',
+          description: 'Because you understand the relevance of data for decision making in business processes, we offer you the tools you need to unify data management, wherever it is produced and with the latest technologies.',
           icon_items: [{
               id: 0,
               src: '1.Congnitive_Service.png',
@@ -137,8 +146,8 @@ var dataConfig = {
         },
         {
           id: 1,
-          title: '2. Connect the physical and virtual world ',
-          description: 'Go one step further and integrate the physical world into your digital solutions, from sensor data collection to analytics at the edge to merge the IT and OT worlds to develop business applications throughout the value chain. ',
+          title: '2. Connects the physical and virtual world',
+          description: 'Go a step further and integrate the physical world into your digital solutions, from sensor data capture to edge analytics, merge the IT and OT worlds to develop business applications across the entire value chain.',
           icon_items: [{
               id: 0,
               src: '2.Device_Mamnagement.png',
@@ -173,8 +182,8 @@ var dataConfig = {
         },
         {
           id: 2,
-          title: '3. Control and grow in a flexible way ',
-          description: 'The digital environment is vibrant and dynamic and you must ensure the scalability and security of the new software solutions from the proof of concept while you start to develop and test new applications, with ambition for the future. <br> Think Big , Start Small. ',
+          title: '3. Control and grow in a flexible way',
+          description: 'The digital environment is vibrant and dynamic and you must ensure the scalability and security of the new software solutions from the proof of concept while you start to develop and test new applications, with ambition for the future.<br>Think Big, Start Small.',
           icon_items: [{
               id: 0,
               src: '3.API_Manager.png',
@@ -183,7 +192,7 @@ var dataConfig = {
             {
               id: 1,
               src: '3.Dashboards.png',
-              txt: 'dashboards'
+              txt: 'Dashboards'
             },
             {
               id: 2,
@@ -259,7 +268,7 @@ var dataConfig = {
         },
         {
           id: 4,
-          title: '5. Innovate in an open and community way ',
+          title: '5. Innovate in an open and community way',
           description: 'Join the Open Source development community and collaborate with other professionals who, like you, believe that together, sharing our knowledge, we can go further and make the latest technologies accessible to society.',
           icon_items: [{
             id: 0,
@@ -303,20 +312,12 @@ var dataConfig = {
           src: 'bancooccidente.png'
         },
         {
-          id: 6,
-          src: 'bimbo.png'
-        },
-        {
           id: 7,
           src: 'bsh.png'
         },
         {
           id: 8,
           src: 'caceressmartcity.png'
-        },
-        {
-          id: 9,
-          src: 'campofrio.png'
         },
         {
           id: 10,
@@ -379,10 +380,6 @@ var dataConfig = {
           src: 'helsinki.png'
         },
         {
-          id: 25,
-          src: 'ie.png'
-        },
-        {
           id: 26,
           src: 'ibbva.png'
         },
@@ -440,7 +437,7 @@ var dataConfig = {
         }
       ],
       footer_col1: 'Onesait Platform®',
-      footer_col2: 'Game rules'
+      footer_col2: 'Game Rules'
     },
     es: {
       responses: {
@@ -462,7 +459,7 @@ var dataConfig = {
       logo_copy: 'Ayúdanos a construir una comunidad OpenSource, desde dentro.<br>Necesitamos a los mejores.<br>Únete a la revolución.',
       video_ptitle: 'Info',
       video_description: '<p>Queremos crear la plataforma <b>Opensource</b> de referencia, donde se comparten conocimientos de diversas disciplinas como <b>Big Data, Internet of Everything, Intelligencia Artificial...</br> y para conseguirlo necesitamos a los mejores.</b></p>',
-      video_ptitle2: 'Onesait Platform<br><span>Hacia la economía del dato</span>',
+      video_ptitle2: 'Onesait Platform<br><span>Impulsando la creación de nuevas soluciones<br>en la era digital.</span>',
       video_description2: 'Construye nuevas aplicaciones de negocio.',
       form_ptitle: 'formulario',
       form_fisrtP: 'Dinos quien eres para participar.',
@@ -499,7 +496,7 @@ var dataConfig = {
       info_claim: 'Confiamos en nuestro talento interno para consolidar a Minsait como referente de la cultura abierta. Deja tu huella',
       ranking_ptitle: 'Ranking',
       ranking_description: '<p>Nuestros desarrolladores están<br>tratando de revolucionar Onesait Platform<br>Empieza la revolución</p>',
-      ranking_btn_copy: 'Sigue el Ranking en Twitter',
+      ranking_btn_copy: 'Síguelo en Twitter',
       menu_left_copy: 'Una empresa de Indra',
       menuparticipabtn: 'Participa',
       menubtn: 'MENÚ',
@@ -521,7 +518,7 @@ var dataConfig = {
         {
           id: '2',
           title: 'Regla 2',
-          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p>¿Cómo acumulo puntos en la fase individual?</p><ol><li>Sigue en Twitter el perfil de la iniciativa <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform</a>.<br>(5 puntos)</li><li>Sigue en Github con tu usuario de Minsait al usuario <a href="https://github.com/onesaitplatform/" target="_blank">onesaitplatform</a>.<br>(5 puntos)</li><li>Solicita en github una Pull Request en nuestro repositorio <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank">onesaitplatform-revolution</a>.<br>(10 puntos)</li><li> Completa con tu usuario de Minsait retos en la plataforma <a href="https://www.codewars.com" target="_blank">Codewars</a>. (Tantos puntos como kyus obtengas en el tiempo del concurso)</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p>¿Cómo se evalúa la fase grupal?</p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
+          text: '<p>Hay 2 fases de la competición, una individual y otra en equipos.</p><p>En la fase individual los participantes irán acumulando puntos al ir completando pruebas y serán seleccionados por sus habilidades. Aquellos que consigan el mayor número de puntos formarán parte de los seleccionados y podrán pasar a la segunda fase.</p><p><b>¿Cómo acumulo puntos en la fase individual?</b></p><p>Es imprescindible que te registres en Github y Codewars con el correo corporativo con el que te has registrado a la iniciativa.</p><ol><li>Sigue en Twitter el perfil de la iniciativa <a href="https://twitter.com/onesaitplatform" target="_blank">@onesaitplatform</a>.<br>(5 puntos)</li><li>Sigue en Github con tu usuario de Minsait al usuario <a href="https://github.com/onesaitplatform/" target="_blank">onesaitplatform</a>.<br>(5 puntos)</li><li>Solicita en github una Pull Request en nuestro repositorio <a href="https://github.com/onesaitplatform/onesaitplatform-revolution" target="_blank">onesaitplatform-revolution</a>.<br>(10 puntos)</li><li> Completa con tu usuario de Minsait retos en la plataforma <a href="https://www.codewars.com" target="_blank">Codewars</a>. (Tantos puntos como kyus obtengas en el tiempo del concurso)</li></ol><p>En la fase de grupos, se configurarán los equipos y se asignará un mentor que les ayudará en su desarrollo. Se explicará en detalle el funcionamiento a través de un Webex a aquellos que consigan pasar a la segunda fase. </p><p><b>¿Cómo se evalúa la fase grupal?</b></p><ol><li>En base a la aportación a Onesait Platform</li><li>Dependiendo de la complejidad Tecnológica del desarrollo</li><li>Cómo aporta valor a la compañía</li><li>Trabajo en equipo con el mentor.</li></ol>'
         },
         {
           id: '4',
@@ -732,20 +729,12 @@ var dataConfig = {
           src: 'bancooccidente.png'
         },
         {
-          id: 6,
-          src: 'bimbo.png'
-        },
-        {
           id: 7,
           src: 'bsh.png'
         },
         {
           id: 8,
           src: 'caceressmartcity.png'
-        },
-        {
-          id: 9,
-          src: 'campofrio.png'
         },
         {
           id: 10,
@@ -806,10 +795,6 @@ var dataConfig = {
         {
           id: 24,
           src: 'helsinki.png'
-        },
-        {
-          id: 25,
-          src: 'ie.png'
         },
         {
           id: 26,

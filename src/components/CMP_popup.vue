@@ -23,7 +23,8 @@ export default {
       data: window.dataConfig,
       clang: 'es',
       pcopy: 'hola mundo',
-      gohome: false
+      gohome: false,
+      goprops: false
     }
   },
   created () {
@@ -57,6 +58,12 @@ export default {
         _.$refs.cmppopup.classList.add('fadein')
         _.gohome = true
       })
+      document.addEventListener('OpenPopup_props', function (e) {
+        console.log(e)
+        _.$data.pcopy = e.detail
+        _.$refs.cmppopup.classList.add('fadein')
+        _.goprops = true
+      })
       // window.location.href = '/#/'
     },
     closepopup () {
@@ -66,6 +73,12 @@ export default {
         _.gohome = false
         setTimeout(function () {
           window.location.href = '/#/'
+        }, 500)
+      }
+      if (_.goprops === true) {
+        _.gohome = false
+        setTimeout(function () {
+          window.location.href = '/#/reglas/' + _.clang
         }, 500)
       }
     }

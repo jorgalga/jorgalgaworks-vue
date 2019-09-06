@@ -30,10 +30,7 @@ export default {
       isMobile: window.innerWidth < window.dataConfig.mobile_width,
       data: window.dataConfig,
       clang: 'es',
-      video: {
-        en: '<iframe src="https://player.vimeo.com/video/356611066" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>',
-        es: '<iframe src="https://player.vimeo.com/video/357822581" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>'
-      }
+      video: window.dataConfig.video_home
     }
   },
   created () {

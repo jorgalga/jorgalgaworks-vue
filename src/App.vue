@@ -92,7 +92,7 @@ export default {
       }
     }
     if (reg) {
-      var customevent = new CustomEvent('OpenPopup', {detail: copyred[_.clang][reg]})
+      var customevent = new CustomEvent('OpenPopup_props', {detail: copyred[_.clang][reg]})
       setTimeout(function () {
         document.dispatchEvent(customevent)
         history.pushState({id: 'homepage'}, 'Onesait Platform', _.removeParam('register', window.location.href))
