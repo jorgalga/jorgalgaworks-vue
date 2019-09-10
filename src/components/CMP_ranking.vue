@@ -17,7 +17,7 @@
               <div class="position">{{index+1}}<sup>st</sup></div>
               <div class="data">
                 <div class="name">{{item.UsuarioHackathon.name}}</div>
-                <div class="place">{{item.UsuarioHackathon.mail}}</div>
+                <!--div class="place">{{item.UsuarioHackathon.mail}}</div-->
                 <div class="icon">
                   <img width="30px" src="/static/minsait/images/Octicons-mark-github.svg">
                   <div class="gh-name">{{item.UsuarioHackathon.github}}</div>
@@ -217,14 +217,14 @@ export default {
       overflow-y: hidden;
     }
     .ranking-list-item{
-      height: 150px;
+      height: 125px;
       width: 98%;
       position: relative;
       background-color: white;
       color: $darkblue;
       border-bottom: 1px solid $darkblue;
       @media (max-width: $break-mobile) {
-        height: 100px;
+        height: 85px;
         width: 100%;
       }
       &.blued{
@@ -277,11 +277,12 @@ export default {
           text-align: left;
           box-sizing: border-box;
           @media (max-width: $break-mobile) {
-            width: 65%;
+            width: 55%;
             left: 15%;
           }
           .name{
             font-size: 18px;
+            padding-bottom: 5px;
             @media (max-width: $break-mobile) {
               font-size: 15px;
             }
@@ -317,8 +318,8 @@ export default {
           font-size: 23px;
           color: #40c6b5;
           @media (max-width: $break-mobile) {
-            width: 20%;
-            left: 80%;
+            width: 30%;
+            left: 70%;
             font-size: 21px;
             text-align: right;
             padding: 0;

@@ -23,10 +23,8 @@ export default {
     }
   },
   created () {
-    if (this.$route.params.lang) {
-      this.clang = this.$route.params.lang
-    }
     var _ = this
+    this.clang = this.$route.name.split('loc:')[1]
     _.data = window.dataConfig
     _.resizeHandler()
     window.addEventListener('resize', function () {
