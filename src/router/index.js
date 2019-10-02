@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Home from '@/views/home'
 import Reglas from '@/views/reglas'
 import Proposito from '@/views/proposito'
+import Teams from '@/views/teams'
 import Ranking from '@/views/ranking'
 import Webex from '@/views/webex'
 import External from '@/views/newexternal'
@@ -59,6 +60,21 @@ export default new Router({
       path: '/proposito/en',
       name: 'Proposito english loc:en',
       component: Proposito
+    },
+    {
+      path: '/teams',
+      name: 'Teams default loc:es',
+      component: Teams
+    },
+    {
+      path: '/teams/es',
+      name: 'Teams spanish loc:es',
+      component: Teams
+    },
+    {
+      path: '/teams/en',
+      name: 'Teams english loc:en',
+      component: Teams
     },
     {
       path: '/ranking/',
