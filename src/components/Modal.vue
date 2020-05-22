@@ -42,7 +42,7 @@ export default {
 .hello{
   background-color: #110011dd;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 999;
   top: 0;

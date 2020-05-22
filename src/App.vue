@@ -23,7 +23,7 @@ body, html{
   color: #2c3e50;
   text-align: center;
   height: 100vh;
-  width: 100vw;
+  width: 100%;
   position: fixed;
   overflow-y: scroll;
 }
