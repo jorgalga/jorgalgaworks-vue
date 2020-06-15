@@ -6,6 +6,7 @@ import router from './router'
 
 Vue.config.productionTip = false
 /* eslint-disable no-new */
+window.allowed = true
 if (window.allowed) {
   new Vue({
     el: '#app',
