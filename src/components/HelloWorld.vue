@@ -1,9 +1,5 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <studies></studies>
-    <portfolio></portfolio>
-    <exhibitions></exhibitions>
   </div>
 </template>
 
